@@ -1,0 +1,66 @@
+<!--pages-userInfo/components/onlineOrder/onlineOrder.wxml-->
+<view data-item="{{item}}" bindtap="toCommonDetail">
+  <view class="head">
+    <view class="title">
+      <view class="ico xs"></view>{{item.brand_name}}
+    </view>
+    <view class="status-text">{{item.order_status_text}}</view>
+  </view>
+  <view class="content">
+    <image class="goods-img" src="{{item.image_url}}"></image>
+    <view class="right">
+      <view class="name">{{item.prerogative_name}}</view>
+      <view class="price-wrap">
+        <!-- 全款秒光光||兑换卡 -->
+        <text class="price-box"
+          wx:if="{{item.pay_way == 2 && item.join_act == 1}}">￥{{item.activity_price}}<text class="unit">{{item.price_unit}}</text>X{{item.buy_count}}</text>
+        <!-- 全款普通 -->
+        <text class="price-box"
+          wx:if="{{item.pay_way == 2 && item.join_act == 0}}">￥{{item.exclusive_price}}<text class="unit">{{item.price_unit}}</text>X{{item.buy_count}}</text>
+        <!-- 定金商品 -->
+        <text class="price-box"
+          wx:if="{{item.pay_way == 1}}">￥{{item.earnest}}<text class="unit">{{item.price_unit}}</text>X{{item.buy_count}}</text>
+        <text class="red" wx:if="{{item.isHaveRefund == 1}}">有退款</text>
+      </view>
+      <view class="btn-box">
+        <block wx:if="{{item.order_status_text == '待付款'}}">
+          <view class="btn" catchtap="cancelPop" data-order_id="{{item.order_id}}" wx:if="{{item.isCancel == 1}}">取消
+          </view>
+          <view class="btn to-pay" catchtap="payBtn" data-orderid="{{item.order_id}}"
+            data-orderNum="{{item.order_num}}">
+            付款 {{lastTime}}</view>
+        </block>
+        <!-- 复制单号 -->
+        <view class='btn wide' catchtap='copy' wx:if="{{item.logistics_sn}}" data-order="{{item.logistics_sn}}">复制单号
+        </view>
+        <view class='btn wide' wx:if="{{item.order_status_text == '待发货' || item.order_status_text == '待提货'}}">查看详情
+        </view>
+        <block wx:if="{{item.order_status_text == '已完成' || item.order_status_text == '已取消'}}">
+          <view class="btn" data-item="{{item}}" catchtap="deleteOrder">删除</view>
+        </block>
+      </view>
+    </view>
+  </view>
+  <view class="order-info" wx:if="{{item.logistics_sn}}">快递：{{item.logistics_name}}，单号：{{item.logistics_sn}}
+    查询物流单号跟踪物流信息</view>
+</view>
+
+<!-- 确定取消该订单吗？ -->
+<view class="pop_back" wx:if="{{pop6}}">
+  <view class="pop twopop">
+    <view class="problem">确定取消该订单吗？</view>
+    <view class="pop_btns flexB">
+      <view class="btn_1" bindtap="popUnShow" data-name="pop6">取消</view>
+      <view class="btn_2" bindtap="cancelPreOrder">确认</view>
+    </view>
+  </view>
+</view>
+<!-- 支付失败提示 -->
+<view class="pop_back" wx:if="{{pop2}}">
+  <view class="pop twopop">
+    <view class="problem">{{pop2Text}}</view>
+    <view class="pop_btns flexC">
+      <view class="btn_2" bindtap="popUnShow" data-name="pop2">知道了</view>
+    </view>
+  </view>
+</view>

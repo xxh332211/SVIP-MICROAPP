@@ -1,0 +1,25 @@
+<view class="container">
+  <view class="order" data-id="{{item.order_id}}" catchtap="detailBtn" wx:for='{{orderAllList}}' wx:key='key'>
+    <view class="orderHeader">
+      <text>{{item.brand_name}}</text>
+      <text style="color:{{item.order_status_text == '待付款' ? '#E5002D': '#777'}}">{{item.order_status_text}}</text>
+    </view>
+    <view class="main">
+      <image src="{{item.image_url}}"></image>
+      <view class="mainRight">
+        <view class="title">{{item.prerogative_name}}</view>
+        <view class="detail">
+          <text class="price">￥{{item.exclusive_price}}</text>
+          <text class="num">x<text style="color:#222">{{item.buy_count}}</text></text>
+          <text class="refund" wx:if='{{item.isHaveRefund == 1}}'>有退款</text>
+        </view>
+      </view>
+    </view>
+    <view class="btn-box">
+      <view class="remove" data-order_num="{{item.order_num}}" catchtap="removeBtn" wx:if='{{item.order_status_text == "已完成" || item.order_status_text == "待付款"}}' data-order_id="{{item.order_id}}">删除</view>
+      <view class="check"  wx:else>查看</view>
+      <view class="pay" data-order_num="{{item.order_num}}" catchtap="payBtn" wx:if='{{item.order_status_text == "待付款"}}'>去支付</view>
+    </view>
+  </view>
+
+</view>

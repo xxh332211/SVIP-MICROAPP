@@ -1,0 +1,41 @@
+<online-serve />
+<div class="cont">
+<view class="use-type-tabs">
+  <view data-id="{{0}}" bind:tap="switchTab" class="use-type-tab {{useType === 0 ? 'active' : ''}}}">
+    可使用
+  </view>
+  <view data-id="{{1}}" bind:tap="switchTab" class="use-type-tab {{useType === 1 ? 'active' : ''}}}">
+    已使用
+  </view>
+</view>
+<view class="gap"></view>
+<scroll-view class="coupon-type-tabs" scroll-x="{{true}}">
+  <view class="coupon-type-tab {{item.categoryId === couponType ? 'active' : ''}}" wx:for="{{categories}}" wx:key="categoryId" data-id="{{item.categoryId}}" bind:tap="switchCat">
+    {{item.categoryName}}
+  </view>
+</scroll-view>
+<scroll-view class="list" scroll-y="{{true}}">
+  <view class="item" wx:for="{{list}}" wx:key="id">
+    <view class="info">
+      <view class="left">
+        <view class="price">
+          <block wx:if="{{item.couponType === 1}}">
+            <text class="u">¥</text>
+            <text>{{item.couponValue}}</text> 
+          </block>
+          <block wx:else>
+            <text>{{item.couponValue / 10}}</text> 
+            <text class="u">折</text>
+          </block>
+        </view>
+        <view class="desc">满{{item.minAmount}}元可用</view>
+      </view>
+      <view class="right">
+        <view class="name">{{item.couponName}}</view>
+        <view class="desc">有效期{{item.beginDate}}-{{item.endDate}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="no-data" wx:if="{{!loading && list.length === 0}}">无相关优惠券</view>
+</scroll-view>
+</div>

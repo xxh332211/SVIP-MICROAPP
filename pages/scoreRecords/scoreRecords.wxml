@@ -1,0 +1,35 @@
+<view class="page">
+  <view class="head">
+    <view class="score">
+      <image mode="aspectFill" src="https://img.51jiabo.com/imgs-mall/icon-score-black.svg"/>
+      <view>{{score}}</view>
+      <view>积分</view>
+    </view>
+    <view class="links">
+      <view class="link {{cur === 0 ? 'active' : ''}}" bind:tap="switchType" data-id="{{0}}">
+        <view>收入</view>
+        <view>{{earned}}</view>
+      </view>
+      <view class="link {{cur === 1 ? 'active' : ''}}" bind:tap="switchType" data-id="{{1}}">
+        <view>支出</view>
+        <view>{{spent}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="gap"></view>
+  <view class="cont">
+    <scroll-view scroll-y="{{true}}" bindscrolltolower="loadMore">
+      <view class="no-data" wx:if="{{!loading && list.length === 0}}">
+        <image src="/imgs/empty.png" mode="aspectFill"></image>
+        <text>暂无相关记录</text>
+      </view>
+      <view class="record-item" wx:for="{{list}}" wx:key="id" data-id="{{item.id}}">
+        <view class="info">
+          <view class="name">{{item.description}}</view>
+          <view class="date">{{item.createTime}}</view>
+        </view>
+        <view class="count">{{item.value > 0 ? '+' + item.value : item.value}}</view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

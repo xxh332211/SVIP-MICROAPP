@@ -1,0 +1,6 @@
+<modal bind:close="close">
+  <view class="container">
+    <image src="https://img.51jiabo.com/imgs-mall/douyin.jpg" mode="aspectFit"></image>
+    <button class="submit normal-btn" bind:tap="submit" hover-class="close-press">保存到相册</button>
+  </view>
+</modal>

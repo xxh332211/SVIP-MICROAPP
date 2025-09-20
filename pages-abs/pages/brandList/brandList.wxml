@@ -1,0 +1,16 @@
+<!--pages-abs/pages/brandList/brandList.wxml-->
+<view class="banner">
+    <swiper autoplay="{{true}}" wx:if="{{brandAdv.length > 1}}">
+        <swiper-item wx:for="{{brandAdv}}" wx:key="index" data-area_id="65" bindtap="{{item.url?'swiperUrl':''}}" data-url="{{item.url}}" data-type="{{item.type}}">
+            <image src="{{item.win_image_url}}"></image>
+        </swiper-item>
+    </swiper>
+    <image wx:if="{{brandAdv.length == 1}}" src="{{brandAdv[0].win_image_url}}"></image>
+</view>
+<view class="bodys">
+    <view class="list" wx:for="{{list}}" wx:key="index" bindtap="toShop" data-id="{{item.supplier_id}}">
+        <image class="brand-logo" mode="" src="{{item.logo_url}}"></image>
+        <text class="brand-name">{{item.name}}</text>
+        <text class="zwh" wx:if="{{item.booth}}">展位号 {{item.booth}}</text>
+    </view>
+</view>

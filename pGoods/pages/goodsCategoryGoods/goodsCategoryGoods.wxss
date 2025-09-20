@@ -1,0 +1,117 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.tabs{
+  background: #FFF;
+  display: flex;
+  justify-content: space-around;
+}
+.tab{
+  width: 130rpx;
+  display: flex;
+  font-size: 30rpx;
+  color: #999999;
+  align-items: center;
+  padding: 30rpx 20rpx;
+}
+.tab.active{
+  color: #000;
+}
+.tab image{
+  height: 24rpx;
+  width: 18rpx;
+  display: block;
+  margin-left: 8rpx;
+}
+.cont{
+  flex: 1;
+  min-height: 0;
+}
+scroll-view{
+  height: 100%;
+}
+.goods-item{
+  width: 100%;
+  padding: 10rpx 30rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 40rpx;
+  background: #FFF;
+}
+.goods-item image{
+  width: 690rpx;
+  height: 335rpx;
+  margin-bottom: 30rpx;
+  display: block;
+}
+.goods-item video{
+  width: 690rpx;
+  height: 335rpx;
+  margin-bottom: 30rpx;
+  display: block;
+}
+.goods-item .name{
+  width: 100%;
+  overflow: hidden;
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  font-size: 28rpx;
+}
+.goods-item .btm{
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.goods-item .price{
+  font-size: 32rpx;
+  color: #DC0522;
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+.goods-item .price text{
+  display: block;
+  line-height: 1;
+}
+.goods-item .btn{
+  background: #DC0522;
+  border-radius: 20rpx;
+  width: 100rpx;
+  height: 40rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24rpx;
+  color: #FFF;
+}
+
+.goods-desc{
+  color: #BBB;
+  font-size: 28rpx;
+}
+.goods-desc text:not(:last-child){
+  margin-right: 10rpx;
+}
+.goods-desc .tag{
+  font-size: 24rpx;
+  padding: 4rpx 8rpx;
+  background: #F6F6F6;
+}
+
+
+.no-data{
+  color: #BBB;
+  font-size: 28rpx;
+  text-align: center;
+  margin-top: 20vh;
+}
+.no-data text{
+  display: block;
+}
+.no-data image{
+  width: 160rpx;
+  height: 160rpx;
+}

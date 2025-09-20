@@ -1,0 +1,67 @@
+/* components/waterfall-item/waterfall-item.wxss */
+.w-item {
+  overflow: hidden;
+  line-height: 1;
+  font-size: 0;
+  margin-bottom: 30rpx;
+  animation: zoomIn 1s 0s;
+  border-radius: 10rpx;
+  background-color: #fff;
+}
+.w-main{
+  padding: 0 15rpx 30rpx;
+}
+.w-text{
+  font-size: 30rpx;
+  line-height: 40rpx;
+  word-break: break-all;
+  color: #222;
+}
+
+.w-price{
+  margin: 20rpx 0 25rpx;
+  font-size: 28rpx;
+  color: #666;
+  line-height: 45rpx;
+}
+
+
+.w-price-num{
+  color: #E6002D;
+  font-weight: bold;
+}
+
+.w-price-del{
+  font-size: 28rpx;
+  color: #666;
+  text-decoration: line-through;
+  line-height: 40rpx;
+}
+.w-image-box {
+  position: relative;
+  width: 100%;
+  margin-bottom: 20rpx;
+}
+
+.w-image {
+  vertical-align: top;
+}
+
+.mgg-icon{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 140rpx;
+  height: 65rpx;
+}
+
+@keyframes zoomIn {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

@@ -1,0 +1,72 @@
+/* pages-sh/pages/shList/shList.wxss */
+.li {
+  width: 733rpx;
+  background: #FFFFFF;
+  border-radius: 30rpx;
+  margin-top: 12rpx;
+  margin-left: 8rpx;
+  padding-top: 24rpx;
+  padding-bottom: 37rpx;
+}
+
+.li .top {
+  display: flex;
+  align-items: center;
+}
+
+.li .img {
+  flex-shrink: 0;
+  width: 137rpx;
+  height: 137rpx;
+  margin: 0 78rpx 0 48rpx;
+}
+
+.li .item {
+  font-size: 36rpx;
+  color: #2F2F2F;
+  word-break: break-all;
+  margin-top: 13rpx;
+}
+
+.li .bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 638rpx;
+  height: 54rpx;
+  background: #FFF1DC;
+  border-radius: 10rpx;
+  font-size: 30rpx;
+  color: #E6002D;
+  padding: 0 10rpx;
+  margin: 25rpx 0 0 48rpx;
+}
+
+.li .bottom .left {
+  display: flex;
+  align-items: center;
+}
+
+.li .bottom .icon {
+  width: 29rpx;
+  height: 29rpx;
+  background-image: url(https://img.51jiabo.com/add78125-9f5c-425e-9982-ccf832dae241.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  margin-right: 13rpx;
+}
+
+.li .bottom .icon.receive {
+  background-image: url(https://img.51jiabo.com/52f9914e-08e0-42a2-9203-020c81ce9e67.png);
+}
+
+.li .bottom .icon.repeal {
+  background-image: url(https://img.51jiabo.com/5e3cd8b5-1fed-4ba9-aef3-1ef9faf46f4f.png);
+}
+
+.empty{
+  width: 100%;
+  text-align: center;
+  font-size: 30rpx;
+  padding-top: 100rpx;
+}

@@ -1,0 +1,61 @@
+<!--pages/svipPackage//moreChooseOneDetail/moreChooseOneDetail.wxml-->
+<view class="container">
+  <view class="banner" wx:if="{{moreChooseOneGoodsData.choose_banner.length}}">
+    <swiper class="swp" indicator-dots="{{true}}" indicator-active-color="#0692bd" autoplay="{{true}}" interval="3000"
+      circular="{{true}}">
+      <block wx:for="{{moreChooseOneGoodsData.choose_banner}}" wx:key="banner_id">
+        <swiper-item class="sw-item" bindtap="toUrl" data-item="{{item}}">
+          <image class="banner-img" src="{{item.image_url}}"></image>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+
+  <view class="main">
+    <view class="item" wx:for="{{moreChooseOneGoodsData.goods_list}}" wx:key="goods_id">
+        <image wx:if="{{item.order_id != 0}}" class="is-choose-img" src="https://img.51jiabo.com/d3977df2-8e2d-4212-9eed-e027558c8273.png"></image>
+      <view bindtap="toGoodsDetail" data-id="{{item.goods_id}}">
+        <image src="{{item.goods_image}}" class="pro-img"></image>
+        <view class="desc">{{item.goods_name}}</view>
+      </view>
+        <button wx:if="{{item.order_id != 0}}" class="buy-btn {{hasBuyFinish ?'dis-buy-btn':''}}">已选购</button>
+        <button wx:elif="{{item.stock == 0}}" class="buy-btn {{item.stock == 0 || hasBuyFinish?'dis-buy-btn':''}}">已售罄</button>
+        <button wx:else class="buy-btn {{hasBuyFinish?'dis-buy-btn':''}}" bindtap="buyHandle" data-item="{{item}}">{{moreChooseOneGoodsData.choose_info.pay_todo}}</button>
+    </view>
+  </view>
+</view>
+
+<!-- n选1提示框 -->
+<view class="more-choose-one-tips" wx:if="{{showMoreChooseOneTips}}">
+  <view class="mco-box">
+    <view class="mco-tips-title">{{isSvip?'确认选购付款吗？':'仅限超级会员用户专享'}}</view>
+    <button class="mco-tips-btn" bindtap="confirmPay" wx:if="{{isSvip}}">确认付款</button>
+    <button class="mco-tips-btn" bindtap="toBuySvip" wx:else>成为超级会员</button>
+    <image class="mco-close" bindtap="closeTips" src="https://img.51jiabo.com/2fbbd2d6-e895-4b88-9c7b-223aa880f70f.png">
+    </image>
+  </view>
+</view>
+
+<!-- 开通会员返回后弹框 -->
+<view class="more-choose-one-tips" wx:if="{{mcoCurData}}">
+  <view class="mco-box">
+    <view class="mco-tips-title mco-tips-title-svip">恭喜您已成为超级会员~</view>
+    <view class="mco-tips-title mco-tips-cont" style="font-size: 32rpx;">可{{mcoCurPrice}}元选购商品，确认购买{{mcoCurData.goods_name}}么？</view>
+    <button class="mco-tips-btn" bindtap="confirmPay">付款{{mcoCurPrice}}元</button>
+    <image class="mco-close" bindtap="closeSvipTips" src="https://img.51jiabo.com/2fbbd2d6-e895-4b88-9c7b-223aa880f70f.png">
+    </image>
+  </view>
+</view>
+
+<!-- 支付成功弹层 -->
+<view class="success-popup" wx:if="{{buySuccessTips}}">
+  <view class="success-box">
+    <view class="title">恭喜您购买成功！</view>
+    <image src="https://img.51jiabo.com/c5790f5f-c38f-43a7-9b71-3d47742a2afd.png"></image>
+    <view class="tips">已购商品在“我的-我的会员-查看订单”查看</view>
+    <view class="success-btn-box">
+      <view class="btn" data-val="successTips" bindtap="closeSuccessPopup">继续逛逛</view>
+      <view class="btn" bindtap="toOrderList">查看订单</view>
+    </view>
+  </view>
+</view>

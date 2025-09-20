@@ -1,0 +1,31 @@
+/* pages-sh/pages/shIndex/shIndex.wxss */
+page {
+  background: #fff;
+}
+
+.banner {
+  display: block;
+  width: 742rpx;
+  margin-left: 8rpx;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 675rpx;
+  height: 94rpx;
+  border: 1px dotted #A0A0A0;
+  border-radius: 44rpx;
+  margin-left: 37rpx;
+  margin-top: 38rpx;
+  font-size: 45rpx;
+  color: #414141;
+}
+
+.btn.apply {
+  background: #E6002D;
+  color: #FFFFFF;
+  border: none;
+  margin-top: 61rpx;
+}

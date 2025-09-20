@@ -1,0 +1,210 @@
+/* components/couponPopup/couponPopup.wxss */
+/* 优惠券弹层 */
+.coupon-popup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  z-index: 102;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .8);
+}
+
+.coupon-popup .coupon-box {
+  width: 620rpx;
+  border-radius: 15rpx;
+  position: relative;
+  background-color: #FA4747;
+}
+
+.coupon-popup .flower {
+  position: absolute;
+  top: -80rpx;
+  left: 170rpx;
+  width: 494rpx;
+}
+
+.pinion {
+  width: 69rpx;
+  height: 59rpx;
+  background: url("https://img.51jiabo.com/c0e0c416-11bc-416c-a3ee-72dc7ca345cd.png") no-repeat;
+  background-size: 100% 100%;
+  position: absolute;
+  bottom: 60rpx;
+  left: -20rpx;
+}
+
+.coupon-popup .title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-size: 38rpx;
+  font-weight: bold;
+  color: #F6F5F5;
+  padding: 70rpx 0 24rpx;
+}
+
+.coupon-popup .title::before {
+  content: "";
+  width: 30rpx;
+  height: 1px;
+  background: linear-gradient(-90deg, #FFFFFF, rgba(239, 214, 174, 0));
+  margin-right: 16rpx;
+}
+
+.coupon-popup .title::after {
+  content: "";
+  width: 30rpx;
+  height: 1px;
+  background: linear-gradient(90deg, #FFFFFF, rgba(239, 214, 174, 0));
+  margin-left: 16rpx;
+}
+
+.coupon-popup .close {
+  width: 66rpx;
+  height: 66rpx;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: url("https://img.51jiabo.com/958766df-8255-445b-aa06-4e423606ebc1.png") no-repeat;
+  background-size: 30rpx 30rpx;
+  background-position: center;
+}
+
+.coupon-popup .content {
+  max-height: 487rpx;
+  overflow-y: scroll;
+  width: 580rpx;
+  margin-left: 20rpx;
+  background: #E11F26;
+  border-radius: 15rpx;
+  padding: 57rpx 0 177rpx 29rpx;
+}
+
+.coupon-popup .coupon {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 523rpx;
+  height: 185rpx;
+  background: url("https://img.51jiabo.com/07278f12-7808-4f9d-856b-10da904fea8a.png") no-repeat;
+  background-size: 100% 100%;
+  margin-bottom: 20rpx;
+}
+
+.coupon-popup .left {
+  width: 169rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 72rpx;
+  font-weight: bold;
+  color: #E11F26;
+}
+
+.coupon-popup .left .text {
+  font-size: 30rpx;
+  margin-top: 30rpx;
+}
+
+.coupon-popup .right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: calc(100% - 169rpx);
+  padding: 0 20rpx;
+}
+
+.coupon-popup .name {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #9D5812;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  word-break: break-all;
+  line-height: 36rpx;
+}
+
+.coupon-popup .time {
+  font-size: 20rpx;
+  color: #9D5812;
+  margin-top: 2rpx;
+}
+
+.coupon-popup .desc {
+  font-size: 20rpx;
+  color: #9D5812;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  line-height: 26rpx;
+  word-break: break-all;
+  margin-top: 2rpx;
+}
+
+.coupon-popup .bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 664rpx;
+  height: 243rpx;
+  background-image: url("https://img.51jiabo.com/5c944100-4ca3-4b77-bcb7-e2881389a3c6.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  position: absolute;
+  bottom: -74rpx;
+  left: -22rpx;
+}
+
+.coupon-popup .btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 350rpx;
+  height: 70rpx;
+  background: linear-gradient(90deg, #FFF6D0, #FFDF6E);
+  box-shadow: 0 3rpx 7rpx 0 rgba(160, 4, 12, 0.64);
+  border-radius: 35rpx;
+  color: #E11F26;
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+.coupon-popup .use-btn {
+  height: 80rpx;
+  font-size: 28rpx;
+}
+
+.coupon-popup .tips {
+  font-size: 18rpx;
+  font-weight: normal;
+  color: #463701;
+  margin-top: -10rpx;
+}
+
+/* 提示弹窗 */
+.tips-box-pop {
+  max-width: 450rpx;
+  color: #fff;
+  text-align: center;
+  background: rgba(51, 51, 51, .9);
+  border-radius: 10rpx;
+  z-index: 999;
+  padding: 20rpx;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 26rpx;
+  box-sizing: border-box;
+  white-space: normal;
+}

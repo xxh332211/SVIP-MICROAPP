@@ -1,0 +1,112 @@
+<!--pages/couponList/couponList.wxml-->
+<wxs module="md">
+	var indexof = function (arr, num) {
+		if (arr.indexOf(num) > -1) {
+			return true
+		} else {
+			return false
+		}
+	}
+	module.exports = { indexof: indexof }
+</wxs>
+<online-serve />
+<view class='wrapper'>
+	<image style="height:40rpx;" src="/imgs/label.png"></image>
+	<!-- 轮播 -->
+	<banner-swiper wx:if="{{banner && banner.length > 0}}" banner="{{banner}}"></banner-swiper>
+
+	<!-- 爆品组 -->
+	<view wx:for="{{goodsGroup}}" wx:key="index" wx:if="{{md.indexof(item.banner_info,'74')}}">
+		<hot-goods-group groupItem="{{item}}"></hot-goods-group>
+	</view>
+
+	<!-- 超级优惠券 -->
+	<view class='own-coupon' wx:if="{{(platformCoupon && platformCoupon.length > 0) || svipCouponBag}}">
+		<view class='h4'>
+			<view class='square'></view>
+			超级优惠券
+		</view>
+
+		<view class="coupon-box">
+			<!-- svip商户优惠券礼包 -->
+			<view class="coupon-bag" wx:if="{{svipCouponBag}}" bindtap="linkTo">
+				<view class="label">券</view>
+				<view class="coupon-bag-box">
+					<view class="left">
+						<view class="title">SVIP专享</view>
+						<view class="detail">￥{{svipCouponBag.coupon_value_amount}}优惠券大礼包</view>
+						<view class="include">含{{svipCouponBag.name_total}}</view>
+					</view>
+					<view class="buy" wx:if="{{svipCouponBag.user_is_vip == 1}}">点击查看</view>
+					<view class="buy" wx:else>{{svipPrice}}元购买</view>
+				</view>
+			</view>
+			<!-- 平台优惠券 -->
+			<view class="own-item {{ spreadPlatformCouponDesc ? 'long-bg' : ''}}" wx:for="{{platformCoupon}}" wx:key="index">
+				<view class="top" bindtap="linkTo">
+					<view class="left">
+						<view class="price">
+							<view class="symbol">￥</view>
+							{{item.coupon_value}}
+						</view>
+						<view class="ticket-info">
+							<view class="ticket-title">满{{item.consume_amount}}返{{item.coupon_value}}</view>
+							<view class="use-time">使用时间：{{item.begin_date}}-{{item.end_date}}</view>
+						</view>
+					</view>
+					<view class="get-ticket">
+						<view class="get-btn" wx:if="{{item.user_is_vip == 1}}">点击查看</view>
+						<view class="get-btn" wx:else>{{svipPrice}}元购买</view>
+					</view>
+				</view>
+				<view class="bottom">
+					<view class="btm-t">
+						<view class="desc">
+							<text>详细信息</text>
+							<!-- 上 -->
+							<image wx:if="{{spreadPlatformCouponDesc}}" bindtap="platformSpread" style="width: 24rpx;height: 24rpx;"
+								src="https://img.51jiabo.com/5957d4e4-4bd8-4a3d-b5cd-c832d2bcc7d8.png"></image>
+							<!-- 下 -->
+							<image wx:else bindtap="platformSpread" data-type="show" style="width: 24rpx;height: 24rpx;"
+								src="https://img.51jiabo.com/70802321-d930-453e-94a2-598429e906ff.png"></image>
+						</view>
+						<button class="share" open-type="share" data-shareData="{{item.shareData}}">
+							<view class="ico"></view>分享好友
+						</button>
+					</view>
+					<view wx:if="{{spreadPlatformCouponDesc}}" class="spread">{{item.smemo}}</view>
+				</view>
+			</view>
+		</view>
+
+	</view>
+
+</view>
+
+
+<!-- 商户优惠券 -->
+<view class='vendor-coupon-box'>
+	<view class='h4'>
+		<view class='square'></view>
+		商户优惠券
+	</view>
+</view>
+
+
+<swiper class="swiper-wrapper" display-multiple-items="4.5" current="{{menuIndex}}">
+	<block wx:for="{{vendorList}}" wx:key="index">
+		<swiper-item class="swiper-slide" data-num="{{index}}" data-item="{{item}}" bindtap="cutKind">
+			<view class='slide-box'>
+				<view class='content {{curNum == index?"active":""}}'>{{item.category_name}}</view>
+			</view>
+		</swiper-item>
+	</block>
+</swiper>
+
+<view class='coupon-wrap'>
+	<coupon-item vendorCoupon="{{vendorCoupon}}" activityInfo="{{activityInfo}}">
+	</coupon-item>
+</view>
+
+<!-- 导航 -->
+<navigation hiddenItem="couponList"></navigation>

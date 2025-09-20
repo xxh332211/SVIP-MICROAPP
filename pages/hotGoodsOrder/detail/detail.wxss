@@ -1,0 +1,171 @@
+/* pages/hotGoodsOrder/detail/detail.wxss */
+.wrapper{
+  padding-bottom: 200rpx;
+}
+image {
+  display: block;
+}
+button{
+  border-radius: 0;
+}
+.price-box {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  width: 100%;
+  height: 112rpx;
+  background: #e6002d;
+  padding: 0 32rpx;
+}
+
+.price-box .num {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.price-box .num .cur-price {
+  display: flex;
+  align-items: baseline;
+  font-size: 54rpx;
+  color: #fff;
+  font-weight: bold;
+  margin-top: -23rpx;
+}
+.price-box .num .cur-price text{
+  font-size: 20rpx;
+  color: #FFFFFF;
+  font-weight: normal;
+}
+
+.price-box .num .cur-price .lab {
+  font-size: 28rpx;
+}
+
+.price-box .num .origin {
+  color: #fff;
+  font-size: 28rpx;
+  text-decoration: line-through;
+  margin-top: 15rpx;
+  opacity: .8;
+}
+
+.price-box .surplus {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.price-box .surplus .sy {
+  height: 43rpx;
+  line-height: 43rpx;
+  text-align: center;
+  background: #fff0f0;
+  border-radius: 21rpx;
+  color: #e6002d;
+  font-size: 24rpx;
+  align-self: flex-end;
+  padding: 0 15rpx;
+}
+
+.price-box .surplus .site-num {
+  font-size: 24rpx;
+  color: #fff;
+  margin-top: 10rpx;
+}
+
+.vendor-title {
+  padding: 28rpx 30rpx;
+  background: #fff;
+}
+
+.vendor-title .share {
+  width: 38rpx;
+  height: 37rpx;
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACYAAAAjCAMAAADPLogvAAABQVBMVEVHcEwjGBQiFxQjGBUjFxQiFxQhFhEjGBUAAAAAAAAjGBUhFBQkFxMhFRUjFxUjFxUjGBUiGBUjFxUhFhYiFxEjGBQjFRUjGBUjGBQgFRUjGBUfFw8iFxMjGBQiGBQiFxQjGBQiGBQjFxQiGBUjGBUjGBUgFxIkGBIiFhMjGBQiFhIhFRIiFxQAAAAAAAAiGBUiFxQjFxUhGRUjFxUiFxQiFRUjFxMjFxQjGBQAAAAjFxUiFxQhGBMjFhMiFxQjGBUjFhQjGBQgFhIjFxMjFxUhGBUhFhYgFhYkFBQjFxUjFxUaGg0iFxUVFRUjFxQiGBUiGBUbDQ0jGBQiGBUiFxUcHAAiGBQiGBQiGBUjGBQiFxUiGBUhFhQiGBQjFxQiGBUiGBYiGBUiGBUjFxUaGgAjGBQjGBUjFxMjFxQiGBQjGBWUAmzuAAAAanRSTlMA1nFg+/wu/gUBtSdPPsaS7HdtLy3iJPfVMKAhkHV/Wb6NZdj4kzgrUoxTVFoCBP27mz7apDyFsOMDqI5rUbzTZnNHQq5WF0cy5XsU5wzwwd8TwGHPCe3unb3Sw3PK5P5p9t7ECsxJkFiALmF5RAAAAUlJREFUOMullOdywjAQhGUwWKYGCDUB0nvvnfTee+913/8BIsl2SGYsjybcr5X0yZJXd0eIPF5v77IP6csg8Yz8M0QESl5U5pwRb1d1DPzywI6BpgZCqE9HICWlNgHtTKgloCDFEsCJpegF7qVYHMjb8gaGFJsAVmyZw5OMCg4Bw5asN/BiqfDcbDwx3v8DRUMGN6yH66NT4FHgC5aPo72CMSMxPmKGDc6sbWzvAteUTZezcKLdJNSvcZXz025n9pDZR5Z1oLKYCs9PsoMafVN8IRYx2Upfmmu9sMP03hZbnBandbWJzUYoal9xYCRZ/FwXMgmsOjdv4ZvHXDPiAEbG0WYr0Olu0D606qAZ6HDHWB5UB0XgvaavKd5N8U+5bx8evpUt3xRfQfVNVTNENd+Us/fftaBaWYp1qlj1ij3kd0cq1d7f/nTLb2Hagp1QI6WuAAAAAElFTkSuQmCC") no-repeat;
+  background-size: 100%;
+  margin-left: 80rpx;
+  margin-top: 10rpx;
+  flex-shrink: 0;
+  padding: 0;
+  margin-right: 0;
+  border: none;
+  outline: none;
+  overflow: auto;
+}
+
+.vendor-title .headline {
+  display: flex;
+  justify-content: space-between;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.vendor-title .tips {
+  font-size: 28rpx;
+  color: #777;
+  border-top: 1px solid #ededed;
+  padding-top: 20rpx;
+  margin-top: 20rpx;
+}
+
+/* 描述 */
+
+.desc {
+  background: #fff;
+  margin-top: 27rpx;
+  padding: 22rpx 30rpx 60rpx;
+}
+
+.desc .caption {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.desc .text {
+  font-size: 28rpx;
+  color: #777;
+  margin-top: 20rpx;
+}
+
+.desc .desc-list {
+  border-top: 1px solid #ededed;
+  margin-top: 20rpx;
+}
+
+.desc .desc-list .list-item {
+  font-size: 28rpx;
+  margin-top: 20rpx;
+}
+
+.desc .desc-list .list-item view {
+  display: inline-block;
+  color: #777;
+  margin-right: 47rpx;
+}
+
+.just-order {
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  background: #e6002d;
+  font-size: 32rpx;
+  color: #fff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 9;
+}
+
+.just-order.gray{
+  background: #D0D0D0;
+}
+
+.go-home {
+  height: 80rpx;
+  width: 80rpx;
+  position: fixed;
+  bottom: 160rpx;
+  right: 8rpx;
+}

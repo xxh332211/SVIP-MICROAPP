@@ -1,0 +1,11 @@
+/* components/popupCoupon/popupCoupon.wxss */
+.coupon-popup {
+  width: 94rpx;
+  height: 87rpx;
+  position: fixed;
+  right: 0;
+  bottom: 300rpx;
+  z-index: 100;
+  background: url("https://img.51jiabo.com/685f77a9-50aa-4309-b8a1-7fda771a446d.png") no-repeat;
+  background-size: 100% 100%;
+}

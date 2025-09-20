@@ -1,0 +1,110 @@
+/* pages/user/myOrder/myOrder.wxss */
+
+.wrapper {
+  background: #fff;
+  width: 100%;
+  padding-left: 33rpx;
+  margin-top: 22rpx;
+}
+
+.wrapper .link {
+  height: 88rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 34rpx;
+  border-bottom: 1px solid #e5e5e5;
+  padding-right: 30rpx;
+}
+
+.wrapper .link:last-child {
+  border-bottom: none;
+}
+
+.wrapper .link image {
+  width: 16rpx;
+  height: 25rpx;
+}
+/* 弹窗 */
+.flag{
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}
+.flag .popup{
+  width: 700rpx;
+  height: 910rpx;
+  background: url('https://img.51jiabo.com/4e94b599-86c7-4e4c-bb18-8073c84120fb.png') no-repeat;
+  background-size: cover;
+  border-radius: 8rpx;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.flag .popup .fork{
+  position: absolute;
+  width: 50rpx;
+  height: 50rpx;
+  right: 41rpx;
+  top: -41rpx;
+}
+.flag .popup .cartImg{
+  width: 80rpx;
+  height: 74rpx;
+  display: block;
+  margin: 150rpx auto 0;
+}
+.flag .popup  .title{
+  margin-top: 16rpx;
+  font-size:37rpx;
+  font-weight:bold;
+  color:rgba(52,52,52,1);
+  line-height:49rpx;
+  text-align: center;
+  display: block;
+}
+.swiper{
+  width: 450rpx;
+  margin: 25rpx auto 10rpx;
+  height: 340rpx;
+}
+.swiper .swiper-item{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.swiper .swiper-item .swiperImg{
+  width: 226rpx;
+  height: 226rpx;
+  /* border: 1px solid #C0C0C0; */
+}
+.swiper .swiper-item .swiperImg image{
+  width: 100%;
+  height: 100%;
+  padding: 10rpx;
+  box-sizing: border-box;
+}
+.swiper .swiper-item .swiperText{
+  font-size:30rpx;
+  font-weight:bold;
+  color:rgba(219,0,52,1);
+  line-height:49rpx;
+  text-align: center;
+  margin-top: 20rpx;
+}
+.flag .popup .huangou{
+  width:270rpx;
+  height:68rpx;
+  background:rgba(211,18,46,1);
+  border-radius:12rpx;
+  text-align: center;
+  color: #fff;
+  font-size: 44rpx;
+  line-height: 68rpx;
+  margin: 0 auto;
+}

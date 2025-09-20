@@ -1,0 +1,157 @@
+page{
+  background: #fff;
+}
+.live-item {
+  display: flex;
+  width: 710rpx;
+  margin: 20rpx 0 0 20rpx;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 4rpx 15rpx 0 rgba(14, 5, 10, 0.05);
+  border-radius: 5rpx;
+  position: relative;
+}
+
+.live-item .get-userinfo{
+  width: 100% !important;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 2;
+  border: none;
+}
+
+.live-item .left {
+  position: relative;
+}
+
+.live-item .left .live-status {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 12rpx;
+  left: 9rpx;
+  height: 34rpx;
+  background: rgba(0, 0, 0, .3);
+  border-radius: 17rpx;
+}
+
+.live-item .left image {
+  width: 330rpx;
+  height: 330rpx;
+}
+
+.live-item .left .live-status .status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-size: 22rpx;
+  color: #FFFFFF;
+  border-radius: 17rpx;
+  padding: 0 16rpx;
+}
+
+.live-item .left .live-status .status .img{
+  width: 63rpx;
+  height: 18rpx;
+  background: url("https://img.51jiabo.com/f359b1f4-6c40-4b28-b647-063eec912fa8.gif") no-repeat;
+  background-size: 100%;
+}
+.live-item .left .live-status .status text{
+  text-align: center;
+  /* padding: 0 16rpx; */
+}
+.live-item .left .live-status .status.live {
+  padding: 0 16rpx 0 0;
+  background-color: #E4002D;
+}
+
+.live-item .left .live-status .status.notice {
+  background-color: #5A00C3;
+}
+
+.live-item .left .live-status .status.playback {
+  background-color: #FC7958;
+}
+
+.live-item .left .live-status .text {
+  font-size: 22rpx;
+  color: #FFFFFF;
+  padding: 0 16rpx;
+}
+
+.live-item .right {
+  display: flex;
+  flex-direction: column;
+  padding-left: 30rpx;
+}
+
+.live-item .right .title {
+  font-size: 30rpx;
+  font-weight: bold;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  margin-top: 22rpx;
+}
+
+.live-item .right .brand {
+  display: flex;
+  align-items: center;
+  margin-top: 20rpx;
+}
+
+.live-item .right .brand image {
+  width: 42rpx;
+  height: 42rpx;
+  border-radius: 50%;
+}
+
+.live-item .right .brand .name {
+  color: #666;
+  margin-left: 11rpx;
+}
+
+.goods-list {
+  display: flex;
+  margin-top: 63rpx;
+}
+
+.goods-list .goods-item {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 5rpx;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #E1E1E1;
+  margin-right: 20rpx;
+}
+.goods-list .goods-item image {
+  width: 100%;
+  height: 100%;
+}
+
+.goods-list .goods-item .more {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .7);
+  font-size: 24rpx;
+  color: #FFFFFF;
+  line-height: 80rpx;
+  text-align: center;
+}
+
+.move-area{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+}
+.movabel-box{
+  width: 200rpx;
+  height: 300rpx;
+  z-index: 10;
+}

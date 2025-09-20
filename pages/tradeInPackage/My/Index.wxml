@@ -1,0 +1,34 @@
+<!--pages/tradeInPackage//My/Index.wxml-->
+<online-serve />
+
+<view class="goods-list" wx:if="{{goodsList && goodsList.length > 0}}">
+	<view class="goods-item" wx:for="{{goodsList}}" wx:key="index" data-item="{{item}}" bindtap="toDetail"
+		wx:if="{{item.order_status_des != 1}}">
+		<view class="img-box">
+			<image mode="aspectFit" src="{{item.goods_image}}"></image>
+		</view>
+		<view class="right">
+			<view class="name">{{item.goods_name}}</view>
+			<view class="bottom">
+				<view class="price">
+					<view class="origin">￥{{item.origin_price}}</view>
+					<view class="xmb" wx:if="{{item.trade_in_type == 1}}">
+						<view class="icon"></view>熊猫币{{item.panda_coin}}
+					</view>
+					<view class="now" wx:else>换购价￥{{item.redeem_price}}</view>
+				</view>
+				<view class="btn-box" wx:if="{{item.order_status_des == 2}}">领取商品</view>
+				<view class="btn-box gray" wx:if="{{item.order_status_des == 3}}">已领取</view>
+				<view class="btn-box gray" wx:if="{{item.order_status_des == 4 || item.order_status_des == 6}}">退款中</view>
+				<view class="btn-box gray" wx:if="{{item.order_status_des == 5}}">已退款</view>
+			</view>
+		</view>
+	</view>
+</view>
+
+<view class="empty" wx:else>暂无换购记录</view>
+
+<view class="tab-box">
+	<view class="tab" bindtap="toTradeInList">换购商品</view>
+	<view class="tab act">我的换购</view>
+</view>

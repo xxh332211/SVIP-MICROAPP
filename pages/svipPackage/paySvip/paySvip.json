@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "SVIP付款",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "banner-grid": "../../../components/banner/bannerGrid/bannerGrid",
+    "models": "../../../components/modal/modal",
+    "dialog-swiper": "../../../components/banner/dialogSwiper2/dialogSwiper2"
+  }
+}

@@ -1,0 +1,113 @@
+<!--pages-xmb/pages//luckyDraw/luckyDraw.wxml-->
+<privacy-popup></privacy-popup>
+<view class="navigate" style="padding-top:{{navigateHeight}}px">
+  <view class="return" bindtap="goBack"></view>
+  <view class="nav-text">熊猫币抽大奖</view>
+</view>
+<view class="navigate-blank" style="padding-top:{{navigateHeight}}px"></view>
+
+<view class="wrapper">
+  <image class="title-img" src="https://img.51jiabo.com/cda744c8-3c87-43c1-b93f-5fb7e9d03c67.png"></image>
+  <view class="remain">您目前还有{{countNum}}次抽奖机会</view>
+  <view class="turnplate">
+    <view class="light">
+      <dial awards="{{lotteryInfo}}" isLogin="{{isLogin}}" countNum="{{countNum}}" bind:getCount="getCount"
+        bind:getFreeze="getFreeze" bind:getPhoneNumber="getPhoneNumber" bind:getRequest="getRequest"
+        selectedAddress="{{selectedAddress}}" />
+    </view>
+  </view>
+  <view class="jackpot-title">
+    <view class="jackpot-btn" wx:if="{{!showJackpot}}" bindtap="checkJackpot">查看奖池<view class="ico"></view>
+    </view>
+    <view class="jackpot-list" wx:if="{{showJackpot}}">
+      <view class="prize-item" wx:for="{{jackpot}}" wx:key="index">
+        <image class="img" src="{{item.image_url}}"></image>
+        <view class="name">{{item.name}}</view>
+        <view class="level">{{item.level}}</view>
+      </view>
+      <view class="pack-up" bindtap="checkJackpot">收起<view class="ico"></view>
+      </view>
+    </view>
+  </view>
+  <view class="info-box">
+    <view class="info-tab">
+      <view class="tab {{isList?'act':''}}" data-name="isList" bindtap="switchTab">中奖名单</view>
+      <view class="tab {{isLog?'act':''}}" data-name="isLog" bindtap="switchTab">我的中奖记录</view>
+      <button class='auth-btn' wx:if="{{!isLogin}}" open-type='getPhoneNumber'
+        bindgetphonenumber="getPhoneNumber"></button>
+    </view>
+    <!-- 中奖名单 -->
+    <view class="prize-list" wx:if="{{isList}}">
+      <swiper class="swiper" autoplay="true" circular="true" vertical="true" display-multiple-items="10"
+        wx:if="{{recordList.length > 10}}">
+        <swiper-item class="item" wx:for="{{recordList}}" wx:key="index">
+          <text>{{item.mobile}}</text><text>{{item.create_time}}</text><text>{{item.name}}</text>
+        </swiper-item>
+      </swiper>
+      <view class="swiper" wx:elif="{{recordList.length > 0 && recordList.length <= 10}}">
+        <view class="item log-item" wx:for="{{recordList}}" wx:key="index">
+          <text>{{item.mobile}}</text><text>{{item.create_time}}</text><text>{{item.name}}</text>
+        </view>
+      </view>
+      <view class="empty" wx:else>暂无中奖名单</view>
+    </view>
+    <!-- 我的中奖记录 -->
+    <view class="my-log" wx:if="{{isLog}}">
+      <view class="log-content" wx:if="{{selfRecordList.length > 0}}">
+        <view class="log-title">
+          <view>奖品</view>
+          <view>抽奖时间</view>
+          <view>状态</view>
+        </view>
+        <view class="log-list">
+          <view class="item" wx:for="{{selfRecordList}}" wx:key="index">
+            <view>{{item.name}}</view>
+            <view>{{item.create_time}}</view>
+            <view>
+              <view class="status-text">{{item.status_str}}<text wx:if="{{item.type == 1}}" data-item="{{item}}"
+                  bindtap="checkStatus">查看></text></view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="empty" wx:else>暂无中奖记录</view>
+    </view>
+  </view>
+  <!-- 活动规则 -->
+  <view class="rule-box">
+    <view class="rule-title">活动细则</view>
+    <text class="rule-detail">{{lotteryInfo.rule}}</text>
+  </view>
+</view>
+
+<!-- 中奖记录查看收货地址弹层 -->
+<view class="address-popup" wx:if="{{addressPopup}}">
+  <view class="address-box">
+    <view class="prize-name">{{addressInfo.name}}</view>
+    <view class="prize-info"><text space="emsp">状 态：</text>{{addressInfo.status_str}}</view>
+    <view class="prize-info"><text>收货地址：</text>
+      <view class="address">
+        <view wx:if="{{addressInfo.address_id != '0'}}">{{addressInfo.address}}</view>
+        <view class="add" wx:if="{{addressInfo.address_id == '0'}}" bindtap="toAddress">+ 添加</view>
+        <view class="change" wx:if="{{addressInfo.address_id != '0' && addressInfo.status == 1}}" bindtap="toAddress">修改
+        </view>
+      </view>
+    </view>
+    <view class="prize-info"><text>快递信息：</text>
+      <view wx:if="{{!addressInfo.express_num}}">暂无快递信息</view>
+      <view class="express" wx:else>
+        <view>{{addressInfo.express}}</view>
+        <view class="jj">{{addressInfo.express_num}}</view>
+        <view class="jj copy">
+          <view class="copy-btn" data-num="{{addressInfo.express_num}}" bindtap="copy">复制</view>一键复制搜索查快递进度
+        </view>
+      </view>
+    </view>
+    <view class="confirm" data-name="addressPopup" bindtap="closePopup">知道了</view>
+  </view>
+</view>
+
+<!-- 熊猫币冻结 -->
+<view class="freeze-popup" wx:if="{{freezePopup}}">
+  <text class="freeze-box">您的熊猫币已被冻结，不可使用 \n 如有问题请联系400-6188-555</text>
+</view>

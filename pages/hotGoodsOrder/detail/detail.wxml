@@ -1,0 +1,54 @@
+<!--pages/hotGoodsOrder/detail/detail.wxml-->
+<online-serve />
+<privacy-popup></privacy-popup>
+<view class='wrapper'>
+  <image mode='widthFix' src="{{hotGoodsDetail.image_url}}"></image>
+  <view class="price-box">
+    <view class="num">
+      <view class='origin'>市场价：￥{{hotGoodsDetail.market_price}}</view>
+      <view class="cur-price">
+        <text>家博抢购价：</text>
+        <view class='lab'>￥</view>
+        {{hotGoodsDetail.special_price}}
+        <text>{{hotGoodsDetail.price_unit}}</text>
+      </view>
+    </view>
+    <view class="surplus">
+      <view class="sy">剩余：{{hotGoodsDetail.goods_stock}}件</view>
+      <view class='site-num'>展位号：{{hotGoodsDetail.booth}}</view>
+    </view>
+  </view>
+
+  <view class="vendor-title">
+    <view class='headline'>{{hotGoodsDetail.goods_name}}
+      <button class='share' open-type='share' plain="true"></button>
+    </view>
+    <view class='tips'>预约成功后，请于{{activityInfo.begin_date}}-{{activityInfo.end_date}}至{{activityInfo.venue_name}}家博会展会现场凭预约记录或预约短信享预约价</view>
+  </view>
+
+
+  <view class="desc">
+    <view class='caption'>商品描述</view>
+    <view class='text'>{{hotGoodsDetail.goods_descr}}</view>
+    <view class='desc-list'>
+      <view class='list-item' wx:for="{{hotGoodsDetail.para}}" wx:key="index">
+        <view>{{item.para_name}}:</view>{{item.para_value}}</view>
+    </view>
+  </view>
+</view>
+
+<!-- 未授权并且未登录 -->
+<button class='just-order vh' wx:if="{{hotGoodsDetail.is_get == 0 && hotGoodsDetail.goods_stock > 0 && !isLogin && !isAuth}}" open-type='getPhoneNumber' bindgetphonenumber="getPhoneNumber">抢先预约</button>
+
+<!-- 已授权过 || 已登录 -->
+<view class="just-order vh" wx:if="{{hotGoodsDetail.is_get == 0 && hotGoodsDetail.goods_stock > 0 && (isLogin || isAuth)}}" bindtap="justOrder">抢先预约</view>
+
+<view class="just-order gray vh" wx:if="{{hotGoodsDetail.is_get != 0}}">已预约</view>
+
+<view class="just-order gray vh" wx:if="{{hotGoodsDetail.is_get == 0 && hotGoodsDetail.goods_stock <= 0}}">已约满</view>
+
+<!-- 预约成功弹窗 -->
+<hot-goods-popup wx:if="{{reserveSuccess}}" hotGoodsItem="{{hotGoodsDetail}}" bindcloseReserve="closeReserve"></hot-goods-popup>
+
+<!-- 导航 -->
+<navigation></navigation>

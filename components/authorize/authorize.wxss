@@ -1,0 +1,57 @@
+/* components/authorize/authorize.wxss */
+/* 授权弹层 */
+.auth-popup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 101;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.auth-popup .auth-box {
+  width: 650rpx;
+  background: #fff;
+  border-radius: 10rpx;
+  text-align: center;
+  padding-bottom: 21rpx;
+}
+
+.auth-box.top {
+  margin-top: 84rpx;
+}
+
+.auth-popup .auth-img {
+  border-radius: 8rpx 8rpx 0 0;
+  display: block;
+}
+
+.auth-popup .welcome {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #484848;
+  padding: 44rpx 0 14rpx;
+}
+
+.auth-popup .auth-btn {
+  width: 535rpx;
+  height: 94rpx;
+  background: #D3122E;
+  border-radius: 47rpx;
+  border: none;
+  font-size: 36rpx;
+  color: #fff;
+  text-align: center;
+  line-height: 94rpx;
+}
+
+.not-login {
+  margin-top: 12rpx;
+  font-size: 26rpx;
+  color: #505050;
+  text-decoration: underline;
+}

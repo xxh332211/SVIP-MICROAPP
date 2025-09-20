@@ -1,0 +1,24 @@
+<!--pages/userCenter/receiverAddress/receiverAddress.wxml-->
+<scroll-view class="receiver-address" scroll-y="true">
+  <view wx:if="{{receiverAddresses && receiverAddresses.length}}">
+    <view class="address-item" wx:for="{{receiverAddresses}}" wx:key="id" data-item="{{item}}" bindtap="chooseAddress">
+      <text class="user-info">{{item.recipients}} {{item.mobile}}</text>
+      <text class="address">{{item.provinceName}}{{item.cityName}}{{item.districtName}}{{item.address}}</text>
+      <view class="divider"></view>
+      <view class="operator" catchtap>
+        <view>
+          <checkbox value="{{item.id}}" checked="{{item.isDefault}}" data-id="{{item.id}}" catchtap="onDefaultSelect">
+            默认地址 </checkbox>
+        </view>
+        <view class="opera-btns">
+          <link class="opera-btn" data-id="{{item.id}}" catchtap="naviToAddressEdit">编辑</link>
+          <link class="opera-btn {{item.isDefault?'gray':''}}" data-item="{{item}}" catchtap="onToDeleteAddress">删除</link>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view wx:else class="no-data">
+    暂未配置
+  </view>
+  <button class="submit-btn normal-btn" data-id="{{0}}" bindtap="naviToAddressEdit">新增收货地址</button>
+</scroll-view>

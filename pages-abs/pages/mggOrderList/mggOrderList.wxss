@@ -1,0 +1,167 @@
+/* pages-abs/pages/mggOrderList/mggOrderList.wxss */
+@import '../../subcontracting.wxss';
+
+.top_bar {
+    width: 750rpx;
+    height: 8%;
+    background: #FFFFFF;
+    box-shadow: 0px 5rpx 15rpx 0rpx rgba(81, 81, 81, 0.05);
+    display: flex;
+    justify-content: space-around;
+}
+
+.bar {
+    height: 100%;
+    font-size: 28rpx;
+    font-family: PingFang;
+    font-weight: 500;
+    color: #222222;
+    line-height: 100rpx;
+}
+
+swiper {
+    height: 92%;
+    width: 100%;
+}
+
+swiper-item,
+scroll-view {
+    height: 100%;
+}
+
+.list {
+    width: 750rpx;
+    background: #FFFFFF;
+    padding: 0 30rpx 30rpx;
+    margin-top: 30rpx;
+}
+
+.header {
+    width: 100%;
+    height: 89rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.t1 {
+    font-size: 32rpx;
+    font-family: PingFang;
+    font-weight: bold;
+    color: #222222;
+}
+
+.t2 {
+    font-size: 28rpx;
+    font-family: PingFang;
+    font-weight: bold;
+    color: #222222;
+}
+
+.bodys {
+    display: flex;
+    justify-content: space-between;
+}
+
+.bodys>image {
+    width: 200rpx;
+    height: 153rpx;
+    background: red;
+}
+
+.msg {
+    width: 474rpx;
+    position: relative;
+}
+
+.name {
+    font-size: 28rpx;
+    font-weight: bold;
+    color: #333333;
+}
+
+.price_number {
+    display: flex;
+    justify-content: space-between;
+}
+
+.box {
+    display: flex;
+    justify-content: left;
+    align-items: baseline;
+}
+
+.price {
+    font-size: 32rpx;
+    font-family: PingFang;
+    font-weight: bold;
+    color: #222222;
+}
+
+.price text {
+    font-size: 24rpx;
+}
+
+.yellow {
+    font-size: 24rpx;
+    font-family: PingFang;
+    font-weight: 500;
+    color: #FFA751;
+    margin-left: 23rpx;
+}
+
+.number {
+    font-size: 32rpx;
+    font-family: PingFang;
+    font-weight: 500;
+    color: #222222;
+}
+
+.number text {
+    font-size: 22rpx;
+}
+
+.btns {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 54rpx;
+}
+
+.btns>view {
+    margin-left: 30rpx;
+}
+
+.btn1 {
+    width: 130rpx;
+    height: 50rpx;
+    background: #FFFFFF;
+    border: 1rpx solid #959595;
+    border-radius: 25rpx;
+    text-align: center;
+    line-height: 50rpx;
+    font-size: 24rpx;
+    font-family: PingFang;
+    font-weight: 500;
+    color: #222222;
+}
+
+.btn2 {
+    width: 160rpx;
+    height: 50rpx;
+    background: #E6002D;
+    box-shadow: 0 3rpx 9rpx 0 rgba(230, 0, 45, 0.35);
+    border-radius: 25rpx;
+    text-align: center;
+    line-height: 50rpx;
+    font-size: 24rpx;
+    font-family: PingFang;
+    font-weight: 500;
+    color: #FFFFFF;
+}
+
+/* 变量演示 */
+.hover {
+    border-bottom: 4rpx solid #E5002D;
+    font-weight: bold;
+    color: #000000;
+}

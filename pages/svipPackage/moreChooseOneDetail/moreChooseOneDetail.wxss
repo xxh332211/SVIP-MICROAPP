@@ -1,0 +1,218 @@
+/* pages/svipPackage//moreChooseOneDetail/moreChooseOneDetail.wxss */
+.container{
+  width: 100%;
+  min-height: 100vh;
+  background-color: #fff;
+}
+
+.banner{
+  width: 100%;
+  height: 410rpx;
+}
+
+.swp{
+  width: 100%;
+  height: 410rpx;
+}
+
+.banner-img{
+  width: 100%;
+  height: 100%;
+}
+
+.main{
+  padding: 34rpx 23rpx 88rpx 38rpx;
+}
+
+.item {
+  width: 330rpx;
+  margin-right: 15rpx;
+  margin-bottom: 30rpx;
+  display: inline-block;
+  position: relative;
+}
+
+.is-choose-img{
+  position: absolute;
+  right: 10rpx;
+  top: 10rpx;
+  width: 100rpx;
+  height: 100rpx;
+  z-index: 9;
+}
+
+.pro-img {
+  display: block;
+  width: 100%;
+  height: 260rpx;
+  margin-bottom: 24rpx;
+}
+
+.desc {
+  font-size: 24rpx;
+  color: #222;
+  height: 65rpx;
+  line-height: 34rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  white-space: normal;
+}
+
+.price {
+  display: flex;
+  align-items: baseline;
+  color: #E6002D;
+  font-size: 28rpx;
+  font-weight: bold;
+  margin: 35rpx 0 40rpx;
+  padding-top: 22rpx;
+  border-top: 1rpx solid #EFEFEF;
+}
+
+.num {
+  font-size: 36rpx;
+}
+
+.unit {
+  font-size: 20rpx;
+  font-weight: normal;
+  letter-spacing: 2rpx;
+  padding-left: 4rpx;
+}
+
+.buy-btn {
+  width: 100%;
+  height: 65rpx;
+  line-height: 65rpx;
+  border-radius: 2rpx;
+  font-size: 28rpx;
+  color: #fff;
+  background-color: #E6002D;
+  margin-top: 28rpx;
+}
+
+.dis-buy-btn{
+  background-color: #D0D0D0;
+}
+
+
+/* 支付成功弹层 */
+.success-popup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 30;
+  background-color: rgba(0, 0, 0, .7);
+}
+
+.success-popup .success-box {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 669rpx;
+  background: #FFFFFF;
+  border-radius: 12rpx;
+  overflow: hidden;
+}
+
+.success-popup .title {
+  font-size: 44rpx;
+  font-weight: bold;
+  color: #222222;
+  padding: 40rpx 0 23rpx;
+}
+
+.success-popup image {
+  width: 290rpx;
+  height: 345rpx;
+}
+
+.success-popup .tips {
+  font-size: 27rpx;
+  color: #222222;
+  padding: 19rpx 0 25rpx;
+}
+
+.success-popup .success-btn-box {
+  width: 100%;
+  display: flex;
+  border-top: 1px solid #D2D3D5;
+}
+
+.success-popup .btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 114rpx;
+  border-right: 1px solid #D2D3D5;
+  font-size: 36rpx;
+  color: #777777;
+}
+
+.success-popup .btn:last-child {
+  border-right: none;
+}
+
+.more-choose-one-tips {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 30;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.more-choose-one-tips>.mco-box{
+  position: relative;
+  width: 680rpx;
+  background-color: #fff;
+  border-radius: 8rpx;
+  text-align: center;
+  padding-bottom: 50rpx;
+}
+
+.more-choose-one-tips .mco-tips-btn{
+  width: 280rpx;
+  height: 86rpx;
+  line-height: 86rpx;
+  color: #fff;
+  font-size: 32rpx;
+  background-color: #E5002D;
+  margin: 50rpx auto 0;
+}
+
+.more-choose-one-tips>.mco-box>.mco-tips-title{
+  font-size: 36rpx;
+  margin-top: 90rpx;
+}
+
+.more-choose-one-tips>.mco-box>.mco-tips-title-svip{
+  font-size: 34rpx;
+  font-weight: bold;
+  margin-top: 60rpx;
+}
+
+.more-choose-one-tips>.mco-box>.mco-tips-cont{
+  font-size: 32rpx;
+  padding: 0 86rpx;
+  margin-top: 50rpx;
+}
+
+.more-choose-one-tips .mco-close{
+  position: absolute;
+  top: 30rpx;
+  right: 30rpx;
+  width: 30rpx;
+  height: 30rpx;
+}

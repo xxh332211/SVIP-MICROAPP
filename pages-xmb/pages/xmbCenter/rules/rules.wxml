@@ -1,0 +1,55 @@
+<!--pages-xmb/pages/xmbCenter/rules/rules.wxml-->
+<view class="container">
+  <view class="main">
+    <block wx:if="{{rulesData}}">
+      <view class="cont">
+        <text>{{rulesData}}</text>
+      </view>
+    </block>
+
+    <block wx:else>
+      <view class="title">1、熊猫币可以用来做什么？</view>
+      <view class="cont">
+        <view>*熊猫币是参加所有活动的门槛；</view>
+        <view>A.支付1000熊猫币即可参与抽取200-4999元现金大奖，100%中奖；</view>
+        <view>B.支付200熊猫币即可参与摘红包活动、会员俱乐部超值兑奖、“华夏家博”小程序中天天抽大奖；</view>
+        <view>C.如有现场活动资格兑换有误，可在核销前进行撤回；</view>
+      </view>
+
+      <view class="title">2、我要怎么获取熊猫币呢？</view>
+      <view class="cont">
+        <view>通过完成“华夏家博”小程序中日常任务及现场下单并于“华夏家博”小程序录入订单，任务包含：</view>
+        <view>（1）登录“华夏家博”小程序在线签到；</view>
+        <view>（2）发起好友邀约，邀请好友领取门票一同逛展；</view>
+        <view>（3）“华夏家博”小程序中预约心仪爆款；</view>
+        <view>（4）升级为“华夏家博”SVIP超级会员；</view>
+        <view>（5）“华夏家博”小程序中领取预约优惠券；</view>
+        <view>（6）现场逛展自主检票；</view>
+        <view>（7）现场下单并将订单录入“华夏家博”小程序；</view>
+        <view>（3）“华夏家博”小程序中预约心仪爆款；</view>
+      </view>
+
+      <view class="title">3、任务完成后，熊猫币就会自动到我的账户？</view>
+      <view class="cont">
+        <view>不是的，大部分任务完成后需回到熊猫币中心页面领取熊猫币，未领取的熊猫币将在每日的24点失效，快去使用、领取你的熊猫币吧！</view>
+      </view>
+
+      <view class="title">4、熊猫币有效期是多久？</view>
+      <view class="cont">
+        <view>清零时间：熊猫币有效期为获取之日起至每年的12月31日；</view>
+        <view>如在2021年9月1日获得10熊猫币，将在2022年1月1日00:00过期自动清零分；</view>
+      </view>
+
+      <view class="title">5、兑换或购买的商品信息在哪里查看？</view>
+      <view class="cont">
+        <view>可在订单管理-已完成订单，查看兑换或购买的商品信息；</view>
+      </view>
+
+      <view class="title">6、其他注意事项：</view>
+      <view class="cont">
+        <view>熊猫币不可转让、售卖、赠送；</view>
+        <view>如发现有违规行为，华夏家博会有权冻结其熊猫币并取消相关资格；</view>
+      </view>
+    </block>
+  </view>
+</view>

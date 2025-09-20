@@ -1,0 +1,49 @@
+<!--pages/user/myOrder/myOrder.wxml-->
+<online-serve />
+<view class='wrapper'>
+  <navigator class='link' url='/pages/user/expoOrder/expoOrder'>展会订单
+    <image src='/imgs/r-arrow.png'></image>
+  </navigator>
+  <navigator class='link' url='/pages/svipPackage/svipUserOrder/svipUserOrder'>SVIP订单
+    <image src='/imgs/r-arrow.png'></image>
+  </navigator>
+  <navigator class='link' url='/pGoods/pages/goodsOrderList/goodsOrderList'>预售订单
+    <image src='/imgs/r-arrow.png'></image>
+  </navigator>
+  <!-- <navigator class='link' url='/pGoods/pages/goodsTuangouOrderList/goodsOrderList'>拼团订单
+    <image src='/imgs/r-arrow.png'></image>
+  </navigator> -->
+  <navigator class='link' url='/pages-abs/pages/mggOrderList/mggOrderList'>线上订单
+    <image src='/imgs/r-arrow.png'></image>
+  </navigator>
+  <navigator class='link' url='/pages/tradeInPackage/My/Index'>换购订单
+    <image src='/imgs/r-arrow.png'></image>
+  </navigator>
+  <navigator class='link' url='/pages-abs/pages/OrderList/OrderList'>兑换卡订单
+    <image src='/imgs/r-arrow.png'></image>
+  </navigator>
+
+</view>
+
+<!-- 弹窗 -->
+<view class="flag" wx:if='{{showFlag}}'>
+  <view class="popup">
+    <image src="https://img.51jiabo.com/308b50ee-fa79-468a-9952-31f35e9b40ef.png" class="fork" bindtap="fork"></image>
+    <image src="https://img.51jiabo.com/b246bc0b-27b2-4b80-9999-0004fde1164c.png" class="cartImg"></image>
+    <text class="title">现场下单超值换购\n活动进行中</text>
+    <swiper class="swiper" indicator-dots="true" autoplay="true" interval="3000" duration="500" circular="true"
+      indicator-active-color="#D3122E">
+      <block wx:for="{{swiperList}}" wx:key="*this" wx:for-index="index">
+        <swiper-item wx:if='{{index<5}}'>
+          <view class="swiper-item">
+            <view class="swiperImg">
+              <image mode="aspectFit" src="{{item.goods_image}}"></image>
+            </view>
+            <view class="swiperText">{{isXmb?'+'+item.panda_coin+'熊猫币换购':item.redeem_price}}</view>
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class="huangou" bindtap="huangouBtn">去换购</view>
+  </view>
+</view>

@@ -1,0 +1,693 @@
+/* pages-abs/pages/productDetails/productDetails.wxss */
+@import '../../subcontracting.wxss';
+.navigate {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 84rpx;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    box-sizing: content-box;
+  }
+  .navigate.showBack {
+    background-color: #fff;
+  }
+  .navigate .return {
+    width: 75rpx;
+    height: 60rpx;
+    background: url("https://img.51jiabo.com/10c74c3b-3825-4d97-a58b-6ee8cbcdf434.png") no-repeat;
+    background-size: 20rpx 35rpx;
+    background-position: 20rpx center;
+    position: absolute;
+    bottom: 14rpx;
+    left: 4rpx;
+    padding-left: 20rpx;
+    padding-right: 35rpx;
+  }
+  
+  .navigate .nav-text {
+    font-size: 30rpx;
+    font-weight: bold;
+    max-width: 380rpx;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  
+  .navigate-blank {
+    width: 100%;
+    height: 82rpx;
+    box-sizing: content-box;
+  }
+.banner {
+    width: 750rpx;
+    height: 540rpx;
+    position: relative;
+}
+
+.banner video,
+.banner swiper,
+.banner swiper-item {
+    width: 100%;
+    height: 100%;
+}
+
+.indicate {
+    position: absolute;
+    bottom: 20rpx;
+    right: 20rpx;
+    background: rgba(0, 0, 0, .5);
+    z-index: 1;
+    border-radius: 30rpx;
+    color: #fff;
+    padding: 5rpx 20rpx;
+}
+
+.price {
+    padding: 0 30rpx;
+    width: 750rpx;
+    height: 140rpx;
+    background: #FFFFFF;
+}
+
+.price1 {
+    color: #222222;
+}
+
+.price1 .txt1 {
+    font-size: 34rpx;
+}
+
+.price1 .txt2 {
+    opacity: .8;
+}
+
+.price_text {
+    display: flex;
+    align-items: baseline;
+}
+
+/* 普通商品全款样式 */
+.ordinary {
+    color: #FFFFFF;
+    background: #E6002D;
+}
+
+.ordinary .price_text {
+    flex-direction: column;
+}
+
+.ordinary .txt1 {
+    display: flex;
+    align-items: center;
+    font-size: 32rpx;
+}
+
+.ordinary .txt1 text {
+    font-size: 48rpx;
+    margin-top: -4rpx;
+}
+
+.ordinary .txt2 {
+    margin-top: -11rpx;
+}
+
+.ordinary .txt2,
+.ordinary .sold {
+    color: #FFFFFF;
+}
+
+.price2 {
+    background: #E6002D;
+    color: white;
+}
+
+.mgg-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mgg {
+    width: 100rpx;
+    height: 80rpx;
+}
+
+.txt1 {
+    font-size: 34rpx;
+    font-family: PingFang;
+    font-weight: bold;
+    margin-right: 18rpx;
+    /* color: #222222; */
+}
+
+.txt2 {
+    font-size: 24rpx;
+    font-family: PingFang;
+    font-weight: 500;
+    text-decoration: line-through;
+    color: #676767;
+}
+
+.deposit {
+    width: 200rpx;
+    height: 56rpx;
+    background: #E6002D;
+    box-shadow: 0rpx 2rpx 18rpx 0rpx rgba(230, 0, 45, 0.28);
+    border-radius: 28rpx;
+    text-align: center;
+    line-height: 56rpx;
+    font-size: 30rpx;
+    font-weight: bold;
+    color: #FFFFFF;
+    margin-top: 6rpx;
+}
+
+.deposit2 {
+    color: #E6002D;
+    background: #FFFFFF;
+}
+
+.sold {
+    font-size: 24rpx;
+    font-family: PingFang;
+    font-weight: 500;
+    color: #999999;
+}
+
+.name_box {
+    width: 750rpx;
+    background: #FFFFFF;
+    padding: 30rpx 30rpx 20rpx;
+}
+
+.name_box .name {
+    font-size: 32rpx;
+    font-family: PingFang;
+    font-weight: bold;
+    color: #222222;
+    width: 573rpx;
+    line-height: 48rpx;
+    margin-top: -8rpx;
+}
+
+.title-box {
+    display: flex;
+    justify-content: space-between;
+}
+
+.fenxaing {
+    font-size: 24rpx;
+    font-family: PingFang;
+    font-weight: 500;
+    color: #E6002D;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+button {
+    background-color: transparent;
+    padding-left: 0;
+    padding-right: 0;
+    line-height: inherit;
+    margin: 0;
+}
+
+.fenxaing>image {
+    width: 24rpx;
+    height: 23rpx;
+}
+
+.fenxaing>text {
+    font-size: 24rpx;
+    font-family: PingFang;
+    font-weight: 500;
+    color: #E6002D;
+    margin-top: 8rpx;
+}
+
+.subtitle {
+    font-size: 28rpx;
+    font-family: PingFang;
+    font-weight: 500;
+    color: #777777;
+    margin-top: 4rpx;
+}
+
+.box2 {
+    width: 750rpx;
+    /* height: 346rpx; */
+    background: #FFFFFF;
+    margin-top: 30rpx;
+    padding: 21rpx 30rpx 30rpx;
+}
+
+.product_description {
+    border-bottom: 1px solid #EEEEEE;
+    padding-bottom: 22rpx;
+}
+
+.product_description>.title {
+    flex-shrink: 0;
+    font-size: 32rpx;
+    font-family: PingFang;
+    font-weight: 500;
+    color: #333333;
+}
+
+.product_description>.msg {
+    font-size: 28rpx;
+    font-family: PingFang;
+    font-weight: 400;
+    color: #999999;
+    line-height: 42rpx;
+}
+
+.Delivery {
+    display: flex;
+    align-items: initial;
+    position: relative;
+    margin-top: 20rpx;
+}
+
+.Delivery>.title {
+    flex-shrink: 0;
+    width: 86rpx;
+    font-size: 28rpx;
+    font-family: PingFang;
+    font-weight: 500;
+    color: #333333;
+}
+
+.Delivery>.title2 {
+    font-size: 28rpx;
+    font-family: PingFang;
+    font-weight: 400;
+    color: #222222;
+}
+
+.Delivery .type-box {
+    width: 580rpx;
+}
+
+.Delivery .arrow {
+    position: absolute;
+    top: 12rpx;
+    right: 0;
+    width: 10rpx;
+    height: 19rpx;
+    background: url(https://img.51jiabo.com/a8c9255b-6a73-49ba-a104-474c855e9df9.png) no-repeat;
+    background-size: 100% 100%;
+}
+
+.type-box .title2 {
+    font-size: 28rpx;
+    color: #222222;
+}
+
+.type-box .msg {
+    font-size: 26rpx;
+    color: #222222;
+    line-height: 40rpx;
+    margin-top: 2rpx;
+}
+
+.type-box .msg view {
+    line-height: 36rpx;
+}
+
+.box3 {
+    background: white;
+    /* padding: 0 30rpx; */
+    margin-top: 30rpx;
+    padding-bottom: calc(100rpx + env(safe-area-inset-bottom));
+}
+
+.header {
+    width: 100%;
+    padding: 0 30rpx;
+    height: 131rpx;
+    border-bottom: 1rpx solid #EEEEEE;
+}
+
+.user>image {
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 50%;
+    background: khaki;
+    margin-right: 16rpx;
+}
+
+.user>.name {
+    font-size: 34rpx;
+    font-family: PingFang;
+    font-weight: bold;
+    color: #464646;
+}
+
+.shop_entrance {
+    width: 203rpx;
+    height: 56rpx;
+    border: 1rpx solid #E6002D;
+    border-radius: 28rpx;
+    text-align: center;
+    line-height: 56rpx;
+    font-size: 26rpx;
+    font-family: PingFang;
+    font-weight: bold;
+    color: #E6002D;
+}
+
+.shop_img {
+    display: block;
+    width: 100%;
+    height: 606rpx;
+}
+
+.fixed {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    background: white;
+    padding-top: 15rpx;
+    padding-bottom: calc(15rpx + env(safe-area-inset-bottom));
+}
+
+.icons {
+    width: 292rpx;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.icon_btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.icon_btn.single {
+    width: 88rpx;
+}
+
+.icon_btn>image {
+    width: 36rpx;
+    height: 35rpx;
+}
+
+.icon_btn>text {
+    font-size: 22rpx;
+    font-family: PingFang;
+    font-weight: 500;
+    color: #999;
+}
+
+.btn_two {
+    width: 440rpx;
+    height: 80rpx;
+    display: flex;
+    border-radius: 40rpx;
+    overflow: hidden;
+    color: #FFFFFF;
+    margin-right: 18rpx;
+}
+
+.btn1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: #FFA751;
+    font-size: 24rpx;
+}
+
+.btn2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: #E6002D;
+    font-size: 36rpx;
+    font-weight: bold;
+}
+
+.huodong {
+    border-bottom: 1rpx solid #EEEEEE;
+    height: 88rpx;
+}
+
+.huodong .huodong_t1 {
+    font-size: 28rpx;
+    font-family: PingFang;
+    font-weight: 500;
+    color: #333333;
+    margin-right: 32rpx;
+}
+
+.huodong .huodong_t2 {
+    font-size: 28rpx;
+    font-family: PingFang;
+    font-weight: 500;
+    color: #E6002D;
+}
+
+.huodong .ico {
+    width: 10rpx;
+    height: 19rpx;
+    background: url("https://img.51jiabo.com/a8c9255b-6a73-49ba-a104-474c855e9df9.png") no-repeat;
+    background-size: 100% 100%;
+}
+
+.close_top {
+    position: fixed;
+    bottom: calc(150rpx + env(safe-area-inset-bottom));
+    right: 30rpx;
+    width: 80rpx;
+    height: 80rpx;
+    background-image: url(https://img.51jiabo.com/86ca3151-284a-4382-83a1-e71e47eef63d.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.guize_pop {
+    width: 640rpx;
+    height: 753rpx;
+    background: #FFFFFF;
+    position: relative;
+}
+
+.pop_title {
+    background-image: url(https://img.51jiabo.com/fcf12102-dfea-46a4-9294-9e075455d720.png);
+    width: 300rpx;
+    height: 72rpx;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: -10rpx;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    font-size: 36rpx;
+    font-family: PingFang;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-align: center;
+    line-height: 70rpx;
+}
+
+.pop_content {
+    display: block;
+    font-size: 28rpx;
+    font-family: PingFang;
+    font-weight: 500;
+    color: #333333;
+    padding: 0 40rpx;
+    overflow-y: scroll;
+    max-height: 650rpx;
+}
+
+.bland {
+    width: 100%;
+    height: 100rpx;
+}
+
+.close2 {
+    position: absolute;
+    top: -80rpx;
+    right: 0;
+}
+
+.exchange_btn {
+    width: 100%;
+    height: 90rpx;
+    font-size: 34rpx;
+    font-family: PingFang;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-align: center;
+    line-height: 90rpx;
+    border-radius: 45px;
+}
+
+.exchange_btn_back_t {
+    background: #E6002D;
+}
+
+.exchange_btn_back_f {
+    background: #BABABA;
+}
+
+.br {
+    display: block;
+    font-size: 36rpx;
+}
+
+/* 到店自提更多门店弹层 */
+.store-popup {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, .4);
+    z-index: 103;
+    transition: all .2s linear;
+    visibility: hidden;
+}
+
+.store-popup.show {
+    visibility: visible;
+}
+
+.store-popup.show .store-box {
+    height: 552rpx;
+}
+
+.store-popup .store-box {
+    width: 100%;
+    height: 0;
+    background: #FFFFFF;
+    border-radius: 27rpx 27rpx 0 0;
+    transition: all .2s linear;
+    position: absolute;
+    bottom: 0;
+    overflow: hidden;
+    padding: 28rpx;
+}
+
+.store-popup .store-close {
+    width: 107rpx;
+    height: 107rpx;
+    background: url(https://img.51jiabo.com/e54c2376-7d89-4477-adbe-fecaf0007617.png) no-repeat;
+    background-size: 27rpx 27rpx;
+    background-position: center center;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.store-popup .store-title {
+    font-size: 32rpx;
+    font-weight: bold;
+}
+
+.store-popup .store-title text {
+    font-size: 30rpx;
+    font-weight: normal;
+    margin-left: 14rpx;
+}
+
+.store-popup .store-list {
+    height: 480rpx;
+    overflow-y: scroll;
+    padding-bottom: 30rpx;
+}
+
+.store-popup .store-item {
+    font-size: 26rpx;
+    margin-top: 24rpx;
+}
+
+/* 领取门票弹层 */
+.ticket-popup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, .4);
+    z-index: 103;
+}
+
+.ticket-popup .ticket-box {
+    width: 570rpx;
+    height: 556rpx;
+    position: relative;
+}
+
+.ticket-popup .bg {
+    width: 100%;
+}
+
+.ticket-popup .head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 203rpx;
+    background: #F81C50;
+    border-radius: 30rpx 30rpx 0 0;
+    position: absolute;
+    top: 0;
+    font-size: 30rpx;
+    color: #FFFEFF;
+    padding-top: 49rpx;
+}
+
+.ticket-popup .bold {
+    font-weight: bold;
+}
+
+.ticket-popup .ticket {
+    width: 440rpx;
+    height: 202rpx;
+    position: absolute;
+    top: 176rpx;
+    left: 70rpx;
+}
+
+.ticket-popup .get-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 288rpx;
+    height: 90rpx;
+    background: #F81C50;
+    border-radius: 10rpx;
+    font-size: 30rpx;
+    color: #FFFEFF;
+    position: absolute;
+    bottom: 43rpx;
+    left: 140rpx;
+}
+
+.ticket-popup .ticket-close {
+    width: 65rpx;
+    height: 65rpx;
+    position: absolute;
+    bottom: -90rpx;
+    left: 252rpx;
+    background: url(https://img.51jiabo.com/f292d96f-67b2-4eed-adb8-1fd4e43a6b81.png) no-repeat;
+    background-size: 100% 100%;
+}

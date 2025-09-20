@@ -1,0 +1,308 @@
+/* pages/expoPackage/getTicketSuccess/getTicketSuccess.wxss */
+
+image {
+  display: block;
+}
+
+.wrapper {
+  background: #fff;
+  overflow: hidden;
+}
+
+.top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 42rpx;
+  font-weight: bold;
+  color: #fff;
+  background: #e6002d;
+  padding: 50rpx 0 70rpx;
+}
+
+.success-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.success-address{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-serve {
+  font-size: 30rpx;
+  font-weight: normal;
+  padding: 20rpx 30rpx 0;
+}
+
+.add-kith{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #e6002d;
+  font-size: 29rpx;
+  width: 450rpx;
+  height: 90rpx;
+  border-radius: 96rpx;
+  background: linear-gradient(180deg,#FFFEFF 0%,#F9F3F5 50%,#F5EFF1 100%);
+  box-shadow: 4.2rpx 8.4rpx 12.6rpx #ffffffbf inset, 0 -8.4rpx 8.4rpx #ffffff40 inset, 0 8.4rpx 8.4rpx #5206141a;
+  margin-top: 46rpx;
+}
+
+.top image {
+  width: 54rpx;
+  margin-right: 18rpx;
+}
+
+.submit-success {
+  font-size: 36rpx;
+  color: #fff;
+  text-align: center;
+  background: #E6002D;
+
+}
+
+.submit-success .one {
+  font-size: 42rpx;
+  font-weight: 700;
+  padding: 60rpx 0 6rpx;
+}
+
+.schedule {
+  width: 710rpx;
+  margin: -20rpx 0 0 20rpx;
+  box-shadow: 0 10rpx 15rpx 1rpx rgba(0, 0, 0, 0.1);
+  border-radius: 15rpx;
+  background: #fff;
+  position: relative;
+  z-index: 1;
+  padding-bottom: 55rpx;
+}
+
+.schedule .place-form {
+  overflow: hidden;
+  padding-top: 30rpx;
+}
+
+.schedule .place-form input {
+  width: 640rpx;
+  height: 84rpx;
+  border: 1px solid #B5B5B5;
+  border-radius: 5rpx;
+  padding-left: 15rpx;
+  font-size: 28rpx;
+  margin: 36rpx 0 0 35rpx;
+  box-sizing: border-box;
+}
+
+.schedule .place-form .confirm {
+  width: 640rpx;
+  height: 84rpx;
+  text-align: center;
+  line-height: 84rpx;
+  border-radius: 5rpx;
+  background: #e6002d;
+  font-size: 32rpx;
+  color: #fff;
+  margin: 42rpx 0 0 35rpx;
+}
+
+
+.code-box .title {
+  font-size: 27rpx;
+  color: #23272B;
+  text-align: center;
+  line-height: 46rpx;
+  padding: 37rpx 0 18rpx;
+}
+.code-box .title text {
+  font-weight: bold;
+}
+
+.code-box .code-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.code-box .code-img {
+  width: 270rpx;
+  height: 270rpx;
+  flex-shrink: 0;
+}
+
+.schedule .h5 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 42rpx;
+  font-weight: bold;
+  margin-top: 34rpx;
+}
+
+.schedule .h5 image {
+  width: 43rpx;
+  margin-right: 17rpx;
+}
+
+.schedule .time-list .time {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.schedule .time-list .time .Hz {
+  font-size: 24rpx;
+  font-weight: normal;
+}
+
+.schedule .time-list .ul {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  background: #f0f0f0;
+  margin: 15rpx 9rpx;
+}
+
+.schedule .time-list .ul .li {
+  border-right: 1px solid #fff;
+  flex-grow: 1;
+}
+
+.schedule .time-list .ul .li.active view {
+  color: #fff;
+  background: #e6002d;
+}
+
+.schedule .time-list .ul .li view {
+  height: 79rpx;
+  font-size: 20rpx;
+  color: #666;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.schedule .time-list .ul .li view:nth-child(1) {
+  font-size: 28rpx;
+  border-bottom: 1px solid #fff;
+}
+
+.schedule .site {
+  font-size: 32rpx;
+  text-align: center;
+  margin-top: 45rpx;
+}
+
+.schedule .tips {
+  display: flex;
+  margin-top: 50rpx;
+  padding: 0 30rpx;
+}
+
+.schedule .tips image {
+  width: 32rpx;
+  height: 32rpx;
+  flex-shrink: 0;
+  margin-right: 14rpx;
+}
+
+.schedule .tips .warm {
+  color: #666;
+}
+
+.oprate {
+  width: 690rpx;
+  margin-left: 30rpx;
+  margin-top: 50rpx;
+}
+
+/* 地址提交成功 */
+.submit-popup {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 11;
+  background: rgba(0, 0, 0, .7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.submit-popup .submit-box {
+  width: 620rpx;
+  height: 341rpx;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 8rpx;
+  padding: 96rpx 0 0;
+}
+
+.submit-popup .text {
+  font-size: 36rpx;
+  font-weight: 400;
+}
+
+.submit-popup .confirm {
+  width: 190rpx;
+  height: 70rpx;
+  background: #E6002D;
+  border-radius: 3rpx;
+  font-size: 36rpx;
+  color: #fff;
+  text-align: center;
+  line-height: 70rpx;
+  margin-top: 65rpx;
+}
+
+/* 添加客服微信运营位 */
+.serve-popup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, .8);
+}
+
+.serve-popup .serve-box {
+  width: 680rpx;
+  border-radius: 10rpx;
+  overflow: hidden;
+  position: relative;
+}
+
+.serve-popup .serve-close {
+  width: 90rpx;
+  height: 90rpx;
+  background: url("https://img.51jiabo.com/295c2108-1dd0-403c-af77-2804b524e676.png") no-repeat;
+  background-size: 30rpx 30rpx;
+  background-position: center;
+  position: absolute;
+  top: 60rpx;
+  right: -10rpx;
+  z-index: 4;
+}
+
+.serve-popup .img {
+  display: flex;
+  width: 100%;
+}
+
+.serve-popup .btn {
+  width: 100%;
+  background-color: transparent;
+}

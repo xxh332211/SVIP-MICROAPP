@@ -1,0 +1,609 @@
+<!--首页-->
+<online-serve />
+<privacy-popup></privacy-popup>
+<view class='page'>
+  <view class='banner'>
+    <image wx:if="{{cityId == 60}}" src="https://img.51jiabo.com/348e3b86-1b35-4821-8094-5e4918185716.png" mode='widthFix' class='banner-bg'>
+    </image>
+    <image wx:else src="https://img.51jiabo.com/dc00cf25-ab40-4283-aed7-931d204e6a3e.png" mode='widthFix' class='banner-bg'>
+    </image>
+    <view class='explain-pos flex-row'>
+      <view class='pos' bindtap='chooseCity'>
+        <text class='iconfont icondingwei' style='color:#fff'></text>
+        <text style='font-size:30rpx;'>{{curUserCityText}}</text>
+      </view>
+      <navigator class='explain' url="/pages/explain/explain">
+        <text>会员说明</text>
+        <text class='iconfont iconshuoming' style='color:#fff;margin-left:10rpx'></text>
+      </navigator>
+    </view>
+    <view class='banner-content'>
+      <view class="button-box">
+        <button class='auth-login' wx:if="{{!isLogin}}" open-type='getPhoneNumber' bindgetphonenumber="getPhoneNumber"></button>
+        <view class='user-info'>
+          <image src='https://img.51jiabo.com/bb590454-9cbf-45d5-8811-e90f55668277.png' mode='widthFix' class='user-bg'>
+          </image>
+          <view class='user-main flex-row' bindtap='userlogin'>
+            <block wx:if="{{cityId == 60}}">
+              <image class='picture' wx:if="{{isLogin}}" src='{{userInfo.avatar?userInfo.avatar:"https://img.51jiabo.com/94467bd5-404c-4f6c-aeee-b6d948d93079.png"}}' mode='widthFix'></image>
+              <image class='picture' wx:else src='https://img.51jiabo.com/94467bd5-404c-4f6c-aeee-b6d948d93079.png' mode='widthFix'></image>
+            </block>
+            <block wx:else>
+              <image class='picture' wx:if="{{isLogin}}" src='{{userInfo.avatar?userInfo.avatar:"https://img.51jiabo.com/1a927c4f-1d8a-49a9-8720-c90ce2719f31.jpg"}}' mode='widthFix'></image>
+              <image class='picture' wx:else src='https://img.51jiabo.com/1a927c4f-1d8a-49a9-8720-c90ce2719f31.jpg' mode='widthFix'></image>
+            </block>
+            <view class='name' wx:if='{{isLogin&&isSvip}}'>会员中心</view>
+            <view class='name' wx:if='{{isLogin&&!isSvip}}'>成为会员</view>
+            <view class='name' wx:if='{{!isLogin}}'>未登录</view>
+            <view class='more iconfont iconjiantou'></view>
+          </view>
+        </view>
+      </view>
+      <!-- 权益的配置列表 -->
+      <view class='rights'>
+        <view class='title'>
+          <image src='/imgs/lineleft.png' mode='widthFix'></image>
+          <text wx:if="{{cityId == 27}}">京东·森图里家博会员，尊享特权</text>
+          <text wx:elif="{{cityId == 54}}">天府家博会员，尊享特权</text>
+          <text wx:elif="{{cityId == 60}}">宁波装修狂欢节，尊享特权</text>
+          <text wx:elif="{{cityId == 65}}">现代家博会员，尊享特权</text>
+          <text wx:else>华夏家博会员，尊享特权</text>
+          <image src='/imgs/lineright.png' mode='widthFix'></image>
+        </view>
+        <banner-grid wx:if='{{rightsList.length>0}}' dataList='{{rightsList}}' bindshowDialog="dialogShow">
+        </banner-grid>
+      </view>
+    </view>
+  </view>
+  <!-- svip购买倒计时 -->
+  <view class="count-down" wx:if="{{!countOver && !isSvip}}">
+    <view class="txt" wx:if="{{isOpenSale}}">距离超级会员SVIP抢购价结束仅剩</view>
+    <view class="txt" wx:if="{{!isOpenSale}}">距离超级会员SVIP售卖结束仅剩</view>
+    <view class="case">{{days}}</view>
+    <view class="txt">天</view>
+    <view class="case">{{hours}}</view>
+    <view class="colon">:</view>
+    <view class="case">{{minute}}</view>
+    <view class="colon">:</view>
+    <view class="case">{{second}}</view>
+  </view>
+
+  <!-- svip购买按钮 -->
+  <buy-btn restoreOrigin="{{restoreOrigin}}" openExpoSale="{{openExpoSale}}" isUpgrade="{{isUpgrade}}" isLogin="{{isLogin}}" isSvip="{{isSvip}}" price="{{price}}" originPrice="{{originPrice}}" salePrice="{{salePrice}}" isSend="{{isSend}}" isDiscount="{{isDiscount}}" discountPrice="{{discountPrice}}" canUseCoupon="{{canUseCoupon}}" origin="page" wxcode="{{wxcode}}" bindgetPhoneBack="getPhoneBack"></buy-btn>
+
+  <!-- 1元n选1活动 -->
+  <more-choose-one isLogin="{{isLogin}}" isSvip="{{isSvip}}" isUpgrade="{{isUpgrade}}" moreChooseOneGoodsData="{{moreChooseOneGoodsData}}" hasBuyFinish="{{hasBuyFinish}}" moreChooseOneGoodsListData="{{moreChooseOneGoodsListData}}" mcoCurData="{{mcoCurData}}" mcoCurPrice="{{mcoCurPrice}}"></more-choose-one>
+
+  <!-- svip返现券  -->
+  <view class='session' wx:if='{{couponsData.length>0}}'>
+    <view class='session-title'>
+      <text class='session-left'>{{homeData.coupon_title}}</text>
+      <text class='separator' wx:if="{{homeData.coupon_title && homeData.coupon_sub_title}}">|</text>
+      <text class=' right'>{{homeData.coupon_sub_title}}</text>
+    </view>
+
+    <view class="coupon-wrap">
+      <view class="coupon-item" wx:for='{{couponsData}}' wx:key="index" bindtap='buySvip' wx:if="{{item.isUniversal || (!item.isUniversal && (countOver?showCoupon == 1:true))}}">
+        <view class="coupon-top {{item.smemo?'':'noDesc'}}">
+          <view class="left">
+            <view class="price">
+              <text class="symbol">￥</text>{{item.coupon_value}}
+            </view>
+            <view class="ticket-info">
+              <view class="ticket-title">满{{item.consume_amount}}返{{item.coupon_value}}</view>
+              <view class="use-time">
+                <view>使用时间{{item.begin_date}} - {{item.end_date}}</view>
+              </view>
+            </view>
+          </view>
+          <view class="get-ticket">
+            <!-- 非svip -->
+            <view class="get-Svip" wx:if='{{!isSvip}}'>立即领取</view>
+            <!-- svip -->
+            <view class="get-Svip" wx:else>点击查看</view>
+          </view>
+          <!-- 商户通用券 -->
+          <view class="universal" wx:if="{{item.isUniversal}}"></view>
+        </view>
+        <view class="below">
+          <view class="btm-t">
+            <view class="below-msg">
+              <text>详细信息</text>
+              <!-- 上 -->
+              <image wx:if="{{index == curIndex && item.coupon_id == curId}}" catchtap="platformSpread" data-id="0" data-index="0" style="width: 24rpx;height: 24rpx;" src="https://img.51jiabo.com/5957d4e4-4bd8-4a3d-b5cd-c832d2bcc7d8.png">
+              </image>
+              <!-- 下 -->
+              <image wx:else catchtap="platformSpread" data-id="{{item.coupon_id}}" data-index="{{index}}" style="width: 24rpx;height: 24rpx;" src="https://img.51jiabo.com/70802321-d930-453e-94a2-598429e906ff.png"></image>
+            </view>
+          </view>
+          <view wx:if="{{index == curIndex && item.coupon_id == curId}}" class="spread">{{item.smemo}}</view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+
+  <!-- 券运营位图片 -->
+  <view>
+    <view wx:for="{{couponAdv}}" wx:key="index">
+      <image style='width:100%;margin-top:20rpx;display:block' mode="widthFix" src="{{item.wap_image_url}}" data-item="{{item}}" bindtap="{{item.url?'advUrl':''}}"></image>
+    </view>
+  </view>
+
+  <!-- 商户优惠券 -->
+  <view class="session vendor" wx:if='{{vendorCouponData.length>0}}'>
+    <view class='session-title'>
+      <text class='session-left'>商户专属优惠券</text>
+      <text class='separator'>|</text>
+      <text class=' right'>专属商户专享优惠</text>
+    </view>
+    <view class="vendor-coupon">
+      <!-- 单个 -->
+      <view class='single {{moreData?"":"active"}}' wx:for="{{vendorCouponData}}" wx:key="index" bindtap='buySvip'>
+        <view class="top-bg">
+          <image class='vendor-img' src="{{item.supplier_logo_url}}"></image>
+          <view class="ticket-title">{{item.brand_name}}</view>
+        </view>
+        <view class="above">
+          <view class="left">
+            <view class="v-price">
+              <view class="p-top">
+                <text style="font-size: 36rpx;">￥</text>{{item.coupon_value}}
+              </view>
+            </view>
+            <view class="ticket-info">
+              <view class='yet-get'>满{{item.consume_amount}}元可用</view>
+              <view class="use-time">使用时间{{item.begin_date}}-{{item.end_date}}</view>
+            </view>
+          </view>
+          <view class="get-ticket">
+            <view class="get-btn" wx:if='{{!isSvip || !isLogin}}'>立即领取</view>
+            <view class="get-btn" wx:else>点击查看</view>
+          </view>
+        </view>
+        <view class="below" wx:if="{{item.smemo}}">
+          <view class="btm-t">
+            <view class="below-msg">
+              <text>详细信息</text>
+              <!-- 上 -->
+              <image wx:if="{{index == curIndex && item.coupon_id == curId}}" catchtap="platformSpread" data-id="0" data-index="0" style="width: 24rpx;height: 24rpx;" src="https://img.51jiabo.com/5957d4e4-4bd8-4a3d-b5cd-c832d2bcc7d8.png">
+              </image>
+              <!-- 下 -->
+              <image wx:else catchtap="platformSpread" data-id="{{item.coupon_id}}" data-index="{{index}}" style="width: 24rpx;height: 24rpx;" src="https://img.51jiabo.com/70802321-d930-453e-94a2-598429e906ff.png"></image>
+            </view>
+          </view>
+          <view wx:if="{{index == curIndex && item.coupon_id == curId}}" class="spread">{{item.smemo}}</view>
+        </view>
+      </view>
+      <!-- 查看更多按钮 -->
+      <view class='chakanBtn' bindtap='chakanBtn' wx:if='{{vendorCouponData.length > 3}}'>{{moreData?"收起":"查看更多 >"}}
+      </view>
+    </view>
+  </view>
+
+  <!--签到礼品-->
+  <view class='session' wx:if='{{countOver?(showGift == 1 && (giftConfigImg || entityGift || couponGift)):(giftConfigImg || entityGift || couponGift)}}'>
+    <!-- 接口 未配置签到礼、已下线签到礼返回data中giftConfigImg字段为空数组 -->
+    <view class='session-title'>
+      <text class='session-left'>专属签到礼</text>
+      <text class='separator'>|</text>
+      <text class='right'>会员到场可享</text>
+    </view>
+    <!-- 未抽取签到礼 -->
+    <view class="not-sign" wx:if="{{giftConfigImg}}">
+      <image mode="widthFix" src="{{giftConfigImg[0].image_url}}" bindtap="toSignGift"></image>
+      <view class="btn-wrap">
+        <image class="lottery-img" mode="widthFix" src="{{giftConfigImg[1].image_url}}" bindtap="lottery"></image>
+        <button class='auth-login' wx:if="{{!isLogin}}" open-type='getPhoneNumber' bindgetphonenumber="getPhoneNumber"></button>
+      </view>
+    </view>
+    <!-- 实物签到礼 -->
+    <view class='gift' wx:if="{{entityGift}}">
+      <view class="swiper-box">
+        <view class="indicate" wx:if="{{entityGift.master_img.length > 1}}">
+          {{giftCurrent+1}}/{{entityGift.master_img.length}}</view>
+        <swiper class="gifg-swiper" current="0" circular bindchange="swiperChange">
+          <block wx:for="{{entityGift.master_img}}" wx:key="index">
+            <swiper-item wx:if="{{item.type == 4}}">
+              <video id="video" class="gift-video" poster="{{item.cover_img_url}}" controls="{{false}}" show-center-play-btn="{{false}}" enable-progress-gesture="{{false}}" bindtap="playVideo" bindpause="videoPause" src="{{item.image_url}}">
+                <view class="play" wx:if="{{!isPlay}}"></view>
+              </video>
+            </swiper-item>
+            <swiper-item wx:else bindtap="toSignDetail">
+              <image class='gift-picture' src='{{item.image_url}}' mode="aspectFill"></image>
+            </swiper-item>
+          </block>
+        </swiper>
+      </view>
+      <view bindtap="toSignDetail">
+        <view class='flex-row gift-info'>
+          <view class='flex-row sign'>
+            <view class='middle tig'>签到礼</view>
+            <view class='triangle'></view>
+          </view>
+          <view class='text-hidden-3 gift-des' style='font-size:32rpx;color:#222;font-weight:800'>
+            <text>{{entityGift.gift_name}}</text>
+          </view>
+        </view>
+        <view class='gift-address'>{{entityGift.get_state}}</view>
+        <!-- 核销码 -->
+        <view class="gift-check" wx:if="{{userInfo.svip == 1 && userInfo.check_time && userInfo.is_check_sign_gift == 0 && userInfo.is_svip_gift == 1}}">
+          <view class="text">您的签到礼领取码为：<text>{{userInfo.check_num}}</text></view>
+          <view class="text">您前面还有<text class="red">{{userInfo.uncheck_user_num}}</text>位用户领取签到礼</view>
+        </view>
+      </view>
+    </view>
+    <!-- 优惠券签到礼 -->
+    <view class="sign-coupon-wrap" wx:if="{{couponGift}}">
+      <view wx:for='{{couponGift}}' wx:key="index">
+        <!-- 平台券 -->
+        <view class="coupon-item" wx:if="{{item.type == 1}}">
+          <view class="coupon-top {{item.smemo?'':'noDesc'}}">
+            <view class="left">
+              <view class="price">
+                <text class="symbol">￥</text>{{item.coupon_value}}
+              </view>
+              <view class="ticket-info">
+                <view class="ticket-title">满{{item.consume_amount}}返{{item.coupon_value}}</view>
+                <view class="use-time">
+                  <view>使用时间{{item.begin_date}} - {{item.end_date}}</view>
+                </view>
+              </view>
+            </view>
+            <view class="sign-exclusive">签到礼专属</view>
+          </view>
+          <view class="desc" wx:if="{{item.smemo}}">{{item.smemo}}</view>
+        </view>
+        <!-- 商户券 -->
+        <view class='single' wx:else>
+          <view class="above">
+            <view class="v-price">
+              <view class="p-top">
+                <view class="symbol">￥</view>{{item.coupon_value}}
+              </view>
+              <view class='yet-get'>满{{item.consume_amount}}元可用</view>
+            </view>
+            <view class="ticket-info">
+              <image class='vendor-img' src="{{item.logo_url}}"></image>
+              <view class="ticket-title">{{item.brand_name}}</view>
+              <view class="use-time">使用时间{{item.begin_date}}-{{item.end_date}}</view>
+            </view>
+            <view class="sign-exclusive">签到礼专属</view>
+          </view>
+          <view class="below" wx:if="{{item.smemo}}">{{item.smemo}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 签到礼运营位图片 -->
+  <view>
+    <view wx:for="{{signAdv}}" wx:key="index">
+      <image style='width:100%;margin-top:20rpx;display:block' mode="widthFix" src="{{item.wap_image_url}}" data-item="{{item}}" bindtap="{{item.url?'advUrl':''}}"></image>
+    </view>
+  </view>
+
+  <!-- 会员爆品 -->
+  <view class='session' wx:if='{{hotGoods&&hotGoods.length > 0}}'>
+    <view class='session-title'>
+      <text class='session-left'>会员爆品</text>
+      <text class='separator'>|</text>
+      <text class=' right'>专属爆品等您拿</text>
+    </view>
+    <view>
+      <view class='hot-commodity'>
+        <image src='{{hotGoods[0].goods_image}}' class='hot-commodity-picture'></image>
+        <view class='hot-commodity-info'>
+          <view class='hot-commodity-name' style='font-size:32rpx;color:#222;font-weight:800'>
+            {{hotGoods[0].goods_name}}
+            <text wx:if="{{hotGoods[0].description}}"> | {{hotGoods[0].description}}</text>
+          </view>
+          <view class='hot-commodity-price flex-row ' style='font-size:28rpx;color:#E6002D;font-weight:600'>
+            SVIP价格：￥
+            <text style='font-weight:800;font-size:46rpx'>{{hotGoods[0].sale_price}}</text>
+          </view>
+        </view>
+        <view class='hot-commodity-address' style='font-size:28rpx;color:#777'>
+          请您于{{activityInfo.begin_date}}日-{{activityInfo.end_date}}日到
+          <text style='color:#E6002D'>【{{activityInfo.venue_name}}】</text> 展会现场低价购买
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 商品 -->
+  <view class='session' wx:if="{{(allReserveList&&allReserveList.length>0) || (allPrepayList&&allPrepayList.length>0) || (allTotalList&&allTotalList.length>0)}}">
+    <view class='session-title'>
+      <text class='session-left'>特价商品</text>
+      <text class='separator'>|</text>
+      <text class=' right'>超低价拿回家</text>
+    </view>
+    <!-- 预约商品 ---------------------------------------->
+    <view class='products-session reserve-goods' wx:if="{{allReserveList && allReserveList.length!==0}}" style='padding-bottom:32rpx'>
+      <view class='products-title'>
+        <view class='products-title-Left'>
+          <text class='dingjin1'>预约商品</text>
+          <text class='dingjin3' wx:if="{{reserveGoodsDes}}"> | {{reserveGoodsDes}}</text>
+        </view>
+        <view class='products-title-Right' wx:if="{{allReserveList.length>2}}" data-type="4" bindtap='goodsList'>查看更多 >
+        </view>
+      </view>
+      <view class='product-wrap'>
+        <view class='product-list'>
+          <!-- 多个轮播 -->
+          <swiper class="swiper {{reserveList.length>1?'':'custom'}}" wx:if="{{allReserveList.length > 1}}" indicator-dots="{{reserveList.length>1?true:false}}" current="{{current}}" indicator-color="#f3f3f3" indicator-active-color="#e6002d" autoplay="true" interval="5000" circular>
+            <block class='product-item' wx:for="{{reserveList}}" wx:key="index">
+              <swiper-item class="swiper-item">
+                <view class="item-box" wx:for="{{item}}" wx:key="index" wx:for-item="v" bindtap='goodsDetail' data-id='{{v.goods_id}}' data-type='{{v.type}}' wx:if="{{v}}">
+                  <image src='{{v.goods_image}}' style='height:260rpx'></image>
+                  <view class='product-dic text-hidden-2'>
+                    {{v.goods_name}}
+                  </view>
+                  <!-- 用样式占位 visib -->
+                  <view style='color:#666666;font-size:28rpx; margin-top:18rpx;font-weight:bold;color:#E6002D' class="{{v.sale_price == null?'visib':''}}">
+                    SVIP: ￥
+                    <text style='font-size:36rpx'>{{v.sale_price}}</text>
+                    <text style='font-size:20rpx;color:#666666'> /{{v.unit}}</text>
+                  </view>
+                  <view class='flex-row' class='repertory' style='margin-top:10rpx'>
+                    <view style='font-size:20rpx;color:#777777' class='payment middle {{v.origin_price == null?"visib":""}}'>
+                      市场价:
+                      <text style='font-size:24rpx;text-decoration:line-through'> ￥{{v.origin_price}}</text>
+                    </view>
+                    <view style='font-size:20rpx;color:#666;'>剩余 {{v.stock}} 件</view>
+                  </view>
+                  <view class='buy-btn middle' style='margin-top:20rpx' wx:if="{{!v.user_id && v.stock > 0}}" data-id='{{v.goods_id}}' catchtap='reserveGoods'>抢先预约</view>
+                  <view class='buy-btn middle gray' style='margin-top:20rpx' wx:if="{{v.user_id}}">已预约</view>
+                  <view class='buy-btn middle gray' style='margin-top:20rpx' wx:if="{{!v.user_id && v.stock <= 0}}">已约满
+                  </view>
+                </view>
+              </swiper-item>
+            </block>
+          </swiper>
+          <!-- 单个显示 -->
+          <view class='product-item2' wx:else bindtap='goodsDetail' data-id='{{reserveList[0].goods_id}}' data-type='{{reserveList[0].type}}'>
+            <image src='{{reserveList[0].goods_image}}'></image>
+            <view class='main-right'>
+              <view class='product-name text-hidden-2'>{{reserveList[0].goods_name}}</view>
+              <view style='color:#E6002D;font-size:28rpx;font-weight:800;' class="{{reserveList[0].sale_price == null?'visib':''}}">
+                SVIP:￥
+                <text style='font-size:36rpx;font-weight:800'>{{reserveList[0].sale_price}}</text>
+                <text style='font-size:20rpx;color:rgba(102,102,102,1);'>/{{reserveList[0].unit}}</text>
+              </view>
+              <view class='flex-row' class='repertory' style='margin-top:10rpx'>
+                <view style='font-size:24rpx;color:#777;' class="{{reserveList[0].origin_price == null?'visib':''}}">
+                  市场价
+                  <text style='text-decoration:line-through'>￥{{reserveList[0].origin_price}}</text>
+                </view>
+                <view style='font-size:20rpx;color:#666;'>剩余 {{reserveList[0].stock}} 件</view>
+              </view>
+              <view class='buy-btn middle' wx:if="{{!reserveList[0].user_id && reserveList[0].stock > 0}}" data-id='{{reserveList[0].goods_id}}' catchtap='reserveGoods'>抢先预约</view>
+              <view class='buy-btn middle gray' wx:if="{{reserveList[0].user_id}}">已预约</view>
+              <view class='buy-btn middle gray' wx:if="{{!reserveList[0].user_id && reserveList[0].stock <= 0}}">已约满
+              </view>
+            </view>
+          </view>
+          <!-- end -->
+        </view>
+      </view>
+    </view>
+
+    <!-- 定金商品--------------------------------------------------- -->
+    <view class='products-session pre-goods' wx:if="{{allPrepayList && allPrepayList.length!==0}}" style='padding-bottom:12rpx'>
+      <view class='products-title'>
+        <view class='products-title-Left'>
+          <text class='dingjin1'>定金商品</text>
+          <text class='dingjin3' wx:if="{{prepaygoodsDes}}"> | {{prepaygoodsDes}}</text>
+        </view>
+        <view class='products-title-Right' wx:if='{{allPrepayList.length>2}}' data-title="定金" data-type="2" bindtap='goodsList'>查看更多 >
+        </view>
+      </view>
+      <view class='product-wrap'>
+        <view class='product-list'>
+          <!-- 多个轮播 -->
+          <swiper class="swiper {{prepayList.length>1?'':'custom'}}" wx:if="{{allPrepayList.length > 1}}" indicator-dots="{{prepayList.length>1?true:false}}" current="{{current}}" indicator-color="#f3f3f3" indicator-active-color="#e6002d" autoplay="true" interval="5000" circular>
+            <block class='product-item' wx:for="{{prepayList}}" wx:key="index">
+              <swiper-item class="swiper-item">
+                <view class="item-box" wx:for="{{item}}" wx:key="index" wx:for-item="v" data-title="定金" bindtap='goodsDetail' data-id='{{v.goods_id}}' data-type='{{v.type}}' wx:if="{{v}}">
+                  <image src='{{v.goods_image}}' style='height:260rpx'></image>
+                  <view class='product-dic text-hidden-2'>
+                    {{v.goods_name}}
+                  </view>
+                  <view style='color:#666666;font-size:28rpx; margin-top:18rpx'>
+                    SVIP:￥{{v.sale_price}}
+                    <text style='font-size:20rpx;color:#666666'>/{{v.unit}}</text>
+                  </view>
+                  <view class='flex-row' class='repertory'>
+                    <view style='font-size:28rpx;color:#E6002D;font-weight:800' class='payment middle'>
+                      定金:￥
+                      <text style='font-size:40rpx;'>{{v.prepay_amount}}</text>
+                    </view>
+                    <view style='font-size:20rpx;color:#666;'>剩余 {{v.stock}} 件</view>
+                  </view>
+                  <view class='buy-btn middle' style='margin-top:20rpx' wx:if="{{v.stock > 0}}">￥{{v.prepay_amount}}
+                  </view>
+                  <view class='buy-btn middle gray' style='margin-top:20rpx' wx:else>已售罄</view>
+                </view>
+              </swiper-item>
+            </block>
+          </swiper>
+
+          <!-- 单个显示 -->
+          <view class='product-item2' wx:else bindtap='goodsDetail' data-title="定金" data-id='{{prepayList[0].goods_id}}' data-type='{{prepayList[0].type}}'>
+            <image src='{{prepayList[0].goods_image}}'></image>
+            <view class='main-right'>
+              <view class='product-name text-hidden-2'>{{prepayList[0].goods_name}}</view>
+              <view class='flex-row' class='repertory'>
+                <view style='font-size:24rpx;color:#E6002D;font-weight:800' class='payment middle'>
+                  定金:￥
+                  <text style='font-size:40rpx;'>{{prepayList[0].prepay_amount}}</text>
+                </view>
+                <view style='font-size:20rpx;color:#666;'>剩余 {{prepayList[0].stock}} 件</view>
+              </view>
+              <view style='color:#666666;font-size:28rpx'>
+                SVIP:￥{{prepayList[0].sale_price}}
+                <text style='font-size:20rpx;color:#666666;'>/{{prepayList[0].unit}}</text>
+              </view>
+              <view class='buy-btn middle' wx:if="{{prepayList[0].stock > 0}}">￥{{prepayList[0].prepay_amount}}</view>
+              <view class='buy-btn middle gray' wx:else>已售罄</view>
+            </view>
+          </view>
+          <!-- end -->
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 定金商品运营位图片 -->
+  <view>
+    <view wx:for="{{prePayAdv}}" wx:key="index">
+      <image style='width:100%;margin-top:20rpx;display:block' mode="widthFix" src="{{item.wap_image_url}}" data-item="{{item}}" bindtap="{{item.url?'advUrl':''}}"></image>
+    </view>
+  </view>
+
+  <!-- 全款商品 -->
+  <view class="session" wx:if="{{allTotalList && allTotalList.length!==0}}">
+    <view class='products-session total-goods'>
+      <view class='products-title'>
+        <view class='products-title-Left'>
+          <text class='dingjin1'>全款商品</text>
+          <text class='dingjin3' wx:if="{{allGoodsDes}}"> | {{allGoodsDes}}</text>
+        </view>
+        <view class='products-title-Right' wx:if='{{allTotalList.length>2}}' data-title="全款" data-type="1" bindtap='goodsList'>查看更多 >
+        </view>
+
+      </view>
+      <view class='product-wrap'>
+        <view class='product-list'>
+
+          <!-- 多个轮播 -->
+          <swiper class="swiper {{totalList.length>1?' ':'custom'}}" wx:if="{{allTotalList.length > 1}}" indicator-dots="{{totalList.length>1?true:false}}" current="{{current}}" indicator-color="#f3f3f3" indicator-active-color="#e6002d" autoplay="true" interval="5000" circular>
+            <block class='product-item' wx:for="{{totalList}}" wx:key="index">
+              <swiper-item class="swiper-item">
+                <view class="item-box" wx:for="{{item}}" wx:key="index" wx:for-item="v" data-title="全款" bindtap='goodsDetail' data-id='{{v.goods_id}}' data-type='{{v.type}}' wx:if="{{v}}">
+                  <image src='{{v.goods_image}}' style='height:260rpx'></image>
+                  <view class='product-dic text-hidden-2'>
+                    {{v.goods_name}}
+                  </view>
+                  <view style='color:#E6002D;font-size:28rpx;font-weight:800;margin-top:28rpx'>
+                    SVIP:￥
+                    <text style='font-size:36rpx;font-weight:800'>{{v.sale_price}}</text>
+                    <text style='font-size:20rpx;color:rgba(102,102,102,1);'>/{{v.unit}}</text>
+                  </view>
+                  <view style='font-size:24rpx;color:#777;'>
+                    市场价
+                    <text style='text-decoration:line-through'>￥{{v.origin_price}}</text>
+                  </view>
+                  <view class='buy-btn middle' style='margin-top:20rpx' wx:if="{{v.stock > 0}}">购买</view>
+                  <view class='buy-btn middle gray' style='margin-top:20rpx' wx:else>已售罄</view>
+                </view>
+              </swiper-item>
+            </block>
+          </swiper>
+
+          <!-- 单个显示 -->
+          <view class='product-item2' wx:else bindtap='goodsDetail' data-title="全款" data-id='{{totalList[0].goods_id}}' data-type='{{totalList[0].type}}'>
+            <image src='{{totalList[0].goods_image}}'></image>
+            <view class='main-right'>
+              <view class='product-name text-hidden-2'>{{totalList[0].goods_name}}</view>
+              <view style='color:#E6002D;font-size:28rpx;font-weight:800;'>
+                SVIP:￥
+                <text style='font-size:36rpx;font-weight:800'>{{totalList[0].sale_price}}</text>
+                <text style='font-size:20rpx;color:rgba(102,102,102,1);'>/{{totalList[0].unit}}</text>
+              </view>
+              <view style='font-size:24rpx;color:#777;'>
+                市场价
+                <text style='text-decoration:line-through'>￥{{totalList[0].origin_price}}</text>
+              </view>
+              <view class='buy-btn middle' wx:if="{{totalList[0].stock > 0}}">购买</view>
+              <view class='buy-btn middle gray' wx:else>已售罄</view>
+            </view>
+          </view>
+          <!-- end -->
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+  <!-- 全款商品运营位图片 -->
+  <view>
+    <view wx:for="{{totalAdv}}" wx:key="index">
+      <image style='width:100%;margin-top:20rpx;display:block' mode="widthFix" src="{{item.wap_image_url}}" data-item="{{item}}" bindtap="{{item.url?'advUrl':''}}"></image>
+    </view>
+  </view>
+
+  <!-- 免费逛展 -->
+  <view class='session'>
+    <view class='session-title'>
+      <text class='session-left'>免费逛展</text>
+      <text class='separator'>|</text>
+      <text class='right'>无需购票免费进场</text>
+    </view>
+    <view class='details '>
+      <view class='details-bg'>
+        <image src='/imgs/show-bg.png' mode='widthFix'></image>
+      </view>
+      <view class='details-content flex-column'>
+        <view class='details-title'>超级会员SVIP·多省点</view>
+        <view class='details-pic'></view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 免费逛展运营位图片 -->
+  <view>
+    <view wx:for="{{freeExpoAdv}}" wx:key="index">
+      <image style='width:100%;margin-top:20rpx;display:block' mode="widthFix" src="{{item.wap_image_url}}" data-item="{{item}}" bindtap="{{item.url?'advUrl':''}}"></image>
+    </view>
+  </view>
+
+  <!-- 客服 -->
+  <service cityConfig="{{cityConfig}}" cityId="{{cityId}}"></service>
+  <!-- end -->
+</view>
+
+<!-- svip购买按钮 -->
+<buy-btn restoreOrigin="{{restoreOrigin}}" openExpoSale="{{openExpoSale}}" isUpgrade="{{isUpgrade}}" isLogin="{{isLogin}}" isSvip="{{isSvip}}" price="{{price}}" originPrice="{{originPrice}}" salePrice="{{salePrice}}" isSend="{{isSend}}" scrollShowBtn="{{scrollShowBtn}}" isDiscount="{{isDiscount}}" discountPrice="{{discountPrice}}" canUseCoupon="{{canUseCoupon}}" origin="fixed" wxcode="{{wxcode}}" bindgetPhoneBack="getPhoneBack"></buy-btn>
+
+
+<!-- 非会员提示弹层 -->
+<view class="not-svip-tips" wx:if="{{svipTips}}">
+  <view class="not-svip-box">
+    <view class="h6">非超级会员SVIP用户不可以预约</view>
+    <view class="btn-box">
+      <view class="cancel" data-val="svipTips" bindtap="closePopup">取消</view>
+      <view class="svip-pay" bindtap="reserveBuySvip">成为超级会员</view>
+    </view>
+  </view>
+</view>
+
+<!-- 预约成功弹层 -->
+<view class="reserve-tips" wx:if="{{reserveTips}}">
+  <view class="reserve-box">
+    <view class="h6">
+      <view>恭喜您预约成功</view>
+      <view>请您到展会现场领取商品</view>
+    </view>
+    <view class="cancel" data-val="reserveTips" bindtap="closePopup">确定</view>
+  </view>
+</view>
+
+<!-- 签到礼抽奖弹层 -->
+<view class="sign-popup" wx:if="{{signPopup}}">
+  <view class="sign-box">
+    <image mode="widthFix" src="{{signGiftGif}}"></image>
+    <view class="close" bindtap="closeSignPopup"></view>
+  </view>
+</view>
+
+<!-- svip升级弹层 -->
+<upgradeSvip wx:if="{{showUpdatePopup}}" orderType="{{orderType}}" bindcloseUpdate="closeUpdate"></upgradeSvip>
+<!--  -->
+<dialog-swiper bindhideDialog='dialogHide' wx:if="{{dialogShow}}" dataList="{{dialogList}}"></dialog-swiper>
+<!-- svip抵扣券按钮 -->
+<coupon-btn wx:if="{{showCouponBtn}}"></coupon-btn>
+<!-- 领取svip抵扣券弹层 -->
+<coupon-popup couponInfo="{{couponInfo}}" isLogin="{{isLogin}}" showCouponPopup="{{showCouponPopup}}" bindgetPhoneBack="getPhoneBack" bindcloseCouponPopup="closeCouponPopup"></coupon-popup>
+<!-- 微信授权手机号弹层 -->
+<!-- <authorize bindgetPhoneBack="getPhoneBack" wx:if="{{!isAuth}}"></authorize> -->

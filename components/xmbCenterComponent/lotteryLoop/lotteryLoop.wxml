@@ -1,0 +1,38 @@
+<!--components/xmbCenterComponent/lotteryLoop/lotteryLoop.wxml-->
+<view class="lottery {{origin == 'getTicket'?'getTicket':''}}">
+  <view class="lottery-title">100%中奖天天抽</view>
+  <view class="lottery-box">
+    <view class="lottery-cover"></view>
+    <view class="lottery-left">
+      <view class="lottery-prize-box">
+        <swiper class="lottery-left-swp" wx:for="{{lotteryLoopList.prize}}" wx:key="index" interval="3000"
+          vertical="true" autoplay="true" circular="true">
+          <swiper-item wx:for="{{item}}" wx:key="index">
+            <view class="swp-item">
+              <image class="prize-img" src="{{item}}"></image>
+            </view>
+          </swiper-item>
+        </swiper>
+      </view>
+      <view class="lottery-notice">
+        <image style="width: 30rpx;height: 25rpx;"
+          src="https://img.51jiabo.com/877dd2aa-acd5-419f-8836-96316c9d3721.png"></image>
+        <swiper class="lottery-notice-swp" interval="3000" vertical="true" autoplay="true" circular="true">
+          <swiper-item wx:for="{{lotteryLoopList.lotteryList}}" wx:key="index">恭喜{{item.mobile}}抽中{{item.name}}
+          </swiper-item>
+        </swiper>
+      </view>
+    </view>
+    <view class="lottery-right" bindtap="toLottery">
+      <view class="lottery-100">100%中奖</view>
+      <view class="lottery-check-prize">查看奖励</view>
+    </view>
+  </view>
+</view>
+
+<view wx:if="{{showCover}}" class="cover" catchtouchmove="true">
+  <!-- 冻结弹框 -->
+  <view wx:if="{{showFreezeBox}}" class="freeze-box">
+    <text>您的熊猫币已被冻结，不可使用\n如有问题请联系400-6188-555</text>
+  </view>
+</view>

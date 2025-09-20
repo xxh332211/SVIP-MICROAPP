@@ -1,0 +1,38 @@
+<!--pages-userInfo/components/expoOrder/expoOrder.wxml-->
+<view data-item="{{newItem}}" bindtap="toCommonDetail">
+  <view class="head">
+    <view class="title">
+      <view class="ico zh"></view>{{newItem.brand_name}}
+    </view>
+    <view class="status-text">{{newItem.order_status}}</view>
+  </view>
+  <view class="content" wx:for="{{newItem.goods}}" wx:key="index" wx:for-item="v">
+    <image class="goods-img" src="{{v.image_url}}"></image>
+    <view class="right">
+      <view class="name">{{v.goods_name}}</view>
+      <view class="price-box" wx:if="{{v.special_price && v.special_price!='0' && v.special_price!='0.00'}}">
+        <text class="special">￥{{v.special_price}}</text>X{{v.goods_quantity}}
+      </view>
+      <view class="has-lottery" wx:if="{{newItem.draw_type == 2}}"></view>
+    </view>
+  </view>
+  <view class="order-info">
+    <view class="left">
+      <view class="paid">
+        <view wx:if="{{newItem.order_status_code == 6}}">全款已付：<text class="paid-num">￥{{newItem.paid_money}}</text></view>
+        <view wx:if="{{newItem.order_status_code == 2}}">已付定金：<text class="paid-num">￥{{newItem.paid_money}}</text></view>
+        <view wx:if="{{newItem.order_status_code == 1}}">应付金额：<text class="paid-num">￥{{newItem.full_pay_money}}</text>
+        </view>
+        <text class="time">{{newItem.create_time}}</text>
+      </view>
+      <view class="other">订单号：{{newItem.order_num}}</view>
+    </view>
+    <view class="btn" data-item="{{newItem}}"
+      wx:if="{{newItem.draw_type != 4 && newItem.draw_type != 3 && newItem.order_status_code != 1}}" catchtap="deleteOrder">删除
+    </view>
+    <!-- draw_type按钮类型：4：抽奖按钮3：兑奖按钮2：已领奖1：没有按钮 -->
+    <view class="draw-btn" data-item="{{newItem}}" wx:if="{{newItem.draw_type == 4}}" catchtap="getLottery">抽奖</view>
+    <view class="redeem-btn" data-item="{{newItem}}" wx:if="{{newItem.draw_type == 3}}" catchtap="redeemPrize">兑奖
+    </view>
+  </view>
+</view>

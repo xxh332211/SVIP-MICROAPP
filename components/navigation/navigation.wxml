@@ -1,0 +1,24 @@
+<!--components/navigation/navigation.wxml-->
+<!-- 跳转导航弹层 -->
+<view class="unfold" bindtap='showLink'>
+  <view class="arrow"></view>导航
+</view>
+<view class="outsite-link-layer {{showLinkPopup?'':'hide-layer'}}"></view>
+<view class="outsite-link {{showLinkPopup?'':'hide-link'}}">
+  <view class="pack-up" bindtap='hideLink'>
+    <view class="ico"></view>收起
+  </view>
+  <view class="outsite">
+    <view class="outsite-box">
+      <navigator class='link' open-type="switchTab" url='/pages/goodsIndex/goodsIndex'>
+        <image class="img" src="/imgs/fix-home.png"></image>首页
+      </navigator>
+      <navigator class='link' url='/pages/couponList/couponList' wx:if="{{hiddenItem != 'couponList'}}">
+        <image class="img" src="/imgs/fix-coupon.png"></image>优惠券
+      </navigator>
+      <navigator class='link' url='/pages/hotGoodsOrder/index/index' wx:if="{{hiddenItem != 'hotGoods'}}">
+        <image class="img" src="/imgs/fix-hot.png"></image>爆品
+      </navigator>
+    </view>
+  </view>
+</view>

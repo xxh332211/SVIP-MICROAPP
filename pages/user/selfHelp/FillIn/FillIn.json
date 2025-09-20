@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "privacy-popup": "../../../../components/privacyPopup/privacyPopup",
+    "authorize": "../../../../components/authorize/authorize"
+  },
+  "navigationBarTitleText": "自助录单"
+}

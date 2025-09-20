@@ -1,0 +1,176 @@
+<!--pages/pay.wxml-->
+<online-serve from="'custom'" />
+<view class="navigate" style="padding-top:{{navigateHeight}}px">
+	<view class="return" bindtap="goBack"></view>
+	<view class="nav-text">SVIP付款</view>
+</view>
+<view class="navigate-blank" style="padding-top:{{navigateHeight}}px"></view>
+<view class="pay-pages">
+	<view class="banner">
+		<image src="/imgs/vipbg.png" mode='widthFix'></image>
+		<view class='banner-content'>
+			<!-- 权益的配置列表 -->
+			<view class='rights'>
+				<view class='title flex-row'>
+					<image src='/imgs/left.png' mode='widthFix'></image>
+					<text wx:if="{{cityId == 27}}">加入京东·森图里家博会员，尊享特权</text>
+					<text wx:elif="{{cityId == 54}}">天府家博会员，尊享特权</text>
+					<text wx:elif="{{cityId == 60}}">加入宁波装修狂欢节，尊享特权</text>
+					<text wx:elif="{{cityId == 65}}">加入现代家博会员，尊享特权</text>
+					<text wx:else>加入华夏家博会员，尊享特权</text>
+					<image src='/imgs/right.png' mode='widthFix'></image>
+				</view>
+				<banner-grid dataList='{{rightsList}}' bindshowDialog="dialogShow"></banner-grid>
+			</view>
+		</view>
+		<!-- end -->
+	</view>
+	<!-- 报告提示 -->
+	<view class='hint-wrap'>
+		<view class="hint-name">
+			超级会员SVIP购买
+		</view>
+		<view class="report-message">
+			<swiper class='swiper-content' autoplay="true" vertical="true" circular="true" interval="3000">
+				<block wx:for='{{svipPurchaseRecord}}' wx:key='index'>
+					<swiper-item class='swiper-item'>
+						<text class='iconfont iconlaba laba middle'></text>
+						<text>{{item.nick_name}}</text>
+						<text class='number'>{{item.mobile}}</text> 刚刚成为了会员
+					</swiper-item>
+				</block>
+			</swiper>
+		</view>
+	</view>
+	<view class='wrap'>
+		<view class='phone'>
+			<view>
+				<view class='name'>手机号码：</view>
+				<view>{{userNumber}}</view>
+			</view>
+			<view class='change-login' bindtap='changelogin'>
+				切换手机号
+			</view>
+		</view>
+		<view class='city' bindtap='changeCity'>
+			<view class="">
+				<view class='name'>城市：</view>
+				<view>{{cityName}}</view>
+			</view>
+			<text class='iconfont iconjiantou {{showCity? "point-more-up":"point-more-down"}}'></text>
+		</view>
+		<view class='city-list toogle-box' wx:if="{{showCity}}">
+			<view wx:for='{{cityList}}' wx:key="index" bindtap="toggleCity" data-text="{{item}}">
+				<view>{{item.city_name}}</view>
+			</view>
+		</view>
+		<view class='exhibition'>
+			<view class=''>
+				<view class='name'>展届：</view>
+				<view class=''>第 {{ session }} 届</view>
+			</view>
+		</view>
+		<view class='deadline'>
+			<view class='period'>
+				<view class='name'>有效期：</view>
+				<view>{{date}}</view>
+			</view>
+		</view>
+		<view class='money'>
+			<view>
+				<view class='name'>SVIP金额：</view>
+				<view class='money-number'>￥
+					<text>{{price}}</text>
+				</view>
+			</view>
+		</view>
+		<view class='money'>
+			<view>
+				<view class='name'>抵扣券：</view>
+				<view class='money-number' wx:if="{{isDiscount}}">-￥
+					<text>{{couponAmount}}</text>
+				</view>
+				<view class='money-number' wx:elif="{{hasCoupon}}">未达到满减条件</view>
+				<view class='money-number' wx:else>无可用优惠券</view>
+			</view>
+		</view>
+		<view class='money'>
+			<view>
+				<view class='name'>支付金额：</view>
+				<view class='money-number'>￥
+					<text>{{isDiscount?discountPrice:price}}</text>
+				</view>
+			</view>
+		</view>
+	</view>
+	<!-- 支付方式 -->
+	<view class="pay-method">
+		<view class="wechat" id="Alipay">
+			<view class="wechat-logo">
+				<view class="logo-img verticalHorizontal">
+					<image src="/imgs/svip-wx.jpg" mode='widthFix'></image>
+				</view>
+				<text>微信</text>
+			</view>
+			<icon type='success' size="18" color="#E5002D"></icon>
+		</view>
+	</view>
+	<!-- 按钮 -->
+	<view class="btn-fixed">
+		<view class='btns middle' bindtap="paySvip">
+			<view class='flex-row btns-content'>
+				<view style='font-size:40rpx;font-weight:800'>立即支付</view>
+				<view class='more'></view>
+			</view>
+		</view>
+		<view class="tips" wx:if="{{!isZhanzhong}}">开通SVIP超级会员将会获得超值签到礼，同时赠送您价值10元家博会门票。</view>
+	</view>
+	<!-- end -->
+</view>
+<dialog-swiper bindhideDialog='dialogHide' wx:if="{{dialogShow}}" dataList="{{dialogList}}"></dialog-swiper>
+<!-- 返回有抵扣券提示弹层 -->
+<view class="tips-popup" wx:if="{{showTipsPopup}}">
+	<view class="tips-box">
+		<view class="title">您有{{couponAmount}}元SVIP抵扣红包即将过期</view>
+		<view class="content">
+			<image src="https://img.51jiabo.com/8f07fc39-0b41-470d-84e5-3f4aae318b88.png"></image>
+			<view class="detail">
+				<view>开通SVIP后拥有特殊权益哦</view>
+				<view>确定离开吗？</view>
+			</view>
+		</view>
+		<view class="btn-box">
+			<view class="cancel" bindtap="returnPrePage">离开</view>
+			<view class="confirm" bindtap="confirm">再考虑一下</view>
+		</view>
+	</view>
+</view>
+<!-- 登录弹窗 -->
+<view class='mask' wx:if='{{showchangePhoneModal}}'>
+	<models hasDefBtns='{{false}}'>
+		<view class='content'>
+			<view class='form-item'>
+				<input value="" type='number' placeholder='请输入新手机号' maxlength='11' bindinput='setPhone'></input>
+			</view>
+			<view class='tip-wrap' style='height:40rpx;'>
+				<view class='test-text' wx:if='{{errPhone}}'>请输入正确的手机号码</view>
+			</view>
+			<view class='form-item'>
+				<input value="" type='number' placeholder='请输入验证码' maxlength='6' bindinput='setCode'></input>
+				<view class='code-btn {{sending?"send-bg":"def-bg"}}' bindtap='getIdCode'>{{sending?timeTic+'秒后重试':'获取验证码'}}
+				</view>
+			</view>
+			<view class='tip-wrap' style='height:40rpx;'>
+				<view class='test-text' wx:if='{{errCode}}'>请输入正确的验证码</view>
+			</view>
+		</view>
+		<view slot='footer' class='buts'>
+			<view class='cancle' bindtap='cancelHandle'>取消</view>
+			<view class='confirm'>
+				<view class='confirm-btn' wx:if="{{canIUseGetUserProfile}}" bindtap="loginByProfile">确认</view>
+				<button class='confirm-btn' wx:else open-type='getUserInfo' bindgetuserinfo="confirmHandle">确认</button>
+			</view>
+		</view>
+	</models>
+</view>
+

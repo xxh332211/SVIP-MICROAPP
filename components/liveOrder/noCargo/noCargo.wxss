@@ -1,0 +1,96 @@
+.container{
+  height: 100%;
+  padding-top: 100rpx;
+  overflow: hidden;
+}
+.order{
+  background: #fff;
+  padding: 0 28rpx 0 30rpx;
+  margin-bottom: 40rpx;
+  width: 100%;
+  margin-top: 23rpx;
+}
+.order .orderHeader{
+  display: flex;
+  justify-content: space-between;
+  height: 90rpx;
+  align-items: center;
+}
+.order .orderHeader text:nth-of-type(1){
+  font-size: 32rpx;
+  font-weight: bold;
+  color:#222;
+  line-height: 32rpx;
+}
+.order .orderHeader text:nth-of-type(2){
+  font-size: 28rpx;
+}
+.order .main{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.order .main image{
+  width:190rpx;
+  height:150rpx;
+}
+.order .main .mainRight{
+  width: 450rpx;
+  height:150rpx;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+.order .main .mainRight .title{
+  font-size: 28rpx;
+  line-height: 36rpx;
+  color: #222;
+}
+.order .main .mainRight .detail{
+  display: flex;
+  color: #777;
+  font-size: 32rpx;
+  line-height: 54rpx;
+}
+.order .main .mainRight .detail .num{
+  padding-left: 70rpx;
+}
+.order .main .mainRight .detail .refund{
+  flex: 1;
+  text-align: right;
+  color:#E6002D
+}
+.order .btn-box{
+  width: 100%;
+  padding:40rpx 0 30rpx;
+  display: flex;
+  justify-content: flex-end;
+}
+.order .btn-box view{
+  font-size: 26rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  padding: 0 43rpx;
+  border-radius: 25rpx;
+}
+.order .btn-box .remove{
+  border: 1rpx solid #959595;
+  color: #222;
+}
+.order .btn-box .pay{
+  border: 1rpx solid #E6002D;
+  background: #E6002D;
+  color: #fff;
+  margin-left: 30rpx;
+}
+.order .btn-box .check{
+  border: 1rpx solid #959595;
+  color: #222;
+  margin-left: 30rpx;
+}
+
+
+
+
+
+

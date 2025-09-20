@@ -1,0 +1,8 @@
+<modal bind:close="close">
+  <view class="container">
+    <image src="https://img.51jiabo.com/imgs-mall/success-gray.svg" mode="aspectFit"></image>
+    <view class="title">{{title}}</view>
+    <view class="text">{{content}}</view>
+    <button class="submit normal-btn" bind:tap="submit" hover-class="close-press">确认</button>
+  </view>
+</modal>

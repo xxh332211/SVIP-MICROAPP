@@ -1,0 +1,297 @@
+page{
+  background:#fff;
+}
+.container{
+  width: 750rpx;
+  box-sizing: border-box;
+  padding: 0 25rpx 50rpx 30rpx;
+}
+.tradeRule{
+  width: 100%;
+  text-align: right;
+  font-size: 30rpx;
+  margin-top: 30rpx;
+}
+.header .topBtn{
+  width:332rpx;
+  height:67rpx;
+  display: block;
+  margin: 20rpx auto 0;
+}
+.header .mobile{
+  font-size:36rpx;
+  font-weight:500;
+  line-height:36rpx;
+  margin: 44rpx 0 0;
+  color: #222222;
+}
+.header .getCode{
+  height: 50rpx;
+  margin: 26rpx 0;
+}
+.header .getCode text:nth-of-type(1){
+  font-size: 28rpx;
+  line-height: 50rpx; 
+  color: #FF0000;
+}
+.header .getCode text:nth-of-type(2){
+  width:225rpx;
+  display: inline-block;
+  height:49rpx;
+  font-size: 30rpx;
+  line-height: 30rpx;
+  line-height: 50rpx;
+  text-align: center; 
+  background: #FF0000;
+  color: #fff;
+  margin-left:20rpx ;
+  border-radius: 11rpx;
+}
+.header .addresstext{
+  color: #FF0000;
+  font-size:28rpx ;
+  line-height: 48rpx;
+  display: flex;
+}
+.header .borderImg{
+  width: 183rpx;
+  height: 183rpx;
+  /* border: 1rpx solid #C0C0C0; */
+  margin: 46rpx auto 0;
+  position: relative;
+}
+.header .borderImg .borderImg-box{
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 5rpx;
+}
+.header .borderImg .pokeImg{
+  width:217rpx;
+  height:125rpx;
+  position: absolute;
+  top: 29rpx;
+  left: 118rpx;
+}
+.header .shopName{
+  width: 510rpx;
+  margin: 30rpx auto 0;
+  font-size: 36rpx;
+  line-height: 48rpx;
+  text-align : center;
+}
+.header .shopName .shopText {
+  display: inline-block;
+  text-align: left;
+  word-break: break-all; 
+}
+/* 换购订单 */
+.ordeList{
+  overflow: hidden;
+  margin-top:90rpx;
+}
+.ordeList .header text:nth-of-type(1){
+  font-size:32rpx;
+  font-weight:bold;
+  color:rgba(40,40,40,1);
+  line-height:32px;
+  border-left:7rpx solid #E6002D ;
+  padding-left: 15rpx;
+}
+.ordeList .header text:nth-of-type(2){
+  font-size:24rpx;
+  color:#4B4B4B;
+  line-height:24px;
+  padding-left: 15rpx;
+}
+.ordeList .order{
+  width: 100%;
+  height: 226rpx;
+  box-sizing: border-box;
+  padding: 35rpx;
+  background: #F1F1F1;
+  margin-top: 24rpx;
+  display: flex;
+}
+.ordeList .order .left{
+  width: 180rpx;
+  height: 76rpx;
+  box-sizing: border-box;
+  padding: 10rpx;
+  background: #fff;
+}
+.ordeList .order .left image{
+  width: 100%;
+  height: 100%;
+}
+
+.ordeList .order .right{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 30rpx;
+  color: #1c1c1c;
+  padding-left: 46rpx;
+}
+.ordeList .order .right .textLeft{
+  width: 120rpx;
+  display: inline-block;
+}
+/* 订单信息 */
+.message{
+  overflow: hidden;
+  margin-top:55rpx;
+}
+.message .header text:nth-of-type(1){
+  font-size:32rpx;
+  font-weight:bold;
+  color:rgba(40,40,40,1);
+  line-height:32px;
+  border-left:7rpx solid #E6002D ;
+  padding-left: 15rpx;
+}
+.message .xinxi{
+  padding:15rpx 0 0 22rpx ;
+}
+.message .xinxi .row{
+  display: flex;
+  font-size: 30rpx;
+  line-height: 56rpx;
+  color: #5F5F5F;
+}
+.message .xinxi .message_left{
+  width: 130rpx;
+}
+.message .xinxi .message_right{
+  padding-left: 30rpx;
+}
+.refund{
+  width:100%;
+  height:96rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border:2rpx dashed rgba(255,0,0,1);
+  margin: 100rpx 0;
+  color:#E00020 ;
+  font-size: 40rpx;
+  border-radius: 48rpx;
+}
+.refundProcess{
+  width:100%;
+  height:96rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 100rpx 0;
+  color:#fff ;
+  background:#bdbcbc ;
+  font-size: 40rpx;
+  border-radius: 48rpx;
+}
+/* 卷码弹窗 */
+.code-popup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 29;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.code-popup .code-box {
+  width: 610rpx;
+  background: url("https://img.51jiabo.com/cf8a82d1-8ad7-4232-b7e9-b51af6efa331.png") no-repeat;
+  background-size: 100% 100%;
+  padding-bottom: 42rpx;
+}
+
+.code-popup .code-box .top {
+  text-align: center;
+}
+
+.code-popup .code-box .top .tit {
+  font-size: 36rpx;
+  font-weight: bold;
+  padding: 46rpx 0 0;
+}
+
+.code-popup .code-box .top .period {
+  font-size: 30rpx;
+  color: #e6002d;
+  padding-bottom: 36rpx;
+}
+
+.code-popup .code-box .bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.code-popup .code-box .bottom .canvas {
+  width: 170px;
+  height: 170px;
+  margin-top: 55rpx;
+  overflow: hidden;
+  position: relative;
+}
+
+.code-popup .code-box .bottom .cou-code {
+  font-size: 32rpx;
+  margin-top: 20rpx;
+}
+.code-popup .code-box .bottom .cou-code.past {
+  text-decoration: line-through;
+}
+
+.code-popup .code-box .bottom .status {
+  width: 240rpx;
+  height: 70rpx;
+  border-radius: 5rpx;
+  font-size: 36rpx;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+  line-height: 70rpx;
+  background: #e6002d;
+  margin-top: 40rpx;
+}
+
+.code-popup .code-box .bottom .code-status.used {
+  background: #f1c679;
+}
+
+.code-popup .code-box .bottom .code-status.past {
+  background: #bababa;
+}
+.code-popup .code-box .bottom .code-status{
+  width:240rpx;
+  height:70rpx;
+  background:rgba(229,0,45,1);
+  border-radius:5px;
+  color: #fff;
+  text-align: center;
+  line-height: 70rpx;
+  margin: 34rpx auto 0;
+  font-size: 30rpx;
+}
+.code-popup .fork{
+  width: 60rpx;
+  height: 60rpx;
+  display: block;
+  margin:17rpx auto;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  padding: 10rpx;
+}
+
+
+
+
+
+
+

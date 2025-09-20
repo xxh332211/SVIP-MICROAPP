@@ -1,0 +1,91 @@
+<!--pages/cloudShow/cloudShow.wxml-->
+<!-- 城市 -->
+<online-serve />
+<view class='pos' bindtap='chooseCity'>
+	<image src='/imgs/site.png'></image>
+	<text>{{curUserCityText}}</text>
+</view>
+<view wx:if="{{pageOnload}}">
+	<view wx:if="{{!offLine}}">
+		<!-- 轮播 -->
+		<view class="swiper-box">
+			<!-- 轮播 -->
+			<swiper class="swiper" wx:if="{{banner.length > 1}}" indicator-dots="true" indicator-color="#f3f3f3" indicator-active-color="#e6002d" autoplay="true" interval="3000" current="{{current}}">
+				<block wx:for="{{banner}}" wx:key="index">
+					<swiper-item data-item="{{item}}" bindtap="{{item.url?'swiperUrl':''}}">
+						<image src="{{item.wap_image_url}}" class="slide-image" mode="scaleToFill" />
+					</swiper-item>
+				</block>
+			</swiper>
+
+			<view class="single-swiper" wx:if="{{banner.length == 1}}" data-item="{{banner[0]}}" bindtap="{{banner[0].url?'swiperUrl':''}}">
+				<image src="{{banner[0].wap_image_url}}" class="slide-image" mode="widthFix" />
+			</view>
+		</view>
+
+		<!-- 直播信息 -->
+		<view class="live-box">
+			<view class="time">直播时间<text>{{ticketInfo.begin_date}}~{{ticketInfo.end_date}}日</text></view>
+			<view class="count">距直播开始<text>{{days}}天{{hours}}小时{{minute}}分{{second}}秒</text></view>
+			<view class="number">已有<text>{{ticketInfo.ticketNum}}</text>人预约</view>
+			<view class="reserve" wx:if="{{!liveOver && ticketInfo.ticket_id === 0}}" bindtap="freeReserve">免费预约直播</view>
+			<!-- <view class="reserve" wx:if="{{!liveOver && ticketInfo.ticket_id !== 0}}">已预约</view> -->
+			<view class="reserve" wx:if="{{!liveOver && ticketInfo.ticket_id !== 0}}" data-item="{{liveAdv[0]}}" bindtap="{{liveAdv[0].url?'swiperUrl':''}}">观看直播</view>
+			<view class="reserve" wx:if="{{liveOver}}">活动已结束</view>
+			<!-- <view class="other">
+			<view class="award" bindtap="myAward">我的奖励</view>
+			<view class="ico" bindtap="cloudShare">分享</view>
+			<view class="rule" bindtap="toRule">规则</view>
+		</view> -->
+		</view>
+
+		<!-- 运营位 -->
+		<view class="adv">
+			<image wx:for="{{reserveAdv}}" wx:key="index" class='oprate' mode='widthFix' src='{{item.wap_image_url}}' data-item="{{item}}" bindtap="{{item.url?'swiperUrl':''}}"></image>
+		</view>
+
+		<!-- 浮动运营位 -->
+		<view class="fixed-adv">
+			<image src='{{fixedAdv[0].wap_image_url}}' data-item="{{fixedAdv[0]}}" bindtap="{{fixedAdv[0].url?'swiperUrl':''}}"></image>
+		</view>
+	</view>
+
+	<view class="off-line" wx:if="{{offLine}}">
+		<image wx:if="{{cityId == 60}}" mode="widthFix" src="https://img.51jiabo.com/619a6b40-7221-4f5e-9e4f-1b3e3d52d3a0.png"></image>
+		<image wx:else mode="widthFix" src="https://img.51jiabo.com/b423161b-ffda-4ab6-945b-8e5150d87775.jpg"></image>
+		<!-- <view class="text">当前城市云逛展 <text>敬请期待...</text></view> -->
+	</view>
+</view>
+
+
+<!-- 分享 -->
+<view class="share-popup" wx:if="{{showShare}}" bindtap="closeShare">
+	<view class="bottom">
+		<button open-type='share' class="share">
+			<image src="https://img.51jiabo.com/88e20692-bb64-4776-a594-7b7e41ec22bb.png" mode="widthFix"></image>
+			<text>微信好友</text>
+		</button>
+		<button id="login" class="share" open-type='getUserInfo' bindgetuserinfo="getPost">
+			<image src="https://img.51jiabo.com/bd2bb4b2-91c6-4df5-9d07-f585ba19d1de.png" mode="widthFix"></image>
+			<text>推广海报</text>
+		</button>
+	</view>
+</view>
+
+<!-- 海报 -->
+<view class="popup {{postPopup == true?'visible':''}}" catchtouchmove='stop'>
+	<view class="popup-bg" bindtap="closePopup"></view>
+	<view class="content">
+		<view class="close" bindtap="closePopup"></view>
+		<canvas class="canvas" id="canvas" type="2d" disable-scroll="true" style="width:257px;height:389px" />
+		<view class="save" bindtap="saveImg">保存图片</view>
+	</view>
+</view>
+
+<!-- svip抵扣券按钮 -->
+<coupon-btn wx:if="{{showCouponBtn}}"></coupon-btn>
+<!-- 领取svip抵扣券弹层 -->
+<coupon-popup couponInfo="{{couponInfo}}" isLogin="{{isLogin}}" showCouponPopup="{{showCouponPopup}}" bindgetPhoneBack="getPhoneBack" bindcloseCouponPopup="closeCouponPopup"></coupon-popup>
+
+<!-- 微信授权手机号弹层 -->
+<authorize bindgetPhoneBack="getPhoneBack" wx:if="{{!isAuth}}"></authorize>

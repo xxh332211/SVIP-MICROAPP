@@ -1,0 +1,249 @@
+/* pages-liebian/pages/index/index.wxss */
+
+.container,.banner{
+  position: relative;
+}
+
+.history-list{
+  position: absolute;
+  top: 30%;
+  right: 0;
+  width: 140rpx;
+  height: 100rpx;
+  background: url("https://img.51jiabo.com/14cc704a-6076-4d2d-b410-0f7584327181.png") no-repeat;
+  background-size: cover;
+}
+
+.rules{
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 97rpx;
+  height: 118rpx;
+}
+
+
+.bg-container{
+  padding: 650rpx 30rpx 200rpx;
+  /* background-color: #F03152;
+  box-shadow: 0 -40rpx 30rpx 10rpx #F03152; */
+}
+
+.pro-title,.act-title{
+  font-size: 48rpx;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 30rpx;
+  color: #fff;
+}
+
+.pro-img{
+  width: 688rpx;
+  height: 100rpx;
+}
+
+/* .pro-list{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pro-item{
+  position: relative;
+  width: 100rpx;
+  height: 100rpx;
+  border: 1rpx solid #fff;
+  border-radius: 10rpx;
+  padding: 10rpx 18rpx;
+  line-height: 36rpx;
+  color: #fff;
+  font-size: 30rpx;
+}
+
+.pro-item::after{
+  position: absolute;
+  top: 50%;
+  right: -40rpx;
+  transform: translate(-50%,-50%);
+  content:'';
+  width: 14rpx;
+  height: 27rpx;
+  background: url('https://img.51jiabo.com/34a30412-89a7-4604-b04e-235621c87c9d.png') no-repeat;
+  background-size: cover;
+}
+
+.pro-item:last-child::after{
+  content:'';
+  display: none;
+} */
+
+.activity{
+  margin-top: 80rpx;
+}
+
+.act-cont{
+  font-size: 24rpx;
+  color: #fff;
+  text-indent: 2em;
+}
+
+.main-wrapper{
+  position: absolute;
+  left: 30rpx;
+  right: 30rpx;
+  /* top: 647rpx; */
+  bottom: -620rpx;
+  z-index: 2;
+  height: 720rpx;
+  border-radius: 30rpx;
+  background-color: #fff;
+  box-shadow: 0 0 20rpx 5rpx rgba(56, 39, 43,.5);
+}
+
+.main-wrapper2{
+  bottom: 50%;
+  transform: translateY(50%);
+}
+
+.friends-box{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 40rpx 32rpx 60rpx;
+}
+
+.user{
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 52rpx;
+}
+
+.user-img{
+  width: 121rpx;
+  height: 121rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+
+.user-name{
+  font-size: 30rpx;
+  color: #3D3D3D;
+  padding-top: 20rpx;
+}
+
+.msg{
+  width: 580rpx;
+  height: 125rpx;
+  background: url("https://img.51jiabo.com/b66d7846-b88d-4890-98bf-6fc15d69ed37.png") no-repeat;
+  background-size: cover;
+  margin: 14rpx 0 23rpx;
+  text-align: center;
+  padding: 34rpx 26rpx;
+}
+
+.msg-txt{
+  font-size: 28rpx;
+  line-height: 40rpx;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hand-img{
+  width: 256rpx;
+  height: 214rpx;
+  margin-bottom: 8rpx;
+}
+
+.btn{
+  width: 623rpx;
+  height: 107rpx;
+  border-radius: 107rpx;
+  line-height: 107rpx;
+  text-align: center;
+  color: #FFFFFF;
+  background-color: #E6002D;
+  font-size: 40rpx;
+  font-weight: bold;
+}
+
+.del{
+  width: 80rpx;
+  height: 80rpx;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.del-icon{
+  width: 19rpx;
+  height: 20rpx;
+  position: absolute;
+  top: 26rpx;
+  right: 30rpx;
+}
+
+.cover{
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 3;
+  background-color: rgba(0, 0, 0, .5);
+}
+
+.default-box{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 32rpx;
+}
+
+.timer-box{
+  display: flex;
+  justify-content: center;
+  font-size: 36rpx;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.time{
+  display: flex;
+  padding-left: 20rpx;
+}
+
+.time-item{
+  width: 68rpx;
+  height: 50rpx;
+  text-align: center;
+  line-height: 50rpx;
+  letter-spacing: 8rpx;
+  font-size: 42rpx;
+  font-weight: normal;
+  color: #fff;
+  background: url("https://img.51jiabo.com/ced7ed99-e680-4bab-87eb-7cd4f610de55.png") no-repeat;
+  background-size: cover;
+  background-position-x: 1rpx;
+}
+
+.pad{
+  margin: 0 10rpx 0 4rpx;
+  line-height: 45rpx;
+}
+
+.imgs{
+  width: 625rpx;
+  height: 375rpx;
+  margin: 20rpx 0 50rpx;
+}
+
+.tips{
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  color: #8F8F8F;
+}

@@ -1,0 +1,96 @@
+<online-serve />
+<view class='wrap'>
+  <!-- 预约商品 -->
+  <view class='reserve-goods' wx:if="{{type==4}}">
+    <view class="item-box" wx:for="{{reserveList}}" wx:key="index" wx:for-item="v" bindtap='goodsDetail' data-id='{{v.goods_id}}' data-type='{{v.type}}' wx:if="{{v}}">
+      <image src='{{v.goods_image}}' style='height:260rpx'></image>
+      <view class='product-dic text-hidden-2'>
+        {{v.goods_name}}
+      </view>
+      <view style='color:#666666;font-size:28rpx; margin-top:18rpx;font-weight:bold;color:#E6002D' class="{{v.sale_price == null?'visib':''}}">
+        SVIP: ￥
+        <text style='font-size:36rpx'>{{v.sale_price}}</text>
+        <text style='font-size:20rpx;color:#666666'> /{{v.unit}}</text>
+      </view>
+      <view class='flex-row' class='repertory' style='margin-top:10rpx'>
+        <view style='font-size:20rpx;color:#777777' class='payment middle {{v.origin_price == null?"visib":""}}'>
+          市场价:
+          <text style='font-size:24rpx;text-decoration:line-through'> ￥{{v.origin_price}}</text>
+        </view>
+        <view style='font-size:20rpx;color:#666;'>剩余 {{v.stock}} 件</view>
+      </view>
+      <view class='buy-btn middle' style='margin-top:20rpx' wx:if="{{!v.user_id && v.stock > 0}}" data-id='{{v.goods_id}}' catchtap='reserveGoods'>抢先预约</view>
+      <view class='buy-btn middle gray' style='margin-top:20rpx' wx:if="{{v.user_id}}">已预约</view>
+      <view class='buy-btn middle gray' style='margin-top:20rpx' wx:if="{{!v.user_id && v.stock <= 0}}">已约满</view>
+    </view>
+  </view>
+  <!-- 定金商品 -->
+  <view class="dingjin-goods" wx:if="{{type==2}}">
+    <view class="item-box" wx:for="{{prepayList}}" wx:key="index" wx:for-item="v" bindtap='goodsDetail' data-id='{{v.goods_id}}' data-type='{{v.type}}' wx:if="{{v}}">
+      <image src='{{v.goods_image}}' style='height:260rpx'></image>
+      <view class='product-dic text-hidden-2'>
+        {{v.goods_name}}
+      </view>
+      <view style='color:#666666;font-size:28rpx; margin-top:18rpx'>
+        SVIP:￥{{v.sale_price}}
+        <text style='font-size:20rpx;color:#666666'>/{{v.unit}}</text>
+      </view>
+      <view class='flex-row' class='repertory'>
+        <view style='font-size:28rpx;color:#E6002D;font-weight:800' class='payment middle'>
+          定金:￥
+          <text style='font-size:40rpx;'>{{v.prepay_amount}}</text>
+        </view>
+        <view style='font-size:20rpx;color:#666;'>剩余 {{v.stock}} 件</view>
+      </view>
+      <view class='buy-btn middle' style='margin-top:20rpx' wx:if="{{v.stock > 0}}">￥{{v.prepay_amount}}</view>
+      <view class='buy-btn middle gray' style='margin-top:20rpx' wx:else>已售罄</view>
+    </view>
+  </view>
+  <!-- 全款商品 -->
+  <view class="quankuan-goods" wx:if="{{type==1}}">
+    <view class="item-box" wx:for="{{totalList}}" wx:key="index" wx:for-item="v" bindtap='goodsDetail' data-id='{{v.goods_id}}' data-type='{{v.type}}' wx:if="{{v}}">
+      <image src='{{v.goods_image}}' style='height:260rpx'></image>
+      <view class='product-dic text-hidden-2'>
+        {{v.goods_name}}
+      </view>
+      <view style='color:#E6002D;font-size:28rpx;font-weight:800;margin-top:28rpx'>
+        SVIP:￥
+        <text style='font-size:36rpx;font-weight:800'>{{v.sale_price}}</text>
+        <text style='font-size:20rpx;color:rgba(102,102,102,1);'>/{{v.unit}}</text>
+      </view>
+      <view style='font-size:24rpx;color:#777;'>
+        市场价
+        <text style='text-decoration:line-through'>￥{{v.origin_price}}</text>
+      </view>
+      <view class='buy-btn middle' style='margin-top:20rpx' wx:if="{{v.stock > 0}}">购买</view>
+      <view class='buy-btn middle gray' style='margin-top:20rpx' wx:else>已售罄</view>
+    </view>
+  </view>
+
+  <!-- 下拉加载 -->
+  <view class="onload">—— {{reachTips}} ——</view>
+</view>
+
+<!-- 非会员提示弹层 -->
+<view class="not-svip-tips" wx:if="{{svipTips}}">
+  <view class="not-svip-box">
+    <view class="h6">非超级会员SVIP用户不可以预约</view>
+    <view class="btn-box">
+      <view class="cancel" data-val="svipTips" bindtap="closePopup">取消</view>
+      <view class="svip-pay" bindtap="reserveBuySvip">成为超级会员</view>
+    </view>
+  </view>
+</view>
+
+<!-- 预约成功弹层 -->
+<view class="reserve-tips" wx:if="{{reserveTips}}">
+  <view class="reserve-box">
+    <view class="h6">
+      <view>恭喜您预约成功</view>
+      <view>请您到展会现场领取商品</view>
+    </view>
+    <view class="cancel" data-val="reserveTips" bindtap="closePopup">确定</view>
+  </view>
+</view>
+<!-- svip升级弹层 -->
+<upgradeSvip wx:if="{{showUpdatePopup}}" orderType="{{orderType}}" bindcloseUpdate="closeUpdate"></upgradeSvip>

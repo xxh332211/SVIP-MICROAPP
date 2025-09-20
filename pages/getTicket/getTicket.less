@@ -1,0 +1,2428 @@
+/* pages/getTicket/getTicket.wxss */
+@import '../../pages-abs/subcontracting.wxss';
+
+.wrapper {
+  color: #222;
+}
+
+.swiper-box .wx-swiper-dots {
+  position: absolute;
+  bottom: 50rpx;
+}
+
+.swiper-box {
+  min-height: 146rpx;
+  position: relative;
+}
+
+.pos {
+  min-width: 140rpx;
+  padding: 0 20rpx;
+  height: 55rpx;
+  border-radius: 27rpx;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 25rpx;
+  left: 30rpx;
+}
+
+.pos image {
+  width: 21rpx;
+  height: 33rpx;
+  margin-right: 8rpx;
+}
+
+.share-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 174rpx;
+  height: 58rpx;
+  background: #E60F2D;
+  /* border: 1px solid #FAFFFB; */
+  box-shadow: 0 3rpx 5rpx 2rpx rgba(230, 15, 45, 0.16);
+  border-radius: 29rpx 0 0 29rpx;
+  position: absolute;
+  top: 24rpx;
+  right: 0;
+  z-index: 2;
+  font-size: 28rpx;
+  color: #FFFFFF;
+  padding: 0;
+}
+
+.share-btn .ico {
+  width: 32rpx;
+  height: 26rpx;
+  background: url(https://img.51jiabo.com/b5b8283e-0603-444a-b74e-da427f5a8131.png) no-repeat;
+  background-size: 100% 100%;
+  margin-right: 6rpx;
+}
+
+.add-kith {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 180rpx;
+  height: 60rpx;
+  background: #E60F2D;
+  border-radius: 29rpx 0 0 29rpx;
+  position: absolute;
+  top: 103rpx;
+  right: 0;
+  z-index: 2;
+  font-size: 26rpx;
+  color: #FFFFFF;
+
+  .ico {
+    width: 40rpx;
+    height: 40rpx;
+    background: url(https://img.51jiabo.com/88ae2a20-890e-448a-a743-f5664402cb4c.png) no-repeat;
+    background-size: 100% 100%;
+    margin-right: 6rpx;
+  }
+}
+
+.ticket-wrapper {
+  perspective: 1500;
+  -webkit-perspective: 1500;
+}
+
+.lottery-box {
+  position: relative;
+}
+
+.lottery-report {
+  width: 689rpx;
+  height: 69rpx;
+  border-radius: 10rpx;
+  background: #FF8450;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  margin-top: 30rpx;
+  margin-left: 30rpx;
+}
+
+.auth-btn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}
+
+.lottery-report .report-box {
+  display: flex;
+  align-items: center;
+  padding-left: 20rpx;
+}
+
+.lottery-report .horn {
+  width: 27rpx;
+  height: 24rpx;
+  background: url(https://img.51jiabo.com/aab3afc1-7516-4d13-853f-68554dd78af9.png) no-repeat;
+  background-size: 100% 100%;
+  margin-right: 10rpx;
+}
+
+.lottery-report .report {
+  width: 480rpx;
+  height: 64rpx;
+}
+
+.lottery-report .swiper-item {
+  display: flex;
+  align-items: center;
+}
+
+.lottery-report .report .text {
+  width: 480rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 26rpx;
+  color: #FFFFFF;
+}
+
+.lottery-report .rule-box {
+  font-size: 26rpx;
+  color: #520000;
+  text-decoration: underline;
+  padding-right: 25rpx;
+}
+
+.ticket-contain {
+  width: 690rpx;
+  height: 600rpx;
+  transition: 0.6s;
+  transform-style: preserve-3d;
+  position: relative;
+  z-index: 1;
+  margin-top: -10rpx;
+  margin-left: 30rpx;
+}
+
+.ticket-contain.rotate {
+  transform: rotateY(180deg);
+}
+
+/* 采购意向 */
+.intention {
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotateY(180deg);
+  width: 690rpx;
+  height: 600rpx;
+  border-radius: 15rpx;
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 0 10rpx 15rpx 1rpx rgba(0, 0, 0, 0.03);
+}
+
+.intention .title {
+  font-size: 32rpx;
+  color: #222222;
+  text-align: center;
+  padding-top: 30rpx;
+}
+
+.intention .kind-box {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 34rpx 88rpx 0;
+}
+
+.intention .item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  margin-bottom: 10rpx;
+}
+
+.intention .kind-img {
+  width: 136rpx;
+  height: 136rpx;
+}
+
+.intention .kind-name {
+  font-size: 26rpx;
+  color: #333333;
+  margin-top: -9rpx;
+}
+
+.intention .check {
+  position: absolute;
+  top: -16rpx;
+  right: -16rpx;
+  width: 32rpx;
+  height: 31rpx;
+  background: url("https://img.51jiabo.com/ca1c05e7-f005-4416-94fa-af0f2ced088d.png") no-repeat;
+  background-size: 100% 100%;
+}
+
+.intention .submit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 400rpx;
+  height: 70rpx;
+  background: #E6002D;
+  border-radius: 5rpx;
+  font-size: 36rpx;
+  color: #FFFFFF;
+  margin-left: 145rpx;
+  margin-top: 26rpx;
+}
+
+.schedule .h5 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100rpx;
+  font-size: 42rpx;
+  font-weight: bold;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.schedule .add-tips {
+  padding: 30rpx 30rpx 10rpx;
+  font-size: 24rpx;
+}
+
+.schedule .service {
+  padding: 0 30rpx;
+}
+
+.schedule .h5 image {
+  width: 43rpx;
+  margin-right: 17rpx;
+}
+
+.schedule .time-list .time {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-top: 28rpx;
+}
+
+.schedule .time-list .time .Hz {
+  font-size: 24rpx;
+  font-weight: normal;
+}
+
+.schedule .time-list .ul {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  background: #f0f0f0;
+  margin: 15rpx 9rpx;
+}
+
+.schedule .time-list .ul .li {
+  border-right: 1px solid #fff;
+  flex-grow: 1;
+}
+
+.schedule .time-list .ul .li.active view {
+  color: #fff;
+  background: #e6002d;
+}
+
+.schedule .time-list .ul .li view {
+  height: 79rpx;
+  font-size: 20rpx;
+  color: #666;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.schedule .time-list .ul .li view:nth-child(1) {
+  font-size: 28rpx;
+  border-bottom: 1px solid #fff;
+}
+
+.schedule .site {
+  font-size: 32rpx;
+  text-align: center;
+  margin-top: 20rpx;
+}
+
+.pos text {
+  font-size: 32rpx;
+  color: #fff;
+  font-weight: bold;
+}
+
+/* 索票按钮 */
+
+.form-box {
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 690rpx;
+  height: 600rpx;
+  border-radius: 15rpx;
+  background: #fff;
+  box-shadow: 0 10rpx 15rpx 1rpx rgba(0, 0, 0, 0.03);
+  padding: 20rpx 49rpx 23rpx;
+
+  .time {
+    font-size: 44rpx;
+    color: #e6002d;
+    font-weight: 700;
+    padding-left: 21rpx;
+
+    &.no-time {
+      color: #222;
+    }
+  }
+
+  .venue {
+    max-width: 480rpx;
+    font-size: 32rpx;
+    display: flex;
+    align-items: baseline;
+    /* display: -webkit-box;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    word-break: break-all; */
+    padding: 13rpx 0 0 21rpx;
+
+    &::before {
+      content: "";
+      display: block;
+      flex-shrink: 0;
+      width: 30rpx;
+      height: 30rpx;
+      background: url(https://img.51jiabo.com/bca21250-aec8-4ec7-a228-16d69cbf350e.gif) no-repeat;
+      background-size: 100%;
+      margin-right: 14rpx;
+    }
+  }
+
+  .address {
+    font-size: 28rpx;
+    color: #999;
+    margin-top: 6rpx;
+    padding-left: 64rpx;
+  }
+
+  .form {
+    margin-top: 2rpx;
+  }
+}
+
+.k-box {
+  width: 100%;
+  display: flex;
+  position: relative;
+  margin-top: -31rpx;
+
+  .tab {
+    height: 70rpx;
+    line-height: 70rpx;
+    text-align: center;
+    font-size: 30rpx;
+    color: #777;
+    margin: 0 52rpx 0 93rpx;
+
+    &:nth-child(2) {
+      margin: 0 0 0 93rpx;
+    }
+
+    &.active {
+      color: #222;
+      font-weight: bold;
+    }
+  }
+
+  .line {
+    width: 120rpx;
+    height: 3rpx;
+    background: #e6002d;
+    position: absolute;
+    bottom: 0;
+    left: 93rpx;
+    transition: all 0.2s linear;
+
+    &.active {
+      width: 180rpx;
+      left: 355rpx;
+    }
+  }
+}
+
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 596rpx;
+  height: 208rpx;
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAlQAAADQCAMAAAD2+A/8AAABg1BMVEVHcEz////nACX////////////////oAC7mAC3mAC3////////////////////////nBiv/////9vv////////////////mAC3nAC3mAC3rADDmACzmAC3mAC3nACzmACz////////////////////////////////mACXMAADmACz////lACv/////////////9/jqJEf////2nrD////7zNboM1P95ernHT7//Pz83OLnACzlACz/AAD////mAC3////mACzlACnlACflACbmBC/mACvmAS3pJknnEDjnBzHoG0DnCTPpJUjrNlrnDDX////oFz7oEzroH0P5wMv84+jnDjb71Nz++PnoIUXpIkfyd4/nFTvyc4z84OXwZH/pJEbvXnr98vT+/Pz3rLr5usb6z9f73OL4tcHlACr2pLTsPWDpJ0r0mqz3rrz1lqn1mq3qLlP1mqvrMFX5v8ruTm7xb4nyg5juTWzyhZvlACHrO1jziZ73r7z5xc798fP0lqnI5XKoAAAAP3RSTlMA/BQB5DYGId72DviaFfPxH9USd99y29j75BBo8OOAw6zNHAofwYpF3gWtZFjhYzfm4tL6XVA30eKr+axXBGXgEof4AAAGo0lEQVR42u3daVfTaByG8VBaVCg7yC4qsrjgvs9CaVpKmi4i0iK7svkM4oz7Mgvz0QfnhUdpXsxp73g6zfX7Bk2v8+TJv01iWfBV8/jYaLil9eTo2HgzRwMCDZFoV2td7FBd62Q00sARQaUab15vin3R1H6xkWOCCpvqnnzwjXA3VaGyc9/lcOyI8GXOgKhAfaT9QYn2SD1HBmXriDbFSjRFOzgyKH+h6op56GKpQtlGOlu8omrpHOHYoEzNp+u8oqo7zQwU5Tp7JubpzFmODcp07qR3VCfPcWxAVOD0BzbqwH/V0N3qFVVrdyB+qDkfajsGubZbV72iunqrpo92W+inz031X7rQcxxyE9duLJY2tXjj2kQtf+qeH37st6zQqaHeKeiZRK5YGlUxlzA1/bF7h06FrIE+vn+fqkqvLxxtamE9bWr9c/cNWMMpvn5/TMcLq0eqWlguxKdr/XOnhq1Bvn3/qso/KX61r1osrgegqanUoHWCL9/HqpK5/bWDzc9FbR6s7efSAWhqauoEUflalTFObnlrZ3d3Z2s55xgThKaIym8ztsmsuPPz7krGxGeC8ZmJ6jusVnbikB2MVYqoQFT/48VqmqigbSqVT00TFZTic6tzcaKCUmL20WyCqKBkux9dm6gg3VMlnSR7KoirinP1BxBV1a9UzKmgbiqVZk4FLfPwyUNDVFBiTgU5e/7XeeZU0O6pkg+ZU0Fdlc3VH0BUVb9SzbBSQdxUKsmcClrGeeswp4JUYvYNcypo2Y9/ecycCto9VdJlTgV1VfyfCiCq6l+pmFNBLljPACOq78AU9grMqSCVmN1mTgUte+nFEnMqaPfp6aU0cyqIq+JuGuir4uoP6qamWamgjorhJ8RM5mWGORWk7OyzLCMFEBVRVfvp7zWnP3D1R1RERVQBrGqKqCBuip9poG6KH5ShZm+82GCkAKlEdjvLn/QgZfJ7eeZUEOPGB8h36vxLASCq6l+puO0d6qaSczygA1o8SghyPPQMcsb5wOMZId5T8SBZ6KtiTgUQVfWvVLxGBOqmeOER1Hg1G+R4iSTkeN0t9HsqXswNfVXcTQMQVfWvVPyfCuqmkg5zKmjZ7keXORWkmFNBLj73bi5OVJDuqVJ55lRQV8WcCiAqViqiYk9FVKj86m+Vqz9oMaeCnO2+Z6IO8Z4qWeC3P6ir4l8KAFFV/0rFnArqpviPOtS4mwZyzKkgxx3K0O+peJYC9FXx1BeAqKp/peJJelA3xTM/oWactzydGFo8Rx1yvPEB+j0V76aBvir+TwUQVfWvVMypIMc7lCFmCnsF5lSQSsxuM6eClr30Yok5FbT79PRSmjkVxFVxNw30VXH1B3VT06xUICqiqnIm8zrDnApSdvZZlpECtFFtPNsgKohPfy85/YGNOlERFVEFsKopooK4KX6mgbqp9Cw/KEPL3viTkQK0EtntLH/Sg5TJ7+WZU0GMGx8g36lzixZAVNW/UnHbO9RNJV0e0AEtHiUEOR56BjnjfODxjBDvqXiQLPRVMacCiKr6VypeIwJ1U8kV5lTQsudf8Wo2aCWev3nOnApSvO4W+j0VL+aGvirupgGIqvpXKv5PBXVTSYc5FbRs9w+XORWkEs8fMaeCVnzu3VycqCDdU6XyzKmgroo5FUBUrFRExZ6KqFD51d8qV3/Q4r4/yNnueybqEO+pkgV++4O6Kv6lAHlU3KIF+emPW7SgTcp8cv92P9nBGYASlc9mbJNxft/+fWUlY+wZooJglTJObnlr52D3r63lnGOCsVoRlb9Xfcnc/trBZuzQ5sHafi4diMtAovK1qfyT4mLsi8XieiEIVRGVn00VVhdi31hYDUJVROUfk14/0tRhVetpQ1Qo+7rP5IqxEsWcmSEqlMl2Xi2WRrX4m2MTFcqdJuTWYh7WcjU/VzhhDfL9+7Ojyiw/9Yrq6XKm1ndVg9ZwigB8OfutbG16RbW5tVLj57/UsDXQRwC+ROXuxDzt1Pof9voGrNCpoV4S0EvM73pHtTtf038t7h06FbKs/ksXeo5DbeLufe+o7t+dqOGP3XPhUr916Hyo7Rjkbt/xjurO7Vr+1G2h8xZ803GvzqupunsdHBuUaaSzxSuqls4Rjg3KVH+lyyuqriv1HBuUff6LNpU21RTl7IcKlqpI+4MS7REWKlSg4WL46EIVvtjAcUElGrsnv12nwp2NHBVUWNXN61/tq5raf6YpVH4GjEQnW/+dV9W1TkYjnPug0Dw+NhpuaQmPjo03B+Uz/wMnYcFQJdHazgAAAABJRU5ErkJggg==') no-repeat;
+  background-size: 100%;
+  padding: 0 9rpx 0 16rpx;
+  margin-top: 26rpx;
+  position: relative;
+  .left {
+    display: flex;
+    color: #ffe7ec;
+    align-items: center;
+    .lab {
+      font-size: 30rpx;
+      margin-top: -35rpx;
+    }
+    .num {
+      font-size: 81rpx;
+      margin-left: 5rpx;
+      margin-right: 16rpx;
+    }
+    .txt {
+      font-size: 29rpx;
+    }
+  }
+}
+
+.get-btn {
+  width: 217rpx;
+  height: 79rpx;
+  background: #fff;
+  border-radius: 39rpx;
+  text-align: center;
+  line-height: 79rpx;
+  font-size: 40rpx;
+  color: #e6002d;
+  font-weight: bold;
+  padding: 0;
+  margin: 0;
+}
+
+.freeGet-img {
+  position: absolute;
+  top: 146rpx;
+  right: 24rpx;
+}
+
+.freeGet-img image {
+  width: 40rpx;
+  height: 36rpx;
+}
+
+.record-box {
+  position: relative;
+}
+
+.record-box.top {
+  margin-top: 13rpx;
+}
+
+.record-popup {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 2;
+}
+
+.record {
+  height: 50rpx;
+  margin: 13rpx 0 14rpx;
+}
+
+.record .swiper-item {
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  color: #777;
+  justify-content: center;
+}
+
+.record .swiper-item text {
+  margin-right: 10rpx;
+}
+
+.tips-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 17rpx;
+  border-top: 1rpx solid #f7f7f7;
+}
+
+.operator checkbox {
+  height: 30rpx;
+  font-size: 30rpx;
+  color: #666666;
+}
+
+.tips-wrap checkbox .wx-checkbox-input {
+  width: 30rpx;
+  height: 30rpx;
+  /* border-radius: 30rpx; */
+  border: 2rpx solid #F1F1F1;
+}
+
+.tips-wrap checkbox .wx-checkbox-input.wx-checkbox-input-checked {
+  background: #e2002e;
+  border: 2rpx solid transparent;
+}
+
+.tips-wrap checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
+  width: 25rpx;
+  height: 25rpx;
+  line-height: 25rpx;
+  text-align: center;
+  font-size: 20rpx;
+  color: #fff;
+  background: transparent;
+  transform: translate(-50%, -50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+}
+
+.agreement {
+  color: #e2002e;
+}
+
+.notice {
+  color: #e2002e;
+  font-weight: bold;
+}
+
+/* 索票须知 */
+
+.order-tips {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 10;
+
+  .tips-box {
+    width: 620rpx;
+    border-radius: 5rpx;
+    background: #fff;
+    padding: 60rpx 0 0;
+    position: relative;
+
+    .caption {
+      font-size: 50rpx;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .content {
+      font-size: 28rpx;
+      color: #777;
+      padding: 20rpx 45rpx;
+      line-height: 46rpx;
+    }
+
+    .know {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 150rpx;
+      border-top: 1rpx solid #d2d3d5;
+
+      .know-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 376rpx;
+        height: 86rpx;
+        background: #e6002d;
+        border-radius: 5rpx;
+        font-size: 36rpx;
+        color: #fff;
+      }
+    }
+  }
+}
+
+/* 展前未索票展中10元购买 */
+.money-box {
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 690rpx;
+  height: 600rpx;
+  border-radius: 15rpx;
+  background: #fff;
+  box-shadow: 0 10rpx 15rpx 1rpx rgba(0, 0, 0, 0.03);
+  padding: 27rpx 41rpx 0;
+
+  .time {
+    font-size: 44rpx;
+    color: #e6002d;
+    font-weight: 700;
+
+    &.no-time {
+      color: #222;
+    }
+  }
+
+  .venue {
+    max-width: 480rpx;
+    font-size: 32rpx;
+    display: flex;
+    align-items: baseline;
+
+    &::before {
+      content: "";
+      display: block;
+      flex-shrink: 0;
+      width: 30rpx;
+      height: 30rpx;
+      background: url(https://img.51jiabo.com/bca21250-aec8-4ec7-a228-16d69cbf350e.gif) no-repeat;
+      background-size: 100%;
+      margin-right: 14rpx;
+    }
+  }
+
+  .address {
+    font-size: 28rpx;
+    color: #999;
+    line-height: 34rpx;
+    margin-top: 6rpx;
+    padding-left: 45rpx;
+  }
+
+  .title {
+    font-size: 42rpx;
+    line-height: 42rpx;
+    font-weight: bold;
+    color: #222;
+    text-indent: 8rpx;
+    padding-bottom: 38rpx;
+  }
+
+  .paper-tips {
+    font-size: 24rpx;
+    line-height: 45rpx;
+    margin-top: 37rpx;
+    color: #666666;
+  }
+}
+
+/* 已索票 */
+
+.haved-box {
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 690rpx;
+  height: 600rpx;
+  border-radius: 15rpx;
+  background: #fff;
+  box-shadow: 0 10rpx 15rpx 1rpx rgba(0, 0, 0, 0.03);
+  padding: 26rpx 49rpx 57rpx;
+
+  .time {
+    font-size: 44rpx;
+    color: #e6002d;
+    font-weight: 700;
+    padding-left: 21rpx;
+  }
+
+  .time.no-time {
+    color: #222;
+  }
+
+  .venue {
+    max-width: 480rpx;
+    font-size: 32rpx;
+    display: flex;
+    align-items: baseline;
+    padding: 13rpx 0 0 21rpx;
+  }
+
+  .venue::before {
+    content: "";
+    display: block;
+    flex-shrink: 0;
+    width: 30rpx;
+    height: 30rpx;
+    background: url(https://img.51jiabo.com/bca21250-aec8-4ec7-a228-16d69cbf350e.gif) no-repeat;
+    background-size: 100%;
+    margin-right: 14rpx;
+  }
+
+  .address {
+    font-size: 28rpx;
+    color: #999;
+    margin-top: 6rpx;
+    padding: 0 0 31rpx 64rpx;
+    border-bottom: 1px solid #F7F7F7;
+  }
+
+  .form {
+    margin-top: 14rpx;
+  }
+
+  .paper-tips {
+    font-size: 28rpx;
+    margin-top: 25rpx;
+  }
+}
+
+.ticket-qr-popup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.ticket-qr-popup .ticket-qr-box {
+  width: 690rpx;
+  /* height: 804rpx; */
+}
+
+.ticket-qr-popup .ticket-qr-box .content-ticket {
+  width: 590rpx;
+  border-bottom: 1rpx solid #d5d5d5;
+  margin: 0 auto;
+  text-align: center;
+  padding: 125rpx 0 58rpx;
+  font-size: 28rpx;
+}
+
+.ticket-qr-popup .ticket-qr-box .content-ticket span:nth-of-type(2) {
+  font-size: 36rpx;
+  font-weight: bold;
+  padding-left: 22rpx;
+}
+
+.ticket-qr-popup .ticket-qr-box .content-ticket span:nth-of-type(3) {
+  font-size: 72rpx;
+  font-weight: bold
+}
+
+
+.ticket-qr-popup .title {
+  width: 100%;
+  height: 128rpx;
+  background: #e6002d;
+  line-height: 128rpx;
+  text-align: center;
+  font-size: 42rpx;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 10rpx 10rpx 0 0;
+  position: relative;
+}
+
+.ticket-qr-popup .title .cha {
+  position: absolute;
+  width: 75rpx;
+  height: 75rpx;
+  top: 0;
+  right: 0;
+  background: url("https://img.51jiabo.com/91eca5fb-a15a-4cb4-a15e-3db7cd5413e9.png") no-repeat;
+  background-size: 35rpx 35rpx;
+  background-position: center;
+}
+
+.ticket-qr-popup .content {
+  width: 100%;
+  /* height: 656rpx; */
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 0 0 10rpx 10rpx;
+}
+
+.ticket-qr-popup .content .content-title {
+  font-size: 32rpx;
+  line-height: 32rpx;
+  text-align: center;
+  padding-top: 56rpx;
+}
+
+.ticket-qr-popup .content .content-title-wh {
+  font-size: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  padding-top: 30rpx;
+  font-weight: bold;
+}
+
+.ticket-qr-popup .canvas {
+  height: 215px;
+  width: 215px;
+  margin: 33rpx 0;
+}
+
+.ticket-qr-popup .ticket-num {
+  font-size: 46rpx;
+  line-height: 46rpx;
+  /* margin-top: 38rpx; */
+}
+
+.ticket-qr-popup .inviteBtn {
+  width: 580rpx;
+  height: 90rpx;
+  margin-bottom: 40rpx;
+  background: #D22D34;
+  box-shadow: 0 20rpx 20rpx 0 rgba(204, 13, 50, 0.2);
+  border-radius: 10rpx;
+  text-align: center;
+  font-size: 32rpx;
+  color: #fff;
+  line-height: 32rpx;
+  margin-top: 74rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  outline: none;
+}
+
+.ticket-qr-popup .inviteBtn-ticket {
+  margin-top: 0;
+  margin-bottom: 100rpx;
+}
+
+.ticket-qr-popup .inviteBtn.btn-1 {
+  margin-bottom: 40rpx;
+}
+
+.ticket-qr-popup .inviteBtn.btn-2 {
+  margin: 0;
+  margin-bottom: 40rpx;
+}
+
+.ticket-qr-popup .inviteBtn .youjiantou {
+  width: 34rpx;
+  height: 14rpx;
+  margin-left: 24rpx;
+}
+
+.ticket-qr-popup .content .txt {
+  font-size: 28rpx;
+  line-height: 43rpx;
+  padding: 0rpx 60rpx 40rpx;
+}
+
+.ticket-qr-popup .ticket-qr-box .txt-Ticket {
+  padding: 60rpx 50rpx 60rpx;
+
+}
+
+.expo-light {
+  background: #fff;
+  margin-top: 30rpx;
+}
+
+.expo-light-adv {
+  padding-bottom: 20rpx;
+}
+
+.headline {
+  font-size: 42rpx;
+  font-weight: bold;
+  padding: 30rpx 30rpx;
+  margin-top: 20rpx;
+}
+
+.light-swiper-container {
+  margin-left: 30rpx;
+  height: 179rpx;
+}
+
+.light-swiper-container .swiper-slide {
+  width: 328rpx !important;
+  overflow: hidden;
+}
+
+.light-swiper-container .swiper-slide image {
+  width: calc(100% - 23rpx);
+  margin-right: 23rpx;
+  border-radius: 5rpx;
+}
+
+.operate-site {
+  height: 300rpx;
+  margin-top: 30rpx;
+  padding: 0 30rpx;
+}
+
+.single-swiper {
+  margin-top: 30rpx;
+  padding: 0 30rpx;
+}
+
+.sec-box {
+  background: #fff;
+  overflow: hidden;
+}
+
+.sec-box .headline {
+  font-size: 42rpx;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  padding: 30rpx 30rpx 0;
+  margin-top: 20rpx;
+}
+
+.nav-link {
+  color: #e6002d;
+  font-size: 24rpx;
+  align-self: flex-end;
+}
+
+/* 熊猫币抽奖 */
+.draw-box {
+  padding-top: 16rpx;
+  padding-left: 30rpx;
+}
+
+.draw-box .lottery-box {
+  width: 690rpx;
+  height: 220rpx;
+}
+
+/* 超值换购 */
+.exchange-box {
+  overflow: hidden;
+  padding-bottom: 30rpx;
+  padding-left: 30rpx;
+}
+
+.promotion-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 30rpx 30rpx 0 0;
+}
+
+.promotion-text {
+  display: flex;
+  align-items: center;
+  font-size: 36rpx;
+  font-weight: bold;
+  font-style: italic;
+  color: rgba(223, 0, 0, 1);
+}
+
+.promotion-text view {
+  width: 59rpx;
+  height: 29rpx;
+  background: url(https://img.51jiabo.com/6562ceb3-2ac4-445f-bf22-cb41cbfb61a1.png) no-repeat;
+  background-size: 100% 100%;
+  margin-left: 12rpx;
+  margin-top: 3rpx;
+}
+
+.promotion-all {
+  padding: 15rpx 0 0 40rpx;
+}
+
+.ex-scroll {
+  display: flex;
+  border-radius: 10rpx 0 0 10rpx;
+  height: 269rpx;
+  box-shadow: 0 10rpx 15rpx 1rpx rgba(0, 0, 0, 0.03);
+  background-color: #fff;
+  margin-top: 12rpx;
+}
+
+.promotion-item {
+  height: 269rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20rpx 36rpx;
+}
+
+.promotion-item image {
+  width: 176rpx;
+  height: 176rpx;
+}
+
+.ex-bot {
+  display: flex;
+  align-items: baseline;
+  white-space: nowrap;
+  margin-top: 10rpx;
+}
+
+.ex-add {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #FFFFFF;
+  width: 30rpx;
+  height: 30rpx;
+  background-color: #DF0000;
+  border-radius: 50%;
+  padding-bottom: 2rpx;
+}
+
+.ex-text {
+  font-size: 30rpx;
+  color: #DF0000;
+  font-weight: bold;
+  font-style: italic;
+  margin-left: 12rpx;
+  margin-right: 6rpx;
+}
+
+.ex-bot text {
+  font-size: 24rpx;
+  color: #1F1E1E;
+}
+
+.tradeIn-fixed {
+  display: flex;
+  justify-content: center;
+  width: 690rpx;
+  height: 99rpx;
+  position: fixed;
+  bottom: 130rpx;
+  left: 30rpx;
+  z-index: 9;
+  background-color: #FDD9DD;
+  border-radius: 50rpx;
+}
+
+.trade-bag {
+  width: 44rpx;
+  height: 41rpx;
+  background: url(https://img.51jiabo.com/33ba50f4-9413-4fbd-9cee-ad8e930f0d7f.png) no-repeat;
+  background-size: 100% 100%;
+  /* margin-top: 14rpx; */
+  margin-right: 26rpx;
+}
+
+.tradeIn-fixed .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.tradeIn-fixed .top {
+  display: flex;
+  align-items: center;
+  width: 550rpx;
+}
+
+.tradeIn-fixed .top .commonFlex {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.tradeIn-fixed .top .commonFlex:last-child {
+  flex: none;
+}
+
+.tradeIn-fixed .top .amount {
+  font-size: 30rpx;
+  color: #D3122D;
+  font-weight: bold;
+  margin: 0 13rpx;
+}
+
+.tradeIn-fixed .top .cirl {
+  width: 15rpx;
+  height: 15rpx;
+  border-radius: 50%;
+  border: 3rpx solid #D3112D;
+}
+
+.tradeIn-fixed .top .cirl.act {
+  background: #D3112D;
+}
+
+.tradeIn-fixed .top .line {
+  flex: 1;
+  height: 1px;
+  background: #FF0000;
+}
+
+.tradeIn-fixed .bottom {
+  font-size: 26rpx;
+  font-weight: bold;
+  color: #D3122D;
+  /* margin-top: -10rpx; */
+}
+
+/* 参展品牌 */
+
+.brand-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 36rpx 0 10rpx 15rpx;
+}
+
+.brand-list .brand-item {
+  margin: 0 0 26rpx 15rpx;
+}
+
+.brand-list .brand-item image {
+  width: 220rpx;
+  height: 120rpx;
+  border: 1px solid #e5e5e5;
+}
+
+.brand-list .brand-item .text {
+  color: #666;
+  text-align: center;
+  width: 220rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.safeguard {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 93rpx 87rpx 230rpx;
+  background: #fff;
+}
+
+.safeguard .item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.safeguard .vert-line {
+  width: 1px;
+  height: 55rpx;
+  background: #ededed;
+}
+
+.safeguard .item .img-border {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 98rpx;
+  height: 98rpx;
+  border: 2px solid #e6002d;
+  border-radius: 50%;
+}
+
+.safeguard .item .img-border image {
+  width: 65rpx;
+  height: 65rpx;
+}
+
+.safeguard .item .promise {
+  font-size: 28rpx;
+  font-weight: bold;
+  margin-top: 5rpx;
+}
+
+.safeguard .item .detail {
+  font-size: 18rpx;
+  color: #999;
+  margin-top: -9rpx;
+}
+
+/* 亮点弹层 */
+
+.light-popup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.light-box {
+  width: 620rpx;
+  background: #fff;
+  border-radius: 5rpx;
+}
+
+.light-box image {
+  display: block;
+  border-radius: 4rpx 4rpx 0 0;
+}
+
+.light-title {
+  font-size: 42rpx;
+  font-weight: bold;
+  text-align: center;
+  padding: 40rpx 40rpx 0;
+}
+
+.light-content {
+  font-size: 28rpx;
+  padding: 30rpx 40rpx;
+}
+
+/* 弹层 */
+
+.adv-popup {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.adv-box {
+  width: 600rpx;
+  border-radius: 8rpx;
+}
+
+.adv-box image {
+  width: 100%;
+  max-height: 900rpx;
+  display: block;
+}
+
+.adv-box .adv-close {
+  width: 95rpx;
+  height: 95rpx;
+  margin-left: 252rpx;
+  margin-top: 40rpx;
+  background: url(data:image/png;base64,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) no-repeat;
+  background-size: 100%;
+}
+
+/* 关注公众号 */
+.attention-Nopublic {
+  width: 690rpx;
+  height: 160rpx;
+  background: #fff;
+  border-radius: 10rpx;
+  margin: 40rpx auto;
+  overflow: hidden;
+}
+
+.attention-Nopublic .attention-Txt {
+  height: 100%;
+  float: left;
+  margin-left: 5rpx;
+}
+
+.attention-Nopublic .attention-Txt .Nopublic {
+  font-size: 32rpx;
+  padding-top: 45rpx;
+  line-height: 32rpx;
+}
+
+.attention-Nopublic .attention-Txt .fuli {
+  font-size: 28rpx;
+  line-height: 32rpx;
+  padding-top: 16rpx;
+  color: #999;
+}
+
+.attention-Nopublic .btns {
+  width: 100%;
+  height: 100%;
+}
+
+.attention-Nopublic .btn {
+  width: 132rpx;
+  height: 52rpx;
+  text-align: center;
+  line-height: 52rpx;
+  font-size: 24rpx;
+  color: #fff;
+  border-radius: 52rpx;
+  float: right;
+  background: linear-gradient(90deg, rgba(255, 0, 54, 1), rgba(255, 38, 0, 1));
+  margin: 55rpx 56rpx 0 0;
+}
+
+/* svip优惠券礼包 */
+.coupon-bag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 690rpx;
+  height: 223rpx;
+  border-radius: 10rpx;
+  background: linear-gradient(90deg, #FFEED4 0%, #FFD7B2 100%);
+  position: relative;
+  margin: 30rpx 0 0 30rpx;
+}
+
+.coupon-bag-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 682rpx;
+  height: 212rpx;
+  border: 1px solid #D5863B;
+  border-radius: 10rpx;
+}
+
+.coupon-bag .label {
+  display: flex;
+  justify-content: center;
+  width: 27rpx;
+  height: 36rpx;
+  background: url("https://img.51jiabo.com/47213674-3585-40b7-acc1-1c4d6319c058.png") no-repeat;
+  background-size: 100% 100%;
+  font-size: 18rpx;
+  color: #FFFFFF;
+  position: absolute;
+  top: 0;
+  left: 30rpx;
+}
+
+.coupon-bag .left {
+  display: flex;
+  flex-direction: column;
+  margin-left: 72rpx;
+}
+
+.coupon-bag .title {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #E83433;
+}
+
+.coupon-bag .detail {
+  font-size: 28rpx;
+  color: #E83433;
+}
+
+.coupon-bag .include {
+  font-size: 20rpx;
+  color: #E83433;
+  width: 360rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.coupon-bag .buy {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150rpx;
+  height: 50rpx;
+  background: #e6002d;
+  color: #fff;
+  font-size: 25rpx;
+  border-radius: 25rpx;
+  margin-right: 44rpx;
+}
+
+/* 平台优惠券 */
+.own-item {
+  width: 690rpx;
+  height: 209rpx;
+  background: url("https://img.51jiabo.com/7ed7c05f-9915-4573-830d-6e6a2358ac75.png") no-repeat;
+  background-size: 688rpx 100%;
+  margin: 30rpx 0 0 30rpx;
+}
+
+.long-bg {
+  height: 294rpx;
+  background: url("https://img.51jiabo.com/35c62b09-cb50-42d4-a026-6de5500264c3.png") no-repeat;
+  background-size: 688rpx 100%;
+}
+
+.own-item .top {
+  width: 100%;
+  height: 154rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.own-item .left {
+  display: flex;
+  align-items: center;
+}
+
+.own-item .price {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 210rpx;
+  font-size: 66rpx;
+  font-weight: bold;
+  color: #e6002d;
+}
+
+.own-item .price .symbol {
+  font-size: 36rpx;
+  margin-top: -9rpx;
+  font-weight: normal;
+}
+
+.own-item .ticket-info {
+  font-size: 42rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.own-item .ticket-info .ticket-title {
+  color: #222;
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.own-item .ticket-info .use-time {
+  color: #222222;
+  font-size: 24rpx;
+}
+
+.own-item .get-ticket {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.own-item .get-ticket .get-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150rpx;
+  height: 50rpx;
+  background: #e6002d;
+  color: #fff;
+  font-size: 25rpx;
+  font-weight: normal;
+  border-radius: 25rpx;
+  margin-right: 48rpx;
+}
+
+.own-item .bottom {
+  width: 100%;
+  padding: 0 51rpx 0 31rpx;
+}
+
+.own-item .btm-t {
+  height: 54rpx;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.own-item .desc {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 470rpx;
+  font-size: 20rpx;
+  color: #777777;
+  padding: 0 40rpx 0 20rpx;
+}
+
+.own-item .spread {
+  width: 100%;
+  font-size: 20rpx;
+  color: #777777;
+  padding-left: 20rpx;
+}
+
+.own-item .share {
+  display: flex;
+  align-items: center;
+  font-size: 24rpx;
+  color: #E6002D;
+  padding: 0;
+  margin: 0;
+  background: none;
+}
+
+.own-item .ico {
+  width: 25rpx;
+  height: 24rpx;
+  background: url("https://img.51jiabo.com/0865cd60-7a7a-4905-a7f8-c315f6265ef5.png") no-repeat;
+  background-size: 100%;
+  margin-right: 11rpx;
+}
+
+/* 检票弹层 */
+.check-popup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, .8);
+}
+
+.check-popup .check-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 660rpx;
+  border-radius: 10rpx;
+  background-color: #ffff;
+  padding: 47rpx 0 42rpx;
+}
+
+.check-popup .check-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #22221F;
+  text-align: center;
+}
+
+.not-sign-text {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #E5002D;
+  margin-top: 22rpx;
+}
+
+.check-popup .ico {
+  width: 54rpx;
+  height: 54rpx;
+  background-image: url(https://img.51jiabo.com/e4d8290b-f516-4fcb-adfa-845db461b902.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  margin-right: 14rpx;
+}
+
+.check-popup .check-status {
+  display: flex;
+  align-items: center;
+  font-size: 42rpx;
+  font-weight: bold;
+  color: #222222;
+  padding-bottom: 33rpx;
+}
+
+.check-popup .check-status.not-svip-status {
+  margin-top: 52rpx;
+}
+
+.check-popup .content {
+  width: 574rpx;
+  border-top: 1px solid #F4F4F4;
+  margin: 20rpx 43rpx 0;
+  padding-top: 33rpx;
+}
+
+.check-popup .text {
+  font-size: 24rpx;
+  color: #222222;
+  margin-bottom: 10rpx;
+}
+
+.check-popup .red {
+  font-size: 26rpx;
+  color: #E6002D;
+  font-weight: bold;
+}
+
+.check-popup .small {
+  font-size: 22rpx;
+  color: #E6002D;
+}
+
+.check-popup .confirm {
+  width: 271rpx;
+  height: 75rpx;
+  line-height: 75rpx;
+  text-align: center;
+  background: #E6002D;
+  border-radius: 5rpx;
+  font-size: 36rpx;
+  color: #FFFFFF;
+  margin-top: 30rpx;
+}
+
+.check-popup .to-lottery {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 280rpx;
+  height: 75rpx;
+  background: #E5002D;
+  border-radius: 38rpx;
+  font-size: 32rpx;
+  color: #FFFFFF;
+  margin-top: 30rpx;
+}
+
+/* 添加客服微信运营位 */
+.serve-popup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, .8);
+}
+
+.serve-popup .serve-box {
+  width: 680rpx;
+  border-radius: 10rpx;
+  overflow: hidden;
+  position: relative;
+}
+
+.serve-popup .serve-close {
+  width: 90rpx;
+  height: 90rpx;
+  background: url("https://img.51jiabo.com/295c2108-1dd0-403c-af77-2804b524e676.png") no-repeat;
+  background-size: 30rpx 30rpx;
+  background-position: center;
+  position: absolute;
+  top: 60rpx;
+  right: -10rpx;
+  z-index: 4;
+}
+
+.serve-popup .img {
+  display: flex;
+  width: 100%;
+}
+
+.serve-popup .btn {
+  width: 100%;
+  background-color: transparent;
+}
+
+/* ------------------弹窗样式---------------- */
+/* 公共样式 */
+.pop-background {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  background: rgb(0, 0, 0, .8);
+}
+
+.c-g-title {
+  height: 125rpx;
+  line-height: 125rpx;
+  text-align: center;
+  font-size: 42rpx;
+  color: #222222;
+  background: #F8F8F8;
+}
+
+.pop-body {
+  /* margin: 60rpx 0 80rpx 0; */
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10rpx;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.hexiao-msg {
+  font-size: 26rpx;
+  color: #22221F;
+  text-align: center;
+  padding-bottom: 40rpx;
+}
+
+/* 爆品 */
+.baopin-pop {
+  width: 650rpx;
+}
+
+.baopin-body {
+  height: 386rpx;
+}
+
+/* 优惠券爆品弹窗 */
+.BaY-pop {
+  width: 680rpx;
+  background: white;
+  border-radius: 20rpx;
+  overflow: hidden;
+}
+
+.scroll-box {
+  max-height: 540rpx;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.scroll-box .item-box:last-child {
+  padding-bottom: 30rpx;
+}
+
+.yhq-trank {
+  width: 620rpx;
+  height: 183rpx;
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 0 6rpx 2rpx rgba(0, 0, 0, .1);
+  margin-top: 30rpx;
+  margin-left: 35rpx;
+}
+
+.box-left {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  color: #FFFFFF;
+  width: 230rpx;
+  height: 100%;
+  background: url(https://img.51jiabo.com/8aeb4b43-eb0f-4a28-8c26-da81dd19c678.png) no-repeat;
+  background-size: 100% 100%;
+}
+
+.svip-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 16rpx;
+  color: #FFD6B8;
+  width: 63rpx;
+  height: 30rpx;
+  background: #272636;
+  border-radius: 0 0 10rpx 0;
+}
+
+.box-price {
+  font-size: 36rpx;
+}
+
+.box-price text {
+  font-size: 62rpx;
+}
+
+.box-price-msg {
+  font-size: 20rpx;
+}
+
+.box-right {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 35rpx;
+}
+
+.logo-img {
+  flex-shrink: 0;
+  width: 90rpx;
+  height: 48rpx;
+  background: red;
+  border: 1px solid #BFBFBF;
+}
+
+.logo-name {
+  font-size: 30rpx;
+  color: #333333;
+  white-space: break-all;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  line-height: 38rpx;
+  margin-top: 16rpx;
+}
+
+.btn-one {
+  width: 280rpx;
+  height: 86rpx;
+  background: #E5002D;
+  border-radius: 3rpx;
+  font-size: 32rpx;
+  color: #FFFFFF;
+  text-align: center;
+  line-height: 86rpx;
+  margin: 30rpx auto;
+}
+
+.hotgoods-box {
+  display: flex;
+  width: 620rpx;
+  background: #F8F8F8;
+  border-radius: 5rpx;
+  margin: 30rpx 0 0 30rpx;
+  padding: 30rpx 14rpx;
+}
+
+.goods-img {
+  flex-shrink: 0;
+  width: 330rpx;
+  height: 175rpx;
+  background: red;
+}
+
+.online-img {
+  width: 290rpx;
+  height: 220rpx;
+}
+
+.svip-img-box {
+  position: relative;
+}
+
+.svip-img-box .goods-img {
+  width: 269rpx;
+  height: 212rpx;
+}
+
+.msg-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  margin-left: 16rpx;
+}
+
+.msg-list .hot-name {
+  font-size: 28rpx;
+  color: #222222;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.info-item {
+  font-size: 24rpx;
+  font-weight: bold;
+  color: #666666;
+}
+
+.info-item .num {
+  font-size: 24rpx;
+  color: #E6002D;
+}
+
+/* 索票成功弹层 */
+.get-ticket-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.ticket-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 518rpx;
+  height: 214rpx;
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgYAAADWCAMAAACdQLqUAAAAn1BMVEUAAAD////////////////////mAC3////////////////////mAC3mAC3mAC3mAC3////mAC3////////////////mAC3////mAC3mAC3////+8/XpHUb/+vvyeJD84+j4ucX2p7f1k6f97fH83OL6ztb3r77xcInvWXbvV3XtQmPrLFHnCDT2pbXoF0DxdI3uTm3pIUj7197vXXrvXHnFeH/1AAAAGXRSTlMA/h93+eS+87hYuadNhPPypvTycm9OTNdOob/uLgAAA8JJREFUeNrs3elu00AUgNFx0iZp6RKxFN3J1pS1gFgk3v/ZsNIiSuO/nkzkc57hkz2+M7YTPRuNz09Ppm9n41FiqEbzJj9q5kIYqDcv8xPTs8QAvW7yf5pXicE5a/IzjevB4Iymec/U+mBo5rnDi8SgjJrcoXE5GJZx7jRODMksd5olhuQ0dzpNDMlJ7nSSGBIZ4KbAg3NLRDwwcozjo4vJVdCDbe6wjcpcTW5S6zLox3KR9yyWUZ/LlG6CvtzvbzTfR40u0iTozafmWQU/okqTdB305+ciP7H4HHW6TkGfltt/R1K3Na4LHsigb8v17Wa12tyuf0W9ZIAMkAEyQAbIABkcxl1UTgYl5KicDEr4GJWTATJABsgAGSCDA6j00NFfMijB3ICdD1E5GSADZIAMkAEyOIDfUTkZ9M/cgJ1NVE4GJXyLyskAGSADZIAMSvsSlZNBCauonAxKeBeVk0EJ36NyMkAGyAAZIIPSvkblZFDCIiong/7JgJabAsdBBsgAGSCDgmwt0bLRTMuxE1oOoXEcZIAMkAEyKMirrOy8j8rJoH8+c8FOrf9mfiQDZIAMkAEyQAYH4EP6tMwN2FlH5WSADJABMkAGyKA4P+6nZW7Azl1UTgbIABkgA2SADIrzpEDL3ICWKSLHQQbIABkgA2RQlpPJtMwNaHlrieMgA2SADP60d6+7TcNgAIadnra1HWgcJOx0W+EHY0KVONz/vWGVCY01f+258vNcw6vEcRJ/yAAZ1PY7Nk4G5dk3IHNKKpkzkzkPMkAGyAAZVGTyGpk5jGSmspKZ0cx5kAEyQAbIoKrvsXEyKM++AUdjbJwMynNT4DzIABkgA2RQ1S42TgbledFMZvuIzEdonAcZIANkgAwq8isrR/excTKoYYiNk0EN32LjZIAMkAEyQAbIoDoH6ZM5HpOjh9g4GSADZIAMkAEyeAX72DgZlGffgKMvsXEyQAbIABkgA2RQnScFMvsGHH2NjZMBMkAGyAAZ1GViO5kMOA8yQAbIABkgg5p2d/v72/HX/u5nbJcMytodbtOT4dDuWIXwNlLOjzE9M7Z6ItqbsIoU8zCk/wyN/uG+CttIKY9DemF4jC3ahnAdKWM3phNji+uD65B9Wt1ECjikCZ9jY25W20A5syFNGGaBnszTpHmgJ5dp0mWgJ8s0aRnoySJNWgR6IgPcFPhrbYmIB0ZsH/HPJk3YBPoyu0gnLlwMunN1+qL5KtCdD8OLCt4HOvTxXXrmwrWgU7PNkJ4MG+uCfs3m6+VisVzPW47gD55h1a0Ru0lYAAAAAElFTkSuQmCC') no-repeat;
+  background-size: 100%;
+  padding: 0 30rpx 0 16rpx;
+  margin-top: 14rpx;
+  margin-left: 51rpx;
+}
+
+.ticket-box .info {
+  display: flex;
+  color: #ffe7ec;
+  align-items: center;
+}
+
+.ticket-box .info .lab {
+  font-size: 30rpx;
+  margin-top: -35rpx;
+}
+
+.ticket-box .info .sum {
+  font-size: 81rpx;
+  margin-left: 5rpx;
+  margin-right: 16rpx;
+}
+
+.ticket-box .info .type {
+  font-size: 29rpx;
+}
+
+.ticket-box .station {
+  width: 100rpx;
+  font-size: 32rpx;
+  text-align: center;
+  color: #fff;
+}
+
+.get-success {
+  width: 620rpx;
+  background: #fff;
+  border-radius: 5rpx;
+  position: relative;
+  padding: 37rpx 0 56rpx;
+}
+
+.get-success .txt-box {
+  text-align: center;
+  border-bottom: 1px solid #dedede;
+  padding-bottom: 33rpx;
+}
+
+.get-success .txt-box .tit1 {
+  font-size: 42rpx;
+  font-weight: bold;
+}
+
+.get-success .txt-box .tit2 {
+  font-size: 28rpx;
+  margin-top: 7rpx;
+  padding: 0 60rpx;
+}
+
+.get-success .remaind {
+  font-size: 24rpx;
+  color: #777;
+  margin-top: 39rpx;
+  padding: 0 45rpx;
+}
+
+.get-success .remaind text {
+  color: #e6002d;
+  font-weight: bold;
+}
+
+.get-success .share {
+  width: 530rpx;
+  height: 83rpx;
+  border-radius: 5rpx;
+  background: #e6002d;
+  color: #fff;
+  font-size: 32rpx;
+  text-align: center;
+  line-height: 83rpx;
+  margin-top: 28rpx;
+  margin-left: 45rpx;
+}
+
+.get-success .btn-box {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 45rpx;
+}
+
+.get-success .btn-box view {
+  margin-left: 30rpx;
+}
+
+.get-success .success-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 110rpx;
+  border-radius: 5rpx;
+  background: linear-gradient(0deg, #E6002D 0%, #FF214C 100%);
+  box-shadow: 0 -6rpx 2rpx 0 rgba(64, 9, 20, 0.2) inset;
+  color: #fff;
+  font-size: 30rpx;
+  line-height: 50rpx;
+  white-space: pre-wrap;
+  text-align: left;
+  margin-top: 28rpx;
+  padding: 0 22rpx;
+}
+
+.get-success .close {
+  position: absolute;
+  top: -50rpx;
+  right: -50rpx;
+  width: 99rpx;
+  height: 99rpx;
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGMAAABjCAMAAAC45U6nAAAArlBMVEUAAACWlpabm5uhoaGcnJyenp6ysrKmpqb+/v6xsbGtra319fWysrL////////+/v7u7u66urri4uLJycn39/f39/f19fXq6uqxsbH19fX+/v77+/v8/Pz19fXx8fHy8vLo6OjW1tb09PT4+Pjz8/P39/ft7e3p6enn5+fl5eXf39/Dw8P09PTz8/Pp6en////6+vrf39+9vb20tLT8/Pz39/fFxcW7u7vV1dXU1NT38mkiAAAAL3RSTlMAAwsHDhAfFuskG7Qt9vHidypTNNu9rWsq4Ofg2sqRe2I+2sCZtoFpWVdPMtSaakUjj1gAAAN0SURBVGje7NPbjtowEAbg1rVjJyEHCAmwnHfZc7UDbID2/V+sxSKdykNM4sJd/xskC/njnzFf/uf6+Upz2/sxNwUwNwUwVxS+Ya6kkOtJ/lWpAxhjhHFUqMDMUMVRIPefc1yUGoFzxo/RnzWKE1Hdfy7IIOJQAgFhBhmjikuJCsBfTk5aIecEwfVtIvD8YeeYoe8FQjtcnFNaEPiDuQj899f5Kpzej0aj+2m4mr+++78dLNMcMYiTIP1lWvRVHEGVKFb9Il368qQYSDMCS3DZXRTjuAQzZTwuFl3JsQoizQk9pe5HrhAwGJUPunpiBGlBeL1HBbaox57XAqGEyGZJCfaUySwTFGlIcPmWR3A5Uf4mOUHsk6oI73lSQpOUk2evQqzTokSaQNMkKUWaEE930Dx3TxSpNap1Bykh7EgaVIunBq1xJOQggXZJBvKIWIoYkxK9CbTNpCeMadXW0MvIHqB9HjK9ElKE1tD7nkUORjTTe68rggtnelIJuCTR02K4djqqPzW6Ibgl7Ooi5GnRUckP5WiogawdllEjB9fkRpG6hysXytlQC0mfLxoVwf2iBDPrHT2DcrcmR4XPK8RiiOWYEj/3mzU53Ox/kMPxUtgNXSNIY2Ls9p/bCkFi+7nfgZE4Dfjf/0ODOBl+WNKpbLYmstZH9KuhjwYixjqyPtCsETEOzPQzshDycuWLAitiJ0C9SPJ6yTrmMVgROwHxXC+EGvgn594qAitiJyBaecbSqeGHAHaEEnTpjBr4rNhwChcQOwHTIbP00Pvo3MMFxE7A92H9rJg2WGcEduRwsBLQ7zBtsLYGIodf7ZqxCsMwEEOXbv6A0KFLszZkSKH//2cFb63gxVWC6kCO7Mbx3Ukn3bK86Ij5GjhD7gHvYf4rfQ/OK35zziuuDzd3tT6gzs0a1DqHfuX0Eu1X3Hednqh9l/HD6+2MH4qDPkY9BQcBzw2sFTwnXmJxBuUlzK8c7sP8Snmiy+GUJwb5rvL2YTfenpg/AnNUYh5MzLWB+TyhMwT0koTuE9WvWIdrPAJ0uHU9cWzSE0fQEwO6aFTfZZ16cHRqS2+fNUBv93yDIr5BAd/A9z+m6n/cH7cysf/xdx+nyY+6rPhRXfhqW/3BjnzODX5tZ76z5593uQfw4z5D13sZNb6uUr+POMieDOz7nLF7vAGEEH/sbRwOLAAAAABJRU5ErkJggg==") no-repeat;
+  background-size: 100%;
+}
+
+.xmb-tradeIn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 690rpx;
+  height: 90rpx;
+  background: #FFE9EC;
+  border-radius: 45rpx;
+  position: fixed;
+  bottom: 130rpx;
+  left: 30rpx;
+  z-index: 9;
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #D3122E;
+}
+
+.xmb-tradeIn .icon {
+  width: 41rpx;
+  height: 35rpx;
+  background: url(https://img.51jiabo.com/73ac393e-0a5f-4aea-80ed-265e2c69c63d.png) no-repeat;
+  background-size: 100% 100%;
+  margin-right: 20rpx;
+}
+
+.coupon-list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 0 30rpx;
+  margin-top: 30rpx;
+}
+
+.coupon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 225rpx;
+  height: 330rpx;
+  border-radius: 10rpx;
+  overflow: hidden;
+  background-color: #fff;
+  padding-bottom: 20rpx;
+  margin-bottom: 20rpx;
+  margin-right: 8rpx;
+}
+
+.coupon-item:nth-child(3n) {
+  margin-right: 0;
+}
+
+.cp-item-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 125rpx;
+  padding: 20rpx 0 15rpx;
+  background-color: #FEBD6F;
+  color: #fff;
+  font-size: 28rpx;
+}
+
+.cp-item-logo {
+  width: 100rpx;
+  height: 50rpx;
+  border-radius: 50rpx;
+  margin-bottom: 10rpx;
+}
+
+.cp-item-name {
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cp-price {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #FF0036;
+  margin-top: 20rpx;
+}
+
+.cp-price-tips {
+  font-size: 24rpx;
+  color: #B0B0B0;
+  transform: translateY(-15rpx);
+}
+
+.coupon-btn {
+  width: 180rpx;
+  height: 56rpx;
+  line-height: 56rpx;
+  text-align: center;
+  border-radius: 56rpx;
+  background-color: #FF0036;
+  color: #fff;
+  font-size: 28rpx;
+}
+
+.coupon-btn-dis {
+  background-color: #ccc;
+}
+
+/* 优惠券领取成功弹层 */
+
+.get-ticket-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.get-ticket-box .get-ticket {
+  width: 620rpx;
+  background: #fff;
+  border-radius: 5rpx;
+  position: relative;
+  padding: 37rpx 0 56rpx;
+}
+
+.get-ticket-box .get-ticket .txt-box {
+  text-align: center;
+  border-bottom: 1px solid #dedede;
+  padding-bottom: 33rpx;
+}
+
+.get-ticket-box .get-ticket .txt-box .tit1 {
+  font-size: 42rpx;
+  font-weight: bold;
+}
+
+.get-ticket-box .get-ticket .txt-box .tit2 {
+  font-size: 28rpx;
+  margin-top: 7rpx;
+  padding: 0 60rpx;
+}
+
+.coupon-box {
+  display: flex;
+  width: 529rpx;
+  height: 153rpx;
+  box-shadow: 3px 0 15rpx 5rpx rgba(81, 81, 81, 0.05);
+  margin-top: 43rpx;
+  margin-left: 45rpx;
+}
+
+.coupon-box .left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 192rpx;
+  height: 153rpx;
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPoAAADICAMAAAD2gAypAAAAdVBMVEUAAABemeFemeFemeFemeFemeFemeFemeFemeFemeFemeFemeFemeFemeFemeFemeFemeFemeFemeFemeFemeFemeFemeFemeFemeFemeFemeFemeFemeFemeFemeFemeFemeFemeFemeFemeFemeFemeFemeGd/o3xAAAAJnRSTlMABPcX/RDs1Swj3aU5CLJ/H8aaZU1HC/Lmv2yLVbqQhnhvXEE0WnhogKkAAAK+SURBVHja7d0LetNADEXhY4LBpjENjRseBUKacve/xFraxvG/A31xbI1GoyFae+hGfIgV80OkgPPHKLH5FSWK85mnHJTvOtpThGhrhGinCNGGCNGWCNHmCNFeI0T7GiHKpMzi+/3+LUbaXC6BRRp5WD9Hylybi5Y59C+xYrgpSzQb4PgpSlTszt+d8hgjyvIjQrSXCNHuEaIdIkRT5nS0S4RoU4RAu81MUxbnKM8x6k+bc+EKXJSPewKztS7J4/dIKfO4PfRoSXvmCrw5v+oJcJB+3bqTxlmNpvyPEU35yNP+RYj2FiHaGCF9RVb8qx8jhHerlTIo03hvGb5Dn7RdFbOysSCB1bluS/gTK2Uet4ceLc7S93sCo/K4U4fOII29m4iUpbl416yh/YwQ7Rwhfd+c+Py6eGqBuDNa2TNI+xshyqhsIPP+6B367ygBz85adBhflDM6NlhL0e7aXLSw/tMTJu32CwzXOGl7KhLv4LFQTsp8Du8MXdAuYPZhqhHShy5+4MWvOe/H7aRcvskTWeWhn160ShduYVJ2VNhrc9Ey1+EvV+VHXb7nZs3gE+9oyVBG5bvO3ktj7qAS982Ja3P7RFEXfT+8cs0uP/syak88ec+5jdY+Im7KpYu9Nhctc+jKbEY/oQRm5RimhIpdeeAp3oWbfvKYszdaP2VQPFtSmdPpf3Xx9GBl+xhlUBbnKK8xct8K4L0L4midtceDtXdMXZuLljn0q7M6tYGT9P7CAIu0FO++sVPaMai/ndd5GYS+b07cLanM6fSd0fcI4T38QlmUhRrvRmuHfnfWqICjdMXOcJOe6wzOBau9Nhctc+irdMctgeUpTmyksXdThbI0F8qkzGTxzt/C20xDmyO03/EUIf1E0TVCoM3nKAdlocY7RjbaLeYO/azM4BMOzqd9g/INp6/NRWsP3egddQuUDVZCUCYAAAAASUVORK5CYII=") no-repeat;
+  background-size: 100%;
+  color: #fff;
+}
+
+.coupon-box .left .price {
+  display: flex;
+  align-items: baseline;
+  font-size: 52rpx;
+  font-weight: bold;
+  margin-top: 4rpx;
+}
+
+.coupon-box .left .price .lab {
+  font-size: 31rpx;
+  font-weight: normal;
+}
+
+.coupon-box .left .cond {
+  font-size: 17rpx;
+  margin-top: -10rpx;
+}
+
+.coupon-box .right {
+  display: flex;
+  flex-direction: column;
+  margin-left: 65rpx;
+}
+
+.coupon-box .right .s-img {
+  width: 94rpx;
+  height: 51rpx;
+  border: 1px solid #e5e5e5;
+  margin-top: 15rpx;
+}
+
+.coupon-box .right .name {
+  font-size: 23rpx;
+  margin-top: 8rpx;
+}
+
+.coupon-box .right .date {
+  font-size: 17rpx;
+  color: #666;
+  margin-top: 2rpx;
+}
+
+.get-ticket .share {
+  width: 530rpx;
+  height: 83rpx;
+  border-radius: 5rpx;
+  background: #e6002d;
+  color: #fff;
+  font-size: 32rpx;
+  text-align: center;
+  line-height: 83rpx;
+  margin-top: 28rpx;
+  margin-left: 45rpx;
+}
+
+.get-ticket .remaind {
+  font-size: 24rpx;
+  color: #777;
+  margin-top: 44rpx;
+  padding: 0 45rpx;
+}
+
+.get-ticket .remaind .remaind-txt {
+  color: #e6002d;
+  font-weight: bold;
+}
+
+.get-ticket .close {
+  position: absolute;
+  top: -50rpx;
+  right: -50rpx;
+  width: 99rpx;
+  height: 99rpx;
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGMAAABjCAMAAAC45U6nAAAArlBMVEUAAACWlpabm5uhoaGcnJyenp6ysrKmpqb+/v6xsbGtra319fWysrL////////+/v7u7u66urri4uLJycn39/f39/f19fXq6uqxsbH19fX+/v77+/v8/Pz19fXx8fHy8vLo6OjW1tb09PT4+Pjz8/P39/ft7e3p6enn5+fl5eXf39/Dw8P09PTz8/Pp6en////6+vrf39+9vb20tLT8/Pz39/fFxcW7u7vV1dXU1NT38mkiAAAAL3RSTlMAAwsHDhAfFuskG7Qt9vHidypTNNu9rWsq4Ofg2sqRe2I+2sCZtoFpWVdPMtSaakUjj1gAAAN0SURBVGje7NPbjtowEAbg1rVjJyEHCAmwnHfZc7UDbID2/V+sxSKdykNM4sJd/xskC/njnzFf/uf6+Upz2/sxNwUwNwUwVxS+Ya6kkOtJ/lWpAxhjhHFUqMDMUMVRIPefc1yUGoFzxo/RnzWKE1Hdfy7IIOJQAgFhBhmjikuJCsBfTk5aIecEwfVtIvD8YeeYoe8FQjtcnFNaEPiDuQj899f5Kpzej0aj+2m4mr+++78dLNMcMYiTIP1lWvRVHEGVKFb9Il368qQYSDMCS3DZXRTjuAQzZTwuFl3JsQoizQk9pe5HrhAwGJUPunpiBGlBeL1HBbaox57XAqGEyGZJCfaUySwTFGlIcPmWR3A5Uf4mOUHsk6oI73lSQpOUk2evQqzTokSaQNMkKUWaEE930Dx3TxSpNap1Bykh7EgaVIunBq1xJOQggXZJBvKIWIoYkxK9CbTNpCeMadXW0MvIHqB9HjK9ElKE1tD7nkUORjTTe68rggtnelIJuCTR02K4djqqPzW6Ibgl7Ooi5GnRUckP5WiogawdllEjB9fkRpG6hysXytlQC0mfLxoVwf2iBDPrHT2DcrcmR4XPK8RiiOWYEj/3mzU53Ox/kMPxUtgNXSNIY2Ls9p/bCkFi+7nfgZE4Dfjf/0ODOBl+WNKpbLYmstZH9KuhjwYixjqyPtCsETEOzPQzshDycuWLAitiJ0C9SPJ6yTrmMVgROwHxXC+EGvgn594qAitiJyBaecbSqeGHAHaEEnTpjBr4rNhwChcQOwHTIbP00Pvo3MMFxE7A92H9rJg2WGcEduRwsBLQ7zBtsLYGIodf7ZqxCsMwEEOXbv6A0KFLszZkSKH//2cFb63gxVWC6kCO7Mbx3Ukn3bK86Ij5GjhD7gHvYf4rfQ/OK35zziuuDzd3tT6gzs0a1DqHfuX0Eu1X3Hednqh9l/HD6+2MH4qDPkY9BQcBzw2sFTwnXmJxBuUlzK8c7sP8Snmiy+GUJwb5rvL2YTfenpg/AnNUYh5MzLWB+TyhMwT0koTuE9WvWIdrPAJ0uHU9cWzSE0fQEwO6aFTfZZ16cHRqS2+fNUBv93yDIr5BAd/A9z+m6n/cH7cysf/xdx+nyY+6rPhRXfhqW/3BjnzODX5tZ76z5593uQfw4z5D13sZNb6uUr+POMieDOz7nLF7vAGEEH/sbRwOLAAAAABJRU5ErkJggg==") no-repeat;
+  background-size: 100%;
+}
+
+.zero-ticket-pop {
+  position: relative;
+  width: 690rpx;
+  height: auto;
+  background-color: #fff;
+  border-radius: 30rpx;
+  padding: 65rpx 32rpx 55rpx;
+  text-align: center;
+}
+
+.z-tit {
+  font-size: 52rpx;
+  font-weight: bold;
+  color: #E6002D;
+}
+
+.z-area {
+  font-size: 28rpx;
+  margin-bottom: 30rpx;
+}
+
+.z-img {
+  width: 623rpx;
+  height: 372rpx;
+}
+
+.z-time {
+  font-size: 24prx;
+  color: #767676;
+  margin: 5rpx 0 30rpx;
+}
+
+.z-btn {
+  width: 100%;
+  height: 107rpx;
+  line-height: 107rpx;
+  border-radius: 107rpx;
+  text-align: center;
+  font-size: 42rpx;
+  font-weight: bold;
+  color: #fff;
+  background-color: #E6002D;
+}
+
+.z-del {
+  width: 80rpx;
+  height: 80rpx;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.z-del-icon {
+  width: 19rpx;
+  height: 20rpx;
+  position: absolute;
+  top: 26rpx;
+  right: 30rpx;
+}
+
+.z-pop2 {
+  height: 719rpx;
+}
+
+.z-btn2 {
+  margin-top: 110rpx;
+}
+
+/*协议  */
+.page {
+  position: relative;
+  background: #fff;
+}
+
+.protocol-dialog {
+  position: fixed;
+  width: 100%;
+  z-index: 1200;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 40rpx 20rpx;
+  height: 100%;
+}
+
+.protocol-dialog .img-box {
+  width: 100%;
+  height: 680rpx;
+  overflow-y: scroll;
+}
+
+.protocol-dialog image {
+  width: 100%;
+  height: 100%;
+}
+
+.protocol-main {
+  width: 690rpx;
+  background: #fff;
+  padding: 40rpx 20rpx;
+  margin: auto;
+  border-radius: 10rpx;
+}
+
+.protocol-dialog .protocol-title {
+  color: #000;
+  font-size: 40rpx;
+  text-align: center;
+  font-weight: 600;
+  line-height: 60rpx;
+  margin-bottom: 10rpx;
+}
+
+.closed {
+  width: 215rpx;
+  height: 60rpx;
+  background: #e6002d;
+  border-radius: 80rpx;
+  font-size: 28rpx;
+  color: #fff;
+  margin: 20rpx auto;
+}

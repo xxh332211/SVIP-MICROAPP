@@ -1,0 +1,41 @@
+<modal bind:close="close">
+  <view class="goods-buy">
+    <view class="cont">
+      <image src="{{image}}" mode="aspectFill"></image>
+      <view class="info">
+        <view>
+          <view class="price">
+            <block wx:if="{{!goodsInfo.seckill}}">
+            <text class="order-price" wx:if="{{goodsInfo.product.catalog === 0}}">定</text><text class="vip-price" wx:if="{{goodsInfo.product.catalog === 3 && isSvip}}">SVIP</text><text class="vip-price" wx:if="{{goodsInfo.product.grouponProductId && tuangou}}">团</text>
+            </block>
+            <text>￥{{seckill || tuangou ? goodsInfo.product.promotionPrice : goodsInfo.product.price}}</text>
+            <view class="tag" wx:if="{{seckill}}">限时活动</view>
+          </view>
+          <view class="sub-price" wx:if="{{!seckill && !tuangou}}">
+            <text>{{goodsInfo.product.catalog === 0 ? '销售价' : '市场价'}}</text>
+            <text>￥{{goodsInfo.product.catalog === 0 ? goodsInfo.product.sellingPrice : goodsInfo.product.marketPrice}}</text>
+          </view>
+          <!--  wx:elif="{{goodsInfo.product.catalog === 0 || (goodsInfo.product.catalog === 3 && isSvip)}}" -->
+          <view class="sub-price" wx:else>
+            <text>销售价</text>
+            <text>￥{{goodsInfo.product.sellingPrice}}</text>
+          </view>
+          <view class="desc">
+            <text wx:if="{{goodsInfo.product.unlimitStock}}">有货</text>
+            <text wx:else>剩余{{goodsInfo.product.stock}}件</text>
+            <text>{{goodsInfo.product.orderLimit ? ('每人限购' + goodsInfo.product.orderLimit + '件') : ''}}</text>
+          </view>
+        </view>
+        <view class="buy-count">
+          <view class="title">购买数量</view>
+          <view class="count">
+            <image class="count-btn minus" bind:tap="minus" src="https://img.51jiabo.com/imgs-mall/minus.svg" mode="aspectFit" lazy-load="false"></image>
+            <view class="num">{{count}}</view>
+            <image class="count-btn plus" bind:tap="plus" src="https://img.51jiabo.com/imgs-mall/plus.svg" mode="aspectFit" lazy-load="false"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="buy-btn" bind:tap="next">下一步 →</view>
+  </view>
+</modal>

@@ -1,0 +1,10 @@
+<!--components/upgradeSvip/upgradeSvip.wxml-->
+<!-- 升级svip提示 -->
+<view class="update-popup">
+  <view class="update-box">
+    <view class="h5">恭喜您成功升级为超级会员SVIP</view>
+    <view class="p" wx:if="{{orderType == 1}}">您已成功升级为超级会员SVIP，您上一届购买的会员权益并未使用，已为您0元顺延至本届，如本届权益仍未使用将不再顺延。</view>
+    <view class="p" wx:if="{{orderType == 2}}">您已成功升级为超级会员SVIP，您在上一届展会期间购买的SVIP会员包含本届权益，本届为赠送会员，如权益未使用展会过后将失效。</view>
+    <view class="sure" bindtap="closeUpdate">确定</view>
+  </view>
+</view>

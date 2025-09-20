@@ -1,0 +1,128 @@
+<!--pages/user/expoOrder/expoOrder.wxml-->
+<online-serve />
+<view class="order-wrap">
+  <view wx:if="{{cityId == 6}}">
+    <view class="lottery-report" wx:if="{{showReport}}">
+      <view class="report-box">
+        <view class="horn"></view>
+        <swiper class='report' autoplay="true" vertical="true" circular="true" interval="5000">
+          <block wx:for="{{lotteryReport}}" wx:key="index">
+            <swiper-item class="swiper-item">
+              <view class="text">{{item.mobile}}用户抽到【{{item.awardName}}】</view>
+            </swiper-item>
+          </block>
+        </swiper>
+      </view>
+      <view class="rule-box" bindtap="toggleRule">
+        <view class="ico"></view>抽奖活动规则
+      </view>
+    </view>
+    <view class="log-order" wx:if="{{zhanzhong}}" bindtap="toSelfHelp">还有订单，录单参与活动~ </view>
+  </view>
+</view>
+<view class='order-box' wx:if="{{expoOrder && expoOrder.length != 0}}">
+
+  <!-- 单个 -->
+  <view class='order-item' wx:for="{{expoOrder}}" wx:key="index">
+    <view class='top'>
+      <view class='goods-title'>{{item.brand_name}}</view>
+      <view class='order-num'>订单号：{{item.order_num}}</view>
+    </view>
+
+    <view class='center' wx:for="{{item.goods}}" wx:key="index" wx:for-item="v">
+      <view class='c-left'>
+        <image wx:if='{{v.image_url}}' src='{{v.image_url}}'></image>
+        <image wx:else src='https://img.51jiabo.com/b3cfad43-7345-4076-8001-a286db14b0a4.jpg'></image>
+        <view class='content'>
+          <view class='name'>{{v.goods_name}}</view>
+          <view class='price' wx:if="{{v.special_price && (v.special_price!=0 || v.special_price!=0.00)}}">
+            单价：{{v.special_price}}</view>
+        </view>
+      </view>
+
+      <view class='c-right'>
+        <view class='status {{(item.order_status == "已付定金" || item.order_status == "已付全款")?"green":"red"}}'>
+          {{item.order_status}}</view>
+        <view class='unit' wx:if="{{v.goods_quantity && v.goods_quantity != 0}}">x{{v.goods_quantity}}</view>
+      </view>
+    </view>
+
+    <view class='bottom'>
+      <view class="bottom-left">
+        <view class="pay-status">
+          <view class='pay'>{{item.order_status}}:</view>
+          <view class='amount' wx:if="{{item.paid_money != '0.00'}}">￥{{item.paid_money}}</view>
+          <view class='amount' wx:else>￥{{item.full_pay_money}}</view>
+        </view>
+        <view class="date">{{item.create_time}}</view>
+      </view>
+      <!-- draw_type按钮类型：4：抽奖按钮3：兑奖按钮2：已领奖1：没有按钮 -->
+      <view class="lottery-btn" data-item="{{item}}" bindtap="getLottery" wx:if="{{item.draw_type == 4}}">抽 奖</view>
+      <view class="lottery-btn redeem" data-item="{{item}}" bindtap="redeemPrize" wx:if="{{item.draw_type == 3}}">兑 奖
+      </view>
+      <view class="has-lottery" wx:if="{{item.draw_type == 2}}"></view>
+    </view>
+  </view>
+</view>
+
+<!--空白页-->
+<view wx:if="{{expoOrder.length == 0}}" class='middle'>
+  <view class='empty-content flex-column'>
+    <image src='/imgs/empty.png'></image>
+    <text class=''>暂时没有订单哦！</text>
+  </view>
+</view>
+
+<!-- 抽奖规则 -->
+<view class="rule-popup" wx:if="{{rulePopup}}">
+  <view class="rule-box">
+    <view class="close" bindtap="toggleRule"></view>
+    <view class="title">下单抽奖活动规则</view>
+    <text class="rule-text">{{lotteryRule}}</text>
+    <image class="rule-img" src="https://img.51jiabo.com/b49e5f2a-c1b7-4572-922a-f3c0571b9442.png" mode="widthFix">
+    </image>
+  </view>
+</view>
+<!-- 抽奖动画 -->
+<view class="lottery-loading" wx:if="{{loading}}">
+  <image class="loading-img" src="https://img.51jiabo.com/24261726-dd3b-4055-be9c-ce775b40139b.gif"></image>
+</view>
+<!-- 抽奖弹层 -->
+<view class="lottery-popup" hidden="{{!showLottery}}" catchtouchmove='stop'>
+  <image class="bg" src="https://img.51jiabo.com/0754e3e8-b151-4570-94fc-dcc799630073.png" mode="widthFix"></image>
+  <view class="lottery-box">
+    <view class="head">
+      <view class="head-box">
+        <view class="head-text">恭喜您</view>
+        <view class="head-text">抽中{{prizeInfo.awardName}}</view>
+        <image class="prize" src="{{prizeInfo.awardImageUrl}}"></image>
+      </view>
+    </view>
+    <image class="xs" src="https://img.51jiabo.com/b952d657-d279-4f28-83b3-1144ede19904.png"></image>
+    <view class="qr-box">
+      <canvas class='canvas' disable-scroll="true" canvas-id='qrcode'></canvas>
+      <view class="qr-text">扫码领奖</view>
+      <view class="know-btn" bindtap="closeLottery">知道了</view>
+      <text class="tips-text">{{prizeInfo.tips}}</text>
+    </view>
+  </view>
+</view>
+
+<!-- 没有奖品弹层 -->
+<view class="lottery-popup" hidden="{{!showNotPrize}}">
+  <image class="bg" src="https://img.51jiabo.com/0754e3e8-b151-4570-94fc-dcc799630073.png" mode="widthFix"></image>
+  <view class="lottery-box">
+    <view class="head">
+      <view class="head-box">
+        <view class="not-price">您来晚了，线上没有奖品了</view>
+        <image class="prize" src="https://img.51jiabo.com/6338439d-a780-4989-972e-89dd113dd900.png"></image>
+      </view>
+    </view>
+    <image class="xs" src="https://img.51jiabo.com/b952d657-d279-4f28-83b3-1144ede19904.png"></image>
+    <view class="qr-box">
+      <view class="first-tip">请到展会现场</view>
+      <view class="second-tip">统一活动中心参与抽奖</view>
+      <view class="know-btn" bindtap="closeLottery">知道了</view>
+    </view>
+  </view>
+</view>

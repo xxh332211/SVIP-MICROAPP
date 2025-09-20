@@ -1,0 +1,36 @@
+/* components/banner/bannerDird.wxss */
+@import "../../../app.wxss";
+
+.comp {
+  position: relative;
+  width: 100%;
+  min-height: 344rpx;
+  justify-content: space-around;
+}
+
+.row-wrap {
+  width: 100%;
+  padding: 15rpx 0;
+  justify-content: space-around;
+}
+
+.row-item {
+  justify-content: space-around;
+  flex: 1;
+  flex-basis: auto;
+  align-items: center;
+  max-width: 150rpx;
+  overflow: hidden;
+}
+
+.texts {
+  font-size: 28rpx;
+  color: #222;
+  max-width: 150rpx;
+  font-weight: 600;
+}
+
+.row-item-image {
+  width: 100rpx;
+  height: 100rpx;
+}

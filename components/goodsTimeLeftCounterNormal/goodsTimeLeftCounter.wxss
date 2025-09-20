@@ -1,0 +1,17 @@
+.counter{
+  display: inline-flex;
+  align-items: center;
+}
+.counter .time{
+  min-width: 40rpx;
+  height: 40rpx;
+  font-size: 24rpx;
+  line-height: 40rpx;
+  text-align: center;
+  border-radius: 5rpx;
+  display: block;
+}
+.counter .label{
+  margin: 0 4rpx;
+  display: block;
+}

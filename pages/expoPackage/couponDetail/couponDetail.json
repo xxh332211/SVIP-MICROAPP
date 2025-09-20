@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "优惠券详情",
+  "usingComponents": {
+    "float-navigate": "../../../pages-abs/components/floatNavigate/floatNavigate"
+  }
+}

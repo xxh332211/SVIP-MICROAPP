@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "详情",
+  "usingComponents": {
+    "buy-modal": "/components/goodsBuyModal/goodsBuyModal",
+    "coupon-modal": "/components/goodsCouponModal/goodsCouponModal"
+  }
+}

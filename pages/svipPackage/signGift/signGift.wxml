@@ -1,0 +1,43 @@
+<!--pages/svipPackage//signGift/signGift.wxml-->
+<online-serve />
+<view class="wrap">
+  <view class="title">超值签到礼</view>
+  <view class="swiper-box">
+    <view class="indicate" wx:if="{{signData.image_info.masterInfo.list.length > 1}}">
+      {{current+1}}/{{signData.image_info.masterInfo.list.length}}</view>
+    <swiper class="gifg-swiper" current="0" circular bindchange="swiperChange">
+      <block wx:for="{{signData.image_info.masterInfo.list}}" wx:key="index">
+        <swiper-item wx:if="{{item.type == '4'}}">
+          <video id="video1" class="gift-video" poster="{{item.cover_img_url}}" controls="{{false}}"
+            show-center-play-btn="{{false}}" enable-progress-gesture="{{false}}" data-play="isPlay1" bindtap="playVideo"
+            bindpause="videoPause" src="{{item.image_url}}">
+            <view class="play" wx:if="{{!isPlay1}}"></view>
+          </video>
+        </swiper-item>
+        <swiper-item wx:else>
+          <image src="{{item.image_url}}"></image>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view class="name">{{signData.gift_name}}</view>
+</view>
+<view class="wrap">
+  <view class="title">超额优惠券</view>
+  <image class="coupon-img" mode="widthFix" src="https://img.51jiabo.com/fb50614a-7735-455c-987a-ab36488f41f5.png">
+  </image>
+  <view class="btn-wrap">
+    <image class="lottery-img" mode="widthFix" src="{{signData.buttonImg}}" bindtap="toBuySvip"></image>
+    <button class='auth-login' wx:if="{{!isLogin}}" open-type='getPhoneNumber'
+      bindgetphonenumber="getPhoneNumber"></button>
+  </view>
+</view>
+
+<view class="svip-popup" wx:if="{{isSvip}}">
+  <view class="svip-box">
+    <view class="svip-title">超级会员到会员中心抽奖查看权益哟~</view>
+    <view class="to-center" bindtap="toSvipCenter">去查看</view>
+  </view>
+</view>
+<!-- svip升级弹层 -->
+<upgradeSvip wx:if="{{showUpdatePopup}}" orderType="{{orderType}}" bindcloseUpdate="closeUpdate"></upgradeSvip>

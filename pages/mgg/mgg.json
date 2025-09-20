@@ -1,0 +1,13 @@
+{
+  "navigationBarTitleText": "华夏家博",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "authorize":"../../components/authorize/authorize",
+    "coupon-btn":"../../components/couponBtn/couponBtn",
+    "coupon-popup":"../../components/couponPopup/couponPopup",
+    "tab-bar": "../../custom-tab-bar/index",
+    "hot-goods-group":"../../components/hotGoodsGroup/hotGoodsGroup",
+    "banner-swiper": "../../components/bannerSwiper/bannerSwiper",
+    "live-adv":"../../components/liveAdv/liveAdv"
+  }
+}

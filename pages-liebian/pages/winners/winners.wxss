@@ -1,0 +1,45 @@
+/* pages-liebian/pages/winners/winners.wxss */
+.box {
+  width: 733rpx;
+  background: #FFFFFF;
+  border-radius: 30rpx;
+  margin: 10rpx 0 0 8rpx;
+  padding-bottom: 100rpx;
+}
+
+.box .win-list {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 13rpx;
+}
+
+.box .win-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 38rpx 10rpx 0;
+}
+
+.box .win-item .avatar {
+  width: 121rpx;
+  height: 121rpx;
+  border-radius: 50%;
+}
+
+.box .win-item .nick {
+  max-width: 121rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 24rpx;
+  color: #535353;
+  margin-top: 7rpx;
+}
+
+.box .more {
+  font-size: 26rpx;
+  color: #F2003F;
+  text-align: center;
+  margin-top: 50rpx;
+}

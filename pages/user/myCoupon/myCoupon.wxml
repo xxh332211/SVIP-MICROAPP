@@ -1,0 +1,164 @@
+<!--pages/user/myCoupon/myCoupon.wxml-->
+<online-serve />
+<view class="tab-box">
+	<view class="tab {{canUse?'active':''}}" data-id="canUse" catchtap="switchTab">可使用</view>
+	<view class="tab {{!canUse?'active':''}}" data-id="isUsed" catchtap="switchTab">已使用</view>
+	<view class="line {{!canUse?'active':''}}"></view>
+</view>
+
+<!-- 可使用优惠券列表 -->
+<view class="use-coupon-list" wx:if="{{canUse}}">
+
+	<view class='list-box'>
+
+		<swiper class="swiper-wrapper" display-multiple-items="4.5" current="{{menuIndex}}">
+			<block wx:for="{{vendorList}}" wx:key="index">
+				<swiper-item class="swiper-slide" data-num="{{index}}" data-id="{{item.id}}" catchtap="cutKind">
+					<view class='slide-box'>
+						<view class='content {{curNum == index?"active":""}}'>{{item.category_name}}</view>
+					</view>
+				</swiper-item>
+			</block>
+		</swiper>
+
+		<block wx:if="{{!isCommon}}">
+			<view class="single-box" wx:if="{{useCouponList && useCouponList.length > 0}}">
+				<view wx:for="{{useCouponList}}" wx:key="index">
+					<!-- 单个 -->
+					<!-- coupon_typeid：6：熊猫币抽奖 5：商户通用券 4：svip抵扣券 3：svip平台券 2：svip商户优惠券 1：普通商户优惠券 -->
+					<view
+						class="use-item {{item.coupon_typeid == 4?'svip-discount':item.coupon_typeid == 3?'svip-platform':(item.coupon_typeid == 2 || item.coupon_typeid == 5)?'svip-brand':item.coupon_typeid == 6?'xmb-type':''}}" bindtap="toCouponDetail" data-type="{{item.coupon_typeid}}" data-id="{{item.coupon_id}}">
+						<view class="left">
+							<view class='price'>
+								<text class='lab'>￥</text>{{item.coupon_value}}
+							</view>
+							<view class='cond'>支付满{{item.consume_amount}}元可用</view>
+						</view>
+						<view class="right">
+							<view class='title'>{{item.coupon_name}}</view>
+							<view class='past'>有效时间：{{item.begin_date_new}} - {{item.end_date}}</view>
+							<view class="box">
+								<view class="past">
+									<text>详细信息</text>
+									<!-- 上 -->
+									<image wx:if="{{index == curIndex && item.coupon_id == curId}}" catchtap="platformSpread" data-id="0" data-index="0" 
+										style="width: 24rpx;height: 24rpx;"
+										src="https://img.51jiabo.com/5957d4e4-4bd8-4a3d-b5cd-c832d2bcc7d8.png"></image>
+									<!-- 下 -->
+									<image wx:else catchtap="platformSpread" data-id="{{item.coupon_id}}" data-index="{{index}}" 
+										style="width: 24rpx;height: 24rpx;"
+										src="https://img.51jiabo.com/70802321-d930-453e-94a2-598429e906ff.png"></image>
+								</view>
+								<view class="status" wx:if="{{item.coupon_typeid == 4}}" catchtap="toSvipPay">立即使用</view>
+								<view class="status" wx:elif="{{item.coupon_typeid == 2}}" data-item="{{item}}" catchtap="checkCode">查看券码
+								</view>
+								<view class='status' wx:else>未使用</view>
+							</view>
+						</view>
+						<view class="type"></view>
+						<view wx:if="{{index == curIndex && item.coupon_id == curId}}" class="spread">{{item.smemo}}</view>
+					</view>
+				</view>
+			</view>
+		</block>
+		<block wx:else>
+			<view class="single-box" wx:if="{{commonCouponList && commonCouponList.length > 0}}">
+				<!-- 单个 -->
+				<view class='use-item' wx:for="{{commonCouponList}}" wx:key="index">
+					<view class="left">
+						<view class='price'>
+							<block wx:if="{{item.couponType === 1}}">
+								<view class='lab'>￥</view>{{item.couponValue}}
+							</block>
+							<block wx:else>
+								{{item.couponValue}}
+								<view class='lab'>折</view>
+							</block>
+						</view>
+						<view class='cond'>满{{item.minAmount}}元可用</view>
+					</view>
+					<view class="right">
+						<view class='title'>{{item.couponName}}</view>
+						<view class='past'>有效期：{{item.beginDate}} - {{item.endDate}}</view>
+						<view class='status'>未使用</view>
+					</view>
+				</view>
+			</view>
+		</block>
+
+
+	</view>
+
+	<!-- 无券 -->
+	<navigator wx:if="{{!isCommon && (!useCouponList || useCouponList.length == 0)}}" class="no-coupon"
+		url='/pages/couponList/couponList'>去领取 ></navigator>
+</view>
+
+
+<!-- 已使用优惠券列表 -->
+<view class="used" wx:else>
+	<!-- 非外包已使用 -->
+	<view class="used-coupon-list" wx:if="{{usedCouponList && usedCouponList.length > 0}}">
+		<view wx:for="{{usedCouponList}}" wx:key="index">
+			<view class='used-item'>
+				<view class="left">
+					<view class='price'>
+						<view class='lab'>￥</view>{{item.coupon_value}}
+					</view>
+					<view class='cond'>支付满{{item.consume_amount}}元可用</view>
+				</view>
+				<view class="right">
+					<view class='title'>{{item.coupon_name}}</view>
+					<view class='past'>有效期：{{item.begin_date_new}} - {{item.end_date}}</view>
+					<view class="past">{{item.smemo}}</view>
+				</view>
+				<view class="type" wx:if="{{item.coupon_typeid == 4}}"></view>
+				<view class="type platform" wx:if="{{item.coupon_typeid == 3}}"></view>
+				<view class="type brand" wx:if="{{item.coupon_typeid == 2 || item.coupon_typeid == 5}}"></view>
+				<view class="type xmb" wx:if="{{item.coupon_typeid == 6}}"></view>
+				<image class="used-img" src="https://img.51jiabo.com/380e2ada-4bf9-44b3-ae16-c672dba3f8f0.png"></image>
+			</view>
+		</view>
+	</view>
+
+	<!-- 外包已使用 -->
+	<view class="used-coupon-list" wx:if="{{commonCouponList && commonCouponList.length > 0}}">
+		<view class='used-item' wx:for="{{commonCouponList}}" wx:key="index">
+			<view class="left">
+				<view class='price'>
+					<block wx:if="{{item.couponType === 1}}">
+						<view class='lab'>￥</view>{{item.couponValue}}
+					</block>
+					<block wx:else>
+						{{item.couponValue}}
+						<view class='lab'>折</view>
+					</block>
+				</view>
+				<view class='cond'>满{{item.minAmount}}元可用</view>
+			</view>
+			<view class="right">
+				<view class='title'>{{item.couponName}}</view>
+				<view class='past'>有效期：{{item.beginDate}} - {{item.endDate}}</view>
+			</view>
+			<image class="used-img" src="https://img.51jiabo.com/380e2ada-4bf9-44b3-ae16-c672dba3f8f0.png"></image>
+		</view>
+	</view>
+
+	<!-- 无券 -->
+	<navigator wx:if="{{!isCommon && (!usedCouponList || usedCouponList.length == 0)}}" class="no-coupon"
+		url='/pages/couponList/couponList'>去领取 ></navigator>
+</view>
+
+<!-- 券码弹层 -->
+<view class="code-popup" hidden="{{!showCouponCode}}" catchtap="closeCode" catchtouchmove='stop'>
+	<view class="code-box">
+		<view class="top">
+			<view class="tit">商家扫描券码使用优惠券</view>
+			<view class="period">有效期：{{beginDate}}-{{endDate}}</view>
+		</view>
+		<view class="bottom">
+			<canvas class='canvas' disable-scroll="true" canvas-id='couponCode'></canvas>
+			<view class="cou-code">{{couCode}}</view>
+		</view>
+	</view>
+</view>

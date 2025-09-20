@@ -1,0 +1,117 @@
+<!--pages/expoPackage/couponDetail/couponDetail.wxml-->
+<!-- 
+  优惠券类型：
+    0=普通平台券
+    1=普通商户券
+    2=svip平台券
+    3=svip商户券
+    4=svip商户通用券
+    5=普通平台券 熊猫币抽奖获取
+    6=普通商户通用券  熊猫币抽奖获取
+ -->
+<view class="main-wrap">
+  <view class="coupon-wrap">
+    <view class="header">
+      <image wx:if="{{couponData.logo_url}}" class="logo" src="{{couponData.logo_url}}"></image>
+      <image wx:elif="{{cityId == 60}}" class="logo logo-c"
+        src="https://img.51jiabo.com/3000595f-7b0c-4ba3-9111-b13dcfcf2ec1.png"></image>
+      <image wx:else class="logo logo-c" src="https://img.51jiabo.com/942d4bbb-0955-433e-aff1-f3f8572161c3.png"></image>
+
+      <view wx:if="{{couponData.coupon_type == 1||couponData.coupon_type == 3}}">{{couponData.brand_name}}</view>
+      <view wx:else>{{couponData.coupon_name}}</view>
+
+      <image wx:if="{{couponData.coupon_type == 2||couponData.coupon_type == 3||couponData.coupon_type == 4}}"
+        class="svip-icon" src="https://img.51jiabo.com/94002fcd-9585-46cd-a0c9-0d2e044b0bd6.png"></image>
+      <image wx:elif="{{couponData.coupon_type == 5||couponData.coupon_type == 6}}" class="svip-icon"
+        src="https://img.51jiabo.com/29320d5b-da70-4daa-930d-457da3b96998.png"></image>
+    </view>
+
+    <view class="content">
+      <view class="price">￥<text style="font-size:100rpx;">{{couponData.coupon_value}}</text></view>
+      <view class="desc">满{{couponData.consume_amount}}元可用</view>
+      <view class="expire-time">
+        <text>有效期：{{couponData.begin_date}} - {{couponData.end_date}}</text>
+      </view>
+    </view>
+    <view class="tips">{{couponData.smemo}}</view>
+  </view>
+  <view class="rules-wrap">
+    <view class="rules-tit">使用规则</view>
+
+    <!-- 商户券规则 -->
+    <block wx:if="{{couponData.coupon_type == 1||couponData.coupon_type == 3}}">
+      <view class="rule">
+        ①本券仅限于开展期间{{couponData.expo_begin_date}}至{{couponData.expo_end_date}}到{{couponData.venue_name}}<text
+          wx:if="{{cityId == 54}}">天府家博</text><text wx:if="{{cityId == 65}}">现代家博</text><text
+          wx:if="{{cityId == 60}}">宁波装修狂欢节</text><text wx:else>华夏家博</text>展会现场下单使用；
+      </view>
+      <view class="rule">②特价产品除外，付款前出示有效；</view>
+      <view class="rule">③本券凭<text wx:if="{{cityId == 54}}">天府家博会</text><text wx:if="{{cityId == 65}}">现代家博会</text><text
+          wx:if="{{cityId == 60}}">宁波装修狂欢节</text><text
+          wx:else>华夏家博会</text>现场统一销售单订单/活动专用销售单、支付凭证至{{couponData.booth}}使用抵扣；</view>
+    </block>
+
+    <!-- 平台券规则 -->
+    <block wx:elif="{{couponData.coupon_type == 0||couponData.coupon_type == 2||couponData.coupon_type == 5}}">
+      <view class="rule">
+        ①本券仅限{{couponData.coupon_type == 2 ? 'SVIP超级会员':''}}于开展期间{{couponData.expo_begin_date}}至{{couponData.expo_end_date}}到{{couponData.venue_name}}<text
+          wx:if="{{cityId == 54}}">天府家博</text><text wx:if="{{cityId == 65}}">现代家博</text><text
+          wx:if="{{cityId == 60}}">宁波装修狂欢节</text><text wx:else>华夏家博</text>展会现场下单后使用返现；
+      </view>
+      <view class="rule">②返现券凭<text wx:if="{{cityId == 54}}">天府家博会</text><text
+          wx:if="{{cityId == 65}}">现代家博会</text><text wx:if="{{cityId == 60}}">宁波装修狂欢节</text><text
+          wx:else>华夏家博会</text>现场统一销售单订单/活动专用销售单、支付凭证进行返现；</view>
+      <view class="rule">③返现券金额以实际支付金额为准，实付金额满足{{couponData.consume_amount}}元即可参与返现，开关插座、不参与返现；非该商户代理品牌商品不参与返现;</view>
+      <view class="rule">④同一用户单张订单仅可使用一张返现券；</view>
+    </block>
+
+    <!-- 商户通用券规则 -->
+    <block wx:elif="{{couponData.coupon_type == 4||couponData.coupon_type == 6}}">
+      <view class="rule">
+        ①本券仅限{{couponData.coupon_type == 4 ? 'SVIP超级会员':''}}于开展期间{{couponData.expo_begin_date}}至{{couponData.expo_end_date}}到{{couponData.venue_name}}<text
+          wx:if="{{cityId == 54}}">天府家博</text><text wx:if="{{cityId == 65}}">现代家博</text><text
+          wx:if="{{cityId == 60}}">宁波装修狂欢节</text><text wx:else>华夏家博</text>展会现场下单使用；
+      </view>
+      <view class="rule">②本券凭<text wx:if="{{cityId == 54}}">天府家博会</text><text wx:if="{{cityId == 65}}">现代家博会</text><text
+          wx:if="{{cityId == 60}}">宁波装修狂欢节</text><text wx:else>华夏家博会</text>现场统一销售单订单/活动专用销售单、支付凭证进行抵扣；</view>
+      <view class="rule">③商户通用券可与各品牌优惠券叠加使用；同一用户单张订单仅可使用一张商户通用券；</view>
+      <view class="rule">④部分商户不参与，具体以现场商户为准；</view>
+    </block>
+  </view>
+</view>
+
+<view wx:if="{{from !== 'couponList'}}" class="footer">
+  <button wx:if="{{couponData.can_get==1}}" class="btn" catchtap="getCoupon">免费领取</button>
+  <button wx:else class="btn dis-btn">{{couponData.button}}</button>
+</view>
+
+<!-- 优惠券领取成功弹层 -->
+<view class='get-ticket-box' wx:if="{{getCouponSuccess}}">
+  <view class='get-ticket'>
+    <view class='txt-box'>
+      <view class='tit1'>领取成功</view>
+      <view class='tit2'>{{activityInfo.begin_date}}-{{activityInfo.end_date}}前往{{activityInfo.venue_name}}下单使用</view>
+    </view>
+    <view class='coupon-box'>
+      <view class="left">
+        <view class='price'>
+          <view class='lab'>￥</view>{{couponData.coupon_value}}
+        </view>
+        <view class='cond'>满{{couponData.consume_amount}}元可用</view>
+      </view>
+      <view class="right">
+        <image class='s-img' src='{{couponData.logo_url}}'></image>
+        <view class='name'>{{couponData.brand_name}}</view>
+        <view class='date'>{{couponData.begin_date}}-{{couponData.end_date}}使用</view>
+      </view>
+    </view>
+    <!-- <view class='remaind'>分享好友优惠券，好友领取成功后，赠送您
+      <text class='remaind-txt'>10元</text>奖励金，可在我的-奖励金页面查看详细活动规则
+    </view> -->
+    <button open-type='share' class="share">赠送好友优惠券，一起逛展</button>
+    <view class="close" bindtap='closeGetCoupon'></view>
+  </view>
+</view>
+
+<!-- 悬浮导航 -->
+<float-navigate wx:if="{{from !== 'couponList'}}" showNav="{{true}}" showTopBtn="{{false}}"></float-navigate>

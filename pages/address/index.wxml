@@ -1,0 +1,18 @@
+<!--pages/address/index.wxml-->
+<online-serve />
+<view class="content">
+  <p class="title">当前城市</p>
+  <view class="cur flex-row">
+    <span class="icon"><image src="/imgs/cur-city-icon_03.png"></image></span><span>{{curUserCityText}}</span>
+  </view>
+  <view>
+    <view class="flex-row cur-title">
+      <span>分站城市</span>
+      <view class="flex-row scope">
+      </view>
+    </view>
+    <view class="city-list flex-row">
+      <view wx:for="{{cityList}}" wx:key="index" bindtap='chooseCity' data-name='{{item.city_name}}' data-id='{{item.id}}'>{{item.city_name}}</view>
+    </view>
+  </view>
+</view>

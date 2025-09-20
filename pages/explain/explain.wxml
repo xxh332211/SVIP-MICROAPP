@@ -1,0 +1,10 @@
+<!--pages/explain/explain.wxml-->
+<online-serve />
+<image style="height:40rpx;" src="/imgs/label.png"></image>
+<view class='list'>
+  <view class='list-item' wx:for="{{datalist}}" wx:key="index">
+    <view class='text'>
+      {{index+1}}.{{item}}
+    </view>
+  </view>
+</view>

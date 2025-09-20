@@ -1,0 +1,179 @@
+<!--pages/reserve/reserveTicket.wxml-->
+<online-serve />
+<privacy-popup></privacy-popup>
+<view class='page-wrap'>
+	<view class='banner'>
+		<image src="https://img.51jiabo.com/dc00cf25-ab40-4283-aed7-931d204e6a3e.png" mode='widthFix' class='banner-bg'>
+		</image>
+		<view class='explain-pos flex-row'>
+			<view class='pos' bindtap='chooseCity'>
+				<text class='iconfont icondingwei' style='color:#fff'></text>
+				<text style='font-size:30rpx;'>{{curCity}}</text>
+			</view>
+		</view>
+		<!-- -->
+		<view class='banner-content'>
+			<view class='user-info'>
+				<image src='https://img.51jiabo.com/bb590454-9cbf-45d5-8811-e90f55668277.png' mode='widthFix' class='user-bg'>
+				</image>
+				<view class='user-main'>
+					<block wx:if="{{isLogin}}">
+						<image wx:if="{{cityId == 60}}" class='picture'
+							src='{{userInfo.avatar?userInfo.avatar:"https://img.51jiabo.com/94467bd5-404c-4f6c-aeee-b6d948d93079.png"}}'
+							mode='widthFix'></image>
+						<image wx:else class='picture'
+							src='{{userInfo.avatar?userInfo.avatar:"https://img.51jiabo.com/1a927c4f-1d8a-49a9-8720-c90ce2719f31.jpg"}}'
+							mode='widthFix'></image>
+					</block>
+					<block wx:else>
+						<image wx:if="{{cityId == 60}}" class='picture' src='https://img.51jiabo.com/94467bd5-404c-4f6c-aeee-b6d948d93079.png'
+							mode='widthFix'></image>
+						<image wx:else class='picture' src='https://img.51jiabo.com/1a927c4f-1d8a-49a9-8720-c90ce2719f31.jpg'
+							mode='widthFix'></image>
+					</block>
+					<!-- 未登录 -->
+					<button class='auth-login' wx:if="{{!isLogin}}" open-type='getPhoneNumber'
+						bindgetphonenumber="getPhoneNumber"></button>
+					<view class='main' bindtap='goLogin' wx:if='{{!isLogin}}'>
+						<view class='name'>未登录
+							<view class='more iconfont iconjiantou'></view>
+						</view>
+						<view class="tips">SVIP用户登录查看会员中心</view>
+					</view>
+					<!-- 已经登录 -->
+					<view class="main" wx:if='{{isLogin&&isReserve&&!isSvip}}'>
+						<form report-submit="true" bindtap='reserveTicketHandle2'>
+							<button class='name' form-type="submit">已预约
+								<view class='more iconfont iconjiantou'></view>
+							</button>
+						</form>
+					</view>
+					<!-- 已预约 -->
+					<view class="main" wx:if='{{isLogin&&!isReserve&&!isSvip}}'>
+						<form report-submit="true" bindtap='reserveTicketHandle2'>
+							<button class='name' form-type="submit">立即预约
+								<view class='more iconfont iconjiantou'></view>
+							</button>
+						</form>
+					</view>
+					<!-- 会员 -->
+					<view class="main" bindtap='goSvipCenter' wx:if='{{isLogin&&isSvip}}'>
+						<button class='name'>会员中心
+							<view class='more iconfont iconjiantou'></view>
+						</button>
+					</view>
+				</view>
+			</view>
+			<!-- 权益的配置列表 -->
+			<view class='rights'>
+				<view class='rights-tig'>
+					<view style='color:#A47F59;font-size:26rpx;' wx:for='{{headWriter}}' wx:key='index'>{{item}}</view>
+				</view>
+				<view class='title'>
+					<image src='/imgs/lineleft.png' mode='widthFix'></image>
+					<text wx:if="{{cityId == 27}}">京东·森图里家博会员，尊享特权</text>
+					<text wx:elif="{{cityId == 54}}">天府家博会员，尊享特权</text>
+					<text wx:elif="{{cityId == 60}}">宁波装修狂欢节，尊享特权</text>
+					<text wx:elif="{{cityId == 65}}">现代家博会员，尊享特权</text>
+					<text wx:else>华夏家博会员，尊享特权</text>
+					<image src='/imgs/lineright.png' mode='widthFix'></image>
+				</view>
+				<!-- 配置项 -->
+				<view class='row-wrap flex-row'>
+					<view class='row-item flex-column' wx:for='{{equityData}}' wx:key='index' wx:for-item='item'
+						wx:for-index="index" data-item='{{item}}' bindtap="showDialog">
+						<image src='{{item.img_1}}'></image>
+						<view class='text-hidden text'>
+							{{item.title}}
+						</view>
+					</view>
+				</view>
+
+			</view>
+		</view>
+		<!-- end -->
+	</view>
+	<view class='rights-item' wx:for='{{equityData}}' wx:key='index' wx:for-item='item'>
+		<view class='rights-title flex-row'>
+			<image src='/imgs/titleicon.png' mode='widthFix'></image>
+			<view style='color:#8A5D30;font-size:36rpx; margin-left:15rpx;' wx:if='{{index == 0}}'>权益一</view>
+			<view style='color:#8A5D30;font-size:36rpx; margin-left:15rpx;' wx:if='{{index == 1}}'>权益二</view>
+			<view style='color:#8A5D30;font-size:36rpx; margin-left:15rpx;' wx:if='{{index == 2}}'>权益三</view>
+			<view style='color:#8A5D30;font-size:36rpx; margin-left:15rpx;' wx:if='{{index == 3}}'>权益四</view>
+			<view style='color:#8A5D30;font-size:36rpx; margin-left:15rpx;' wx:if='{{index == 4}}'>权益五</view>
+			<view style='color:#8A5D30;font-size:36rpx; margin-left:15rpx;' wx:if='{{index == 5}}'>权益六</view>
+		</view>
+		<image class='rights-img' src='{{item.benefit_img}}'></image>
+	</view>
+
+	<view class='session'>
+		<view class='session-title'>
+			<text class='iconfont icondingdan1' style='color:#A6A6A6;font-size:38rpx;'></text>
+			<text class=' left' style='margin-left:15rpx;'>会员说明</text>
+		</view>
+		<view class='term-list'>
+			<view class='term'>
+				<view wx:for='{{svipDesc}}' wx:key='index' wx:for-item='item'>{{item}}</view>
+			</view>
+		</view>
+	</view>
+	<button class='btns middle reserve-btn' wx:if="{{!isLogin}}" open-type='getPhoneNumber'
+		bindgetphonenumber="getPhoneNumber">
+		立即预约
+		<view class='arrows more iconfont iconjiantou' wx:if="{{!isReserve}}"></view>
+	</button>
+	<view class='btns middle reserve-btn' wx:else bindtap="loginReserveTicketHandle">
+		{{isReserve?'预约成功':'立即预约'}}
+		<view class='arrows more iconfont iconjiantou' wx:if="{{!isReserve}}"></view>
+	</view>
+	<!-- end -->
+</view>
+<!-- 预约弹窗 -->
+<view class='mask' wx:if='{{reserveTicket}}'>
+	<view class='dialog'>
+		<view class='header'>
+			<text class='iconfont iconguanbi' bindtap='cancelHandle'></text>
+		</view>
+		<view class='content'>
+			<view class='form-item'>
+				<input value="" type='text' placeholder-class="place-holder" placeholder='请填写姓名' maxlength='11'
+					bindinput='setName'></input>
+				<!-- <icon type="clear" size="20" color="#C5C5C5"></icon> -->
+			</view>
+			<view class='form-item'>
+				<input value="" type='number' placeholder-class="place-holder" placeholder='请填写手机号' maxlength='11'
+					bindinput='setPhone'></input>
+			</view>
+			<view class='form-item flex-row'>
+				<input value="" type='number' placeholder-class="place-holder" placeholder='请填写验证码' maxlength='6'
+					bindinput='setCode'></input>
+				<view class='code-btn {{sending?"send-bg":"def-bg"}}' bindtap='getIdCode'>{{sending?timeTic+'秒后重试':'获取验证码'}}
+				</view>
+			</view>
+		</view>
+		<view class='footer'>
+			<!-- 未登录开始预约 -->
+			<view class='btns btn middle' bindtap="reserveTicketHandle">立即预约</view>
+			<view style='font-size:24rpx;font-weight:200; color:#666666'>预约成功同时为您免费索取价值20元的华夏家博会门票</view>
+		</view>
+		<!--  -->
+	</view>
+	<!-- mask end -->
+</view>
+
+<!-- 预约成功弹层 -->
+<view class="reserve-popup" wx:if="{{reserveSuc}}">
+	<view class="reserve-box">
+		<view data-item="{{successAdv}}" bindtap="{{successAdv.url?'advUrl':''}}">
+			<image mode="widthFix" src="{{successAdv.wap_image_url}}"></image>
+		</view>
+		<view class="close" bindtap="closeSuc"></view>
+	</view>
+</view>
+
+<dialog-swiper bindhideDialog="closeDialog" wx:if='{{!hide}}' dataList="{{dialogList}}"></dialog-swiper>
+
+<!-- 微信授权手机号弹层 -->
+<!-- <authorize bindgetPhoneBack="getPhoneBack"></authorize> -->
+<!-- 自定义tabbar -->
+<tab-bar selected="{{selected}}"></tab-bar>

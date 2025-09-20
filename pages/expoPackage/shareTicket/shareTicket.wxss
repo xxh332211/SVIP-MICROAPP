@@ -1,0 +1,197 @@
+/* pages/ticket/shareTIcket/shareTictet.wxss */
+
+page {
+  background: #fff;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.sendTicket-container {
+  overflow: hidden;
+}
+
+.reminder {
+  background: rgba(255, 238, 238, 1);
+  font-size: 24rpx;
+  display: flex;
+  padding: 14rpx 30rpx 14rpx;
+}
+
+.reminder image {
+  width: 32rpx;
+  height: 27rpx;
+  flex-shrink: 0;
+  margin-right: 13rpx;
+  margin-top: 4rpx;
+}
+
+.reminder .content {
+  color: #e6002d;
+}
+
+
+
+.ticket-item {
+  width: 690rpx;
+  box-shadow: 0 0 15rpx 5rpx rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+  margin-top: 50rpx;
+  margin-left: 30rpx;
+}
+
+.ticket-item .info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  background: #E6002D;
+  border-radius: 2px 2px 0 0;
+  padding: 0 31rpx 34rpx 43rpx;
+}
+
+.ticket-item .info .city .name {
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-top: 30rpx;
+}
+
+.ticket-item .info .city .time {
+  font-size: 44rpx;
+}
+
+.ticket-item .info .city .cover {
+  display: block;
+  opacity: 0.7;
+  margin-top: 24rpx;
+}
+
+.ticket-item .site {
+  height: 103rpx;
+  display: flex;
+  align-items: center;
+  padding: 0 0 0 40rpx;
+  font-size: 32rpx;
+}
+
+.ticket-item .site image {
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 20rpx;
+}
+
+
+
+.ticket{
+  padding: 0 30rpx;
+}
+
+.main {
+  margin-top: 40rpx;
+  height: 200rpx;
+  width: 690rpx;
+  padding: 30rpx 20rpx 35rpx 60rpx;
+  background: -webkit-linear-gradient(left, #5ab0fd, #8adaf8); /* Safari 5.1 - 6.0 */
+  border-radius: 20rpx;
+  display: flex;
+  justify-content: space-between;
+  color: #fff;
+}
+
+.main .left .tit {
+  font-size: 38rpx;
+  font-weight: 600;
+}
+
+.main .left .info {
+  display: flex;
+  font-size: 30rpx;
+}
+
+.main .left .time {
+  font-size: 24rpx;
+}
+
+.main .right {
+  height: 142rpx;
+  width: 142rpx;
+  border: 6rpx solid #8dd1fb;
+  border-radius: 50%;
+}
+
+.main .right>image {
+  border-radius: 50%;
+}
+
+.addr-pos {
+  width: 650rpx;
+  height: 56rpx;
+  border-radius: 0 0 28rpx 28rpx;
+  background: #fff;
+  font-size: 24rpx;
+  color: #666;
+  box-shadow: 1rpx 1rpx 10rpx 4rpx rgba(0, 0, 0, 0.1);
+  margin-left: 20rpx;
+}
+
+.addr-pos .icon-dingwei {
+  color: #5ab0fd;
+  margin: 0 10rpx 0 30rpx;
+}
+
+.btn {
+  height: 100rpx;
+  text-align: center;
+  line-height: 100rpx;
+  color: #fff;
+  font-size: 32rpx;
+  width: 650rpx;
+  border-radius: 50rpx;
+  margin: 0 auto;
+  margin-top: 120rpx;
+  background: #e6002d;
+}
+
+.go-home {
+  height: 80rpx;
+  width: 80rpx;
+  position: fixed;
+  bottom: 160rpx;
+  /* background: rgba(0,0,0,.3); */
+  right: 8rpx;
+}
+
+
+/* 弹层 */
+
+.tips-popup{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background: rgba(0,0,0,.7);
+}
+.tips-box{
+  width: 620rpx;
+  border-radius: 8rpx;
+  text-align: center;
+  background: #fff;
+}
+.tips-box .title{
+  font-size: 46rpx;
+  height: 298rpx;
+  line-height: 298rpx;
+}
+.tips-box .confirm{
+  height: 97rpx;
+  line-height: 97rpx;
+  font-size: 46rpx;
+  color: #fff;
+  background: #E6002D;
+  border-radius: 0 0 8rpx 8rpx;
+}

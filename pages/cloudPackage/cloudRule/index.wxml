@@ -1,0 +1,56 @@
+<!--pages/cloudPackage/cloudRule/index.wxml-->
+<online-serve />
+<view class="wrap" wx:if="{{!notAct}}">
+	<!-- <image src="{{qrcodeImg}}" mode="widthFix"></image> -->
+	<image src="https://img.51jiabo.com/223aefb0-9f28-42af-bdea-6bd078eeffb9.png" mode="widthFix"></image>
+
+	<!--  -->
+	<view class="record-box" wx:if="{{awardPerson.length > 0}}">
+		<view class="record-popup"></view>
+		<swiper class='record' autoplay="true" vertical="true" circular="true" interval="3000">
+			<block wx:for="{{awardPerson}}" wx:key="index">
+				<swiper-item class="swiper-item">
+					<view class="name">{{item.nick_name}}</view>已经赚取了<text>{{item.amount}}元</text>奖励金啦
+				</swiper-item>
+			</block>
+		</swiper>
+	</view>
+
+	<view class="rule">
+		<view class="tit">裂变规则</view>
+		<view class="content-box">
+			<text class="content">{{rules}}</text>
+		</view>
+	</view>
+	<!-- 分享 -->
+	<view class="bottom">
+		<navigator url="/pages/login/login" class="share" wx:if="{{!isLogin}}">
+			<image src="https://img.51jiabo.com/88e20692-bb64-4776-a594-7b7e41ec22bb.png" mode="widthFix"></image>
+			<text>微信好友</text>
+		</navigator>
+		<button open-type='share' class="share" wx:if="{{isLogin}}">
+			<image src="https://img.51jiabo.com/88e20692-bb64-4776-a594-7b7e41ec22bb.png" mode="widthFix"></image>
+			<text>微信好友</text>
+		</button>
+		<button id="login" class="share" open-type='getUserInfo' bindgetuserinfo="getPost">
+			<image src="https://img.51jiabo.com/bd2bb4b2-91c6-4df5-9d07-f585ba19d1de.png" mode="widthFix"></image>
+			<text>推广海报</text>
+		</button>
+	</view>
+
+</view>
+
+<view class="popup {{postPopup == true?'visible':''}}" catchtouchmove='stop'>
+	<view class="popup-bg" bindtap="closePopup"></view>
+	<view class="content">
+		<view class="close" bindtap="closePopup"></view>
+		<canvas class="canvas" id="canvas" type="2d" disable-scroll="true" style="width:257px;height:389px" />
+		<view class="save" bindtap="saveImg">保存图片</view>
+	</view>
+</view>
+
+
+<view class="off-line" wx:if="{{notAct}}">
+	<image src="https://img.51jiabo.com/b0adbb79-600e-4a5e-82e5-e38702cc7680.png"></image>
+	<view class="text">活动暂未开启</view>
+</view>

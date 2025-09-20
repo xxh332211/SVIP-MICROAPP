@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "coupon-item": "../../components/couponItem/couponItem",
+    "banner-swiper": "../../components/bannerSwiper/bannerSwiper",
+    "hot-goods-group":"../../components/hotGoodsGroup/hotGoodsGroup",
+    "navigation": "../../components/navigation/navigation"
+  },
+  "navigationBarTitleText": "优惠券"
+}

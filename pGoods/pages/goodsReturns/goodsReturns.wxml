@@ -1,0 +1,50 @@
+
+<online-serve />
+
+ <form bind:submit="submit">
+   
+<scroll-view class="goods-returns" scroll-y="{{true}}">
+  <view class="goods">
+    <image src="{{info.productImageUrl || 'https://img.51jiabo.com/1a927c4f-1d8a-49a9-8720-c90ce2719f31.jpg'}}" mode="aspectFit" />
+    <view class="goods-info">
+      <view class="name">{{info.productTitle}}</view>
+      <view class="price">
+        <text>¥{{info.sellingPrice}}</text>
+        <text class="g">|</text>
+        <text>x{{info.count}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="gap">
+  </view>
+  <view class="info-item return-price">
+    <view class="label">退款金额</view>
+    <view class="text price">¥{{info.realAmount || 0}}</view>
+  </view>
+  <view class="tip">已支付的订单,积分和券抵扣部分无法退还</view>
+  <view class="info-item">
+    <view class="label">退款方式</view>
+    <view class="text">1-7工作日原路退回(微信支付账户)</view>
+  </view>
+  <view class="reason">
+    <view class="label">退款原因</view>
+    <view class="item" wx:for="{{reasons}}" wx:key="index" data-idx="{{index}}" bind:tap="selectReason">
+      <view class="cont">{{item}}</view>
+      <image wx:if="{{curReason === index}}" src="https://img.51jiabo.com/imgs-mall/checked.svg" mode="aspectFit"/>
+    </view>
+  </view>
+  
+  <view class="detail">
+    <view class="label">详细描述</view>
+    <view class="input">
+      <textarea value="{{detail}}" placeholder="请填写详细描述" auto-height="{{true}}" name="detail" maxlength="100"></textarea>
+    </view>
+  </view>
+</scroll-view>
+
+<button form-type="submit" class="confirm-btn normal-btn">
+  确认{{info.realAmount ? '退款' : '取消'}}
+</button>
+
+</form>
+<success-modal wx:if="{{successModalShown}}" bind:close="back"></success-modal>

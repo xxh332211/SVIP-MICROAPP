@@ -1,0 +1,136 @@
+.cont{
+  display: flex;
+  flex-direction: column;
+}
+.list{
+  flex: 1;
+  min-height: 0;
+}
+.use-type-tabs{
+  display: flex;
+  padding: 0 160rpx;
+  justify-content: space-between;
+  background: #FFF;
+  color: #666;
+}
+.use-type-tab{
+  height: 100rpx;
+  width: 100rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-size: 30rpx;
+}
+.use-type-tab:after{
+  content: '';
+  position: absolute;
+  bottom: 0rpx;
+  height: 5rpx;
+  border-radius: 5rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #E6001B;
+  width: 0;
+  transition: all .2s ease-in-out;
+}
+.use-type-tab.active{
+  color: #000;
+  font-weight: bold;
+}
+.use-type-tab.active:after{
+  width: 80%;
+}
+.gap{
+  height: 4rpx;
+}
+.coupon-type-tabs{
+  height: 80rpx;
+  background: #FFF;
+  font-size: 30rpx;
+  color: #666;
+}
+.coupon-type-tab{
+  height: 80rpx;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-left: 60rpx;
+}
+.coupon-type-tab:after{
+  content: '';
+  width: 0;
+  position: absolute;
+  bottom: 0rpx;
+  height: 5rpx;
+  border-radius: 5rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #000;
+  transition: all .2s ease-in-out;
+}
+.coupon-type-tab.active{
+  color: #000;
+  font-weight: bold;
+}
+.coupon-type-tab.active:after{
+  width: 80%;
+}
+
+
+.no-data{
+  text-align: center;
+  font-size: 28rpx;
+  color: #BBB;
+  padding-top: 100rpx;
+}
+
+.item{
+  position: relative;
+  margin: 20rpx;
+  height: 200rpx;
+  background: #FFFFFF;
+  box-shadow: 0 6rpx 10rpx 0 rgba(0,0,0,0.10);
+  border-radius: 10rpx;
+  border-radius: 10rpx;
+}
+.info{
+  position: absolute;
+  left: 0;
+  right: 100rpx;
+  bottom: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+}
+.item .btn image{
+  width: 64rpx;
+  height: 64rpx;
+}
+.left{
+  width: 210rpx;
+  font-size:24rpx;
+  text-align: center;
+}
+.left .price{
+  font-size: 60rpx;
+  line-height: 1;
+  color: #E6001B;
+}
+.left .desc{
+  color: #BBB;
+}
+.left .price>text.u{
+  font-size: 36rpx;
+}
+.right{
+  flex: 1;
+  font-size:24rpx;
+  color: #000;
+  padding-left: 30rpx;
+}
+.right .name{
+  font-size: 40rpx;
+  line-height: 60rpx;
+}

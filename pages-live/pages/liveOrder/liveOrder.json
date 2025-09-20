@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "线上订单",
+  "usingComponents": {
+    "orderAll": "/components/liveOrder/orderAll/orderAll",
+    "noOrder": "/components/liveOrder/noOrder/noOrder",
+    "noCargo": "/components/liveOrder/noCargo/noCargo"
+  }
+}

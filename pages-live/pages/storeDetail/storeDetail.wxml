@@ -1,0 +1,107 @@
+<wxs src="../../../utils/util.wxs" module="filter" />
+<view class="container">
+  <!-- 店铺名称 -->
+  <view class="header">
+    <image src="{{logo_url}}" class="logo"></image>
+    <view class="brand-box">
+      <text class="name">{{shop_name}}</text>
+      <text class="booth" wx:if="{{booth}}">展位号 {{booth}}</text>
+    </view>
+  </view>
+  <!-- 图片轮播 -->
+  <swiper indicator-dots="true" class="swiper" autoplay='true' interval='3000' circular='true'
+    indicator-active-color='#fff' wx:if='{{shopBanner.length!=0}}' style="height:{{imgheights[current]}}rpx;">
+    <block wx:for="{{shopBanner}}" wx:key="index">
+      <swiper-item>
+        <image bindload="imageLoad" data-id='{{index}}' src="{{item.image_list}}"></image>
+      </swiper-item>
+    </block>
+  </swiper>
+  <!-- 优惠券 -->
+  <view class="ticketList" wx:if='{{coupon != null}}'>
+    <block wx:for="{{coupon}}" wx:key="index">
+      <view class="box">
+        <image
+          src="{{item.user_id>0 || item.quantity - item.use_count == 0 ? '/imgs/ticketFalse.png': '/imgs/ticketTrue.png'}}"
+          class="ticketimg"></image>
+        <view class="price">
+          <view class="top"><text>￥</text>{{filter.couponSlice(item.coupon_value)}}</view>
+          <view class="money">满{{filter.couponSlice(item.consume_amount)}}元可用</view>
+        </view>
+        <view class="ticketDetail">
+          <view class="title1">有效期:{{filter.timeSlice(item.begin_date)}}-{{filter.timeSlice(item.end_date)}}</view>
+          <view>{{item.coupon_name}}</view>
+          <view data-user_id="{{item.user_id}}" data-coupon_id="{{item.coupon_id}}" catchtap="couponBtn"
+            style="background:{{item.user_id>0?'#bfbfbf':'linear-gradient(140deg,rgba(255,0,54,1),rgba(255,38,0,1))'}}"
+            wx:if='{{item.quantity - item.use_count > 0}}'>{{item.user_id>0?'已领取':'领取'}}</view>
+          <view class="pull" style="background:#bfbfbf" wx:if='{{item.quantity - item.use_count == 0}}'>已抢光</view>
+        </view>
+      </view>
+    </block>
+  </view>
+  <!-- 门店列表 -->
+  <view class="storeList" wx:if='{{map != null}}'>
+    <view class="store_box">
+      <view class="header">
+        <image src="/imgs/addresslist.png" class="addressimg"></image>
+        <text>门店列表</text>
+      </view>
+      <view class="storeTxt">
+        <view class="txt1">{{map[0].name}}</view>
+        <view class="txt2">{{map[0].address}}</view>
+      </view>
+      <view class="storeMore" catchtap="quanbu" data-map='{{map}}'>查看全部</view>
+    </view>
+  </view>
+  <!-- 购物列表 -->
+  <view class="cart" wx:if='{{prerogative != null}}'>
+    <view class="cart_header">
+      <view class="synthesize" data-name="synthesize" class="{{findIndex == 0?'active':''}}" catchtap="goodStore">综合
+      </view>
+      <view class="sales" data-name="sales" catchtap="goodStore">
+        <text class="{{findIndex == 1?'active':''}}">销量</text>
+        <image src="/imgs/up.png" wx:if='{{salesUp}}'></image>
+        <image src="/imgs/down.png" wx:elif='{{salesDown}}'></image>
+        <image src="/imgs/icon.png" wx:else></image>
+      </view>
+      <view class="price" data-name="price" catchtap="goodStore">
+        <text class="{{findIndex == 2?'active':''}}">价格</text>
+        <image src="/imgs/up.png" wx:if='{{priceUp}}'></image>
+        <image src="/imgs/down.png" wx:elif='{{priceDown}}'></image>
+        <image src="/imgs/icon.png" wx:else></image>
+      </view>
+    </view>
+    <view class="cartlist">
+      <view class="detail" bindtap="toGoodsDetail" wx:for='{{prerogative}}' wx:key="index" data-item="{{item}}"
+        wx:if="{{item.pay_way == 1 || item.pay_way == 2}}">
+        <view class="goods-box">
+          <image class="goods-img" src="{{item.img_url}}"></image>
+          <image class="mgg" wx:if="{{item.activity_price > 0}}"
+            src="https://img.51jiabo.com/ccd31b42-6a8e-4540-bf23-506e36bfdf30.png"></image>
+        </view>
+        <view class="title">{{item.prerogative_name}}</view>
+        <view class="price" wx:if='{{item.pay_way == 1}}'>￥<text>{{item.earnest}}</text></view>
+        <view class="price" wx:if='{{item.pay_way == 2}}'>
+          ￥<text>{{item.activity_price?item.activity_price:item.exclusive_price}}</text></view>
+      </view>
+    </view>
+  </view>
+  <!-- 返回直播 -->
+  <view wx:if='{{liveList.length>0 && liveList[0].status == 2 || liveList[0].status == 3 || liveList[0].status == 1}}'
+    class="liveNav" catchtap="navLive" data-live_id="{{liveList[0].live_id}}">观看直播</view>
+  <!-- 直播小窗口 -->
+  <movable-area class='movable-area'
+    wx:if='{{liveList.length>0 && showLive && liveList[0].status == 2 || liveList[0].status == 3 || liveList[0].status == 1}}'>
+    <movable-view x='280' y='100' class="movable-view" direction="all">
+      <image catchtap="navLive" data-live_id="{{liveList[0].live_id}}" src="{{liveList[0].cover_image_url}}"
+        class="liveimg"></image>
+      <image src="/imgs/fork.png" class="fork" catchtap="forkBtn"></image>
+    </movable-view>
+  </movable-area>
+  <!-- 核销成功的样式 -->
+  <view class="ticket-qr-box-pop" wx:if='{{showTicket}}'>
+    {{showToastName}}
+  </view>
+  <!-- 返回顶部按钮 -->
+  <image class="posTop" bindtap="posTop" wx:if="{{showToTop}}" src="/imgs/topArrow.png"></image>
+</view>

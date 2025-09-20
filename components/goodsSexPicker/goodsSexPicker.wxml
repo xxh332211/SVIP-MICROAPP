@@ -1,0 +1,8 @@
+<modal bind:close="close">
+  <view class="container">
+    <view class="title">请选择</view>
+    <view class="list">
+      <view bind:tap="select" wx:for="{{list}}" data-id="{{item.id}}" wx:key="id">{{item.name}}</view>
+    </view>
+  </view>
+</modal>

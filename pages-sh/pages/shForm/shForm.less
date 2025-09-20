@@ -1,0 +1,284 @@
+/* pages-sh/pages/shForm/shForm.wxss */
+.container {
+  padding: 20rpx 10rpx 110rpx;
+
+  .box {
+    width: 100%;
+    padding: 0 20rpx;
+    margin-bottom: 20rpx;
+    color: #434343;
+    background-color: #fff;
+    border-radius: 30rpx;
+    padding-bottom: 60rpx;
+  }
+
+  .item {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-top: 20rpx;
+  }
+
+  .item>.title {
+    font-size: 36rpx;
+    color: #434343;
+    padding-right: 15rpx;
+  }
+
+  .choose-text {
+    font-size: 28rpx;
+    color: #000;
+  }
+
+  .scan-img {
+    width: 56rpx;
+    height: 50rpx;
+    position: absolute;
+    right: 24rpx;
+    top: 38rpx;
+  }
+
+  .ipt {
+    width: 500rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    box-sizing: border-box;
+    padding: 20rpx;
+    border: none;
+    border-bottom: 1rpx solid #DCDCDC;
+    font-size: 30rpx;
+  }
+
+  .short-ipt {
+    width: 270rpx;
+  }
+
+  .radio-box {
+    font-size: 30rpx;
+    margin-left: 10rpx;
+  }
+
+  .radio-box>label:first-child {
+    margin-right: 40rpx;
+  }
+
+  /*radio未选中时样式 */
+  radio .wx-radio-input {
+    width: 24rpx;
+    height: 24rpx;
+    border: 2rpx solid #969696;
+    box-sizing: border-box;
+    margin-right: 8rpx;
+  }
+
+  /* 选中后的 背景样式 （红色背景 无边框 可根据UI需求自己修改） */
+  radio .wx-radio-input.wx-radio-input-checked {
+    background-color: #fff;
+    border-color: #E51613;
+  }
+
+  /* 选中后的 对勾样式 （白色对勾 可根据UI需求自己修改） */
+  radio .wx-radio-input.wx-radio-input-checked::before {
+    content: '';
+    width: 14rpx;
+    height: 14rpx;
+    border-radius: 50%;
+    background-color: #E51613;
+  }
+
+  .reason-radio .wx-radio-input {
+    width: 28rpx;
+    height: 28rpx;
+  }
+
+  .reason-radio .wx-radio-input.wx-radio-input-checked::before {
+    content: '';
+    width: 22rpx;
+    height: 22rpx;
+  }
+
+  .tit-after {
+    position: relative;
+  }
+
+  .tit-after::after {
+    content: '*';
+    color: #E51613;
+    position: absolute;
+  }
+
+  .item2 {
+    justify-content: space-between;
+    padding-top: 30rpx;
+  }
+
+  .item3 {
+    display: block;
+    padding-top: 30rpx;
+  }
+
+  .upload {
+    position: relative;
+    width: 137rpx;
+    height: 137rpx;
+    background-color: #ECECEC;
+    color: #747474;
+    text-align: center;
+    margin-top: 22rpx;
+  }
+
+  .upload-icon {
+    width: 48rpx;
+    height: 38rpx;
+    margin-top: 20rpx;
+  }
+
+  .upload-text {
+    width: 92rpx;
+    font-size: 20rpx;
+    line-height: 30rpx;
+    margin: auto;
+  }
+
+  .uploaded-img {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: #fff;
+  }
+
+  .del-img {
+    width: 35rpx;
+    height: 35rpx;
+    position: absolute;
+    top: -10rpx;
+    right: -10rpx;
+  }
+
+  textarea {
+    margin-top: 20rpx;
+    width: 664rpx;
+    height: 180rpx;
+    border: 1rpx solid #BFBFBF;
+    padding: 10rpx;
+  }
+
+  button {
+    height: 94rpx;
+    line-height: 94rpx;
+    border-radius: 94rpx;
+    background-color: #E6002D;
+    color: #fff;
+    font-size: 45rpx;
+    font-weight: bold;
+    margin: 38rpx 0 0;
+    letter-spacing: 5rpx;
+  }
+
+  @keyframes err-fade-in {
+    from {
+      top: -100%;
+    }
+
+    to {
+      top: 0;
+    }
+  }
+
+  .err-tips {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70rpx;
+    line-height: 70rpx;
+    background-color: #E6002D;
+    color: #fff;
+    font-size: 36rpx;
+    text-align: center;
+    animation: err-fade-in .6s;
+    z-index: 9;
+  }
+
+  .cover {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, .6);
+  }
+
+  @keyframes fade-in {
+    from {
+      bottom: -100%;
+    }
+
+    to {
+      bottom: 0;
+    }
+  }
+
+  .cover>.inner-box {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 80vh;
+    width: 100%;
+    overflow-y: scroll;
+    border-top-left-radius: 30rpx;
+    border-top-right-radius: 30rpx;
+    background-color: #fff;
+    padding: 90rpx 30rpx 50rpx;
+    animation: fade-in .7s;
+  }
+
+  .cover>.inner-box>.city-title {
+    font-size: 32rpx;
+    color: #343434;
+    margin-bottom: 10rpx;
+  }
+
+  .cover>.inner-box>.cur-city {
+    font-size: 40rpx;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 15rpx;
+  }
+
+  .cover .city-list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .cover .city-list>.city-item {
+    height: 58rpx;
+    padding: 0 15rpx;
+    border: 1rpx solid #BFBFBF;
+    font-size: 32rpx;
+    margin: 0 30rpx 30rpx 13rpx;
+  }
+
+  .cover .close-cover {
+    width: 35rpx;
+    height: 35rpx;
+    position: absolute;
+    top: 35rpx;
+    right: 35rpx;
+  }
+
+  .refund-reason-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 32rpx;
+    font-size: 32rpx;
+    color: #343434;
+  }
+
+  .reason-text {
+    line-height: 56rpx;
+  }
+}

@@ -1,0 +1,76 @@
+<!--pages-xmb/pages//tradeIn/Confirm/Confirm.wxml-->
+<online-serve />
+<view class="box">
+  <image mode="widthFix" src="https://img.51jiabo.com/767a3b2c-aff3-411d-af04-f1116da3cb8e.png"></image>
+  <view class="content">
+    <view class="rule" bindtap="toXmbTradeInRule">
+      <view class="icon"></view>活动规则
+    </view>
+    <view class="card">
+      <view class="user">手机号：{{mobile}}</view>
+      <view class="user">熊猫币总数：{{totalXmb}}</view>
+      <view class="goods-info">
+        <image class="img" mode="aspectFit" src="{{info.goods_image}}"></image>
+        <view class="info">
+          <view class="name">{{info.goods_name}}</view>
+          <view class="origin">￥{{info.origin_price}}</view>
+          <view class="now">
+            <view class="icon"></view>熊猫币{{info.panda_coin}}
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- svip会员才可换购 -->
+    <view class="svip" bindtap="toSvipHome" wx:if="{{info.limit_svip == 1}}">
+      <image class="img" src="https://img.51jiabo.com/508c5d2b-d779-4046-b399-2842cdf3fc4f.png"></image>
+      <view class="svip-text">仅SVIP会员可换购该商品</view>
+      <view class="svip-buy">立即开通</view>
+    </view>
+    <!-- 熊猫币换购按钮 -->
+    <view class="xmb-tradeIn" bindtap="toSelfHelp">
+      <view class="icon"></view>获得熊猫币参与换购GO >>
+    </view>
+  </view>
+</view>
+
+<view class="btn-box">
+  <!-- 无库存，1为不能直接购买 -->
+  <view class="origin-buy" data-id="{{info.goods_id}}" bindtap="toSaleBuy"
+    wx:if="{{info.stock != 0 && info.limit_buy != 1}}">
+    <view class="num">￥{{info.sale_price}}</view>
+    <view class="tips">不换购，直接购买</view>
+  </view>
+  <view class="buy-box">
+    <button wx:if='{{!isLogin}}' class="getnumebr" open-type='getPhoneNumber' bindgetphonenumber="getPhoneNumber">
+    </button>
+    <view class="trade-buy">{{info.panda_coin}}熊猫币</view>
+    <view class="confirm" data-id="{{info.red_goods_id}}" bindtap="toTradeBuy">确定</view>
+  </view>
+</view>
+
+<!-- svip升级弹层 -->
+<view class="svip-popup" wx:if="{{showBuySvip}}">
+  <view class="svip-box">
+    <view class="title">该下单手机号{{svipMobile}}非SVIP会员</view>
+    <view class="buy-svip" wx:if="{{!disableBuySvip}}" bindtap="buySvip">开通SVIP</view>
+    <view class="buy-svip gray" wx:if="{{disableBuySvip}}">开通SVIP</view>
+    <view class="tips">*仅限SVIP会员可直接购买</view>
+    <view class="cancel" bindtap="cancel">知道了</view>
+  </view>
+</view>
+
+<!-- 熊猫币不足弹层 -->
+<view class="tips-popup" wx:if="{{tipsPopup}}">
+  <view class="tips-box">
+    <view class="top">
+      <view class="close" bindtap="closeTips"></view>
+      <view class="icon"></view>
+      <view>
+        <view class="text">您的熊猫币不足</view>
+        <view class="text">无法换购此商品</view>
+      </view>
+    </view>
+    <view class="btn" bindtap="toSelfHelp">还有订单，去录单</view>
+    <view class="btn" bindtap="toXmbTradeInList">查看其他商品</view>
+  </view>
+</view>

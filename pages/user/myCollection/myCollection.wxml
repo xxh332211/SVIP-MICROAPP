@@ -1,0 +1,34 @@
+<!--pages/user/myCollection/myCollection.wxml-->
+<view class="container">
+  <block wx:if="{{list.length === 0}}">
+    <view class="no-data">你还未添加商品哟~</view>
+    <button class="no-data-btn" bindtap="toIndex">去逛逛</button>
+  </block>
+
+  <view wx:else class="list">
+    <view class="item" wx:for="{{list}}" wx:key="prerogative_goods_id" bindtap="toGoodsDetail" data-item="{{item}}">
+      <image src="{{item.image_url}}"></image>
+      <view class="item-cover">
+        <view class="desc">{{item.prerogative_name}}</view>
+        <view class="price">￥
+          <block wx:if="{{item.pay_way == 1}}">{{item.earnest}}</block>
+          <block wx:else>
+            {{item.is_add_activity == 1 ? item.activity_price : item.exclusive_price}}
+          </block>
+        </view>
+      </view>
+      <image class="del-icon" src="https://img.51jiabo.com/30cdfc01-9ef7-4498-9f83-3d3a2e3a161e.png" catchtap="delHandle" data-id="{{item.prerogative_goods_id}}"></image>
+      <view wx:if="{{item.is_online == 0}}" class="offline">商品已下线</view>
+    </view>
+  </view>
+
+  <view wx:if="{{showPopup}}" class="cover">
+    <view class="popup">
+      <view class="popup-text">确认删除此条收藏么？</view>
+      <view class="popup-btns">
+        <button class="btn cancel" bindtap="closePopup">取消</button>
+        <button class="btn confirm" bindtap="confirmDel">删除</button>
+      </view>
+    </view>
+  </view>
+</view>

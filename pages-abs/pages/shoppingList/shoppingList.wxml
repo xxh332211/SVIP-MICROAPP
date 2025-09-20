@@ -1,0 +1,29 @@
+<!--pages-abs/pages/shoppingList/shoppingList.wxml-->
+<online-serve />
+<view class="head-box">
+  <image class="head" src="https://img.51jiabo.com/341b0b54-4e8e-4f52-8361-dc2d759a19f8.png"></image>
+</view>
+<view class="avatar-box">
+  <image class="avatar" wx:for="{{avatarList}}" wx:key="index" wx:if="{{index < 11}}" src="{{item}}"></image>
+  <view class="more" wx:if="{{avatarList.length > 11}}"></view>
+</view>
+<view class="share" wx:if="{{!isLogin}}" bindtap="toLogin">分享家人</view>
+<button class="share" open-type="share" wx:else>分享家人</button>
+<view class="goods-list" wx:if="{{goodsList && goodsList.length > 0}}">
+  <!-- 已预约在线商品 -->
+  <view class="goods-item" wx:for="{{goodsList}}" wx:key="index" data-item="{{item}}" bindtap="toDetail">
+    <image class="bg" src="{{item.image_url}}"></image>
+    <view class="status">{{item.goods_type == "collect"?"已收藏":"已预订"}}</view>
+    <view class="info">
+      <view class="name">{{item.prerogative_name}}</view>
+      <view class="price" wx:if="{{item.pay_way == 2}}">￥{{item.activity_price?item.activity_price:item.exclusive_price}}</view>
+      <view class="price" wx:else>{{item.earnest}}</view>
+    </view>
+    <view class="popup" wx:if="{{item.is_online === 0}}">商品已下线</view>
+  </view>
+  <view class="more-item" bindtap="toMgg">
+    <image class="more-img" src="https://img.51jiabo.com/75151d43-ee9a-4883-8b6b-33f019f86d0f.png"></image>
+    <view class="text">查看更多好物</view>
+  </view>
+</view>
+<view class="empty" wx:else>你还未添加任何商品呦~</view>

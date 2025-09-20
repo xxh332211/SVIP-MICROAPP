@@ -1,0 +1,47 @@
+<online-serve />
+<view class="container">
+  <view class="tabs">
+    <view class="tab {{tab === 0 ? 'active' : ''}}" data-idx="{{0}}" bind:tap="switchTab">全部<text wx:if="{{statistic.allOrders}}">({{statistic.allOrders}})</text></view>
+    <view class="tab {{tab === 1 ? 'active' : ''}}" data-idx="{{1}}" bind:tap="switchTab">待付款<text wx:if="{{statistic.unpaidOrders}}">({{statistic.unpaidOrders}})</text></view>
+    <view class="tab {{tab === 2 ? 'active' : ''}}" data-idx="{{2}}" bind:tap="switchTab">待提货<text wx:if="{{statistic.unpickedOrders}}">({{statistic.unpickedOrders}})</text></view>
+    <view class="tab {{tab === 3 ? 'active' : ''}}" data-idx="{{3}}" bind:tap="switchTab">已完成<text wx:if="{{statistic.closedOrders}}">({{statistic.closedOrders}})</text></view>
+  </view>
+  <scroll-view class="list" scroll-y="true" lower-threshold="100" bind:scrolltolower="checkDataLoading">
+    <view class="order-item" wx:for="{{list}}" wx:key="id">
+      <view class="header">
+        <view class="no">订单号  {{item.sn}}</view>
+        <view class="state {{item.orderStatus === 0 ? 'warning' : ''}} {{(item.orderStatus === 4 && item.payStatus !== 3) ? 'gray' : ''}}">
+          {{item.orderStatus === 0 ? '待支付' : (item.orderStatus === 1 || item.orderStatus === 2) ? '已取消' : item.orderStatus === 3 ? '待提货' : item.orderStatus === 4 && item.payStatus !== 3 ? '已完成' : '已取消'}}
+        </view>
+      </view>
+      <view class="goods" bind:tap="gotoDetail" data-index="{{index}}">
+        <image src="{{item.productImageUrl || 'https://img.51jiabo.com/1a927c4f-1d8a-49a9-8720-c90ce2719f31.jpg'}}" mode="aspectFill"/>
+        <view class="goods-info">
+          <view class="name">{{item.productTitle}}</view>
+          <view class="price">
+            <text>¥{{item.realAmount}}</text>
+            <text class="g">|</text>
+            <text>x{{item.count}}</text>
+          </view>
+          <view class="sprice" wx:if="{{item.catalog === 0}}">
+            销售价：¥{{item.sellingPrice}}
+          </view>
+        </view>
+        <!-- 1 用户取消 2 支付超时取消 -->
+        <view class="return" wx:if="{{item.orderStatus == 1 && item.payStatus === 2}}">退款中</view>
+      </view>
+      <view class="actions">
+        <view class="btn normal-btn" bind:tap="remove" data-index="{{index}}" wx:if="{{item.orderStatus === 1 || item.orderStatus === 2 || item.orderStatus === 4}}">删除</view>
+        <view class="btn normal-btn" bind:tap="cancel" data-index="{{index}}" wx:if="{{item.orderStatus === 0 || item.orderStatus === 3}}">取消</view>
+        <view class="btn normal-btn" bind:tap="pay" data-index="{{index}}" bind:tap="pay" wx:if="{{item.orderStatus === 0}}">去支付 <counter wx:key="index" bind:timeEnd="payTimeEnd" data-index="{{index}}" end="{{item.endTime}}" autoHide="{{true}}"></counter></view>
+        <!-- <view class="btn normal-btn" bind:tap="returns" data-index="{{index}}" wx:if="{{item.orderStatus === 3}}">退款</view> -->
+        <!-- <view class="btn normal-btn" bind:tap="confirm" data-index="{{index}}" wx:if="{{item.orderStatus === 3}}">确认提货</view> -->
+      </view>
+    </view>
+    <view class="no-more-data" wx:if="{{!loading && pagination.totalCount && pagination.totalCount <= list.length}}">--无更多数据了--</view>
+    <view class="no-data" wx:if="{{!loading && list.length === 0}}">
+      <image src="/imgs/empty.png" mode="aspectFill"></image>
+      <text>暂无相关订单</text>
+    </view>
+  </scroll-view>
+</view>

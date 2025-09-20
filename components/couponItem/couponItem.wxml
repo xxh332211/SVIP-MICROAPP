@@ -1,0 +1,78 @@
+<!--components/couponItem/couponItem.wxml-->
+<view class="vendor-coupon">
+  <!-- 单个 -->
+  <view class='single' wx:for="{{newCouponList}}" wx:key="index">
+    <view class="top-bg">
+      <image class='vendor-img' src="{{item.logo_url}}"></image>
+      <view class="ticket-title">{{item.brand_name}}</view>
+    </view>
+    <view class="above" data-item="{{item}}" bindtap="toCouponDetail">
+      <view class="left">
+        <view class="v-price">
+          <view class="p-top">
+            <text style="font-size: 36rpx;">￥</text>{{item.coupon_value}}
+          </view>
+        </view>
+        <view class="ticket-info">
+          <view class='yet-get'>满{{item.consume_amount}}元可用</view>
+          <view class="use-time">使用时间{{item.begin_date}}-{{item.end_date}}</view>
+        </view>
+      </view>
+      <view class="get-ticket">
+        <view class="get-btn" wx:if="{{item.can_get == 1}}" catchtap="getCoupon" data-item="{{item}}">免费领取</view>
+        <view class="get-btn gray" wx:else>{{item.button}}</view>
+      </view>
+    </view>
+    <view class="below">
+      <view class="btm-t">
+        <view class="below-msg">
+          <text>详细信息</text>
+          <!-- 上 -->
+          <image wx:if="{{index == curIndex && item.coupon_id == curId}}" catchtap="platformSpread" data-id="0" data-index="0"
+            style="width: 24rpx;height: 24rpx;" src="https://img.51jiabo.com/5957d4e4-4bd8-4a3d-b5cd-c832d2bcc7d8.png">
+          </image>
+          <!-- 下 -->
+          <image wx:else catchtap="platformSpread" data-id="{{item.coupon_id}}" data-index="{{index}}" style="width: 24rpx;height: 24rpx;"
+            src="https://img.51jiabo.com/70802321-d930-453e-94a2-598429e906ff.png"></image>
+        </view>
+        <button class="fenxiang" bindtap="shareTap" open-type='share' data-shareData="{{item.shareData}}">
+          <image class="fx-icon" src="https://img.51jiabo.com/0865cd60-7a7a-4905-a7f8-c315f6265ef5.png"></image>
+          <text>分享好友</text>
+        </button>
+      </view>
+      <view wx:if="{{index == curIndex && item.coupon_id == curId}}" class="spread">{{item.smemo}}</view>
+    </view>
+  </view>
+
+</view>
+
+<!-- 优惠券领取成功弹层 -->
+<view class='get-ticket-box' wx:if="{{getCouponSuccess}}">
+  <view class='get-ticket'>
+    <view class='txt-box'>
+      <view class='tit1'>领取成功</view>
+      <view class='tit2'>{{activityInfo.begin_date}}-{{activityInfo.end_date}}前往{{activityInfo.venue_name}}下单使用</view>
+    </view>
+    <view class='coupon-box'>
+      <view class="left">
+        <view class='price'>
+          <view class='lab'>￥</view>{{couponItem.coupon_value}}
+        </view>
+        <view class='cond'>满{{couponItem.consume_amount}}元可用</view>
+      </view>
+      <view class="right">
+        <image class='s-img' src='{{couponItem.logo_url}}'></image>
+        <view class='name'>{{couponItem.brand_name}}</view>
+        <view class='date'>{{couponItem.begin_date}}-{{couponItem.end_date}}使用</view>
+      </view>
+    </view>
+    <!-- <view class='remaind'>分享好友优惠券，好友领取成功后，赠送您
+      <text class='remaind-txt'>10元</text>奖励金，可在我的-奖励金页面查看详细活动规则
+    </view> -->
+    <button open-type='share' data-shareData="{{shareData}}" class="share">赠送好友优惠券，一起逛展</button>
+    <view class="close" bindtap='closeGetCoupon'></view>
+  </view>
+</view>
+
+<!-- 熊猫币顶部提示 -->
+<xmb-popup showXmbTips="{{showXmbTips}}" xmbPopupData="{{xmbPopupData}}"></xmb-popup>

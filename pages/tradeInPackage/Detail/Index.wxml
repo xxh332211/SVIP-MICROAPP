@@ -1,0 +1,91 @@
+<wxs src="../../../utils/util.wxs" module="filter" />
+<online-serve />
+<view class="wrapper">
+	<image mode="widthFix" src="{{goodsDetail.goods_image}}"></image>
+
+	<view class="price-box">
+		<view class="price">
+			<view class="trade-p">换购价￥{{goodsDetail.redeem_price}}</view>
+			<view class="origin">￥{{goodsDetail.origin_price}}</view>
+		</view>
+		<view class="status">
+			<image class="img" src="https://img.51jiabo.com/0fbef46a-5030-4f58-979a-0170e8c8c088.png"></image>
+			<view class="time" wx:if="{{notBegin}}">距开始 {{days}}天{{hours}}:{{minute}}:{{second}}</view>
+			<view class="time" wx:if="{{isBegin}}">距结束 {{days}}天{{hours}}:{{minute}}:{{second}}</view>
+			<view class="time" wx:if="{{isEnd}}">已结束</view>
+		</view>
+	</view>
+
+	<view class="svip" bindtap="toSvipHome" wx:if="{{goodsDetail.limit_svip == 1}}">
+		<image class="img" src="https://img.51jiabo.com/508c5d2b-d779-4046-b399-2842cdf3fc4f.png"></image>
+		<view class="svip-text">SVIP会员可换购该商品</view>
+		<view class="svip-buy">立即开通</view>
+	</view>
+
+	<view class="name-box">
+		<view class="name">{{goodsDetail.goods_name}}</view>
+		<button class='share' open-type='share' plain="true"></button>
+	</view>
+
+	<view class="desc-box">
+		<view class="desc">{{goodsDetail.description}}</view>
+		<view class="query">
+			<view class="key">库存</view>
+			<view class="val">剩余{{goodsDetail.stock}}件</view>
+		</view>
+		<view class="query">
+			<view class="key">配送</view>
+			<view class="val">{{goodsDetail.distribution_explain}}</view>
+		</view>
+	</view>
+
+	<view class="desc-img">
+		<image class="adv" wx:if="{{tradeAdv.length > 0}}" mode="widthFix" data-area_id="52" data-item="{{tradeAdv[0]}}" bindtap="{{tradeAdv[0].url?'swiperUrl':''}}" src="{{tradeAdv[0].wap_image_url}}"></image>
+
+		<image wx:for="{{goodsDetail.goodsDetailImg}}" wx:key="index" mode="widthFix" src="{{item.image_url}}"></image>
+	</view>
+</view>
+
+
+<view class="sell-out" wx:if="{{goodsDetail.stock == 0}}">抢光了</view>
+<view class="sell-out" wx:if="{{goodsDetail.stock != 0 && goodsDetail.status == 2}}">商品已下架</view>
+<view class="buy-box">
+	<!-- 无库存，1为不能直接购买 -->
+	<view class="origin-buy {{goodsDetail.stock == 0 || goodsDetail.limit_buy == 1?'disable':''}}" data-id="{{goodsDetail.goods_id}}" bindtap="{{goodsDetail.stock == 0 || goodsDetail.limit_buy == 1?'':'toSaleBuy'}}">
+		<view class="num">￥{{goodsDetail.sale_price}}</view>
+		<view class="tips">不换购，直接购买</view>
+	</view>
+	<!-- 未开始，已结束，无库存，已下架，禁用按钮 -->
+
+	<!-- {{notBegin  || goodsDetail.stock == 0 || goodsDetail.status == 2?'disable':''}} -->
+	<view class="trade-buy " data-id="{{goodsDetail.red_goods_id}}" bindtap="toTradeBuy">
+		<button wx:if='{{isToken}}' class="getnumebr" open-type='getPhoneNumber' bindgetphonenumber="getPhoneNumber">
+		</button>
+
+		<view class="num">￥{{goodsDetail.redeem_price}}</view>
+		<view class="tips">现场下{{goodsDetail.need_orders}}单换购</view>
+	</view>
+
+</view>
+
+<!-- svip升级弹层 -->
+<view class="svip-popup" wx:if="{{showBuySvip}}">
+	<view class="svip-box">
+		<view class="title">该下单手机号{{phoneNum}}非SVIP会员</view>
+		<view class="buy-svip" wx:if="{{!disableBuySvip}}" bindtap="buySvip">开通SVIP</view>
+		<view class="tips">*仅限SVIP会员可直接购买</view>
+		<view class="cancel" bindtap="cancel">知道了</view>
+	</view>
+</view>
+
+<!-- svip升级弹层 -->
+<view class="svip-popup" wx:if="{{showTicket}}">
+	<view class="ticket-box">
+	  <view class="fork" bindtap="fork">
+				<image src="https://img.51jiabo.com/22e05f5e-d7e9-4bc4-8254-b0ac1d758821.png"></image>
+		</view>
+		<view class="ticket-title">换购未开始哦</view>
+		<view class="ticket-tips">请于{{filter.timeSlice(begin_date)}}-{{filter.timeSlice(end_date)}}日至{{venue_name}}现场下单换购!</view>
+		<view class="ticket-cancel" bindtap="redTicket" wx:if='{{!isTicket && !isActive}}'>免费索票</view>
+	</view>
+</view>

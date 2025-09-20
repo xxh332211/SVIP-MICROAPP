@@ -1,0 +1,821 @@
+<!--pages/getTicket/getTicket.wxml-->
+<wxs module="md">
+  var indexof = function (arr, num) {
+    if (arr.indexOf(num) > -1) {
+      return true
+    } else {
+      return false
+    }
+  }
+  var textNum = function (str) {
+    var text = str;
+    if (text.length > 6) {
+      text = text.substring(0, 6) + '...'
+    }
+    return text;
+  }
+  var subText = function (str) {
+    var text = str;
+    return text.substring(0, 11);
+  }
+  var dateFormat = function (time) {
+    if (time) {
+      return time.replace('.', '月') + '日'
+    } else {
+      return time
+    }
+  }
+  module.exports = { indexof: indexof, textNum: textNum, subText: subText, dateFormat: dateFormat }
+</wxs>
+<privacy-popup></privacy-popup>
+<online-serve />
+<view class='wrapper page'>
+  <view class='swiper-box'>
+    <!-- 轮播 -->
+    <banner-swiper wx:if="{{banner && banner.length > 0}}" banner="{{banner}}" area_id="{{area_id}}" liveData="{{liveData}}"></banner-swiper>
+    <!-- 城市 -->
+    <view class='pos' bindtap='chooseCity'>
+      <image src='/imgs/site.png'></image>
+      <text>{{curUserCityText}}</text>
+    </view>
+  </view>
+
+  <view class="ticket-wrapper">
+    <button class="share-btn" data-ticket='ticket' data-from="shareBtn" open-type="share">
+      <view class="ico"></view>分享门票
+    </button>
+    <view class="add-kith" wx:if="{{hasTicket || showIntention}}" bindtap="toAddKin">
+      <view class="ico"></view>添加亲友
+    </view>
+    <view class="ticket-contain {{showIntention?'rotate':''}}">
+      <!-- 展前索票按钮 -->
+      <view class="form-box" wx:if="{{!hasTicket && !zhanzhong}}">
+        <view class="time no-time" wx:if="{{activityInfo.is_jqqd == 1}}">敬请期待</view>
+        <view class="time" wx:else>{{md.dateFormat(activityInfo.begin_date)}}-{{md.dateFormat(activityInfo.end_date)}}</view>
+        <view bindtap="toMap">
+          <view class="venue">{{activityInfo.venue_name}}</view>
+          <view class="address">地址：{{activityInfo.venue_address}}</view>
+        </view>
+        <view class="k-box" wx:if="{{cityConfig.is_show == 1}}">
+          <view class="tab {{isElectron?'active':''}}" data-id="Electron" bindtap="cutKind">电子门票</view>
+          <view class="tab {{isPaper?'active':''}}" data-id="Paper" bindtap="cutKind">邮寄纸质门票</view>
+          <view class="line {{isElectron?'':'active'}}"></view>
+        </view>
+
+        <view class="form">
+          <view class='left'>
+            <view class='lab'>￥</view>
+            <view class='num'>10</view>
+            <view class='txt'>
+              <view wx:if="{{cityId == 27}}">森图里家博会</view>
+              <view wx:elif="{{cityId == 54}}">天府家博会</view>
+              <view wx:elif="{{cityId == 60}}">宁波装修狂欢节</view>
+              <view wx:elif="{{cityId == 65}}">现代家博会</view>
+              <view wx:else>华夏家博会</view>
+              <view wx:if="{{isElectron}}">入场门票</view>
+              <view wx:else>免费邮寄到家</view>
+            </view>
+          </view>
+          <button class='get-btn' wx:if="{{!isLogin}}" open-type='getPhoneNumber' bindgetphonenumber="getPhoneNumber">免费索票</button>
+          <view class="get-btn" wx:if="{{isLogin}}" bindtap="freeGet">免费索票</view>
+          <view class="freeGet-img">
+            <image src="https://img.51jiabo.com/963a2ddc-cd24-4509-ba1a-f343a5810faf.gif" alt=""></image>
+          </view>
+        </view>
+
+        <view class="record-box {{cityConfig.is_show == 1?'':'top'}}">
+          <view class="record-popup"></view>
+          <swiper class='record' autoplay="true" vertical="true" circular="true" interval="3000">
+            <block wx:for="{{ticketPerson}}" wx:key="index">
+              <swiper-item class="swiper-item">
+                <text>{{item.real_name}}</text>
+                <text>{{item.mobile}}</text>
+                <text>{{item.get_time}}前索票</text>
+              </swiper-item>
+            </block>
+          </swiper>
+        </view>
+
+        <view class="tips-wrap">
+          <view class="tips">
+            <view class="showProtocol">
+              <checkbox checked="{{ischecked}}" catchtap="onDefaultSelect"></checkbox>
+              我已阅读并同意<span class="agreement" bindtap="showProtocol">《用户隐私协议》</span>
+            </view>
+          </view>
+          <view class="notice" bindtap="togglePopup">用户索票须知>></view>
+        </view>
+
+      </view>
+      <!-- 展前新用户未索票，配置了展中购票，展中购买 -->
+      <view class='money-box' wx:if="{{zhanzhong && isExpoSell && (!isLogin ||  (userInfo.needBuyTicket == 1 && !hasTicket))}}">
+        <view class="time no-time" wx:if="{{activityInfo.is_jqqd == 1}}">敬请期待</view>
+        <view class="time" wx:else>{{md.dateFormat(activityInfo.begin_date)}}-{{md.dateFormat(activityInfo.end_date)}}</view>
+        <view bindtap="toMap">
+          <view class="venue">{{activityInfo.venue_name}}</view>
+          <view class="address">地址：{{activityInfo.venue_address}}</view>
+        </view>
+        <view class="form">
+          <view class='left'>
+            <view class='lab'>￥</view>
+            <view class='num'>{{activityInfo.zhanzhong_ticket_pic}}</view>
+            <view class='txt'>
+              <view wx:if="{{cityId == 27}}">森图里家博会</view>
+              <view wx:elif="{{cityId == 54}}">天府家博会</view>
+              <view wx:elif="{{cityId == 60}}">宁波装修狂欢节</view>
+              <view wx:elif="{{cityId == 65}}">现代家博会</view>
+              <view wx:else>华夏家博会</view>
+              <view>入场门票</view>
+            </view>
+          </view>
+          <button class='get-btn' wx:if="{{!isLogin}}" open-type='getPhoneNumber' bindgetphonenumber="getPhoneNumber">购票</button>
+          <view class="get-btn" wx:if="{{isLogin}}" bindtap="checkTicketMoney">购票</view>
+        </view>
+        <view class="paper-tips">展前您未索票，开展期间需支付{{activityInfo.zhanzhong_ticket_pic}}元购票，即可获得入场电子门票，门票一经售出不退不换。</view>
+      </view>
+      <!-- 已索票 || （展中&&展中无需买票） || （展中&&配置购票&&老用户） -->
+      <view class="haved-box" wx:if="{{ hasTicket || (zhanzhong && !isExpoSell) || (zhanzhong && userInfo.needBuyTicket === 0 )}}">
+        <view class="time no-time" wx:if="{{activityInfo.is_jqqd == 1}}">敬请期待</view>
+        <view class="time" wx:else>{{md.dateFormat(activityInfo.begin_date)}}-{{md.dateFormat(activityInfo.end_date)}}</view>
+        <view bindtap="toMap">
+          <view class="venue">{{activityInfo.venue_name}}</view>
+          <view class="address">地址：{{activityInfo.venue_address}}</view>
+        </view>
+        <view class="form">
+          <view class='left'>
+            <view class='lab'>￥</view>
+            <view class='num'>10</view>
+            <view class='txt'>
+              <view wx:if="{{cityId == 27}}">森图里家博会</view>
+              <view wx:elif="{{cityId == 54}}">天府家博会</view>
+              <view wx:elif="{{cityId == 60}}">宁波装修狂欢节</view>
+              <view wx:elif="{{cityId == 65}}">现代家博会</view>
+              <view wx:else>华夏家博会</view>
+              <view wx:if="{{ticketInfo.ticket_type == 2}}">免费邮寄到家</view>
+              <view wx:else>入场门票</view>
+            </view>
+          </view>
+          <button class='get-btn' wx:if="{{!isLogin}}" open-type='getPhoneNumber' bindgetphonenumber="getPhoneNumber">查看门票</button>
+          <view class="get-btn" wx:else bindtap="checkTicket">查看门票</view>
+        </view>
+        <view class="paper-tips">
+          <block wx:if="{{cityId == 60}}">活动当天扫码进场</block>
+          <block wx:else>展会当天扫码进场</block>
+        </view>
+      </view>
+      <!-- 采购意向 -->
+      <view class="intention" wx:if="{{cityId != 28}}">
+        <view class="title">勾选【采购意向】，装修采购更省心~</view>
+        <view class="kind-box">
+          <view class="item" wx:for="{{kindData}}" wx:key="index" data-item="{{item}}" bindtap="selIntention">
+            <image class="kind-img" src="{{item.src}}"></image>
+            <view class="kind-name">{{item.name}}</view>
+            <view class="check" wx:if="{{item.isSel}}"></view>
+          </view>
+        </view>
+        <view class="submit-btn tj-intention" bindtap="submitYx">提交</view>
+      </view>
+      <!-- 绍兴不显示采购意向，显示为添加客服微信 -->
+      <view class="intention schedule" wx:else>
+        <view class="add-tips">添加客服领取门票和优惠，请及时添加，超时优惠将失效</view>
+        <view class="service">
+          <cell bind:startmessage='startmessage' bind:completemessage="completemessage" plugid='47599da8c6ff80cc24c5c8a84b9d6d9e' buttonStyle="light" />
+        </view>
+        <view class="h5">
+          <image mode='widthFix' src="/imgs/richeng.png"></image>
+          参观日程安排
+        </view>
+        <view class="time-list">
+          <view class='time'>{{expoYear}}
+            <view class='Hz'>年</view>{{expoMonth}}
+            <view class='Hz'>月</view>
+          </view>
+          <view class='ul'>
+            <view class='li {{item.isActive?"active":""}}' wx:for="{{dateList}}" wx:key="index">
+              <view>{{item.date}}</view>
+              <view>{{item.day}}</view>
+            </view>
+          </view>
+        </view>
+        <view class="site">活动地址：{{successInfo.venue_address}}</view>
+      </view>
+    </view>
+    <view class="lottery-box" wx:if="{{cityId == 6 && showReport}}">
+      <button class='auth-btn' wx:if="{{!isLogin}}" open-type='getPhoneNumber' bindgetphonenumber="getPhoneNumber"></button>
+      <view class="lottery-report" bindtap="toExpoOrder">
+        <view class="record-popup"></view>
+        <view class="report-box">
+          <view class="horn"></view>
+          <swiper class='report' autoplay="true" vertical="true" circular="true" interval="5000">
+            <block wx:for="{{lotteryReport}}" wx:key="index">
+              <swiper-item class="swiper-item">
+                <view class="text">{{item.mobile}}用户抽到【{{item.awardName}}】</view>
+              </swiper-item>
+            </block>
+          </swiper>
+        </view>
+        <view class="rule-box" bindtap="toggleRule">查看活动</view>
+      </view>
+    </view>
+  </view>
+  <!-- <view bindtap="fanzhuan">翻转</view> -->
+  <!-- 展会亮点 -->
+  <view class="expo-light">
+    <view wx:if="{{lightList && lightList.length > 0}}">
+      <view class='headline'>
+        <block wx:if="{{cityId == 60}}">活动亮点</block>
+        <block wx:else>展会亮点</block>
+      </view>
+      <swiper class="light-swiper-container">
+        <block wx:for="{{lightList}}" wx:key="index">
+          <swiper-item class="swiper-slide" data-item="{{item}}" bindtap="showBigImg">
+            <image class='light-img' mode='widthFix' src='{{item.wap_image_url}}'></image>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+
+    <!-- 爆品组 -->
+    <view wx:for="{{goodsGroup}}" wx:key="index" wx:if="{{md.indexof(item.banner_info,'69')}}">
+      <hot-goods-group groupItem="{{item}}"></hot-goods-group>
+    </view>
+
+    <!-- 轮播运营位 -->
+    <view wx:if="{{lightAdv && lightAdv.length > 0}}">
+      <swiper class='operate-site' autoplay="true" interval="3000" wx:if="{{lightAdv && lightAdv.length > 1}}">
+        <block wx:for="{{lightAdv}}" wx:key="index">
+          <swiper-item data-item="{{item}}" data-area_id="10" bindtap="swiperUrl">
+            <image mode='scaleToFill' src='{{item.wap_image_url}}'></image>
+          </swiper-item>
+        </block>
+      </swiper>
+      <!-- 轮播为一张时会有不显示的情况，所以一张不用轮播 -->
+      <view class="single-swiper" wx:else data-item="{{lightAdv[0]}}" bindtap="swiperUrl">
+        <image mode='widthFix' src='{{lightAdv[0].wap_image_url}}'></image>
+      </view>
+    </view>
+  </view>
+  <!-- 熊猫币抽奖 -->
+  <view class="draw-box">
+    <lottery-loop wx:if="{{hasLotteryData}}" origin="getTicket" lotteryLoopList="{{lotteryLoopList}}"></lottery-loop>
+  </view>
+  <!-- 超值换购 -->
+  <view class="exchange-box" wx:if="{{tradeInList && tradeInList.length > 0}}">
+    <view class="promotion-title">
+      <view class="promotion-text">超值换购<view></view>
+      </view>
+      <view class="promotion-all" data-type="all" bindtap="toTradeInList">全部>></view>
+    </view>
+    <scroll-view class="ex-scroll" scroll-x="true" enable-flex="true" scroll-anchoring="true">
+      <view class="promotion-item" wx:for="{{tradeInList}}" wx:key="index" data-id="{{item.id}}" bindtap="toTradeDetail" wx:if="{{index < 10}}">
+        <image src="{{item.goods_image}}"></image>
+        <view class="ex-bot">
+          <view class="ex-add">+</view>
+          <view class="ex-text">{{item.redeem_price}}元</view>
+          <text>换购</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 优惠券 -->
+  <view class='sec-box' style="background-color: #f5f5f5;">
+
+    <view wx:if="{{vendorCoupon && vendorCoupon.length > 0}}">
+      <view class='headline'>优惠券
+        <view class='nav-link' bindtap="toCouponList">查看更多>></view>
+      </view>
+
+      <!-- svip商户优惠券礼包 -->
+      <view class="coupon-bag" wx:if="{{svipCouponBag}}" bindtap="linkTo">
+        <view class="label">券</view>
+        <view class="coupon-bag-box">
+          <view class="left">
+            <view class="title">SVIP专享</view>
+            <view class="detail">￥{{svipCouponBag.coupon_value_amount}}优惠券大礼包</view>
+            <view class="include">含{{svipCouponBag.name_total}}</view>
+          </view>
+          <view class="buy" wx:if="{{svipCouponBag.user_is_vip == 1}}">点击查看</view>
+          <view class="buy" wx:else>{{svipPrice}}元购买</view>
+        </view>
+      </view>
+      <!-- 平台优惠券 -->
+      <view class="own-item {{ spreadPlatformCouponDesc ? 'long-bg' : ''}}" wx:if="{{platformCoupon}}">
+        <view class="top" bindtap="linkTo">
+          <view class="left">
+            <view class="price">
+              <view class="symbol">￥</view>
+              {{platformCoupon.coupon_value}}
+            </view>
+            <view class="ticket-info">
+              <view class="ticket-title">满{{platformCoupon.consume_amount}}返{{platformCoupon.coupon_value}}</view>
+              <view class="use-time">使用时间：{{platformCoupon.begin_date}}-{{platformCoupon.end_date}}</view>
+            </view>
+          </view>
+          <view class="get-ticket">
+            <view class="get-btn" wx:if="{{platformCoupon.user_is_vip == 1}}">点击查看</view>
+            <view class="get-btn" wx:else>{{svipPrice}}元购买</view>
+          </view>
+        </view>
+        <view class="bottom">
+          <view class="btm-t">
+            <view class="desc">
+              <text>详细信息</text>
+              <!-- 上 -->
+              <image wx:if="{{spreadPlatformCouponDesc}}" bindtap="platformSpread" style="width: 24rpx;height: 24rpx;" src="https://img.51jiabo.com/5957d4e4-4bd8-4a3d-b5cd-c832d2bcc7d8.png"></image>
+              <!-- 下 -->
+              <image wx:else bindtap="platformSpread" data-type="show" style="width: 24rpx;height: 24rpx;" src="https://img.51jiabo.com/70802321-d930-453e-94a2-598429e906ff.png"></image>
+            </view>
+            <button class="share" open-type="share" bindtap="shareTap" data-shareData="{{platformCoupon.shareData}}">
+              <view class="ico"></view>分享好友
+            </button>
+          </view>
+          <view wx:if="{{spreadPlatformCouponDesc}}" class="spread">{{platformCoupon.smemo}}</view>
+        </view>
+      </view>
+
+      <!-- 商户优惠券 -->
+
+      <view class="coupon-list">
+        <view wx:for="{{vendorCoupon}}" wx:key="index" class="coupon-item" bindtap="toCouponDetail" data-id="{{item.coupon_id}}">
+          <view class="cp-item-header">
+            <image class="cp-item-logo" src="{{item.logo_url}}"></image>
+            <view class="cp-item-name">{{md.textNum(item.brand_name)}}</view>
+          </view>
+          <view class="cp-price">￥<text style="font-size: 48rpx;">{{item.coupon_value}}</text></view>
+          <view class="cp-price-tips">满{{item.consume_amount}}元可用</view>
+          <view wx:if="{{item.can_get==1}}" class="coupon-btn" data-item="{{item}}" catchtap="getCoupon">免费领取</view>
+          <view wx:else class="coupon-btn coupon-btn-dis">{{item.button}}</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 爆品组 -->
+    <view wx:for="{{goodsGroup}}" wx:key="index" wx:if="{{md.indexof(item.banner_info,'70')}}">
+      <hot-goods-group groupItem="{{item}}"></hot-goods-group>
+    </view>
+
+    <!-- 轮播运营位 -->
+    <view wx:if="{{couponAdv && couponAdv.length > 0}}">
+      <swiper class='operate-site' autoplay="true" interval="3000" wx:if="{{couponAdv && couponAdv.length > 1}}">
+        <block wx:for="{{couponAdv}}" wx:key="index">
+          <swiper-item data-item="{{item}}" data-area_id="11" bindtap="swiperUrl">
+            <image mode='scaleToFill' src='{{item.wap_image_url}}'></image>
+          </swiper-item>
+        </block>
+      </swiper>
+
+      <view class="single-swiper" wx:else data-item="{{couponAdv[0]}}" bindtap="swiperUrl">
+        <image mode='widthFix' src='{{couponAdv[0].wap_image_url}}'></image>
+      </view>
+
+    </view>
+
+
+  </view>
+
+  <!-- 爆品预约 -->
+  <view class='sec-box'>
+
+    <view wx:if="{{hotGoods && hotGoods.length > 0}}">
+      <view class='headline'>爆品预约
+        <view class='nav-link' bindtap="toGoodsList">查看更多>></view>
+      </view>
+
+      <!-- 单个 -->
+      <hot-goods-item hotGoods="{{hotGoods}}"></hot-goods-item>
+    </view>
+
+    <!-- 爆品组 -->
+    <view wx:for="{{goodsGroup}}" wx:key="index" wx:if="{{md.indexof(item.banner_info,'71')}}">
+      <hot-goods-group groupItem="{{item}}"></hot-goods-group>
+    </view>
+
+    <!-- 轮播运营位 -->
+    <view wx:if="{{hotGoodsAdv && hotGoodsAdv.length > 0}}">
+      <swiper class='operate-site' autoplay="true" interval="3000" wx:if="{{hotGoodsAdv && hotGoodsAdv.length > 1}}">
+        <block wx:for="{{hotGoodsAdv}}" wx:key="index">
+          <swiper-item data-item="{{item}}" data-area_id="12" bindtap="swiperUrl">
+            <image mode='scaleToFill' src='{{item.wap_image_url}}'></image>
+          </swiper-item>
+        </block>
+      </swiper>
+
+      <view class="single-swiper" wx:else data-item="{{hotGoodsAdv[0]}}" bindtap="swiperUrl">
+        <image mode='widthFix' src='{{hotGoodsAdv[0].wap_image_url}}'></image>
+      </view>
+
+    </view>
+
+  </view>
+
+
+  <!-- 商户活动 -->
+  <view class='sec-box'>
+    <view wx:if="{{vendorAct && vendorAct.length > 0}}">
+      <view class='headline'>商户活动
+        <view class='nav-link' bindtap="toVendorAct">查看更多>></view>
+      </view>
+
+      <!-- 单个 -->
+      <vendor-item vendorAct="{{vendorAct}}"></vendor-item>
+    </view>
+
+    <!-- 爆品组 -->
+    <view wx:for="{{goodsGroup}}" wx:key="index" wx:if="{{md.indexof(item.banner_info,'72')}}">
+      <hot-goods-group groupItem="{{item}}"></hot-goods-group>
+    </view>
+
+    <!-- 轮播运营位 -->
+    <view wx:if="{{vendorActAdv && vendorActAdv.length > 0}}">
+      <swiper class='operate-site' autoplay="true" interval="3000" wx:if="{{vendorActAdv && vendorActAdv.length > 1}}">
+        <block wx:for="{{vendorActAdv}}" wx:key="index">
+          <swiper-item data-item="{{item}}" data-area_id="13" bindtap="swiperUrl">
+            <image mode='scaleToFill' src='{{item.wap_image_url}}'></image>
+          </swiper-item>
+        </block>
+      </swiper>
+
+      <view class="single-swiper" wx:else data-item="{{vendorActAdv[0]}}" bindtap="swiperUrl">
+        <image mode='widthFix' src='{{vendorActAdv[0].wap_image_url}}'></image>
+      </view>
+
+    </view>
+
+  </view>
+
+
+  <!-- 热销品牌 -->
+  <view class='sec-box' wx:if="{{brandList && brandList.length > 0}}">
+    <view class='headline'>热销品牌
+      <view class='nav-link' bindtap="toBrandList">查看更多>></view>
+    </view>
+
+    <view class="brand-list">
+      <!-- 单个 -->
+      <view class='brand-item' wx:for="{{brandList}}" wx:key="index">
+        <image src="{{item.logo_url}}"></image>
+        <view class='text'>{{item.brand_name}}</view>
+      </view>
+    </view>
+
+  </view>
+
+  <!-- 保障 -->
+  <view class="safeguard">
+    <view class="item">
+      <view class="img-border">
+        <image src="/imgs/fuw1.png"></image>
+      </view>
+      <view class='promise'>品质承诺</view>
+      <view class='detail'>品牌源头精选</view>
+    </view>
+    <view class="vert-line"></view>
+    <view class="item">
+      <view class="img-border">
+        <image src="/imgs/fuw2.png"></image>
+      </view>
+      <view class='promise'>价格承诺</view>
+      <view class='detail'>全城价格保障</view>
+    </view>
+    <view class="vert-line"></view>
+    <view class="item">
+      <view class="img-border">
+        <image src="/imgs/fuw3.png"></image>
+      </view>
+      <view class='promise'>售后承诺</view>
+      <view class='detail'>60天无理由退换</view>
+    </view>
+  </view>
+
+</view>
+
+
+<!-- 索票须知 -->
+<view class="order-tips" bindtap="togglePopup" wx:if="{{tipsPopup}}">
+  <view class="tips-box">
+    <view class='caption'>索票须知</view>
+    <view class='content'>
+      <view>1.您目前索取的是{{activityInfo.begin_date}}-{{activityInfo.end_date}}的{{activityInfo.venue_name}}展会门票</view>
+      <!-- isExpoSell判断是否展中售卖门票 -->
+      <view wx:if="{{isExpoSell}}">2.索票成功即可免费获得<text wx:if="{{cityId == 60}}">宁波装修狂欢节</text><text wx:else>家博会</text>门票，如未提前索票需至展会现场购买门票{{activityInfo.zhanzhong_ticket_pic}}元/位
+      </view>
+      <view wx:else>2.索票成功即可免费获得价值20元<text wx:if="{{cityId == 60}}">宁波装修狂欢节</text><text wx:else>家博会</text>门票</view>
+      <!-- is_show判断是否可领纸质门票 -->
+      <view wx:if="{{cityConfig.is_show == 1}}">3.索票成功开展前如未收到门票，可现场凭手机号码查询领取门票</view>
+      <view wx:if="{{cityConfig.is_show == 1}}">温馨提示：索票成功后，我们的客服将通过{{cityConfig.phone_code}}的电话与您联系，确认门票及展会资料快递地址。
+      </view>
+      <view wx:else>温馨提示：索票成功后，我们的客服将会通过{{cityConfig.phone_code}}的电话与您核实索票信息，请保持手机通畅。</view>
+    </view>
+    <view class="know">
+      <view class="know-btn">知道了</view>
+    </view>
+  </view>
+</view>
+
+<!-- 展会亮点弹层 -->
+<view class='light-popup' wx:if="{{bigImgPopup}}" bindtap="hideBigImg">
+  <view class='light-box'>
+    <image mode='widthFix' src="{{bigImgData.win_image_url}}"></image>
+    <view class='light-title'>{{bigImgData.win_title}}</view>
+    <view class='light-content'>{{bigImgData.win_program}}</view>
+  </view>
+</view>
+
+<!-- 门票二维码弹层 -->
+<view class="ticket-qr-popup" hidden="{{!ticketPopup}}" catchtouchmove='stop'>
+  <view class="ticket-qr-box">
+    <view class="title">我的门票<view class='cha' bindtap='chaBtn'></view>
+    </view>
+    <view class="content">
+      <view class='content-title'>扫门票二维码进场逛展</view>
+      <canvas class='canvas' disable-scroll="true" canvas-id='qrcode'></canvas>
+      <view class="ticket-num">{{ticketInfo.ticket_num}}</view>
+      <button data-ticket='ticket' class="inviteBtn btn-1" open-type="share" plain="true">邀请好友，一起逛展<image src='/imgs/youjiantou.png' class='youjiantou'></image></button>
+      <button data-ticket='ticket' class="inviteBtn btn-2" bindtap="toAddKin" plain="true" data-plan="快捷门票查看电子票后">添加亲友，一起逛展<image src='/imgs/youjiantou.png' class='youjiantou'></image></button>
+
+      <!-- <view wx:if="{{cityId != 44}}" class='txt'>分享门票给好友，好友领取成功后，您可获得10元奖励金，详细活动规则可在我的奖励金页面查看。</view> -->
+    </view>
+  </view>
+</view>
+
+<!-- 购买门票 -->
+<view class="ticket-qr-popup" hidden='{{!ticketPopupTicket}}' catchtouchmove='stop'>
+  <view class="ticket-qr-box">
+    <view class="title">购买门票<view class='cha' bindtap='chaTicketBtn'></view>
+    </view>
+    <view class="content">
+      <view class='content-ticket'><span>门票
+          :</span><span>￥</span><span>{{activityInfo.zhanzhong_ticket_pic}}</span>
+      </view>
+      <view class='txt txt-Ticket'>展前您未索票，开展期间需支付{{activityInfo.zhanzhong_ticket_pic}}元购票，即可获得入场电子门票，门票一经售出不退不换。
+      </view>
+      <form report-submit="true" bindsubmit="payEticket">
+        <button form-type="submit" class='inviteBtn inviteBtn-ticket'>
+          {{activityInfo.zhanzhong_ticket_pic}}元购票 <image src='/imgs/youjiantou.png' class='youjiantou'>
+          </image>
+        </button>
+      </form>
+    </view>
+  </view>
+</view>
+
+<!-- 弹层运营位 -->
+<view class="adv-popup" wx:if="{{advPopup && popupAdv}}">
+  <view class="adv-box">
+    <view data-item="{{popupAdv[0]}}" data-area_id="25" bindtap="swiperUrl">
+      <image mode="widthFix" src="{{popupAdv[0].wap_image_url}}"></image>
+    </view>
+    <view class="adv-close" bindtap="closeAdv"></view>
+  </view>
+</view>
+
+<!-- 索票成功弹层  -->
+<view class='get-ticket-box' wx:if="{{getTicSuccess}}">
+
+  <!-- 抽奖裂变弹框 -->
+  <view wx:if="{{showFisTicketPop}}" class="zero-ticket-pop">
+    <view class="z-tit">索票成功</view>
+    <view class="z-area">{{md.dateFormat(successInfo.begin_date)}}-{{md.dateFormat(successInfo.end_date)}} {{successInfo.venue_name}}
+      <text wx:if="{{cityId == 27}}">森图里家博会</text>
+      <text wx:elif="{{cityId == 54}}">天府家博会</text>
+      <text wx:elif="{{cityId == 60}}">宁波装修狂欢节</text>
+      <text wx:elif="{{cityId == 65}}">现代家博会</text>
+      <text wx:else>华夏家博会</text>等您来
+    </view>
+    <image class="z-img" data-id="{{fissionId}}" catchtap="toZeroBuy" src="{{fissionTicketPopImg}}"></image>
+    <view class="z-time">距离活动结束：{{fis_days}}天{{fis_hours}}:{{fis_minute}}:{{fis_second}}</view>
+    <button class="z-btn" data-id="{{fissionId}}" catchtap="toZeroBuy">点击参与抽奖</button>
+    <view class="z-del" catchtap="closeGetTicket">
+      <image class="z-del-icon" src="https://img.51jiabo.com/ac49af8c-ebda-4244-a43b-176a979e67e4.png"></image>
+    </view>
+  </view>
+
+
+  <view wx:else class='get-success'>
+    <view class='txt-box'>
+      <view class='tit1'>索票成功</view>
+      <view class='tit2'>{{md.dateFormat(successInfo.begin_date)}}-{{md.dateFormat(successInfo.end_date)}} {{successInfo.venue_name}}，
+        <text wx:if="{{cityId == 27}}">森图里家博会</text>
+        <text wx:elif="{{cityId == 54}}">天府家博会</text>
+        <text wx:elif="{{cityId == 60}}">宁波装修狂欢节</text>
+        <text wx:elif="{{cityId == 65}}">现代家博会</text>
+        <text wx:else>华夏家博会</text>等您来
+      </view>
+    </view>
+
+    <view class='ticket-box'>
+      <view class='info'>
+        <view class='lab'>￥</view>
+        <view class='sum'>10</view>
+        <view class='type'>
+          <text wx:if="{{cityId == 27}}">森图里家博会</text>
+          <text wx:elif="{{cityId == 54}}">天府家博会</text>
+          <text wx:elif="{{cityId == 60}}">宁波装修狂欢节</text>
+          <text wx:elif="{{cityId == 65}}">现代家博会</text>
+          <text wx:else>华夏家博会</text>
+          <view wx:if="{{isElectron}}">入场门票</view>
+          <view wx:else>免费邮寄到家</view>
+        </view>
+      </view>
+      <view class='station'>{{curUserCityText}}站</view>
+    </view>
+
+    <!-- <view class='remaind'>分享好友门票，好友领取成功后，赠送您<text>10元</text>奖励金，可在我的-奖励金页面查看详细活动规则</view> -->
+    <view class="btn-box" wx:if="{{successPopupAdv.win_title && successPopupAdv.url}}">
+      <button open-type='share' bindtap="umTj" class="success-btn" data-ticket='ticket'>赠送好友门票\n一起逛展 >></button>
+      <view class="success-btn" data-item="{{successPopupAdv}}" bindtap="swiperUrl">{{md.subText(successPopupAdv.win_title)}} >></view>
+    </view>
+    <button wx:else open-type='share' bindtap="umTj" class="share" data-ticket='ticket'>赠送好友门票，一起逛展</button>
+    <view class="close" bindtap='closeGetTicket'></view>
+  </view>
+</view>
+
+<!-- 订单换购浮层 -->
+<view class="tradeIn-fixed" data-type="fixed" bindtap="toTradeInList" wx:if="{{tradeOnline}}">
+  <view class="trade-bag" style="margin-top:{{(!trandInNum || trandInNum.length == 1)?24:14}}rpx"></view>
+  <view class="content">
+    <view class="top" wx:if='{{trandInNum.length > 1 }}'>
+      <view class="commonFlex" wx:for="{{trandInNum}}" wx:key="index">
+        <view class="amount">{{item}}单</view>
+        <view class="cirl {{orderNum >= item?'act':''}}"></view>
+        <view class="line"></view>
+      </view>
+    </view>
+
+    <view class="bottom" style="margin-top:{{(!trandInNum || trandInNum.length == 1)?0:-10}}rpx" wx:if="{{!orderNum || orderNum == 0}}">现场下单得换购资格GO>></view>
+    <view class="bottom" style="margin-top:{{(!trandInNum || trandInNum.length == 1)?0:-10}}rpx" wx:if="{{orderNum && orderNum > 0}}">您已达到{{orderNum}}单换购GO>></view>
+  </view>
+</view>
+
+<!-- 熊猫币换购浮层 -->
+<view class="xmb-tradeIn" bindtap="toXmbTradeInList" wx:if="{{xmbTradeIn}}">
+  <view class="icon"></view>获得熊猫币参与换购GO >>
+</view>
+
+<!-- 检票成功弹层 -->
+<view class="check-popup" wx:if="{{checkPopup}}">
+  <view class="check-box">
+    <view wx:if="{{userData.svip == 1}}">
+      <view class="check-title">超级会员用户</view>
+      <view class="check-title">检票成功！欢迎逛展~</view>
+      <view class="not-sign-text" wx:if="{{userData.svip == 1 && userData.is_svip_gift == 1 && userData.is_draw == -1}}">您的svip超值签到礼还未抽奖哟~</view>
+    </view>
+    <view class="check-status not-svip-status" wx:else>
+      <view class="ico"></view>检票成功！欢迎逛展~
+    </view>
+    <view class="content" wx:if="{{userData.svip == 1 && userData.is_check_sign_gift == 0 && userData.is_svip_gift == 1 && userData.draw_type == 1 && userData.is_draw == 1}}">
+      <!-- 会员 && 未核销 && 可领取签到礼 && 签到礼为实物 && 已抽奖 -->
+      <view class="text">您可领取超级会员签到礼哟~</view>
+      <view class="text">领取码为：
+        <text class="red">{{userData.check_num}}</text>
+        <text class="small">（可在会员-会员中心查看领取码）</text>
+      </view>
+      <view class="text">您前面还有<text class="red">{{userData.uncheck_user_num}}</text>位用户领取签到礼</view>
+    </view>
+    <view class="to-lottery" wx:if="{{userData.svip == 1 && userData.is_svip_gift == 1 && userData.is_draw == -1}}" bindtap="toSvipCenter">去抽奖</view>
+    <view class="confirm" wx:else bindtap="closeCheck">知道了</view>
+  </view>
+</view>
+
+<!-- 领取svip抵扣券按钮 -->
+<coupon-btn wx:if="{{showCouponBtn}}"></coupon-btn>
+
+<!-- 领取svip抵扣券弹层 -->
+<coupon-popup couponInfo="{{couponInfo}}" isLogin="{{isLogin}}" showCouponPopup="{{showCouponPopup}}" bindgetPhoneBack="getPhoneBack" bindcloseCouponPopup="closeCouponPopup"></coupon-popup>
+
+<!-- 直播运营位弹层 -->
+<live-adv liveAdv="{{liveAdv}}" liveData="{{liveData}}" areaId="77"></live-adv>
+
+<!-- 微信授权手机号弹层 -->
+<!-- <authorize bindgetPhoneBack="getPhoneBack" wx:if="{{!isAuth}}"></authorize> -->
+
+<!-- 爆品/优惠券核销确认弹层 -->
+<view class="pop-background" wx:if="{{showBaYPop}}">
+  <view class="BaY-pop">
+    <!-- 单个类型 -->
+    <view class="c-g-title" wx:if="{{onlyCommonHot}}">普通爆品</view>
+    <view class="c-g-title" wx:if="{{onlyCommonCoupon}}">普通优惠券</view>
+    <view class="c-g-title" wx:if="{{onlySvipTotal}}">SVIP全款商品</view>
+    <view class="c-g-title" wx:if="{{onlySvipEarnest}}">SVIP定金商品</view>
+    <view class="c-g-title" wx:if="{{onlySvipReserve}}">SVIP预约商品</view>
+    <view class="c-g-title" wx:if="{{onlySvipCoupon}}">SVIP优惠券</view>
+    <view class="c-g-title" wx:if="{{onlyOnlineOrder}}">线上店铺商品</view>
+    <!-- 只有商品/只有优惠券 -->
+    <view class="c-g-title" wx:if="{{onlyGoods}}">商品</view>
+    <view class="c-g-title" wx:if="{{onlyCoupon}}">优惠券</view>
+    <!-- 商品&优惠券都有 -->
+    <view class="c-g-title" wx:if="{{!isOnlyOne && !onlyGoods && !onlyCoupon}}">商品及优惠券</view>
+    <scroll-view class="scroll-box" scroll-y="true">
+      <view class="item-box" wx:for="{{checkInfo}}" wx:key="index">
+        <!-- 普通爆品 -->
+        <view class="hotgoods-box" wx:if="{{item.type == 14}}">
+          <image class="goods-img" mode="widthFix" src="{{item.goodsImage}}"></image>
+          <view class="msg-list">
+            <view class="hot-name">{{item.goodsName}}</view>
+            <view class="info-item">价格：<text class="num">￥{{item.specialPrice}}</text></view>
+          </view>
+        </view>
+        <!-- svip商品 type 4=定金 6=预约 12=全款 -->
+        <view class="hotgoods-box" wx:if="{{item.type == 4 || item.type == 6 || item.type == 12}}">
+          <view class="svip-img-box">
+            <image class="goods-img" mode="widthFix" src="{{item.goodsImage}}"></image>
+            <view class="svip-text">SVIP</view>
+          </view>
+          <view class="msg-list">
+            <view class="hot-name">{{item.goodsName}}</view>
+            <view class="info-item" wx:if="{{item.type == 6 && item.reservPrice}}">价格：<text class="num">￥{{item.reservPrice}}</text></view>
+            <view class="info-item" wx:if="{{item.type == 4 || item.type == 12}}">价格：<text class="num">￥{{item.salePrice}}</text></view>
+            <view class="info-item" wx:if="{{item.type == 4}}">线上付定：<text class="num">￥{{item.prepayAmout}}</text>
+            </view>
+            <view class="info-item" wx:if="{{item.type == 12}}">线上付款：<text class="num">￥{{item.salePrice}}</text></view>
+          </view>
+        </view>
+        <!-- 优惠券 -->
+        <view class="yhq-trank" wx:if="{{item.type == 5 || item.type == 13}}">
+          <view class="box-left">
+            <view class="box-price">￥<text>{{item.couponValue}}</text></view>
+            <view class="box-price-msg">支付满{{item.consumeAmount}}元可用</view>
+            <view class="svip-text" wx:if="{{item.type == 5}}">SVIP</view>
+          </view>
+          <view class="box-right">
+            <image class="logo-img" src="{{item.logoUrl}}"></image>
+            <text class="logo-name">{{item.brandName}}</text>
+          </view>
+        </view>
+        <!-- 线上店铺商品 -->
+        <view class="hotgoods-box" wx:if="{{item.type == 10}}">
+          <image class="goods-img online-img" mode="widthFix" src="{{item.goodsImage}}"></image>
+          <view class="msg-list">
+            <view class="hot-name">{{item.payWay == 1?"【订金支付】":item.payWay == 2?"【全款支付】":""}}{{item.goodsName}}</view>
+            <view class="info-item">型号：<text class="num">{{item.modelNumber}}</text></view>
+            <view class="info-item">单价：<text class="num">￥{{item.exclusivePrice}}</text></view>
+            <view class="info-item">数量：<text class="num">{{item.prerogativeCount}}件</text></view>
+            <view class="info-item" wx:if="{{item.gooodsPrice && item.payWay == 1}}">线上付订：<text class="num">￥{{item.gooodsPrice * item.prerogativeCount}}</text>
+            </view>
+            <view class="info-item" wx:if="{{item.gooodsPrice && item.payWay == 2}}">线上付款：<text class="num">￥{{item.gooodsPrice * item.prerogativeCount}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+    <view class="btn-one" bindtap="ifCodePop">知道了</view>
+    <view class="hexiao-msg" wx:if="{{onlyGoods || onlyCommonHot || onlySvipTotal || onlySvipEarnest || onlySvipReserve || onlyOnlineOrder}}">
+      如核销商品不正确，可联系商家撤回核销</view>
+    <view class="hexiao-msg" wx:if="{{onlyCoupon || onlyCommonCoupon || onlySvipCoupon}}">如核销优惠券不正确，可联系商家撤回核销</view>
+    <view class="hexiao-msg" wx:if="{{!isOnlyOne && !onlyGoods && !onlyCoupon}}">如核销商品或优惠券不正确，可联系商家撤回核销</view>
+  </view>
+</view>
+
+<!-- 熊猫币顶部提示 -->
+<xmb-popup showXmbTips="{{showXmbTips}}" xmbPopupData="{{xmbPopupData}}"></xmb-popup>
+
+<!-- 优惠券领取成功弹层 -->
+<view class='get-ticket-box' wx:if="{{getCouponSuccess}}">
+  <view class='get-ticket'>
+    <view class='txt-box'>
+      <view class='tit1'>领取成功</view>
+      <view class='tit2'>{{activityInfo.begin_date}}-{{activityInfo.end_date}}前往{{activityInfo.venue_name}}下单使用</view>
+    </view>
+    <view class='coupon-box'>
+      <view class="left">
+        <view class='price'>
+          <view class='lab'>￥</view>{{couponItem.coupon_value}}
+        </view>
+        <view class='cond'>满{{couponItem.consume_amount}}元可用</view>
+      </view>
+      <view class="right">
+        <image class='s-img' src='{{couponItem.logo_url}}'></image>
+        <view class='name'>{{couponItem.brand_name}}</view>
+        <view class='date'>{{couponItem.begin_date}}-{{couponItem.end_date}}使用</view>
+      </view>
+    </view>
+    <!-- <view class='remaind'>分享好友优惠券，好友领取成功后，赠送您
+      <text class='remaind-txt'>10元</text>奖励金，可在我的-奖励金页面查看详细活动规则
+    </view> -->
+    <button open-type='share' data-shareData="{{shareData}}" class="share">赠送好友优惠券，一起逛展</button>
+    <view class="close" bindtap='closeGetCoupon'></view>
+  </view>
+</view>
+
+<!-- 抽奖裂变弹框,只弹一次 -->
+<view class="get-ticket-box" wx:if="{{fissionOncePop}}">
+  <view class="zero-ticket-pop z-pop2">
+    <image class="z-img" data-id="{{fissionEndId}}" catchtap="toZeroBuy" src="{{fissionOncePop}}"></image>
+    <button class="z-btn z-btn2" data-id="{{fissionEndId}}" catchtap="toZeroBuy">快来看看中奖了没</button>
+    <view class="z-del" catchtap="fisOncePopClose">
+      <image class="z-del-icon" src="https://img.51jiabo.com/ac49af8c-ebda-4244-a43b-176a979e67e4.png"></image>
+    </view>
+  </view>
+</view>
+
+<!-- 协议显示弹窗 -->
+<view class="protocol-dialog" wx:if="{{showProtocol}}">
+  <view class="protocol-main">
+    <view class="protocol-title">用户隐私协议</view>
+    <view class="img-box">
+      <image src='https://img.51jiabo.com/6a98a33c-d9b6-4cbe-b889-f6a0da1e2b04.png' mode="widthFix"></image>
+    </view>
+    <view class='closed verticalHorizontal' bindtap='closedProtocol'>我知道了</view>
+  </view>
+</view>

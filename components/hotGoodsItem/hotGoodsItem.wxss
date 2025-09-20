@@ -1,0 +1,105 @@
+/* components/hotGoodsItem/hotGoodsItem.wxss */
+.goods-box {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 33rpx;
+}
+
+.item-box {
+  box-sizing: border-box;
+  width: 374rpx;
+  border-bottom: 1px solid #efefef;
+  padding-top: 25rpx;
+  padding-bottom: 16rpx;
+}
+
+.item-box:nth-child(even) {
+  border-left: 1px solid #efefef;
+  padding-left: 13rpx;
+}
+
+.item-box:nth-child(odd) {
+  padding-left: 30rpx;
+}
+
+.item-box .item-wrap {
+  width: 330rpx;
+}
+
+.item-box .goods-img {
+  display: block;
+  width: 100%;
+  height: 175rpx;
+}
+
+.item-box .item-bot {
+  width: 313rpx;
+  margin-left: 8rpx;
+  overflow: hidden;
+}
+
+.item-box .desc {
+  height: 68rpx;
+  font-size: 24rpx;
+  color: #222;
+  margin-top: 16rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.item-box .market-price {
+  display: flex;
+  margin-top: 29rpx;
+  padding-top: 20rpx;
+  border-top: 1rpx solid #efefef;
+  font-size: 20rpx;
+  color: #999999;
+  text-decoration: line-through;
+}
+.item-box .special-price{
+  display: flex;
+  align-items: baseline;
+  margin-top: -5rpx;
+}
+.item-box .special-price .text {
+  font-size: 20rpx;
+  color: #E6002D;
+}
+
+.item-box .special-price .number {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #e6002d;
+}
+
+.item-box .special-price .unit {
+  font-size: 20rpx;
+  color: #666;
+}
+
+.remain {
+  font-size: 20rpx;
+  color: #666;
+  text-align: center;
+  margin-top: 9rpx;
+}
+
+.item-box .buy-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 60rpx;
+  background: #e6002d;
+  border-radius: 2rpx;
+  font-size: 28rpx;
+  color: #fff;
+  margin-top: 20rpx;
+}
+
+.item-box .buy-btn.gray {
+  color: #fff;
+  background: #d0d0d0;
+}

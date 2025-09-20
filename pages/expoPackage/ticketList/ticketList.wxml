@@ -1,0 +1,43 @@
+<!--pages/expoPackage/ticketList/ticketList.wxml-->
+<online-serve />
+<view class="ticket" wx:if="{{!no_ticket1_data}}">
+
+  <!-- 单个 -->
+  <view class='ticket-item' wx:for="{{ticketList}}" wx:for-item="item" wx:key="index" id="{{item.ticket_id}}"
+    data-city_id="{{item.city_id}}" bindtap='goTicketDetail'>
+    <view class="info">
+      <view class="city">
+        <view class="name">{{item.city_name}}站 - {{item.days}}日门票</view>
+        <view class="time" wx:if="{{item.is_jqqd == 1}}">敬请期待</view>
+        <view class="time" wx:else>{{item.begin_date}}~{{item.end_date}}</view>
+        <view class='cover'>
+          {{item.years}}{{item.city_name}} 第{{item.session_num}}届
+          <block wx:if="{{item.city_id == 60}}">
+            <text>宁波装修狂欢节</text>
+          </block >
+          <block wx:else>
+            <text wx:if="{{item.city_id == 27}}">森图里</text>
+            <text wx:elif="{{item.city_id == 54}}">天府</text>
+            <text wx:else>华夏</text>家博会
+          </block>
+        </view>
+      </view>
+      <view class="qr">
+        <!-- 二维码 -->
+        <canvas canvas-id='{{item.ticket_id}}'></canvas>
+        <view class="see">点击查看</view>
+      </view>
+    </view>
+    <view class="site">
+      <image src="/imgs/dingwei.png"></image>{{item.venue_name}}
+    </view>
+  </view>
+
+
+</view>
+
+<!-- 无门票 -->
+<view class="get-ticket" wx:if="{{no_ticket1_data}}">
+  <navigator class="get-btn" open-type='switchTab' url='/pages/getTicket/getTicket'>预约门票 ></navigator>
+  <view class='note'>注：展中预约的门票为下一届，本届无法使用。</view>
+</view>

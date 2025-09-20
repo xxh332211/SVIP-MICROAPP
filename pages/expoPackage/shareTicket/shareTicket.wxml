@@ -1,0 +1,45 @@
+<!--pages/ticket/shareTIcket/shareTictet.wxml-->
+<online-serve />
+<view class="sendTicket-container">
+  <!-- 提示 -->
+  <view class="reminder">
+    <image src='/imgs/laba.png'></image>
+    <view class='content'>温馨提示：您的亲友#{{nickName}}#赠送您一张免费参观华夏家博会门票，点击领取门票，免费获得入场门票一张。</view>
+  </view>
+
+
+  <!-- 单个 -->
+  <view class='ticket-item'>
+    <view class="info">
+      <view class="city">
+        <view class="name">{{cityInfo.city_name}}站 - {{cityInfo.days}}日门票</view>
+        <view class="time">{{cityInfo.begin_date}}~{{cityInfo.end_date}}</view>
+        <view class='cover'>{{cityInfo.years}}{{cityInfo.city_name}} 第{{cityInfo.session}}届华夏家博会</view>
+      </view>
+    </view>
+    <view class="site">
+      <image src="/imgs/dingwei.png"></image>{{cityInfo.venue_name}}
+    </view>
+  </view>
+
+  <!-- 未授权并且未登录 -->
+  <form report-submit="true" bindsubmit="getFormId" wx:if="{{!isLogin && !isAuth}}">
+    <button class='btn' form-type="submit" open-type='getPhoneNumber' bindgetphonenumber="getPhoneNumber">领取门票</button>
+  </form>
+
+  <!-- <button class='btn' wx:if="{{!isLogin && !isAuth}}" open-type='getPhoneNumber' bindgetphonenumber="getPhoneNumber">领取门票</button> -->
+
+  <!-- 已授权过 || 已登录 -->
+  <form report-submit="true" bindsubmit="getTicket" wx:else>
+    <button form-type="submit" class="btn">领取门票</button>
+  </form>
+
+</view>
+
+<!-- 已领取提示弹窗 -->
+<view class='tips-popup' wx:if="{{tipsPopup}}">
+  <view class='tips-box'>
+    <view class='title'>您已领取当届门票</view>
+    <navigator class="confirm" url="/pages/expoPackage/ticketDetail/ticketDetail?ticket_id={{ticketId}}">查看门票</navigator>
+  </view>
+</view>

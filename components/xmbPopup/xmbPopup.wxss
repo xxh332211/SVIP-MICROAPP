@@ -1,0 +1,45 @@
+/* components/xmbPopup/xmbPopup.wxss */
+.xmb-tips{
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 200rpx;
+  background-color: rgba(0, 0, 0, .8);
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30rpx;
+  animation: xmb-pull 1s;
+  z-index: 9999;
+}
+
+.xmb-tips .xmb-icon{
+  width: 50rpx;
+  height: 50rpx;
+  margin-right: 10rpx;
+}
+
+.xmb-tips .xmb-left{
+  display: flex;
+  align-items: center;
+  font-size: 32rpx;
+}
+
+.xmb-tips .xmb-desc{
+  font-size: 28rpx;
+  margin-top: 10rpx;
+}
+
+.xmb-tips .xmb-right{
+  display: flex;
+  align-items: center;
+  font-size: 30rpx;
+}
+
+.xmb-tips .xmb-arrow{
+  width: 13rpx;
+  height: 25rpx;
+  margin-left: 19rpx;
+}

@@ -1,0 +1,6 @@
+<view class="modal-wrap" catchtouchmove="stop">
+  <view class="bg" catchtap="close"></view>
+  <view class="modal-content">
+    <slot></slot>
+  </view>
+</view>

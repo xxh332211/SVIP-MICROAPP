@@ -1,0 +1,236 @@
+<!--pages/user/user.wxml-->
+<online-serve />
+<privacy-popup></privacy-popup>
+<view class="wrapper">
+	<view class="banner {{isSvip?'is-svip':''}}">
+		<view class="banner-main">
+			<button class='auth-login' wx:if="{{!isLogin}}" open-type='getPhoneNumber'
+				bindgetphonenumber="getPhoneNumber"></button>
+			<view class="person">
+				<view class="user-icon" data-type="avatar" bindtap="toProfile">
+					<block wx:if="{{!isLogin}}">
+						<image wx:if="{{cityId == 60}}" class='head-img'
+							src="https://img.51jiabo.com/94467bd5-404c-4f6c-aeee-b6d948d93079.png"></image>
+						<image wx:else class='head-img' src="https://img.51jiabo.com/1a927c4f-1d8a-49a9-8720-c90ce2719f31.jpg">
+						</image>
+					</block>
+					<block wx:if="{{isLogin}}">
+						<image wx:if="{{cityId == 60}}" class='head-img'
+							src="{{userInfo.avatar?userInfo.avatar:'https://img.51jiabo.com/94467bd5-404c-4f6c-aeee-b6d948d93079.png'}}">
+						</image>
+						<image wx:else class='head-img'
+							src="{{userInfo.avatar?userInfo.avatar:'https://img.51jiabo.com/1a927c4f-1d8a-49a9-8720-c90ce2719f31.jpg'}}">
+						</image>
+					</block>
+					<!-- 会员皇冠 -->
+					<image class='crown' src='https://img.51jiabo.com/7cb8151f-de93-4fdd-b437-5d9bf8c6c768.png'></image>
+				</view>
+
+				<!-- 未登录 -->
+				<view class="not-login" wx:if="{{!isLogin}}">
+					<view class="login-box">
+						<view class='title'>未登录</view>
+						<view class='content'>点击注册/登录</view>
+						<view class="xmb-entry" wx:if="{{hasXmbTask || hasXmbAct}}">
+							<image class="xmb-icon" src="https://img.51jiabo.com/983e9af2-b384-4f5d-930c-d56f788699d9.png"></image>
+							<text class="xmb-text">熊猫币</text>
+						</view>
+					</view>
+				</view>
+
+				<!-- 已登录 -->
+				<view class='login-box' wx:if="{{isLogin}}">
+					<view class='title' data-type="nick" bindtap="toProfile">
+						{{userInfo.nick_name?userInfo.nick_name:userInfo.mobile}}</view>
+					<view class='content' wx:if="{{!isSvip && userInfo.nick_name}}">{{userInfo.mobile}}</view>
+					<view class="content" wx:if="{{isSvip && !isPastSvip}}">到期时间：{{svipEndTime}}日</view>
+					<view class="content" wx:if="{{isSvip && isPastSvip}}">已过期</view>
+					<view class="xmb-entry" bindtap="toXmbDetail" wx:if="{{hasXmbTask || hasXmbAct}}">
+						<image class="xmb-icon" src="https://img.51jiabo.com/983e9af2-b384-4f5d-930c-d56f788699d9.png"></image>
+						<text class="xmb-text">{{xmbNum}}熊猫币</text>
+					</view>
+				</view>
+			</view>
+
+			<!-- 核销码 -->
+			<view class="verify-code" bindtap="checkCode">
+				<view class="verify-text">{{isLogin?'点我核销':'登录核销'}}</view>
+				<view class="code"></view>
+				<!-- <image class="small-code" src="{{codeImg}}" hidden="{{!isLogin}}"></image>
+				<canvas class="canvas-code" canvas-id='scode'></canvas> -->
+			</view>
+
+		</view>
+	</view>
+
+	<view class="key-box">
+		<view class="key-point">
+			<view class="item" bindtap='toUserCenter'>
+				<view class="ico"></view>
+				<view class="text">超级会员</view>
+			</view>
+			<view class="item" bindtap='myCoupon'>
+				<view class="ico"></view>
+				<view class="text">我的优惠券</view>
+			</view>
+			<view class="item" bindtap='myReserve'>
+				<view class="ico"></view>
+				<view class="text">我的预约</view>
+			</view>
+			<button class='auth-login' wx:if="{{!isLogin}}" open-type='getPhoneNumber'
+				bindgetphonenumber="getPhoneNumber"></button>
+		</view>
+	</view>
+
+	<!-- 我的订单 -->
+	<view class="my-order">
+		<button class='auth-login' wx:if="{{!isLogin}}" open-type='getPhoneNumber'
+			bindgetphonenumber="getPhoneNumber"></button>
+		<view class="order-text">我的订单<view class="more-order" data-status="all" bindtap="toOrderList">查看全部订单</view>
+		</view>
+		<view class="status-list">
+			<view class="status-item" data-status="unpaid" bindtap="toOrderList">
+				<view class="num" wx:if="{{isLogin && unpaidLen != 0}}">{{unpaidLen}}</view>
+				<view class="status-img"></view>
+				<view class="status-text">待付款</view>
+			</view>
+			<view class="status-item" data-status="ongoing" bindtap="toOrderList">
+				<view class="status-img"></view>
+				<view class="status-text">进行中</view>
+			</view>
+			<view class="status-item" data-status="paid" bindtap="toOrderList">
+				<view class="status-img"></view>
+				<view class="status-text">已完成</view>
+			</view>
+		</view>
+		<view class="obligation-box" wx:if="{{isLogin && unpaidList.length>0}}">
+			<swiper class="obligation-swiper-box" indicator-dots="{{unpaidList.length>1?true:false}}"
+				indicator-color="#D3D3D3" indicator-active-color="#D3D3D3" autoplay="true">
+				<swiper-item class="obligation-swiper" wx:for="{{unpaidList}}" wx:key="index">
+					<view class="obligation">
+						<!-- svip订单 -->
+						<image class="img" wx:if="{{item.goods_image}}" mode="aspectFill" src="{{item.goods_image}}"></image>
+						<!-- 线上订单 -->
+						<image class="img" wx:elif="{{item.image_url}}" mode="aspectFill" src="{{item.image_url}}"></image>
+						<!-- 展会订单 -->
+						<image class="img" wx:else mode="aspectFill"
+							src="{{item.goods[0].image_url?item.goods[0].image_url:item.logo_url}}"></image>
+						<view class="text">
+							<view class="tit">待付款</view>
+							<view class="time" wx:if="{{item.order_list_type != 1}}">
+								<text>{{item.minute}}分钟</text>未支付，订单将自动关闭
+							</view>
+						</view>
+					</view>
+					<view class="to-pay" data-item="{{item}}" bindtap="toOrderDetail">去支付</view>
+				</swiper-item>
+			</swiper>
+		</view>
+	</view>
+
+	<view class="equity-list">
+		<view class="equity-item" bindtap='toUserTicker'>
+			<view class="mp-icon"></view>
+			<view class="equity-text">我的门票</view>
+		</view>
+		<view class="equity-item" bindtap='selfHelp'>
+			<view class="ld-icon"></view>
+			<view class="equity-text">自助录单</view>
+		</view>
+		<view class="equity-item" bindtap='toShApply'>
+			<view class="sh-icon"></view>
+			<view class="equity-text">售后申请</view>
+		</view>
+		<view class="equity-item" bindtap='toCollect'>
+			<view class="sc-icon"></view>
+			<view class="equity-text">我的收藏</view>
+		</view>
+		<view class="equity-item" wx:if="{{showLottery}}" bindtap='toAward'>
+			<view class="lj-icon"></view>
+			<view class="equity-text">天天领奖</view>
+		</view>
+		<!-- <view wx:if="{{cityId != 44}}" class="equity-item" bindtap='toBounty'>
+			<view class="jlj-icon"></view>
+			<view class="equity-text">奖励金活动</view>
+		</view> -->
+		<view class="equity-item" bindtap='toZeroBuy' wx:if="{{fissionData && fissionData.type != 1}}" style="position: relative;z-index: 2;">
+			<view class="zb-icon"></view>
+			<view class="equity-text">周周0元抽</view>
+		</view>
+		<!-- <view class="equity-item" bindtap='toCloudAward'>
+			<view class="ygz-icon"></view>
+			<view class="equity-text">云逛展奖励</view>
+		</view> -->
+		<button class='auth-login' wx:if="{{!isLogin}}" open-type='getPhoneNumber'
+			bindgetphonenumber="getPhoneNumber"></button>
+	</view>
+
+	<!-- 轮播运营位 -->
+	<view class="adv" wx:if="{{bottomAdv && bottomAdv.length > 0}}">
+		<swiper class='operate-site-bottom' autoplay="true" interval="3000" wx:if="{{bottomAdv && bottomAdv.length > 1}}">
+			<block wx:for="{{bottomAdv}}" wx:key="index">
+				<swiper-item data-item="{{item}}" data-area_id="68" bindtap="{{item.url?'swiperUrl':''}}">
+					<image mode='scaleToFill' src='{{item.wapImageUrl}}'></image>
+				</swiper-item>
+			</block>
+		</swiper>
+		<!-- 一张运营位 -->
+		<view class="single-swiper" wx:else data-item="{{bottomAdv[0]}}" data-area_id="68"
+			bindtap="{{bottomAdv[0].url?'swiperUrl':''}}">
+			<image mode='widthFix' src='{{bottomAdv[0].wapImageUrl}}'></image>
+		</view>
+	</view>
+
+	<!-- <view class='log-out' wx:if="{{isLogin}}" bindtap='logout'>退出登录</view> -->
+</view>
+<!-- 去购买svip弹层 -->
+<view class="svip-tips-popup" wx:if="{{buySvipPopup}}">
+	<view class="svip-tips-box">
+		<view class="title">您还不是会员，请先行购买</view>
+		<view class="btn-box">
+			<view bindtap="cancelBuy">取消</view>
+			<view bindtap="toBuy" class="right">去购买</view>
+		</view>
+	</view>
+</view>
+<!-- 去预约下一届弹层 -->
+<view class="svip-tips-popup" wx:if="{{noReservePopup}}">
+	<view class="svip-tips-box">
+		<view class="title">您还不是会员，本届展会svip售卖已结束，请预约下一届</view>
+		<view class="btn-box">
+			<view bindtap="cancelNoReserve">取消</view>
+			<navigator open-type="reLaunch" url="/pages/reserve/reserveTicket" class="right">去预约</navigator>
+		</view>
+	</view>
+</view>
+<!-- 已预约下一届弹层 -->
+<view class="svip-tips-popup" wx:if="{{isReservePopup}}">
+	<view class="svip-tips-box">
+		<view class="title">您未购买本届会员，已成功预约下一届，下一届权益上线后会电话通知您。</view>
+		<view class="btn-box">
+			<view bindtap="cancelIsReserve">取消</view>
+			<navigator open-type="reLaunch" url="/pages/reserve/reserveTicket" class="right">查看</navigator>
+		</view>
+	</view>
+</view>
+
+<!-- 核销码弹层 -->
+<view class="verify-code-popup" hidden="{{!verifyPopup}}" catchtouchmove='stop'>
+	<view class="layer" bindtap="checkCode"></view>
+	<view class="verify-box">
+		<view class="title">让商家扫一扫<view class="close" bindtap="checkCode"></view>
+		</view>
+		<view class="content">
+			<canvas class='canvas' disable-scroll="true" canvas-id='bcode'></canvas>
+			<view class="detail">您有{{checkInfo.couponCount}}张优惠券未使用</view>
+			<view class="detail">已预约{{checkInfo.goodsCount}}件低价爆品</view>
+		</view>
+	</view>
+</view>
+
+<!-- svip抵扣券按钮 -->
+<coupon-btn wx:if="{{showCouponBtn}}"></coupon-btn>
+
+<!-- 领取svip抵扣券弹层 -->
+<coupon-popup couponInfo="{{couponInfo}}" isLogin="{{isLogin}}" showCouponPopup="{{showCouponPopup}}"
+	bindgetPhoneBack="getPhoneBack" bindcloseCouponPopup="closeCouponPopup"></coupon-popup>

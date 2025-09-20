@@ -1,0 +1,51 @@
+<!--pages-abs/pages/OrderList/OrderList.wxml-->
+<view class="list" wx:for="{{list}}" wx:key="index">
+    <text class="title" wx:if="{{item.order_status == 1 && item.use_status == 0 && !item.isOut}}">待兑换</text>
+    <text class="title" wx:if="{{item.order_status == 1 && item.use_status == 1 && !item.isOut}}">已兑换</text>
+    <text class="title" wx:if="{{item.order_status == -2 && !item.isOut}}">已退款</text>
+    <text class="title" wx:if="{{item.isOut}}">已过期</text>
+    <view class="bodys">
+        <view class="img">
+            <image src="{{item.cover_image_url}}"></image>
+        </view>
+        <view class="msg">
+            <text class="msg_name">{{item.card_name}}</text>
+            <text class="msg_time">{{item.use_begin_time}} - {{item.use_end_time}}</text>
+            <view class="msg_refund_time" wx:if="{{item.order_status == -2 && !item.isOut}}">退款时间：{{item.refund_time}}
+            </view>
+        </view>
+    </view>
+    <!-- order_status：1：已支付 -2：已退款；use_status：0：未兑换 1：已兑换 -->
+    <view class="btn-box">
+        <view class="btns" wx:if="{{item.order_status == 1 && item.use_status == 0}}">
+            <view class="btn2" bindtap="popUnShow" data-name="pop1" data-ordersn="{{item.order_sn}}">退款</view>
+            <view class="btn1" bindtap="ToExchange" wx:if="{{!item.isOut}}" data-corderid="{{item.card_order_id}}"
+                data-id="{{item.card_id}}">去兑换</view>
+        </view>
+        <view class="btns" wx:if="{{item.use_status == 1}}">
+            <view class="btn1" bindtap="toProductDetails" data-orderid="{{item.prerogative_order_id}}">查看商品</view>
+        </view>
+    </view>
+</view>
+
+<!-- 您确定要退该商品吗？ -->
+<view class="pop_back" wx:if="{{pop1}}">
+    <view class="pop twopop">
+        <view class="problem">您确定要退该商品吗？</view>
+        <view class="refund pop_btns flexB">
+            <view class="btn_1" bindtap="popUnShow" data-name="pop1">取消</view>
+            <view class="btn_2" bindtap="Refund">确认</view>
+        </view>
+    </view>
+</view>
+<!-- 商品退款成功，
+24小时退回您的支付账户 -->
+<view class="pop_back" wx:if="{{pop2}}">
+    <view class="pop twopop">
+        <view class="problem">商品退款成功，</view>
+        <view class="problem">24小时退回您的支付账户</view>
+        <view class="pop_btns flexB">
+            <view class="btn_2" bindtap="popUnShow" data-name="pop2">确认</view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,106 @@
+<!--pages-liebian/pages/homePage/homePage.wxml-->
+
+<image mode="widthFix" src="{{actInfo.header_image}}"></image>
+
+<!-- <view class="navigate" style="padding-top:{{navigateHeight}}px">
+  <view class="return" bindtap="goBack"></view>
+  <view class="nav-text">周周0元抽</view>
+</view> -->
+
+<view class="fixed-btn">
+  <view class="log" data-link="historyList/historyList" bindtap="jumpLink"></view>
+  <view class="rule" data-link="rule/rule" bindtap="jumpLink"></view>
+</view>
+
+<view class="wrapper" style="background-color: {{actInfo.background_color}};">
+  <view class="ticket-box">
+    <view class="title" wx:if="{{!countOver}}">距离结束{{days}}天<view class="time">{{hours}}</view>:<view class="time">{{minute}}</view>:<view class="time">{{second}}</view>
+    </view>
+    <view class="title fs" wx:if="{{(countOver && type == 2) || actInfo.type == 3}}">等待开奖</view>
+    <view class="title fs" wx:if="{{actInfo.type == 4 && isJoin && !isWin}}">没中奖</view>
+    <view class="title fs" wx:if="{{actInfo.type == 4 && isJoin && isWin}}">中奖啦</view>
+    <view class="title fs" wx:if="{{actInfo.type == 4 && !isJoin}}">未参与</view>
+    <view class="ticket-list">
+      <block wx:for="{{ticketAllList}}" wx:key="index">
+        <view class="item has" wx:if="{{(actInfo.type != 4 && item.is_drawaward) || item.is_drawaward === '0'}}">{{item.raffle_code}}</view>
+        <view class="item win" wx:elif="{{actInfo.type == 4 && item.is_drawaward > 0}}">
+          <view class="win-text">抽中啦</view>
+          <view class="ticket-num">{{item.raffle_code}}</view>
+        </view>
+        <view class="item" wx:elif="{{item.is_drawaward === ''}}">待获取</view>
+      </block>
+    </view>
+    <button class="click-btn" open-type="share" data-name="邀请好友点赞" wx:if="{{!countOver}}">邀请好友点赞，获得额外抽奖券</button>
+    <view class="click-btn" bindtap="serviceToggle" wx:if="{{(countOver && type == 2) || actInfo.type == 3}}">添加客服微信，中奖通知您</view>
+    <view class="click-btn" bindtap="serviceToggle" wx:if="{{actInfo.type == 4 && isJoin && isWin}}">中奖啦，添加客服领奖品</view>
+    <view class="click-btn gray" wx:if="{{actInfo.type == 4 && isJoin && !isWin}}">没抽中，还有下一期哦</view>
+    <view class="click-btn gray" wx:if="{{actInfo.type == 4 && !isJoin}}">未参与，还有下一期哦</view>
+    <view class="date-tip">{{endTime}}停止，{{lotteryTime}}公布名单</view>
+  </view>
+
+  <view class="win-box" wx:if="{{actInfo.type == 4}}">
+    <view class="win-title">中奖名单</view>
+    <view class="win-list">
+      <view class="win-item" wx:for="{{winnerList}}" wx:key="index">
+        <image class="avatar" src="{{item.avatar}}"></image>
+        <view class="nick">{{item.nick_name}}</view>
+      </view>
+    </view>
+    <!-- wx:if="{{winnerList.length > 0}}" -->
+    <view class="more" bindtap="checkAll">查看全部></view>
+  </view>
+
+  <view class="step" wx:if="{{actInfo.type != 4}}">
+    <view class="step-title">参与流程</view>
+    <image mode="widthFix" src="{{actInfo.process_image}}"></image>
+  </view>
+
+  <view class="friend-like" wx:if="{{actInfo.type != 4}}">
+    <view class="progress">好友点赞进度：{{helperList.length}}</view>
+    <view class="friend-list">
+      <image class="item" wx:for="{{helperList}}" wx:key="index" src="{{item.avatar}}"></image>
+      <button class="plus" data-name="邀请好友点赞"  open-type="share"></button>
+    </view>
+    <button class="invite-btn" data-name="邀请好友点赞" open-type="share">立即邀请</button>
+  </view>
+
+  <view class="expo-box">
+    <view class="expo-title">展会活动</view>
+    <view class="expo-detail">华夏家博，隶属于上海华墨展览服务有限公司，是集家装设计、施工管理、建材家居等全产业链为一体的家装生活服务平台，提供5重全程服务保障，为中国城市居民提供一站式高品质装修服务。2009年成立至今，上海华墨展览服务有限公司已在全国范围内拓展了36个分站，遍及上海、北京、广州等国内一、二线城市，举办近400场展会。</view>
+  </view>
+</view>
+
+<!-- 参与活动成功弹层 -->
+<view class="ticket-popup" wx:if="{{ticketPopup}}">
+  <view class="ticket-wrap">
+    <view class="ticket-title">抽奖券1张，抽取0元机会</view>
+    <view class="bottom">
+      <view class="get-ticket" wx:if="{{!hasTicket}}" bindtap="checkTicket">
+        <view class="checkbox {{checked?'check':''}}"></view>同时赠送价值20元华夏家博会门票
+      </view>
+      <view class="ok-btn" bindtap="closeTicket">好 的</view>
+      <view class="countdown">{{count}}s后自动关闭</view>
+    </view>
+  </view>
+</view>
+
+<!-- 客服二维码弹层 -->
+<view class="service-popup" wx:if="{{servicePopup}}">
+  <view class="service-box">
+    <view class="close" bindtap="serviceToggle"></view>
+    <image class="code" show-menu-by-longpress src="{{cityConfig.qr_url}}"></image>
+    <view class="lab">长按打开客服微信</view>
+  </view>
+</view>
+
+<!-- 分享成功弹层 -->
+<view class="share-popup" wx:if="{{sharePopup}}">
+  <view class="share-box">
+    <view class="close" bindtap="shareToggle"></view>
+    <view class="share-title">继续分享一个群聊请好友点赞吧~</view>
+    <button class="wx-box" open-type="share" data-name="群聊邀请"  bindtap="shareToggle">
+      <image class="wx" src="https://img.51jiabo.com/20a9a8c3-37a2-449f-876e-2c1e09d58a38.png"></image>
+    </button>
+    <view class="lab">继续分享一个群聊</view>
+  </view>
+</view>

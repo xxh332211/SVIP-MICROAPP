@@ -1,0 +1,108 @@
+<!--pages-liebian/pages/index/index.wxml-->
+<privacy-popup></privacy-popup>
+<view class="container">
+  <view class="banner">
+    <image class="banner-bg" mode="widthFix" src="{{actInfo.header_image}}" />
+    <button wx:if="{{!isLogin}}" class="history-list" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"
+      data-type="historyBtn"></button>
+    <button wx:else class="history-list" bindtap="toHistory"></button>
+    <image class="rules" src="https://img.51jiabo.com/371a39aa-653e-40f1-aff3-5711670c9584.png" bindtap="toRules" />
+
+    <view class="main-wrapper">
+      <!-- 倒计时 -->
+      <view class="default-box">
+        <view class="timer-box">
+          <view wx:if="{{countOver}}">活动已结束</view>
+          <block wx:else>
+            <view>距离结束{{days}}天</view>
+            <view class="time">
+              <view class="time-item">{{hours}}</view>
+              <view class="pad">:</view>
+              <view class="time-item">{{minute}}</view>
+              <view class="pad">:</view>
+              <view class="time-item">{{second}}</view>
+            </view>
+          </block>
+        </view>
+
+        <view class="imgs" wx:if="{{actInfo.award_image}}">
+          <swiper wx:if="{{actInfo.award_image.length > 1}}" style="height: 100%;" indicator-dots="true" autoplay="true"
+            circular="true">
+            <swiper-item wx:for="{{actInfo.award_image}}" wx:key="index">
+              <image src="{{item}}"></image>
+            </swiper-item>
+          </swiper>
+
+          <!-- 一张 -->
+          <image wx:else src="{{actInfo.award_image[0]}}"></image>
+        </view>
+
+        <button wx:if="{{!isLogin}}" class="btn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"
+          data-type="mainBtn">{{btnText}}</button>
+
+        <button wx:else class="btn" data-type="mainEnter" bindtap="getUserInfo">{{btnText}}</button>
+
+        <view class="tips">{{tips}}</view>
+      </view>
+    </view>
+
+    <view class="cover" wx:if="{{inviteInfo && showFriendPop}}" catchtouchmove="true">
+      <!-- 好友弹框 -->
+      <view class="main-wrapper main-wrapper2">
+        <view class="friends-box">
+          <view class="user">
+            <image class="user-img" src="{{inviteInfo.inviterAvatar}}"></image>
+            <text class="user-name">我是{{inviteInfo.inviterName}}</text>
+          </view>
+          <view class="msg">
+            <text class="msg-txt">{{isZan ? actInfo.share_title : '谢谢！送你一个抽奖券，快领取吧'}}</text>
+          </view>
+          <image class="hand-img"
+            src="{{isZan ? 'https://img.51jiabo.com/3b8c328a-4ab3-419b-bf1e-dbb02f9cbe0a.png' : 'https://img.51jiabo.com/814429e7-e7b4-4af1-b030-4321681226a1.png'}}">
+          </image>
+          <block wx:if="{{isZan}}">
+            <button wx:if="{{!isLogin}}" class="btn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"
+              data-type="helpBtn">帮好友点赞</button>
+            <button wx:else class="btn" catchtap="getUserInfo" data-type="friendZan">帮好友点赞</button>
+          </block>
+
+          <block wx:else>
+            <button class="btn" catchtap="getUserInfo" data-type="friendEnter">我也要参与抽奖</button>
+          </block>
+
+          <view class="del" catchtap="friendPopClose">
+            <image class="del-icon" src="https://img.51jiabo.com/ac49af8c-ebda-4244-a43b-176a979e67e4.png"
+             ></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+  <view class="bg-container"
+    style="background-color: {{actInfo.background_color}};box-shadow: 0 -40rpx 30rpx 10rpx {{actInfo.background_color}};">
+    <view class="progress">
+      <view class="pro-title">参与流程</view>
+      <!-- <view class="pro-list">
+        <view class="pro-item" wx:for="{{proList}}" wx:key="id">{{item.text}}</view>
+      </view> -->
+      <image class="pro-img" mode="widthFix" src="{{actInfo.process_image}}">
+      </image>
+    </view>
+
+    <view class="activity">
+      <view class="act-title">展会活动</view>
+      <view class="act-cont">
+        华夏家博，隶属于上海华墨展览服务有限公司，是集家装设计、施工管理、建材家居等全产业链为一体的家装生活服务平台，提供5重全程服务保障，为中国城市居民提供一站式高品质装修服务。2009年成立至今，上海华墨展览服务有限公司已在全国范围内拓展了36个分站，遍及上海、北京、广州等国内一、二线城市，举办近400场展会。
+      </view>
+    </view>
+  </view>
+</view>
+
+
+<!-- 
+  1.授权头像昵称兼容性、是否每次弹出
+  2.城市ID为空的现象
+  3.如果已经参与过活动，因为授权登录一直没有昵称，所以分享时会无昵称
+-->

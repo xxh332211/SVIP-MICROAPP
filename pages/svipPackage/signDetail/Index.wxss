@@ -1,0 +1,184 @@
+/* pages/svipPackage/signDetail/Index.wxss */
+image{
+  display: block;
+}
+
+.swiper-box {
+  position: relative;
+}
+
+.indicate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 15rpx;
+  right: 26rpx;
+  z-index: 1;
+  width: 60rpx;
+  height: 32rpx;
+  background: rgba(0,0,0,.5);
+  border-radius: 16rpx;
+  font-size: 20rpx;
+  color: #FFFFFF;
+}
+
+.gifg-swiper {
+  width: 690rpx;
+  height: 394rpx;
+}
+
+.gift-video{
+  width: 690rpx;
+  height: 394rpx;
+  margin-top: 0;
+  position: relative;
+}
+.play {
+  width: 118rpx;
+  height: 118rpx;
+  background: url("https://img.51jiabo.com/1252abb1-a3bc-461a-8901-1d7a5c202826.png") no-repeat;
+  background-size: 100% 100%;
+  z-index: 2;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.gift-picture {
+  width: 690rpx;
+  height: 394rpx;
+}
+
+.sign-detail {
+  background: #fff;
+  padding-bottom: 41rpx;
+  padding: 0 30rpx;
+
+}
+.sign-detail .name-box{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.sign-detail .name-box .share {
+  flex-shrink: 0;
+  width: 40rpx;
+  height: 37rpx;
+  background: url(https://img.51jiabo.com/74c4ec62-ece4-450a-a2b8-01ceb04b011f.png) no-repeat;
+  background-size: 38rpx 35rpx;
+  margin-left: 60rpx;
+  margin-right: 0;
+  margin-top: 32rpx;
+  padding: 0;
+  border: none;
+  outline: none;
+  overflow: auto;
+}
+.sign-detail .sign-tag {
+  display: flex;
+  margin-top: 32rpx;
+  word-wrap: break-word;
+}
+
+.sign-detail .sign-tag .label {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 132rpx;
+  height: 45rpx;
+  line-height: 45rpx;
+  font-size: 30rpx;
+  color: #fff;
+  background: url("https://img.51jiabo.com/31a8a158-7cce-4c64-914b-8477696bd312.png") no-repeat;
+  background-size: 100%;
+  padding-left: 17rpx;
+  margin-right: 16rpx;
+}
+
+.sign-detail .sign-tag .name {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: rgba(34, 34, 34, 1);
+}
+
+.sign-detail  .desc {
+  padding: 0 30rpx;
+  font-size: 28rpx;
+  line-height: 48rpx;
+  color: #999;
+  margin-top: 14rpx;
+  padding-bottom: 10rpx;
+
+}
+
+.get-explain {
+  background: #fff;
+  padding: 22rpx 30rpx 42rpx;
+  margin-top: 24rpx;
+}
+
+.get-explain .title {
+  font-size: 34rpx;
+  font-weight: bold;
+}
+
+.get-explain .explain {
+  font-size: 28rpx;
+  color: #777;
+  line-height: 57rpx;
+  margin-top: 15rpx;
+}
+
+.get-explain .explain .venue {
+  color: #e5002d;
+}
+
+.gift-check .text {
+  font-size: 28rpx;
+  color: #777777;
+  margin-top: 10rpx;
+}
+
+.gift-check text {
+  color: #E6002D;
+}
+
+.goods-detail {
+  background: #fff;
+  margin-top: 24rpx;
+  padding: 12rpx 0 100rpx;
+}
+
+.goods-detail .detail-text {
+  height: 82rpx;
+  font-size: 36rpx;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.goods-detail .detail-text .line {
+  width: 65rpx;
+  height: 1px;
+  background: #222;
+  margin: 0 20rpx;
+}
+
+.media{
+  width: 690rpx;
+  margin-left: 30rpx;
+}
+.media image{
+  margin-top: 9rpx;
+}
+video{
+  width: 100%;
+  margin-top: 9rpx;
+}
+
+.blank{
+  width: 100%;
+  height: 200rpx;
+}

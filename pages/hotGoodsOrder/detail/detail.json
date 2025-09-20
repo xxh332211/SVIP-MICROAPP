@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "privacy-popup": "../../../components/privacyPopup/privacyPopup",
+    "hot-goods-popup": "../../../components/hotGoodsItem/hotGoodsPopup/hotGoodsPopup",
+    "navigation": "../../../components/navigation/navigation"
+  }
+}

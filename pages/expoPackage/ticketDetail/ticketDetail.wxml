@@ -1,0 +1,114 @@
+<!--pages/expoPackage/ticketDetail/ticketDetail.wxml-->
+<online-serve />
+<privacy-popup></privacy-popup>
+<view class="info">
+  <view class="left">
+    <view class="name">{{ticketInfo.city_name}}站 - {{days}}日门票</view>
+    <view class="time" wx:if="{{ticketInfo.is_jqqd == 1}}">敬请期待</view>
+    <view class="time" wx:else>{{ticketTime}}</view>
+  </view>
+  <view class="right">
+    <view class='th'>{{ticketInfo.session}}</view>届
+  </view>
+</view>
+
+<view class="qrcode">
+  <view class="qrcode-img">
+    <canvas class="canvas" canvas-id='qrcode'></canvas>
+  </view>
+  <view class="qrcode-num">{{ticketInfo.ticket_num}}</view>
+</view>
+
+<view class="family-ticket">
+  <view class="family-title">—— 分享亲友套票 ——</view>
+  <view class="family-item">
+    <view class="item">
+      <image wx:if="{{ticketInfo.city_id == 60}}" class='head-img'
+       style="border-radius:0" src='{{"https://img.51jiabo.com/b691fa6f-85f3-4314-80ee-9b922e22de75.png"}}' />
+      <image wx:else class='head-img'
+        src='{{userInfo.avatar?userInfo.avatar:"https://img.51jiabo.com/1a927c4f-1d8a-49a9-8720-c90ce2719f31.jpg"}}' />
+    </view>
+    <view class="add-item">
+      <form report-submit="true" bindsubmit="pushFormId">
+        <button form-type="submit" class="share-btn" open-type="share" plain="true">+</button>
+      </form>
+    </view>
+  </view>
+ 
+</view>
+
+<view class="use-info">
+ <button wx:if="{{ticketInfo.ticket_num}}" data-ticket='ticket' class="inviteBtn btn-2" bindtap="toAddKin" plain="true" data-plan="个人中心查看电子票后">添加亲友，一起逛展</button>
+  <view class="tit">门票使用说明：</view>
+  <view class="list">
+    <view class="item">
+      1.此门票仅限于{{ticketInfo.city_name}}第{{ticketInfo.session}}届<block wx:if="{{ticketInfo.city_id == 60}}">
+        <text>装修狂欢节开展期间使用</text></block>
+      <block wx:else><text wx:if="{{ticketInfo.city_id == 27}}">森图里</text><text
+          wx:elif="{{ticketInfo.city_id == 54}}">天府</text><text wx:elif="{{ticketInfo.city_id == 65}}">现代</text><text
+          wx:else>华夏</text>家博会开展期间使用
+    </block>
+    </view>
+    <view class="item">2.<block wx:if="{{ticketInfo.city_id == 60}}">宁波装修狂欢节电子门票与纸质门票同等，扫描电子门票二维码即可进入<text></text>
+      </block>
+      <block wx:else>
+        <text wx:if="{{ticketInfo.city_id == 27}}">森图里</text><text wx:elif="{{ticketInfo.city_id == 54}}">天府</text><text
+          wx:elif="{{ticketInfo.city_id == 65}}">现代</text><text wx:else>华夏</text>家博会电子门票与纸质门票同等，扫描电子门票二维码即可进入
+      </block>
+    </view>
+    <view class="item">3.门票一经售出不退不换，敬请谅解</view>
+    <view class="item">4.门票为单人制，一张门票仅供一人使用，感谢您的配合</view>
+    <view class="item" wx:if="{{ticketInfo.city_id != 60}}">5.<text wx:if="{{ticketInfo.city_id == 27}}">森图里</text><text
+        wx:elif="{{ticketInfo.city_id == 54}}">天府</text><text wx:elif="{{ticketInfo.city_id == 65}}">现代</text><text
+        wx:else>华夏</text>家博会保留最终解释权。</view>
+  </view>
+</view>
+
+<!-- 检票成功弹层 -->
+<cover-view class="check-popup" wx:if="{{checkPopup}}">
+  <cover-view class="check-box">
+    <cover-view wx:if="{{userData.svip == 1}}">
+      <cover-view class="check-title">超级会员用户</cover-view>
+      <cover-view class="check-title">检票成功！欢迎逛展~</cover-view>
+      <cover-view class="not-sign-text"
+        wx:if="{{userData.svip == 1 && userData.is_svip_gift == 1 && userData.is_draw == -1}}">您的svip超值签到礼还未抽奖哟~
+      </cover-view>
+    </cover-view>
+    <cover-view class="check-status not-svip-status" wx:else>
+      <cover-image class="ico" src="https://img.51jiabo.com/e4d8290b-f516-4fcb-adfa-845db461b902.png"></cover-image>
+      <cover-view>检票成功！欢迎逛展~</cover-view>
+    </cover-view>
+    <cover-view
+      wx:if="{{userData.svip == 1 && userData.is_check_sign_gift == 0 && userData.is_svip_gift == 1 && userData.draw_type == 1 && userData.is_draw == 1}}">
+      <!-- 会员 && 未核销 && 可领取签到礼 && 签到礼为实物 && 已抽奖 -->
+      <cover-view class="border"></cover-view>
+      <cover-view class="content">
+        <cover-view class="text">您可领取超级会员签到礼哟~</cover-view>
+        <cover-view class="text">
+          <cover-view class="sign">领取码为：</cover-view>
+          <cover-view class="red">{{userData.check_num}}</cover-view>
+          <cover-view class="small">（在会员-会员中心查看领取码）</cover-view>
+        </cover-view>
+        <cover-view class="text">
+          <cover-view>您前面还有</cover-view>
+          <cover-view class="red">{{userData.uncheck_user_num}}</cover-view>
+          <cover-view>位用户领取签到礼</cover-view>
+        </cover-view>
+      </cover-view>
+    </cover-view>
+    <cover-view class="to-lottery"
+      wx:if="{{userData.svip == 1 && userData.is_svip_gift == 1 && userData.is_draw == -1}}" bindtap="toSvipCenter">去抽奖
+    </cover-view>
+    <cover-view class="confirm" wx:else bindtap="closeCheck">知道了</cover-view>
+  </cover-view>
+</cover-view>
+
+<!-- 领取过门票弹窗 -->
+<cover-view class="ticket-qr-box-pop" wx:if='{{showTicket}}'>
+  {{ticketName}}
+</cover-view>
+<!-- 导航 -->
+<navigation></navigation>
+
+<!-- 微信授权手机号弹层 -->
+<authorize bindgetPhoneBack="getPhoneBack"></authorize>

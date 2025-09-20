@@ -1,0 +1,173 @@
+<wxs module="fn">
+  module.exports = {
+    textNum: function (str) {
+      var text = str;
+      if (text.length > 6) {
+        text = text.substring(0, 6) + '...'
+      }
+      return text;
+    }
+  }
+</wxs>
+
+<!-- banner轮播 -->
+<template name="banner">
+  <swiper wx:if="{{module_json.imageList.length>1}}" class="banner" style="height: {{module_json.imageHeight}}rpx;"
+    indicator-active-color="#E6002D" indicator-color="#F3F3F3" indicator-dots="true" autoplay="true" circular="true">
+    <swiper-item wx:for="{{module_json.imageList}}" wx:key="index">
+      <image style="width: 100%;min-height: 100%;" src="{{item.imageUrl}}" bindtap="swiperUrl" data-item="{{item}}">
+      </image>
+    </swiper-item>
+  </swiper>
+
+  <view wx:else class="banner">
+    <image mode="widthFix" src="{{module_json.imageList[0].imageUrl}}" bindtap="swiperUrl"
+      data-item="{{module_json.imageList[0]}}"></image>
+  </view>
+</template>
+
+<!-- 运营位 -->
+<template name="yyw">
+  <view wx:if="{{module_json.displayType == 2}}" class="yyw-wrap">
+    <image wx:for="{{module_json.imageList}}" wx:key="index"
+      class="yyw-item {{module_json.imageList.length == 1 ? 'yyw-one' : module_json.imageList.length == 2 ? 'yyw-two':module_json.imageList.length == 3?'yyw-three':'yyw-four'}}"
+      src="{{item.imageUrl}}" bindtap="swiperUrl" data-item="{{item}}">
+    </image>
+  </view>
+  <view wx:else class="yyw-wrap-vert">
+    <image wx:for="{{module_json.imageList}}" wx:key="index" class="yyw-item yyw-one" mode="widthFix"
+      src="{{item.imageUrl}}" bindtap="swiperUrl" data-item="{{item}}">
+    </image>
+  </view>
+</template>
+
+<!-- 活动图文导航 -->
+<template name="act-nav">
+  <view class="act-nav">
+    <view wx:for="{{module_json.navList}}" wx:key="index"
+      class="act-nav-five {{module_json.navList.length==4?'act-nav-four':'act-nav-five'}}" bindtap="swiperUrl"
+      data-item="{{item}}">
+      <image class="act-nav-img {{module_json.navList.length==4?'act-nav-img-four':'act-nav-img-five'}}"
+        src="{{item.imageUrl}}"></image>
+      <view class="act-nav-tit">{{item.navName}}</view>
+    </view>
+  </view>
+</template>
+
+<!-- 视频轮播 -->
+<template name="video">
+  <view class="video-wrap">
+    <swiper class="video-swp" indicator-dots="true" indicator-active-color="#E6002D" indicator-color="#F3F3F3"
+      circular="true" style="height: 400rpx;">
+      <swiper-item wx:for="{{module_json.videoList}}" wx:key="index">
+        <video id="{{'video'+index}}" class="video-item" src="{{item.videoUrl}}" bindplay="onVideoPlay"
+          data-id="{{'video'+index}}"></video>
+      </swiper-item>
+    </swiper>
+  </view>
+</template>
+
+<!-- 优惠券 -->
+<template name="coupon">
+  <view class="group-wrap">
+    <view class="group-header">
+      <view class="group-tit">优惠券</view>
+      <view class="group-more" bindtap="toCouponList">
+        <view>查看更多</view>
+        <image style="width: 9rpx;height: 12rpx;margin-left: 5rpx;" src="/imgs/rightArrow.png"></image>
+      </view>
+    </view>
+    <view class="coupon-list">
+      <view wx:for="{{module_json.couponList}}" wx:key="index" class="coupon-item" bindtap="toCouponDetail"
+        data-id="{{item.coupon_id}}">
+        <view class="cp-item-header">
+          <image class="cp-item-logo" src="{{item.logo_url}}"></image>
+          <view class="cp-item-name">{{fn.textNum(item.brand_name)}}</view>
+        </view>
+        <view class="cp-price">￥<text style="font-size: 48rpx;">{{item.coupon_value}}</text></view>
+        <view class="cp-price-tips">满{{item.consume_amount}}元可用</view>
+        <view wx:if="{{item.can_get==1}}" class="coupon-btn" data-item="{{item}}" catchtap="getCoupon">免费领取</view>
+        <view wx:else class="coupon-btn coupon-btn-dis">{{item.button}}</view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<!-- 爆品组 -->
+<template name="hot-group">
+  <view class="hot-group" style="height: {{module_json.background_image?'':'470rpx'}};" bindtap="toHotGroupList">
+    <image mode="widthFix" src="{{module_json.background_image}}"></image>
+    <view class="hot-group-list">
+      <image wx:for="{{module_json.goodsList}}" wx:key="index" class="hot-group-goods" src="{{item.image_url}}"
+        catchtap="toHotGoodsDetail" data-id="{{item.detail_id}}"></image>
+    </view>
+  </view>
+</template>
+
+<!-- 爆品预约 -->
+<template name="hot-good">
+  <view class="hot-yy group-wrap">
+    <view class="group-header">
+      <view class="group-tit">爆品预约</view>
+      <view class="group-more" bindtap="toHotGoodsList">
+        <view>查看更多</view>
+        <image style="width: 9rpx;height: 12rpx;margin-left: 5rpx;" src="/imgs/rightArrow.png"></image>
+      </view>
+    </view>
+    <view class="hot-yy-list">
+      <view wx:for="{{module_json.hotGoodsList}}" wx:key="index" class="hot-yy-item" bindtap="toHotGoodsDetail"
+        data-id="{{item.detail_id}}">
+        <image src="{{item.image_url}}" style="height:175rpx"></image>
+        <view class="hot-yy-desc">{{item.goods_name}} | {{item.goods_descr}}</view>
+        <view class="hot-yy-btm">
+          <view class="hot-yy-del-price">市场价：{{item.market_price}}元</view>
+          <view class="hot-yy-price">
+            <text>家博抢购价：</text>
+            <text style="font-size: 32rpx;font-weight: bold;margin-right: 5rpx;">{{item.special_price}}</text>
+            <text style="color: #666;">{{item.price_unit}}</text>
+          </view>
+          <block wx:if="{{item.is_get == 0}}">
+            <view wx:if="{{item.goods_stock <= 0}}"
+              class="hot-yy-btn hot-yy-btn-gray">已约满</view>
+            <view wx:else class="hot-yy-btn" catchtap="reverseBtn" data-item="{{item}}">抢先预约</view>
+          </block>
+          <view wx:else class="hot-yy-btn hot-yy-btn-gray">已预约</view>
+          <view class="hot-yy-rest">剩余{{item.goods_stock}}件</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<!-- 秒光光 -->
+<template name="mgg">
+  <view class="mgg-wrap">
+    <view class="mgg-more">
+      <image mode="widthFix" src="{{module_json.activity_background}}" bindtap="toMggList">
+      </image>
+      <view class="mgg-main">
+        <view wx:if="{{module_json.mggActConfig.length > 1}}" class="mgg-tab-box">
+          <view wx:for="{{module_json.mggActConfig}}" wx:key="index"
+            class="mgg-tab {{index === curTab && 'mgg-tab-act'}}"
+            style="width: {{module_json.mggActConfig.length == 2 ? '360rpx':''}};" data-item="{{item}}"
+            data-index="{{index}}" catchtap="toggleMggTab">{{item.level_content}}</view>
+          <block wx:if="{{module_json.mggActConfig.length == 3}}">
+            <view hidden="{{curTab != 2}}" class="mgg-line1"></view>
+            <view hidden="{{curTab != 0}}" class="mgg-line2"></view>
+          </block>
+        </view>
+        <view wx:if="{{module_json.mggActConfig[0].goodsList.length}}" class="mgg-list">
+          <view wx:for="{{mggCurList || module_json.mggActConfig[0].goodsList}}" wx:key="index" class="mgg-item"
+            bindtap="toMggDetail" data-id="{{item.prerogative_id}}">
+            <image class="mgg-icon" src="https://img.51jiabo.com/5542dd4a-328c-4e22-b3cb-ea07c4ae9b28.png"></image>
+            <image src="{{item.image_url}}"></image>
+            <block wx:if="{{module_json.is_card_price == 1}}">
+              <view wx:if="{{item.pay_way == 1}}" class="mgg-price">￥{{item.earnest}}</view>
+              <view wx:elif="{{item.pay_way == 2}}" class="mgg-price">￥{{item.activity_price}}</view>
+            </block>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

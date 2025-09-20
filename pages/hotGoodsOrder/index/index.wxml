@@ -1,0 +1,49 @@
+<!--pages/index/index.wxml-->
+<wxs module="md">
+  var indexof = function (arr, num) {
+    if (arr.indexOf(num) > -1) {
+      return true
+    } else {
+      return false
+    }
+  }
+  module.exports = { indexof: indexof }
+</wxs>
+<online-serve />
+<view class='wrapper'>
+  <image style="height:40rpx;" src="/imgs/label.png"></image>
+
+  <!-- 轮播 -->
+  <banner-swiper wx:if="{{banner && banner.length > 0}}" banner="{{banner}}"></banner-swiper>
+
+  <!-- 爆品组 -->
+  <view wx:for="{{goodsGroup}}" wx:key="index" wx:if="{{md.indexof(item.banner_info,'75')}}">
+    <hot-goods-group groupItem="{{item}}"></hot-goods-group>
+  </view>
+
+  <view class="time-box">
+    <view class="hot">HOT</view>
+    <view class='h5'>{{activityInfo.begin_date}}-{{activityInfo.end_date}} {{activityInfo.venue_name}}</view>
+    <view class='sales'>展前预约，现场下单可享活动优惠</view>
+  </view>
+
+  <swiper class="swiper-wrapper" display-multiple-items="4.5" current="{{menuIndex}}">
+    <block wx:for="{{vendorList}}" wx:key="index">
+      <swiper-item class="swiper-slide" data-num="{{index}}" data-item="{{item}}" bindtap="cutKind">
+        <view class='slide-box'>
+          <view class='content {{currentCategoryId == item.id?"active":""}}'>{{item.category_name}}</view>
+        </view>
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <!-- 单个 -->
+  <hot-goods-item hotGoods="{{hotGoods}}"></hot-goods-item>
+</view>
+
+
+<view class="onload">—— {{reachTips}} ——</view>
+
+
+<!-- 导航 -->
+<navigation hiddenItem="hotGoods"></navigation>

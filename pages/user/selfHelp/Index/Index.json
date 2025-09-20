@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "privacy-popup": "../../../../components/privacyPopup/privacyPopup",
+    "xmb-popup": "/components/xmbPopup/xmbPopup"
+  },
+  "navigationBarTitleText": "录单列表",
+  "enablePullDownRefresh":true,
+  "backgroundTextStyle":"dark"
+}

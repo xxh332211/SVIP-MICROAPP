@@ -1,0 +1,14 @@
+<!--pages/agreement/agreement.wxml-->
+
+	<!-- 协议显示弹窗 -->
+	<view class="protocol-dialog" >
+    <!-- <view class="protocol-line">
+      <view class="close" bindtap='closePage'>
+        <image src="/imgs/tips_close-circle.png"></image>
+      </view>
+      <view class="protocol-title">用户隐私协议</view>
+    </view> -->
+		<view class="protocol-main">
+			<view class="img-box"><image src='https://img.51jiabo.com/6a98a33c-d9b6-4cbe-b889-f6a0da1e2b04.png' mode="widthFix"></image></view>
+		</view>
+	</view>

@@ -1,0 +1,135 @@
+<!--pages-abs/pages/ConfirmOrder/ConfirmOrder.wxml-->
+<wxs module="md">
+    var numfil = function (num) {
+        if (num) {
+            return Number(num.toFixed(2))
+        }
+    }
+    module.exports = {
+        numfil: numfil
+    }
+</wxs>
+<view class="delivery-address" bindtap="chooseAddress" wx:if="{{datas.delivery_way==3}}">
+    <view class="left">
+        <view class="address-ico"></view>
+        <view class="address-info" wx:if="{{selectedAddress}}">
+            <view class="address-user">{{selectedAddress.recipients}} {{selectedAddress.mobile}}</view>
+            <view class="address-text">
+                {{selectedAddress.provinceName}}{{selectedAddress.cityName}}{{selectedAddress.districtName}}{{selectedAddress.address}}
+            </view>
+        </view>
+        <view class="not-address" wx:if="{{!selectedAddress}}">添加收货地址</view>
+    </view>
+    <view class="address-arrow"></view>
+</view>
+<view class="bodys">
+    <view class="header">
+        <image class="face_img" mode="aspectFill" src="{{datas.shop_info.logo_url}}"></image>
+        <text class="nickname">{{datas.shop_info.shop_name}}</text>
+    </view>
+    <view class="content">
+        <image class="commodity_img" src="{{datas.main_image.image[0]}}"></image>
+        <view class="commodity_msg">
+            <view class="commodity_name">{{datas.prerogative_name}}</view>
+            <view class="price">
+                <text class="price_icon">￥</text>
+                <!-- is_openprice:是否开放自定义价格：-1：否1：是 -->
+                <!-- 配置自定义价格，显示自定义价格，否则显示活动价，没有活动价显示售价 -->
+                <text class="price_number">{{datas.is_openprice ==
+                    1?datas.define_price:datas.activity_price?datas.activity_price:datas.exclusive_price}}</text>
+                <text class="unit">{{datas.price_unit}}</text>
+            </view>
+            <view class="set">
+                <view>
+                    <view wx:if="{{datas.pay_way == 1}}" class="price_label">订金支付￥{{datas.earnest}}</view>
+                </view>
+                <view class="buy">
+                    <text class="rule"
+                        wx:if="{{datas.is_limit_purchase == 1 && datas.goods_type != 2}}">限购{{datas.limit_buy_count}}件</text>
+                    <text class="rule" wx:if="{{datas.goods_type == 2}}">限购1件</text>
+                    <view class="buy_btns">
+                        <text class="_" bindtap="jian">-</text>
+                        <text class="buy_number">{{num}}</text>
+                        <text class="__" bindtap="jia">+</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="message">
+        <view class="left_msg">配送</view>
+        <view class="rigth">
+            <text class="title" wx:if="{{datas.delivery_way==0}}">未选择</text>
+            <text class="title" wx:if="{{datas.delivery_way==1}}">展会自提</text>
+            <text class="title" wx:if="{{datas.delivery_way==2}}">到店自提</text>
+            <text class="title" wx:if="{{datas.delivery_way==3}}">线上发货</text>
+            <text class="msg1" wx:if="{{datas.delivery_way==1}}">您须到展会现场提货，下单同时免费报名家博会</text>
+            <text class="msg2"
+                wx:if="{{datas.delivery_way==1}}">{{datas.delivery_address.begin_date}}~{{datas.delivery_address.end_date}}到{{datas.delivery_address.venue_name}}{{datas.delivery_address.brand_name}}{{datas.delivery_address.booth}}处，查看商品</text>
+            <text class="msg3"
+                wx:if="{{datas.is_relevance_order == 1 && datas.delivery_way==1}}">该商品需在展会现场该品牌处下单方可领取</text>
+        </view>
+    </view>
+    <view class="Remarks">
+        <text class="Remarks_title">订单备注</text>
+        <input type="text" placeholder="选填" bindblur="getRemarks" maxlength="100"></input>
+    </view>
+</view>
+
+<view class="submit">
+    <view class="submit_title" wx:if="{{datas.goods_type == 2}}">
+        <text class="submit_title_msg">优惠金额</text>
+        <text class="submit_title_price">￥{{datas.newPrice}}</text>
+    </view>
+    <view class="submit_title">
+        <text class="submit_title_msg">实际支付</text>
+        <text class="submit_title_price">￥{{datas.goods_type == 2?0:(md.numfil(datas.newPrice*num))}}</text>
+    </view>
+    <view class="kf-box">
+        <view class="CS" bindtap="onkefupop" wx:if="{{kefu_img && kefu_img.length > 0}}">点击加客服有惊喜</view>
+    </view>
+    <view class="submit_footer">
+        <view class="the_way">
+            <image src="https://img.51jiabo.com/91c9fa67-0fba-4a7e-aaa9-67c5edd4a2d4.png" class="WX"></image>
+            <text class="wx_text">微信支付</text>
+        </view>
+        <radio checked='{{true}}' color="#FF0036"></radio>
+    </view>
+</view>
+
+<view class="btn-box">
+    <view class="total-price">￥{{datas.goods_type == 2?0:(md.numfil(datas.newPrice*num))}}</view>
+    <view class="footer_btn" bindtap="payBtn">提交订单</view>
+</view>
+
+<!-- 客服弹窗 -->
+<view class="pop_back" wx:if="{{kefupop}}">
+    <view class="pop kefu_pop">
+        <view class="close" catchtap="onkefupop"></view>
+        <button class="btn" open-type="contact" hover-class="none">
+            <image class="img" mode="widthFix" bindload="imgLoad" src="{{kefu_img[0].wap_image_url}}"></image>
+        </button>
+    </view>
+</view>
+
+<!-- 福袋 -->
+<view class="pop_back" wx:if="{{fudaipop}}">
+    <view class="fudai_pop">
+        <view class="close" bindtap="onfudai"></view>
+        <view class="fudai_title">{{brandAdv.win_title}}</view>
+        <image class="fudai_img" src="{{brandAdv.win_image_url}}"></image>
+        <view class="fudai_btn1" data-item="{{brandAdv}}" data-area_id="63" bindtap="{{brandAdv.url?'swiperUrl':''}}">
+            查看福利</view>
+        <view class="fudai_btn2" bindtap="toOrderDetail">查看订单</view>
+    </view>
+</view>
+
+<!-- 提交失败 -->
+<view class="pop_back" wx:if="{{errpop}}">
+    <view class="pop twopop">
+        <view class="problem">{{errmsg}}</view>
+        <view class="pop_btns">
+            <view class="btn_2" bindtap="onclose">确认</view>
+        </view>
+    </view>
+</view>

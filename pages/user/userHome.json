@@ -1,0 +1,10 @@
+{
+  "usingComponents":{
+    "privacy-popup": "../../components/privacyPopup/privacyPopup",
+    "coupon-btn":"../../components/couponBtn/couponBtn",
+    "coupon-popup":"../../components/couponPopup/couponPopup"
+  },
+  "navigationBarTitleText": "个人中心",
+  "navigationBarBackgroundColor": "#E6001B",
+  "navigationBarTextStyle": "white" 
+}

@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "超级会员SVIP预约",
+  "usingComponents": {
+    "privacy-popup": "../../components/privacyPopup/privacyPopup",
+    "banner-grid": "../../components/banner/bannerGrid/bannerGrid",
+    "dialog-swiper": "../../components/banner/dialogSwiper/dialogSwiper",
+    "authorize": "../../components/authorize/authorize",
+    "tab-bar": "../../custom-tab-bar/index"
+  },
+  "navigationBarTextStyle": "white",
+  "navigationBarBackgroundColor": "#e5002d"
+}

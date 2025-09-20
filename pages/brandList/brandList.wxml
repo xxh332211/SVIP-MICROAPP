@@ -1,0 +1,19 @@
+<!--pages/brandList/brandList.wxml-->
+<online-serve />
+<swiper class="swiper-wrapper" display-multiple-items="4.5" current="{{menuIndex}}">
+  <block wx:for="{{vendorList}}" wx:key="index">
+    <swiper-item class="swiper-slide" data-num="{{index}}" data-id="{{item.id}}" bindtap="cutKind">
+      <view class='slide-box'>
+        <view class='content {{curNum == index?"active":""}}'>{{item.category_name}}</view>
+      </view>
+    </swiper-item>
+  </block>
+</swiper>
+
+<view class="brand-list">
+  <!-- 单个 -->
+  <view class='brand-item' wx:for="{{brandList}}" wx:key="index">
+    <image src="{{item.logo_url}}"></image>
+    <view class='text'>{{item.brand_name}}</view>
+  </view>
+</view>

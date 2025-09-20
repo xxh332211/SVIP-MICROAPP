@@ -1,0 +1,41 @@
+<!--pages/userCenter/receiverAddress/addressEdit.wxml-->
+<scroll-view class="receiver-address-edit" scroll-y="true">
+  <form class="addres-edit-form" bind:submit="handleSaveAddress">
+    <view class="item">
+      <view class="label">收件人：</view>
+      <view class="input">
+        <input style="font-size:30rpx;" value="{{address.recipients}}" bindchange="userNameChange" maxlength="10"/>
+      </view>
+    </view>
+    <view class="item">
+      <view class="label">手机号码：</view>
+      <view class="input">
+        <input type="number" style="font-size:30rpx;" value="{{address.mobile}}" bindchange="mobileChange" maxlength="11"/>
+      </view>
+    </view>
+    <view class="item">
+      <view class="label">所在地区：</view>
+      <view class="picker" bind:tap="openAddrSelector">
+        <block wx:if="{{region.length}}">
+          {{region[0] || '省'}}/{{region[1] || '市'}}/{{region[2] || '区'}}
+        </block>
+        <!-- <block wx:else="{{region.length}}">
+          请选择
+        </block> -->
+      </view>
+      <image class="link" src="https://img.51jiabo.com/imgs-mall/gray_right.svg" mode="aspectFit"/>
+    </view>
+    <view class="item">
+      <view class="label">详细地址：</view>
+      <textarea class="detail-area" auto-height="true" placeholder="用请输入你的街道、门牌号码等详细信息" value="{{address.address}}" bindinput="addressChange" maxlength="50"></textarea>
+    </view>
+    <view class="item" style="padding-right: 10rpx">
+      <view class="label">设为默认地址</view>
+      <view class="switcher">
+        <switch checked="{{isDefault}}" disabled="{{disableBtn}}" bindchange="defaultValueChange" color="#D42B2B"/>
+      </view>
+    </view>
+    <button class="submit-btn normal-btn" form-type="submit">保存</button>
+  </form>
+</scroll-view>
+<address-modal wx:if="{{selectAddrVisible}}" init-value="{{region}}" bind:close="closeAddrSelector" bind:select="selectAddr"></address-modal>

@@ -1,0 +1,6 @@
+.flycart{
+  width:260rpx;
+  height:260rpx;
+  position:fixed;
+  z-index:1010;
+}

@@ -1,0 +1,31 @@
+<!--pages-userInfo/components/placingLottery/placingLottery.wxml-->
+<view class="order-wrap">
+  <view wx:if="{{cityId == 6}}">
+    <view class="lottery-report" wx:if="{{showReport}}">
+      <view class="report-box">
+        <view class="horn"></view>
+        <swiper class='report' autoplay="true" vertical="true" circular="true" interval="5000">
+          <block wx:for="{{lotteryReport}}" wx:key="index">
+            <swiper-item class="swiper-item">
+              <view class="text">{{item.mobile}}用户抽到【{{item.awardName}}】</view>
+            </swiper-item>
+          </block>
+        </swiper>
+      </view>
+      <view class="rule-box" bindtap="toggleRule">
+        <view class="ico"></view>抽奖活动规则
+      </view>
+    </view>
+    <view class="log-order" wx:if="{{zhanzhong}}" bindtap="toSelfHelp">还有订单，录单参与活动~  </view>
+  </view>
+</view>
+<!-- 抽奖规则 -->
+<view class="rule-popup" wx:if="{{rulePopup}}">
+  <view class="rule-box">
+    <view class="close" bindtap="toggleRule"></view>
+    <view class="title">下单抽奖活动规则</view>
+    <text class="rule-text">{{lotteryRule}}</text>
+    <image class="rule-img" src="https://img.51jiabo.com/b49e5f2a-c1b7-4572-922a-f3c0571b9442.png" mode="widthFix">
+    </image>
+  </view>
+</view>

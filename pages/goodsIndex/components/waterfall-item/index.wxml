@@ -1,0 +1,85 @@
+<!-- components/waterfall-item/waterfall-item.wxml -->
+<view class="w-item" bindtap="toGoodsDetail" data-item="{{itemData}}">
+  <block wx:if="{{itemData.kind == 1}}">
+    <view class="w-image-box">
+      <image mode="widthFix" src="{{itemData.image_url}}" class="w-image" />
+      <image wx:if="{{itemData.is_add_activity == 1}}" class="mgg-icon"
+        src="https://img.51jiabo.com/5542dd4a-328c-4e22-b3cb-ea07c4ae9b28.png"></image>
+    </view>
+    <view class="w-main">
+      <!-- 
+        线上：  1.全款 2.订金
+          全款： 优惠价 & 划线价
+          订金： 订金价 & 优惠价
+
+        秒光光： 1.全款 2.订金
+          全款： 秒光价 & 划线价
+          订金： （自定义价 > 订金价）& 秒光价
+       -->
+      <!-- 线上 -->
+      <block wx:if="{{itemData.is_add_activity == 0}}">
+        <!-- 全款 -->
+        <block wx:if="{{itemData.pay_way == 2}}">
+          <view class="w-text">{{itemData.prerogative_name}}</view>
+          <view class="w-price">
+            <text>优惠价:</text>
+            <text class="w-price-num">￥</text>
+            <text class="w-price-num" style="font-size: 40rpx;">{{itemData.exclusive_price}}</text>
+          </view>
+          <view class="w-price-del">￥{{itemData.market_price}}</view>
+        </block>
+        <!-- 订金 -->
+        <block wx:elif="{{itemData.pay_way == 1}}">
+          <view class="w-text">{{itemData.prerogative_name}}</view>
+          <view class="w-price">
+            <text>订金:</text>
+            <text class="w-price-num">￥</text>
+            <text class="w-price-num" style="font-size: 40rpx;">{{itemData.earnest}}</text>
+          </view>
+          <view class="w-price-del" style="text-decoration: none;">优惠价:￥{{itemData.exclusive_price}}</view>
+        </block>
+      </block>
+
+      <!-- 秒光光 -->
+      <block wx:elif="{{itemData.is_add_activity == 1}}">
+        <!-- 全款 -->
+        <block wx:if="{{itemData.pay_way == 2}}">
+          <view class="w-text">{{itemData.prerogative_name}}</view>
+          <view class="w-price">
+            <text>秒光价:</text>
+            <text class="w-price-num">￥</text>
+            <text class="w-price-num" style="font-size: 40rpx;">{{itemData.activity_price}}</text>
+          </view>
+          <view class="w-price-del">￥{{itemData.market_price}}</view>
+        </block>
+        <!-- 订金 -->
+        <block wx:elif="{{itemData.pay_way == 1}}">
+          <view class="w-text">{{itemData.prerogative_name}}</view>
+          <view class="w-price">
+            <text>订金:</text>
+            <text class="w-price-num">￥</text>
+            <text class="w-price-num" style="font-size: 40rpx;">{{itemData.mgg_is_openprice == 1 ?
+              itemData.mgg_define_price :
+              itemData.earnest}}</text>
+          </view>
+          <view class="w-price-del" style="text-decoration: none;">秒光价:￥{{itemData.activity_price}}</view>
+        </block>
+      </block>
+
+
+    </view>
+  </block>
+
+  <!-- 运营位 -->
+  <block wx:elif="{{itemData.kind == 2}}">
+    <swiper wx:if="{{itemData.adv.length>1}}" style="height:560rpx" indicator-dots="true"
+      indicator-active-color="#E6002D" indicator-color="#F3F3F3" circular="true" autoplay="true">
+      <swiper-item wx:for="{{itemData.adv}}" wx:key="index" catchtap="swiperUrl" data-item="{{item}}">
+        <image style="height:560rpx" mode="scaleToFill" src="{{item.wap_image_url}}" class="w-image" />
+      </swiper-item>
+    </swiper>
+    <view wx:else>
+      <image style="height:560rpx" catchtap="swiperUrl" data-item="{{itemData.adv[0]}}" mode="scaleToFill" src="{{itemData.adv[0].wap_image_url}}" class="w-image" />
+    </view>
+  </block>
+</view>

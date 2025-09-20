@@ -1,0 +1,5 @@
+<!--pages-sh/pages/shIndex/shIndex.wxml-->
+<image class="banner" mode="widthFix" src="https://img.51jiabo.com/a7fbdb1e-bef8-4000-92a4-ca3c569fe82a.png"></image>
+
+<view class="btn apply" bindtap="applyAfter">申请售后</view>
+<view class="btn" bindtap="applyLog">申请记录</view>

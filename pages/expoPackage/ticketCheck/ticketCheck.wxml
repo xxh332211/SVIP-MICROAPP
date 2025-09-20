@@ -1,0 +1,134 @@
+<!--pages/expoPackage//ticketCheck/ticketCheck.wxml-->
+<privacy-popup></privacy-popup>
+<view class="not-login-box" wx:if="{{!isLogin}}">
+  <view class="head">
+    <view class="ticket-title">华夏家博会欢迎您！</view>
+    <view class="btn-box">
+      <button class='btn one' open-type='getPhoneNumber' bindgetphonenumber="getPhoneNumber">登录检票逛展</button>
+    </view>
+  </view>
+</view>
+<view class="is-login-box" wx:if="{{isLogin}}">
+  <view class="head">
+    <!-- 已索票 -->
+    <view wx:if="{{ticChecked}}">
+      <view class="two-line" wx:if="{{userInfo.svip == 1}}">
+        <view class="ticket-title svip-title">超级会员用户</view>
+        <view class="ticket-title">
+          <view class="ico"></view>检票成功！欢迎逛展~
+        </view>
+      </view>
+      <view class="ticket-title" wx:else>
+        <view class="ico"></view>检票成功！欢迎逛展~
+      </view>
+      <view class="share-box">
+      <view class="btn-box">
+        <button open-type="share" class="btn">微信分享亲友逛展</button>
+        <view class="btn" bindtap="fastShare">面对面分享</view>
+      </view>
+       <button data-ticket='ticket' class="inviteBtn" bindtap="toAddKin" plain="true" data-plan="检票后">添加亲友，一起逛展</button>
+      </view>
+    </view>
+    <!-- 未索票 -->
+    <view wx:if="{{!ticChecked}}">
+      <view class="ticket-title">
+        <view class="ico fail"></view>您展前未索票
+      </view>
+      <view class="btn-box">
+        <!-- 无需展中购票 -->
+        <view class="btn one" bindtap="getTicket" wx:if="{{isExpoSell == 2}}">领票逛展</view>
+        <!-- 需展中购票 -->
+        <view class="btn one" bindtap="buyTicket" wx:if="{{isExpoSell == 1}}">{{ticketPrice}}元购票</view>
+      </view>
+    </view>
+  </view>
+  <!-- 已抽实物奖，并且未领取 -->
+  <view class="sign-gift"
+    wx:if="{{userInfo.svip == 1 && userInfo.is_check_sign_gift == 0 && userInfo.is_svip_gift == 1 && userInfo.is_draw == 1 && userInfo.draw_type == 1}}">
+    <view class="sign-title">
+      <view class="tips"></view>您前面还有<view class="red">{{userInfo.uncheck_user_num}}</view>位用户领取签到礼
+    </view>
+    <view class="content">
+      <view class="content-title">签到礼领取码</view>
+      <view class="red">{{userInfo.check_num}}</view>
+      <view class="small">（可在会员-会员中心查看领取码）</view>
+    </view>
+  </view>
+  <!-- svip && 未抽奖 -->
+  <view class="sign-gift" wx:if="{{userInfo.svip == 1 && userInfo.is_svip_gift == 1 && userInfo.is_draw == -1}}">
+    <view class="sign-title">
+      <view class="tips"></view>您还有SVIP超值签到礼大奖未抽取哟~
+    </view>
+    <view class="not-sign" wx:if="{{giftConfigImg}}">
+      <image mode="widthFix" src="{{giftConfigImg[0].image_url}}"></image>
+      <image mode="widthFix" src="{{giftConfigImg[1].image_url}}" bindtap="lottery"></image>
+    </view>
+  </view>
+</view>
+
+<!-- 熊猫币提示 -->
+<view class="xmb-tips" wx:if="{{showXmbTips}}">
+  <view class="xmb-tips-banner {{xmbPopupData.activity_status == 3 ?'xmb-tips-off-banner':''}}">
+    <view class="xmb-tips-title">恭喜获得{{xmbPopupData.total_coin}}熊猫币</view>
+    <view wx:if="{{xmbPopupData.activity_status != 3}}" class="xmb-tips-desc">{{xmbPopupData.message}}</view>
+  </view>
+  <image wx:if="{{xmbPopupData.activity_status != 3}}"
+    src="https://img.51jiabo.com/022209c1-5dc1-49ec-aebe-9d85c5f1902e.png" class="xmb-tips-img"></image>
+
+  <button class="xmb-tips-btn" wx:if="{{xmbPopupData.activity_status == 2 || xmbPopupData.activity_status == 3}}" catchtap="toXmbCenter">
+    {{xmbPopupData.activity_status == 2 ? '查看抽奖':'点击查看'}}</button>
+  <button class="xmb-tips-btn" wx:elif="{{xmbPopupData.activity_status == 1}}" catchtap="toXmbLottery">去抽奖</button>
+  
+  <image src="https://img.51jiabo.com/8bd662fb-4cd6-4dff-973c-9c27bb1ce25d.png" class="xmb-tips-close"
+    bindtap="closeXmbTips"></image>
+</view>
+
+<!-- 运营位 -->
+<view class="adv {{iconAdv.length == 1?'one':iconAdv.length == 2?'two':'three'}}">
+  <image wx:for="{{iconAdv}}" wx:key="index" data-area_id="54" data-item="{{item}}" src="{{item.wap_image_url}}"
+    mode="widthFix" class="item" bindtap="{{item.url?'swiperUrl':''}}"></image>
+</view>
+<view class="acrco-box">
+  <image class="acrco-img" wx:for="{{acrcoAdv}}" wx:key="index" data-area_id="55" data-item="{{item}}" mode="widthFix"
+    src="{{item.wap_image_url}}" bindtap="{{item.url?'swiperUrl':''}}"></image>
+</view>
+
+<!-- 面对面分享弹层 -->
+<view class="share-popup" hidden="{{!sharePopup}}" catchtouchmove='stop'>
+  <view class="share-box">
+    <view class="close" bindtap="closeShare"></view>
+    <image class="mini-code" src="{{miniCode}}"></image>
+    <view class="text">好友扫码获取门票，一起逛展~</view>
+  </view>
+</view>
+
+<!-- 提示弹层 -->
+<view class="tips-popup" wx:if="{{tipsPopup}}">
+  <view class="tips-box">
+    <view class="status">
+      <view class="ico"></view>{{tipsText}}
+    </view>
+    <view class="detail">已同时检票，欢迎逛展~</view>
+  </view>
+</view>
+
+<!-- 签到礼抽奖弹层 -->
+<view class="sign-popup" wx:if="{{signPopup}}">
+  <view class="sign-box">
+    <image mode="widthFix" src="{{signGiftGif}}"></image>
+    <view class="close" bindtap="closeSignPopup"></view>
+  </view>
+</view>
+
+<!-- 抽到优惠券提示弹层 -->
+<view class="svip-popup" wx:if="{{showSvipPopup}}">
+  <view class="svip-box">
+    <view class="close" bindtap="svipPopup"></view>
+    <view class="svip-title">您抽取的超值大额优惠券已到您账户</view>
+    <view class="svip-title">（可在会员-会员中心查看优惠券）</view>
+    <view class="to-center" bindtap="toSvipCenter">去查看</view>
+  </view>
+</view>
+
+<!-- 微信授权手机号弹层 -->
+<authorize bindgetPhoneBack="getPhoneBack" wx:if="{{!isAuth}}"></authorize>

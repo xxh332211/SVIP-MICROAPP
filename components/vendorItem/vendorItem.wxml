@@ -1,0 +1,42 @@
+<!--components/vendorItem/vendorItem.wxml-->
+
+<view class='vendor-list'>
+
+  <!-- 单个 -->
+  <view class='vendor-single' wx:for="{{vendorAct}}" wx:key="index">
+    <image class='post' mode='widthFix' src="{{item.activity_image_url}}"></image>
+    <view class="info">
+      <view class="info-left">
+        <view class="img-box">
+          <image src="{{item.logo_url}}"></image>
+        </view>
+        <view>
+          <view class="name">{{item.brand_name}}</view>
+          <view class="name">展位号：{{item.booth}}</view>
+        </view>
+      </view>
+      <view class="order" data-detailId="{{item.detail_id}}" data-supplierId="{{item.supplier_id}}" bindtap='reserveAct' wx:if="{{item.button == '免费预约'}}">免费预约</view>
+      <view class="order gray" wx:else>{{item.button}}</view>
+    </view>
+    <view class="prize" wx:if="{{item.activity_content}}" data-detailId="{{item.detail_id}}" bindtap="cutDisplay">
+      <view class="tag">预约礼</view>
+      <view class="p-list {{item.isHidden?'':'hidden'}}">
+        <rich-text nodes="{{item.activity_content}}"></rich-text>
+      </view>
+      <view class="arrow-box">
+        <view class="arrow {{item.isHidden?'up':''}}"></view>
+      </view>
+    </view>
+  </view>
+
+
+</view>
+
+<!-- 活动预约成功弹窗 -->
+<view class='get-success-popup' wx:if="{{reserveSuccess}}">
+  <view class='get-success-box'>
+    <view class='title'>预约成功</view>
+    <view class='content'>{{activityInfo.begin_date}}-{{activityInfo.end_date}}前往{{activityInfo.venue_name}}现场凭预约短信参与活动享优惠</view>
+    <view class='confirm' bindtap='closeReserve'>确定</view>
+  </view>
+</view>

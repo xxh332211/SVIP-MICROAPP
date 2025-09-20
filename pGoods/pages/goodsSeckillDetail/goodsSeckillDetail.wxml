@@ -1,0 +1,99 @@
+<!-- pGoods/pages/goodsDetail/goodsDetail.wxml -->
+<view class="page">
+  <scroll-view scroll-y="{{true}}">
+    <view class="swiper-container">
+      <swiper indicator-color="rgba(255,255,255,.66)" indicator-active-color="#0CC187" autoplay="{{true}}" interval="5000" duration="1000" circular="false" class="tac" style="height: 400rpx;" bindchange="onSwiperChange">
+        <swiper-item wx:for="{{swiperData}}" wx:key="item.url">
+          <video wx:if="{{item.type === 'video'}}" style="width: 100%;height: 400rpx;" controls="false" autoplay="{{false}}" bindplay="videos" bindpause="videos" src='{{item.url}}'></video>
+          <navigator wx:else>
+            <image src="{{item.url}}" mode="aspectFill" style="height: 400rpx;"></image>
+          </navigator>
+        </swiper-item>
+      </swiper>
+      <view class="indicator" wx:if="{{swiperData.length > 1}}">
+        <block wx:for="{{swiperData}}">
+          <view wx:key="item.url" class="video {{index === current ? 'active' : ''}}" wx:if="{{item.type === 'video'}}">
+            <view></view>
+          </view>
+          <view wx:key="item.url" class="text {{index === current ? 'active' : ''}}" wx:else>
+            <text>{{item.label}}</text>
+          </view>
+        </block>
+      </view>
+    </view>
+    <view class="content">
+      <view class="price">
+        <text class="sale-price"><text wx:if="{{info.invalid}}">已失效</text>¥{{info.promotionPrice}}</text>
+        <text class="market-price">¥{{info.marketPrice}}</text>
+        <text class="sale-info">已售{{info.soldCount}} | {{ info.unlimitStock ? '有货' : ('剩余' + (info.stock || '0'))}}</text>
+      </view>
+      <view class="goods-title">
+        <text><text class="tag">限时活动</text>{{info.title}}</text>
+        <button bindtap="showShareModal" data-shareData="{{shareData}}" class="share">
+          <image src="https://img.51jiabo.com/imgs-mall/share-btn.svg"></image>
+        </button>
+      </view>
+      <view class="goods-desc">
+        <text wx:for="{{specs}}" wx:key="index" class="tag">{{item}}</text>
+        <text class="txt" wx:if="{{false}}">
+          双十一抢购满1000立减50双十一抢购满1000立减50双十一抢购满1000立减50双十一抢购满1000立减50
+        </text>
+      </view>
+      <view class="time">距离结束  <counter end="{{seckill.endTime}}"></counter></view>
+      <view class="vip-btn" wx:if="{{false}}">
+        <image src="https://img.51jiabo.com/imgs-mall/svip.png"></image>
+        <view class="cont">开通SVIP超级会员下单预估省 ¥ 40.90</view>
+        <view></view>
+      </view>
+      <block wx:if="{{coupons.length}}">
+        <view class="gap"></view>
+        <view class="coupon normal-btn" bind:tap="showCouponModal">
+          <view class="label">券</view>
+          <view class="items">
+            <view class="item" wx:for="{{coupons}}" wx:key="couponId">
+              <image mode="scaleToFill" src="https://img.51jiabo.com/imgs-mall/coupon-small-bg.png" />
+              <view wx:if="{{item.couponType === 1}}">
+                满¥{{item.minAmount}}减¥{{item.discountValue}}
+              </view>
+              <view wx:if="{{item.couponType === 2}}">
+                满¥{{item.minAmount}}打{{item.discountValue}}折
+              </view>
+            </view>
+          </view>
+          <view class="btn-label">领券</view>
+          <image src="https://img.51jiabo.com/imgs-mall/gray_right.svg" mode="aspectFit" />
+        </view>
+      </block>
+      <view class="gap"></view>
+      <view class="delivery">
+        <view>提货</view>
+        <view>
+          该商品须到展会现场取货，请您于{{info.activityBeginDate}}-{{info.activityEndDate}}到{{info.venueAddress}}领取商品。
+        </view>
+      </view>
+      <view class="gap"></view>
+      <view class="tabs" wx:if="{{false}}">
+        <view class="{{curTab === 0 ? 'active' : ''}}" data-id="{{0}}" bindtap="onTabClick">
+          介绍
+        </view>
+        <view class="{{curTab === 1 ? 'active' : ''}}" data-id="{{1}}" bindtap="onTabClick">
+          参数
+        </view>
+        <view class="{{curTab === 2 ? 'active' : ''}}" data-id="{{2}}" bindtap="onTabClick">
+          售后
+        </view>
+      </view>
+      <view class="goods-detail">
+        <block wx:for="{{detailImgs}}" wx:key="index">
+          <video wx:if="{{item.imageType==='video'}}" src="{{item.imageUrl}}" autoplay="true" controls="{{false}}" muted="true" loop object-fit="fill"></video>
+          <image wx:else mode="widthFix" src="{{item.imageUrl}}"></image>
+        </block>
+      </view>
+    </view>
+  </scroll-view>
+  <view wx:if="{{!info.invalid}}" class="buy-btn {{hasStock || !started || ended ? '' : 'disabled'}}" bindtap="buy">{{!started ? '活动未开始' : ended ? '活动已结束' : !hasStock ? '已售罄' : '购买 →'}}</view>
+  <buy-modal seckill="{{true}}" goodsInfo="{{originInfo}}" wx:if="{{buyModalVisible}}" bind:next="confirmOrder" bind:close="closeBuyModal"></buy-modal>
+  <coupon-modal wx:if="{{couponModalVisible}}" bind:close="closeCouponModal"></coupon-modal>
+  <share-modal wx:if="{{shareModalVisbile}}" shareData="{{shareData}}" bind:close="closeShareModal" bind:show="showPosterModal"></share-modal>
+  <poster-modal wx:if="{{posterModalVisible}}" url="{{shareUrl}}" scene="{{shareScene}}" type="2" drawData="{{shareInfo}}" bind:close="closePosterModal"></poster-modal>
+</view>

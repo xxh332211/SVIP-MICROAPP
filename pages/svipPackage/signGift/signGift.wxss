@@ -1,0 +1,139 @@
+/* pages/svipPackage//signGift/signGift.wxss */
+.wrap {
+  background: #fff;
+  margin-bottom: 32rpx;
+  overflow: hidden;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 90rpx;
+  font-size: 36rpx;
+  color: #222222;
+  font-weight: bold;
+  padding-left: 30rpx;
+}
+
+.name {
+  font-size: 30rpx;
+  color: #999999;
+  text-align: center;
+  padding: 30rpx;
+}
+
+image {
+  display: block;
+}
+
+.swiper-box {
+  position: relative;
+}
+
+.indicate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 15rpx;
+  right: 26rpx;
+  z-index: 1;
+  width: 60rpx;
+  height: 32rpx;
+  background: rgba(0, 0, 0, .5);
+  border-radius: 16rpx;
+  font-size: 20rpx;
+  color: #FFFFFF;
+}
+
+.gifg-swiper {
+  width: 100%;
+  height: 394rpx;
+}
+
+.gift-video {
+  width: 100%;
+  height: 394rpx;
+  margin-top: 0;
+  position: relative;
+}
+
+.play {
+  width: 118rpx;
+  height: 118rpx;
+  background: url("https://img.51jiabo.com/1252abb1-a3bc-461a-8901-1d7a5c202826.png") no-repeat;
+  background-size: 100% 100%;
+  z-index: 2;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.coupon-img {
+  width: 705rpx;
+  margin-left: 22rpx;
+  margin-bottom: 30rpx;
+}
+
+.lottery-img {
+  width: 700rpx;
+  margin-left: 25rpx;
+  margin-bottom: 30rpx;
+}
+
+.svip-popup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, .8);
+}
+
+.svip-popup .svip-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 640rpx;
+  background: #FFFFFF;
+  border-radius: 8rpx;
+  padding-bottom: 55rpx;
+}
+
+.svip-popup .svip-title {
+  font-size: 32rpx;
+  color: #000000;
+  padding: 76rpx 0 48rpx;
+}
+
+.svip-popup .to-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 190rpx;
+  height: 70rpx;
+  background: #E6002D;
+  border-radius: 3rpx;
+  color: #FFFFFF;
+  font-size: 36rpx;
+}
+
+.btn-wrap {
+  position: relative;
+}
+
+.auth-login {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  z-index: 3;
+  background: none;
+}

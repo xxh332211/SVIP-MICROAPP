@@ -1,0 +1,191 @@
+/* pages-xmb/components/dial/dial.wxss */
+/* pages-xmb/components/dial.wxss */
+
+.canvas-content {
+  width: 520rpx;
+  height: 520rpx;
+  background: url(https://img.51jiabo.com/3d06d379-1ae8-429f-924a-a2d12a97d7b1.png) no-repeat;
+  background-size: 100% 100%;
+  position: relative;
+  margin-top: 4rpx;
+  margin-right: 2rpx;
+}
+
+.canvas-item {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  color: #947600;
+  font-weight: bold;
+  font-size: 26rpx;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, .6);
+}
+
+.canvas-item .name {
+  width: 100%;
+  padding: 0 160rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.canvas-item .img {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 5rpx;
+  margin-top: 6rpx;
+}
+
+.canvas-item .canvas-item-text {
+  position: relative;
+  display: block;
+  padding-top: 36rpx;
+  margin: 0 auto;
+  text-align: center;
+  -webkit-transform-origin: 50% 260rpx;
+  transform-origin: 50% 260rpx;
+}
+
+.lottery-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 230rpx;
+  width: 212rpx;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -106rpx;
+  margin-top: -115rpx;
+  z-index: 2;
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #FFFFFF;
+  background: url(https://img.51jiabo.com/23883e9f-6094-4800-841e-0fa64a4c13dd.png) no-repeat;
+  background-size: 100% 100%;
+}
+
+.lottery-btn.gray {
+  filter: grayscale(1);
+}
+
+.lottery-btn .tj {
+  font-size: 20rpx;
+  font-weight: normal;
+  margin-top: -2rpx;
+}
+
+.auth-btn {
+  height: 230rpx;
+  width: 212rpx;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -106rpx;
+  margin-top: -115rpx;
+  z-index: 2;
+  background-color: transparent;
+}
+
+.prize-popup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, .8);
+  width: 100%;
+  height: 100%;
+}
+
+.prize-popup .prize-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 600rpx;
+  background: #FFFFFF;
+  border-radius: 10rpx;
+  overflow: hidden;
+  padding-bottom: 60rpx;
+}
+
+.prize-popup .head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 188rpx;
+  background: url(https://img.51jiabo.com/169c3c01-7c81-48be-99ed-70334c5bfb6c.png) no-repeat;
+  background-size: 100% 100%;
+  position: relative;
+  font-size: 38rpx;
+  font-weight: bold;
+  color: #FFFFFF;
+}
+
+.prize-popup .name {
+  width: 580rpx;
+  text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.prize-popup .tips {
+  font-size: 26rpx;
+  font-weight: normal;
+  margin-top: 9rpx;
+}
+
+.not-big {
+  padding: 56rpx 0 37rpx;
+}
+
+.prize-popup .close {
+  width: 70rpx;
+  height: 70rpx;
+  background: url(https://img.51jiabo.com/69e342bd-46fc-4053-8129-460fa4538321.png) no-repeat;
+  background-size: 30rpx 30rpx;
+  background-position: center center;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.prize-popup .img-box {
+  padding-bottom: 23rpx;
+}
+
+.prize-popup .img {
+  width: 160rpx;
+  height: 160rpx;
+  margin-top: 36rpx;
+}
+
+.prize-popup .text {
+  font-size: 32rpx;
+  text-align: center;
+}
+
+.prize-popup .lackof {
+  padding: 38rpx 0 36rpx;
+}
+
+.prize-popup .again {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 400rpx;
+  height: 75rpx;
+  background: linear-gradient(90deg, #FF0136 0%, #FF2601 100%);
+  border-radius: 37rpx;
+  font-size: 30rpx;
+  color: #FFFFFF;
+  margin-top: 19rpx;
+}

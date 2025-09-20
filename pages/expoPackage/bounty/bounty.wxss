@@ -1,0 +1,50 @@
+/* pages/expoPackage/bounty/bounty.wxss */
+
+page {
+  background: #fff;
+}
+
+.amount-bount {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  width: 100%;
+  height: 269rpx;
+  background: linear-gradient(270deg, rgba(255, 81, 47, 1), rgba(249, 41, 58, 1));
+}
+
+.amount-bount .award {
+  font-size: 30rpx;
+}
+
+.amount-bount .num {
+  font-size: 94rpx;
+}
+.amount-bount .num text{
+  font-size: 48rpx;
+}
+
+.line {
+  width: 690rpx;
+  height: 1px;
+  background: #e1e1e1;
+  margin: 86rpx 0 0 30rpx;
+}
+
+.rule {
+  padding: 40rpx;
+}
+
+.rule .rule-title {
+  display: block;
+  font-size: 36rpx;
+  font-weight: bold;
+  padding-bottom: 30rpx;
+}
+
+.rule view {
+  font-size: 28rpx;
+  color: #777;
+}

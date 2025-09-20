@@ -1,0 +1,13 @@
+<!--components/authorize/authorize.wxml-->
+
+
+<!-- 微信授权手机号弹层 -->
+<view class="auth-popup" style="{{isMgg?'padding-top:'+navHeight+'px':''}}" wx:if="{{!isLogin && !isAuth }}">
+	<view class="auth-box {{isMgg?'top':''}}">
+		<image wx:if="{{cityId == 60}}" class='auth-img' src="https://img.51jiabo.com/c1fb2f1d-d74f-43a6-9b79-c80cef9dafcc.png" mode='widthFix'></image>
+		<image wx:else class='auth-img' src="https://img.51jiabo.com/494fec82-40fb-4e04-89d0-bbd4778dfc79.png" mode='widthFix'></image>
+		<view class='welcome'>欢迎来到<text wx:if="{{cityId == 60}}">宁波装修狂欢节</text><text wx:else>华夏家博会</text>小程序</view>
+		<button class='auth-btn' open-type='getPhoneNumber' bindgetphonenumber="getPhoneNumber">微信授权登录</button>
+		<view class="not-login" bindtap="closeAuth">暂不登录</view>
+	</view>
+</view>

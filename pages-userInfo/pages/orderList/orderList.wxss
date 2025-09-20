@@ -1,0 +1,439 @@
+/* pages-userInfo/pages/orderList/orderList.wxss */
+/* .fixed-head {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+} */
+
+.filter-box {
+  width: 100%;
+  height: 86rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 0 30rpx;
+}
+
+.filter-box .search-box {
+  display: flex;
+  align-items: center;
+  width: 487rpx;
+  height: 66rpx;
+  background: #F3F3F3;
+  border-radius: 33rpx;
+  font-size: 28rpx;
+  color: #BDBEC0;
+  padding-left: 27rpx;
+}
+
+.filter-box .search-box::before {
+  content: "";
+  display: block;
+  width: 24rpx;
+  height: 24rpx;
+  background: url(https://img.51jiabo.com/d32432a5-0efb-4c9a-8505-4b4d75af0b87.png) no-repeat;
+  background-size: 100% 100%;
+  margin-right: 14rpx;
+}
+
+.filter-box .type-text {
+  display: flex;
+  align-items: center;
+  font-size: 34rpx;
+}
+
+.filter-box .type-text.up::after {
+  transform: rotate(0);
+}
+
+.filter-box .type-text::after {
+  content: "";
+  display: block;
+  width: 32rpx;
+  height: 18rpx;
+  background: url(https://img.51jiabo.com/a5b30858-be5e-4cc3-9340-ad1b98899644.png) no-repeat;
+  background-size: 100% 100%;
+  transform: rotate(180deg);
+  transition: transform .2s linear;
+  margin-left: 16rpx;
+}
+
+.type-wrap {
+  width: 100%;
+  height: calc(100vh - 86rpx);
+  position: fixed;
+  top: 86rpx;
+  left: 0;
+  z-index: 10;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, .8);
+  transition: all .2s linear;
+  visibility: hidden;
+}
+
+.type-wrap.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.type-wrap.show .type-box {
+  height: 209rpx;
+}
+
+.type-box {
+  width: 100%;
+  height: 0;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  box-shadow: 0 5rpx 15rpx 0 rgba(81, 81, 81, 0.05);
+  transition: all .2s linear;
+  overflow: hidden;
+  background-color: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  padding: 6rpx 66rpx 0;
+}
+
+.type-box .type-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 163rpx;
+  height: 65rpx;
+  background: #FFFFFF;
+  border: 1px solid #AAAAAA;
+  border-radius: 10rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  margin: 15rpx 0;
+}
+
+.type-box .type-item.act {
+  color: #E6002D;
+  border: 1px solid #E6002D;
+}
+
+.status-tab {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  height: 74rpx;
+  background-color: #fff;
+  font-size: 28rpx;
+  box-shadow: 0 5rpx 15rpx 0 rgba(81, 81, 81, 0.05);
+  position: relative;
+  z-index: 1;
+}
+
+.status-tab .tab {
+  height: 100%;
+  padding-top: 10rpx;
+}
+
+.status-tab .tab.act {
+  font-size: 32rpx;
+  font-weight: bold;
+  border-bottom: 4rpx solid #E5002D;
+}
+
+.order-item {
+  box-sizing: border-box;
+  width: 100%;
+  background-color: #fff;
+  padding: 0 30rpx;
+  margin-top: 30rpx;
+}
+
+.order-item:last-child {
+  margin-bottom: 50rpx;
+}
+
+/* 没有订单 */
+
+.empty-content {
+  margin-top: 200rpx;
+  text-align: center;
+  color: #777;
+  font-size: 32rpx;
+}
+
+.empty-content image {
+  width: 300rpx;
+  height: 300rpx;
+}
+
+/* 退款提示 */
+
+.refound-tips {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 29;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.refound-tips .tips-box {
+  width: 620rpx;
+  background: #fff;
+  border-radius: 8rpx;
+  padding-top: 53rpx;
+  padding-bottom: 53rpx;
+}
+
+.refound-tips .tips-box .tit {
+  color: #000;
+  font-weight: bold;
+  font-size: 36rpx;
+  text-align: center;
+}
+
+.refound-tips .tips-box .btn-box {
+  display: flex;
+  justify-content: center;
+  margin-top: 77rpx;
+}
+
+.refound-tips .tips-box .btn-box view {
+  width: 190rpx;
+  height: 70rpx;
+  border-radius: 3rpx;
+  font-size: 36rpx;
+  background: #e6002d;
+  color: #fff;
+  text-align: center;
+  line-height: 70rpx;
+}
+
+.refound-tips .tips-box .btn-box .cancel {
+  border: 1px solid #aaa;
+  background: #fff;
+  color: #000;
+  margin-right: 94rpx;
+}
+
+/* 核销码弹层 */
+.code-popup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 29;
+}
+
+.code-popup .code-layer{
+  background: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.code-popup .code-box {
+  width: 610rpx;
+  background: url("https://img.51jiabo.com/cf8a82d1-8ad7-4232-b7e9-b51af6efa331.png") no-repeat;
+  background-size: 100% 100%;
+  position: relative;
+  z-index: 1;
+  padding-bottom: 42rpx;
+}
+
+.code-popup .code-box .top {
+  text-align: center;
+}
+
+.code-popup .code-box .top .tit {
+  font-size: 36rpx;
+  font-weight: bold;
+  padding: 46rpx 0 0;
+}
+
+.code-popup .code-box .top .period {
+  font-size: 30rpx;
+  color: #e6002d;
+  padding-bottom: 36rpx;
+}
+
+.code-popup .code-box .bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.code-popup .code-box .bottom .canvas {
+  width: 170px;
+  height: 170px;
+  margin-top: 55rpx;
+  overflow: hidden;
+  position: relative;
+}
+
+.code-popup .code-box .bottom .cou-code {
+  font-size: 32rpx;
+  margin-top: 20rpx;
+}
+
+.code-popup .code-box .bottom .cou-code.past {
+  text-decoration: line-through;
+}
+
+.code-popup .code-box .bottom .status {
+  width: 240rpx;
+  height: 70rpx;
+  border-radius: 5rpx;
+  font-size: 36rpx;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+  line-height: 70rpx;
+  background: #e6002d;
+  margin-top: 40rpx;
+}
+
+.code-popup .code-box .bottom .status.used {
+  background: #f1c679;
+}
+
+.code-popup .code-box .bottom .status.past {
+  background: #bababa;
+}
+
+/* 抽奖弹层 */
+.lottery-popup {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  background: rgba(0, 0, 0, .82);
+}
+
+.lottery-popup .bg {
+  width: 100%;
+}
+
+.lottery-popup .lottery-box {
+  width: 670rpx;
+  background: #FFFFFF;
+  border-radius: 15rpx;
+  position: absolute;
+  overflow: hidden;
+}
+
+.lottery-popup .head {
+  background: #E6002D;
+  padding-top: 90rpx;
+}
+
+.lottery-popup .head-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lottery-popup .head-text {
+  font-size: 56rpx;
+  font-weight: bold;
+  color: #FFFFFF;
+  margin-top: -17rpx;
+}
+
+.not-price {
+  font-size: 48rpx;
+  color: #FFFFFF;
+  padding-top: 40rpx;
+  padding-bottom: 28rpx;
+}
+
+.lottery-popup .prize {
+  width: 366rpx;
+  height: 211rpx;
+}
+
+.lottery-popup .xs {
+  display: block;
+  width: 100%;
+  height: 42rpx;
+}
+
+.lottery-popup .qr-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 50rpx;
+  padding-top: 20rpx;
+}
+
+.lottery-popup .tips-text{
+  font-size: 24rpx;
+  padding: 0 50rpx;
+}
+
+.first-tip {
+  font-size: 36rpx;
+  margin-top: 76rpx;
+}
+
+.second-tip {
+  font-size: 36rpx;
+  padding-bottom: 128rpx;
+}
+
+.lottery-popup .canvas {
+  width: 130px;
+  height: 130px;
+}
+
+.lottery-popup .qr-text {
+  font-size: 30rpx;
+  color: #222222;
+  margin-top: 8rpx;
+}
+
+.lottery-popup .know-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 213rpx;
+  height: 72rpx;
+  background: #E6002D;
+  border-radius: 15rpx;
+  font-size: 30rpx;
+  color: #FFFFFF;
+  margin-top: 20rpx;
+  margin-bottom: 30rpx;
+}
+
+.lottery-loading {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  background: rgba(0, 0, 0, .82);
+}
+
+.lottery-loading .loading-img {
+  width: 494rpx;
+  height: 466rpx;
+}

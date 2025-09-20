@@ -1,0 +1,46 @@
+<!--pages-userInfo/components/reserveOrder/reserveOrder.wxml-->
+<wxs module="md">
+  var format = function (time) {
+    if (time) {
+      var date = time.slice(5, 10).replace(getRegExp('-', 'g'), ".");
+      return date
+    }
+  }
+  var isout = function (endtime) {
+    if (endtime) {
+      var a = getDate()
+      var b = getDate(endtime).getTime()
+      var isOut = a > b ? true : false
+      return isOut
+    }
+  }
+  module.exports = { format: format, isout: isout }
+</wxs>
+<view data-item="{{item}}" bindtap="toDetail">
+  <view class="head">
+    <view class="title">
+      <view class="ico yy"></view>SVIP预约商品
+    </view>
+    <view class="status-text">
+      <view wx:if="{{item.is_check == 1 && item.status != -1}}">商品已领取</view>
+      <view wx:if="{{item.is_check != 1 && item.status != -1 && !md.isout(item.end_date)}}">商品未领取</view>
+      <view wx:if="{{item.status == -1}}">商品已失效</view>
+      <view wx:if="{{item.is_check != 1 && item.status != -1 && md.isout(item.end_date)}}">商品已过期</view>
+    </view>
+  </view>
+  <view class="content">
+    <image class="goods-img" src="{{item.goods_image}}"></image>
+    <view class="right">
+      <view class="name">{{item.goods_name}}</view>
+      <view class="price-box">SVIP：￥{{item.goods_price}}</view>
+      <view class="btn-box">
+        <view class="btn wide" wx:if="{{item.status != -1}}" data-item="{{item}}" catchtap='checkCode'>查看券码</view>
+        <view class="btn" wx:if="{{item.status == -1 || md.isout(item.end_date) || item.is_check == 1}}"
+          data-item="{{item}}" catchtap="deleteOrder">删除</view>
+      </view>
+    </view>
+  </view>
+  <view class="order-info" wx:if="{{item.status != -1}}">
+    您已成功预约SVIP商品，{{md.format(item.begin_date)}}~{{md.format(item.end_date)}}日到{{item.venue_name}}现场查看商品
+  </view>
+</view>

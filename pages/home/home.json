@@ -1,0 +1,15 @@
+{
+  "navigationBarTitleText": "超级会员SVIP首页",
+  "usingComponents": {
+    "privacy-popup": "../../components/privacyPopup/privacyPopup",
+    "banner-grid": "../../components/banner/bannerGrid/bannerGrid",
+    "dialog-swiper": "../../components/banner/dialogSwiper2/dialogSwiper2",
+    "service": "../../components/service/service",
+    "authorize": "../../components/authorize/authorize",
+    "upgradeSvip": "../../components/upgradeSvip/upgradeSvip",
+    "coupon-btn": "../../components/couponBtn/couponBtn",
+    "buy-btn": "../../components/svipBuyBtn/svipBuyBtn",
+    "coupon-popup":"../../components/couponPopup/couponPopup",
+    "more-choose-one":"../../components/moreChooseOne/moreChooseOne"
+  }
+}

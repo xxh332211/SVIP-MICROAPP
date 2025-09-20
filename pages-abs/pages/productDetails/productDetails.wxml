@@ -1,0 +1,221 @@
+<!--pages-abs/pages/productDetails/productDetails.wxml-->
+<online-serve />
+<view class="navigate {{showBack?'showBack':''}}" style="padding-top:{{navigateHeight}}px">
+	<view class="return" bindtap="goBack"></view>
+	<view class="nav-text">{{datas.prerogative_name}}</view>
+</view>
+<view class="banner">
+    <swiper circular="true" bindchange="swiperChange">
+        <swiper-item wx:if="{{datas.main_image.video.length > 0}}">
+            <video src="{{datas.main_image.video[0]}}"></video>
+        </swiper-item>
+        <swiper-item wx:for="{{datas.main_image.image}}" wx:key="index">
+            <image mode="aspectFill" src="{{item}}"></image>
+        </swiper-item>
+    </swiper>
+    <view class="indicate" wx:if="{{totalNum > 1}}">{{current}}/{{totalNum}}</view>
+</view>
+
+<view class="box1">
+    <!-- 普通 -->
+    <view class="price price1 flexB {{pay_way == 2?'ordinary':''}}" wx:if="{{goods_type == 0}}">
+        <view class="price_msg">
+            <view class="price_text">
+                <view class="txt1">￥<text>{{datas.exclusive_price}}</text>{{datas.price_unit}}</view>
+                <view class="txt2">￥{{datas.market_price}}{{datas.price_unit}}</view>
+            </view>
+            <view wx:if="{{pay_way == 1}}" class="deposit">订金:￥{{datas.earnest}}</view>
+        </view>
+        <view class="sold">已售：{{datas.sold_stock_count}}件</view>
+    </view>
+    <!-- 秒光光 -->
+    <view class="price price2 flexB" wx:if="{{goods_type == 1}}">
+        <view class="price_msg">
+            <view class="price_text">
+                <!-- is_openprice:是否开放自定义价格：-1：否1：是 -->
+                <!-- 配置自定义价格，显示自定义价格，否则显示活动价 -->
+                <text class="txt1 {{pay_way == 2?'br':''}}">￥{{datas.is_openprice ==
+                    1?datas.define_price:datas.activity_price}}{{datas.price_unit}}</text>
+                <text class="txt2" style="color:#fff">￥ {{datas.market_price}}{{datas.price_unit}}</text>
+            </view>
+            <view wx:if="{{pay_way == 1}}" class="deposit deposit2">订金:￥ {{datas.earnest}}</view>
+        </view>
+        <view class="mgg-box">
+            <image class="mgg" mode="heightFix" src="https://img.51jiabo.com/586b76c6-3ceb-452e-abbb-e21abb7cffbc.png">
+            </image>
+            <view class="sold" style="color:#fff">已售：{{datas.sold_stock_count}}件</view>
+        </view>
+    </view>
+    <!-- 兑换卡 -->
+    <view class="price price2 flexB" wx:if="{{goods_type == 2}}">
+        <view class="price_msg">
+            <view class="price_text">
+                <!-- 展届未结束 && 配置自定义价格，显示自定义价格，否则显示活动价，没有活动价显示售价 -->
+                <text class="txt1 {{pay_way == 2?'br':''}}">￥{{datas.is_openprice ==
+                    1?datas.define_price:datas.activity_price?datas.activity_price:datas.exclusive_price}}{{datas.price_unit}}</text>
+                <text class="txt2" style="color:#fff"> ￥{{datas.market_price}}{{datas.price_unit}}</text>
+            </view>
+            <view wx:if="{{pay_way == 1}}" class="deposit deposit2">订金:￥{{datas.earnest}}</view>
+        </view>
+        <view class="sold" style="color:#fff">已售：{{datas.sold_stock_count}}件</view>
+    </view>
+    <!-- 全款 -->
+    <!-- <view class="price price2 flexB" wx:if="{{datas.pay_way == 2}}">
+        <view class="price_msg">
+            <view class="price_text">
+                <text class="txt1">￥{{datas.newPrice}}{{datas.price_unit}}</text>
+            </view>
+            <text class="txt2" style="color:#fff">￥{{datas.market_price}}{{datas.price_unit}}</text>
+        </view>
+        <view class="sold" style="color:#fff">已售：{{datas.sold_stock_count}}件</view>
+    </view> -->
+    <view class="name_box">
+        <view class="title-box">
+            <view class="name">{{datas.prerogative_name}}</view>
+            <button class="fenxaing" open-type="share" wx:if="{{goods_type != 2}}">
+                <image src="https://img.51jiabo.com/b48ca1c9-1fc6-4143-a8aa-a8b553eda2b1.png"></image>
+                <text>分享</text>
+            </button>
+        </view>
+        <view class="subtitle">{{datas.model_number}}</view>
+    </view>
+</view>
+
+<view class="box2">
+    <view class="product_description" wx:if="{{datas.description}}">
+        <view class="title">商品描述</view>
+        <view class="msg">{{datas.description}}</view>
+    </view>
+    <!-- --------------------- -->
+    <!-- 秒光光 -->
+    <view class="huodong flexB" data-area_id="63" bindtap="swiperUrl"
+        wx:if="{{goods_type == 1 && brandAdv && (brandAdv[0].url || brandAdv[0].win_title)}}">
+        <view>
+            <text class="huodong_t1">活动</text>
+            <text class="huodong_t2">{{brandAdv[0].win_title}}</text>
+        </view>
+        <view class="ico"></view>
+    </view>
+    <!-- 兑换卡 -->
+    <view class="huodong flexB" bindtap="onguizhepop" wx:if="{{goods_type == 2}}">
+        <view>
+            <text class="huodong_t1">活动</text>
+            <text class="huodong_t2">兑换卡活动~</text>
+        </view>
+        <view class="ico"></view>
+    </view>
+    <!-- --------------------- -->
+    <view class="Delivery" bindtap="{{datas.delivery_way==2?'switchStorePopup':''}}">
+        <view class="title">配送</view>
+        <view class="type-box">
+            <view class="title2" wx:if="{{datas.delivery_way==0}}">未选择</view>
+            <view class="title2" wx:if="{{datas.delivery_way==1}}">展会自提</view>
+            <view class="title2" wx:if="{{datas.delivery_way==2}}">到店自提</view>
+            <view class="title2" wx:if="{{datas.delivery_way==3}}">线上发货</view>
+            <view class="msg" wx:if="{{datas.delivery_way==1}}">
+                {{datas.delivery_address.begin_date}}~{{datas.delivery_address.end_date}}到{{datas.delivery_address.venue_name}}{{datas.delivery_address.brand_name}}{{datas.delivery_address.booth}}处，查看商品
+            </view>
+            <view class="msg" wx:if="{{datas.delivery_way==2}}">
+                <view>{{datas.supplier_stores_list[0].stores_name}}</view>
+                <view>{{datas.supplier_stores_list[0].stores_address}}</view>
+            </view>
+        </view>
+        <view class="arrow" wx:if="{{datas.delivery_way==2 && datas.supplier_stores_list.length > 1}}"></view>
+    </view>
+</view>
+
+<view class="box3">
+    <view class="header flexB" bindtap="toShop">
+        <view class="user flexB">
+            <image mode="aspectFill" src="{{datas.shop_info.logo_url}}"></image>
+            <text class="name">{{datas.shop_info.shop_name}}</text>
+        </view>
+        <view class="shop_entrance">进入店铺</view>
+    </view>
+    <video wx:for="{{datas.detail_images.video}}" wx:key="index" src="{{item}}" class="shop_img"></video>
+    <image mode="widthFix" wx:for="{{datas.detail_images.image}}" wx:key="index" src="{{item}}" class="shop_img">
+    </image>
+</view>
+<!-- 通用 底部 -->
+<view wx:if="{{goods_type != 2}}" class="fixed flexB">
+    <view class="icons">
+        <view class="icon_btn" bindtap="toMggOrderList">
+            <image src="https://img.51jiabo.com/ad049915-77cd-4781-bd90-d48e3d1e419a.png"></image>
+            <text>已购订单</text>
+        </view>
+        <view class="icon_btn single" bindtap="toShop">
+            <image src="https://img.51jiabo.com/622950dc-0aeb-410a-b9f0-cba3e58f646e.png"></image>
+            <text>店铺</text>
+        </view>
+        <view class="icon_btn single" bindtap="Favorites">
+            <image
+                src="{{is_collect == 0?'https://img.51jiabo.com/2dd923c6-5cc3-4b90-b787-ded130fec5fe.png':'https://img.51jiabo.com/f2d69b85-f8bc-4196-9427-35496676556c.png'}}">
+            </image>
+            <text style="color:{{is_collect == 0?'#999999':'#E6002D'}}">收藏</text>
+        </view>
+    </view>
+    <view class="btn_two">
+        <view class="btn1" bindtap="onkefupop" wx:if="{{kefu_img && kefu_img.length > 0}}">点击加客服有惊喜</view>
+        <view class="btn2" style="background:#bfbfbf" wx:if="{{datas.stock_count == 0}}">已抢光</view>
+        <view class="btn2" bindtap="toConfirmOrder" wx:else>￥{{datas.newPrice}}</view>
+    </view>
+</view>
+<!-- 兑换卡 底部 -->
+<view wx:if="{{goods_type == 2}}" bindtap="toConfirmOrder" class="fixed flexB">
+    <view wx:if="{{datas.stock_count == 0 || datas.use_status == 1}}" class="exchange_btn exchange_btn_back_f">
+        {{datas.change_prerogative_id == datas.prerogative_id ? "已兑换" : datas.stock_count <= 0 ? '已兑光' : '立即兑换'
+            }}</view>
+            <view wx:else class="exchange_btn exchange_btn_back_t">立即兑换</view>
+    </view>
+    <!-- 客服弹窗 -->
+    <view class="pop_back" wx:if="{{kefupop}}">
+        <view class="pop kefu_pop">
+            <view class="close" catchtap="onkefupop"></view>
+            <button class="btn" open-type="contact" hover-class="none">
+                <image class="img" mode="widthFix" bindload="imgLoad" src="{{kefu_img[0].wap_image_url}}"></image>
+            </button>
+        </view>
+    </view>
+    <!-- 置顶 -->
+    <view class="close_top" wx:if="{{showToTop}}" bindtap="totop"></view>
+    <!-- 活动规则 -->
+    <view class="pop_back" wx:if="{{guizhepop}}">
+        <view class="pop guize_pop">
+            <mp-icon bindtap="onguizhepop" class="close2" icon="close2" color="#BBBBBB" size="{{26}}"></mp-icon>
+            <view class="pop_title">使用须知</view>
+            <view class="bland"></view>
+            <text class="pop_content">{{datas.use_remark}}</text>
+        </view>
+    </view>
+    <!-- 到店自提更多门店弹层 -->
+    <view class="store-popup {{storePopup?'show':''}}">
+        <view class="store-box">
+            <view class="store-close" bindtap="switchStorePopup"></view>
+            <view class="store-title">配送<text>到店自提</text></view>
+            <view class="store-list">
+                <view class="store-item" wx:for="{{datas.supplier_stores_list}}" wx:key="index">
+                    <view>{{item.stores_name}}</view>
+                    <view>{{item.stores_address}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <!-- 领取门票弹层 -->
+    <view class="ticket-popup" wx:if="{{showTicketPopup}}">
+        <view class="ticket-box">
+            <image class="bg" mode="widthFix" src="https://img.51jiabo.com/24c46ac5-798b-476f-b828-b74efe5dd0c6.png">
+            </image>
+            <view class="head">
+                <view class="thin">您浏览的商品需到展会现场购买领取</view>
+                <view class="bold">免费赠送您价值20元华夏家博会门票</view>
+            </view>
+            <image class="ticket" src="https://img.51jiabo.com/2de83b03-000a-4896-b32a-c56039e8647e.png"></image>
+            <button class='get-btn' wx:if="{{!isLogin}}" open-type='getPhoneNumber'
+                bindgetphonenumber="getPhoneNumber">领取门票</button>
+            <view class="get-btn" wx:if="{{isLogin}}" bindtap="freeGet">领取门票</view>
+            <view class="ticket-close" bindtap="closeTicket"></view>
+        </view>
+    </view>
+
+    <!-- 悬浮导航 -->
+    <float-navigate showNav="{{showNavigate}}" showTopBtn="{{showTopBtn}}"></float-navigate>

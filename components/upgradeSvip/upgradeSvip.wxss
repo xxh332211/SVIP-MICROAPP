@@ -1,0 +1,50 @@
+/* components/upgradeSvip/upgradeSvip.wxss */
+/* svip升级弹层 */
+
+.update-popup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 102;
+}
+
+.update-popup .update-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 620rpx;
+  background: #fff;
+  border-radius: 8rpx;
+  padding-bottom: 53rpx;
+}
+
+.update-popup .update-box .h5 {
+  font-size: 36rpx;
+  font-weight: bold;
+  padding-top: 70rpx;
+  padding-bottom: 24rpx;
+}
+
+.update-popup .update-box .p {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 48rpx;
+  padding: 0 45rpx 46rpx;
+}
+
+.update-popup .update-box .sure {
+  width: 190rpx;
+  height: 70rpx;
+  background: #e6002d;
+  border-radius: 3rpx;
+  font-size: 36rpx;
+  color: #fff;
+  line-height: 70rpx;
+  text-align: center;
+}

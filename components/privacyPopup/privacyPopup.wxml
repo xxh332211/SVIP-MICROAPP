@@ -1,0 +1,13 @@
+<view wx:if="{{innerShow}}" class="privacy-popup-wrap">
+  <view class="privacy-popup-box">
+    <view class="privacy-title">华夏家博</view>
+    <view class="text-box">
+      <view class="text1">感谢您使用本小程序，您使用本小程序前应当阅读并同意<text style="color: #0052D9;" bindtap="openPrivacyContract">《用户隐私保护指引》</text></view>
+      <view class="text2">当您点击同意并开始使用产品服务时，即表示你已理解并同意该条款内容，该条款将对您产生法律约束力。如您拒绝，将无法给您提供更好的服务。</view>
+    </view>
+    <view class="btn-box">
+      <button id="disagree-btn" type="default" class="btn" bindtap="handleDisagree">不同意</button>
+      <button id="agree-btn" type="default" open-type="agreePrivacyAuthorization" class="btn agree" bindagreeprivacyauthorization="handleAgree">同意并继续</button>
+    </view>
+  </view>
+</view>

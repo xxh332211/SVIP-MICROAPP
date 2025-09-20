@@ -1,0 +1,31 @@
+<!--pages/vendorAction/vendorAction.wxml-->
+<online-serve />
+<image style="height:40rpx;" src="/imgs/label.png"></image>
+
+<!-- 轮播 -->
+<banner-swiper banner="{{banner}}"></banner-swiper>
+
+<view class="time-box">
+  <view class="hot">HOT</view>
+  <view class='h5'>{{activityInfo.begin_date}}-{{activityInfo.end_date}} {{activityInfo.venue_name}}</view>
+  <view class='sales'>展前预约，现场下单可享活动优惠</view>
+</view>
+
+<swiper class="swiper-wrapper" display-multiple-items="4.5" current="{{menuIndex}}">
+  <block wx:for="{{vendorList}}" wx:key="index">
+    <swiper-item class="swiper-slide" data-num="{{index}}" data-id="{{item.id}}" bindtap="cutKind">
+      <view class='slide-box'>
+        <view class='content {{curNum == index?"active":""}}'>{{item.category_name}}</view>
+      </view>
+    </swiper-item>
+  </block>
+</swiper>
+
+<!-- 商户活动 -->
+<vendor-item vendorAct="{{vendorAct}}"></vendor-item>
+
+
+<view class="onload">—— {{reachTips}} ——</view>
+
+<!-- 导航 -->
+<navigation></navigation>

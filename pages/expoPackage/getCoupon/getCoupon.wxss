@@ -1,0 +1,208 @@
+/* pages/expoPackage/getCoupon/getCoupon.wxss */
+
+page {
+  background: #fff;
+  color: #222;
+}
+
+.coupon-box {
+  display: flex;
+  width: 690rpx;
+  height: 200rpx;
+  box-shadow: 3px 0 15rpx 5rpx rgba(81, 81, 81, 0.05);
+  margin-top: 73rpx;
+  margin-left: 30rpx;
+}
+
+.coupon-box .left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  width: 249rpx;
+  height: 200rpx;
+  background: url("https://img.51jiabo.com/98b8c2b6-761c-4f35-8c66-a3eb4a182135.png") no-repeat;
+  background-size: 100%;
+  color: #fff;
+}
+
+.coupon-box .left .price {
+  display: flex;
+  align-items: baseline;
+  font-size: 68rpx;
+  font-weight: bold;
+  margin-top: 4rpx;
+}
+
+.coupon-box .left .price .lab {
+  font-size: 40rpx;
+  font-weight: bold;
+}
+
+.coupon-box .left .cond {
+  font-size: 22rpx;
+  margin-top: -10rpx;
+}
+
+.coupon-box .right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 38rpx;
+}
+
+.coupon-box .right .top {
+  display: flex;
+  align-items: center;
+}
+
+.coupon-box .right image {
+  flex-shrink: 0;
+  width: 60rpx;
+  height: 32rpx;
+  border: 1px solid #e5e5e5;
+  margin-right: 11rpx;
+}
+
+.coupon-box .right .name {
+  font-size: 32rpx;
+  font-weight: bold;
+  max-width: 330rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.coupon-box .right .date {
+  font-size: 22rpx;
+  color: #777;
+  margin-top: 2rpx;
+}
+
+.coupon-box .right .desc {
+  font-size: 22rpx;
+  color: #777;
+  margin-top: 4rpx;
+  max-width: 270rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+}
+
+/* svip优惠券 */
+.svip-coupon {
+  width: 691rpx;
+  height: 209rpx;
+  background: url("https://img.51jiabo.com/7ed7c05f-9915-4573-830d-6e6a2358ac75.png") no-repeat;
+  background-size: 100% 100%;
+  margin-top: 73rpx;
+  margin-left: 30rpx;
+}
+
+.svip-coupon .top {
+  width: 100%;
+  height: 154rpx;
+  display: flex;
+  align-items: center;
+}
+
+.svip-coupon .left {
+  width: 200rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 66rpx;
+  font-weight: bold;
+  color: #E6002D;
+}
+
+.svip-coupon .lab {
+  font-size: 36rpx;
+  font-weight: normal;
+  margin-top: -16rpx;
+}
+
+.svip-coupon .right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 11rpx;
+}
+
+.svip-coupon .condition {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #222222;
+}
+
+.svip-coupon .time {
+  font-size: 20rpx;
+  color: #222222;
+}
+
+.svip-coupon .bottom {
+  display: flex;
+  align-items: center;
+  height: 54rpx;
+  font-size: 20rpx;
+  color: #777777;
+  width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  padding-left: 30rpx;
+}
+
+.free-get {
+  width: 635rpx;
+  height: 100rpx;
+  border-radius: 50rpx;
+  text-align: center;
+  line-height: 100rpx;
+  font-size: 32rpx;
+  color: #FFFFFF;
+  background: #E6002D;
+  margin-top: 167rpx;
+  margin-left: 59rpx;
+}
+
+.free-get.gray {
+  background: #D4D4D4;
+}
+
+.get-more {
+  width: 635rpx;
+  height: 100rpx;
+  border-radius: 50rpx;
+  text-align: center;
+  line-height: 100rpx;
+  font-size: 32rpx;
+  color: #E6002D;
+  border: 1px solid #F41B45;
+  margin-top: 39rpx;
+  margin-left: 59rpx;
+}
+
+.use-explain {
+  font-size: 36rpx;
+  font-weight: bold;
+  padding: 80rpx 50rpx 20rpx;
+}
+
+.use-cont {
+  font-size: 28rpx;
+  color: #777777;
+  padding: 0 50rpx 50rpx;
+}
+
+.go-home {
+  height: 80rpx;
+  width: 80rpx;
+  position: fixed;
+  bottom: 160rpx;
+  /* background: rgba(0,0,0,.3); */
+  right: 8rpx;
+}

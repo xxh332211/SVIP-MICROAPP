@@ -1,0 +1,75 @@
+<!--pages-userInfo/components/cashOrder/cashOrder.wxml-->
+<wxs module="md">
+  var format = function (time) {
+    if (time) {
+      var date = time.slice(0, 10).replace(getRegExp('-', 'g'), "/");
+      return date
+    }
+  }
+  var isout = function (endtime) {
+    if (endtime) {
+      var a = getDate()
+      var b = getDate(endtime).getTime()
+      var isOut = a > b ? true : false
+      return isOut
+    }
+  }
+  module.exports = { format: format, isout: isout }
+</wxs>
+<view>
+  <view class="head">
+    <view class="title">
+      <view class="ico dh"></view>兑换卡
+    </view>
+    <view class="status-text">
+      <text wx:if="{{item.order_status == 1 && item.use_status == 0 && !md.isout(item.use_end_time)}}">待兑换</text>
+      <text wx:if="{{item.order_status == 1 && item.use_status == 1 && !md.isout(item.use_end_time)}}">已兑换</text>
+      <text wx:if="{{item.order_status == -2 && !md.isout(item.use_end_time)}}">已退款</text>
+      <text wx:if="{{md.isout(item.use_end_time)}}">已过期</text>
+    </view>
+
+  </view>
+  <view class="content">
+    <image class="goods-img" src="{{item.cover_image_url}}"></image>
+    <view class="right">
+      <view class="name">{{item.card_name}}</view>
+      <view class="card-time">{{md.format(item.use_begin_time)}}-{{md.format(item.use_end_time)}}</view>
+      <!-- order_status：1：已支付 -2：已退款；use_status：0：未兑换 1：已兑换 -->
+      <view class="btn-box">
+        <block wx:if="{{item.order_status == 1 && item.use_status == 0}}">
+          <view class="btn" bindtap="popUnShow" data-name="pop1" data-ordersn="{{item.order_sn}}">退款</view>
+          <view class="btn" bindtap="ToExchange" wx:if="{{!md.isout(item.use_end_time)}}" data-corderid="{{item.card_order_id}}"
+            data-id="{{item.card_id}}">去兑换</view>
+        </block>
+        <view class="btn" wx:if="{{item.use_status == 1}}" bindtap="toProductDetails"
+          data-orderid="{{item.prerogative_order_id}}">查看商品</view>
+        <view class="btn" wx:if="{{item.order_status == -2 && !md.isout(item.use_end_time)}}" data-item="{{item}}"
+          catchtap="deleteOrder">删除</view>
+      </view>
+    </view>
+  </view>
+  <view class="order-info" wx:if="{{item.order_status == -2 && !md.isout(item.use_end_time)}}">退款时间：{{item.refund_time}}
+  </view>
+</view>
+
+<!-- 您确定要退该商品吗？ -->
+<view class="pop_back" wx:if="{{pop1}}">
+  <view class="pop twopop">
+    <view class="problem">您确定要退款吗？</view>
+    <view class="pop_btns flexB">
+      <view class="btn_1" bindtap="popUnShow" data-name="pop1">取消</view>
+      <view class="btn_2" bindtap="Refund">确认</view>
+    </view>
+  </view>
+</view>
+<!-- 商品退款成功，
+24小时退回您的支付账户 -->
+<view class="pop_back" wx:if="{{pop2}}">
+  <view class="pop twopop">
+    <view class="problem">退款成功，</view>
+    <view class="problem">24小时退回您的支付账户</view>
+    <view class="pop_btns flexA">
+      <view class="btn_2" bindtap="popUnShow" data-name="pop2">确定</view>
+    </view>
+  </view>
+</view>

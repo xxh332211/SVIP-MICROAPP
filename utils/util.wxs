@@ -1,0 +1,69 @@
+function sliceNumber(num){
+  var len = num.length;
+  if (num >= 10000 & num < 100000) {
+    return num.substring(0, len - 4) + "." + num.substring(len - 4, len - 3) + "W"
+  } else if(num >= 100000){
+    return num.substring(0, len - 4) +  "W"
+  }else{
+    return num
+  }
+}
+
+function  timeFormat(time) {
+  // wxs中不能够使用new Date(),获取当前时间使用getDate()
+  var date = getDate(time);
+  //时间戳为10位需*1000，时间戳为13位的话不需乘1000
+  var y = date.getFullYear();
+  var MM = date.getMonth() + 1;
+  // MM = MM < 10 ? ('0' + MM) : MM;//月补0
+  var d = date.getDate();
+  d = d < 10 ? ('0' + d) : d;//天补0
+  var h = date.getHours();
+  h = h < 10 ? ('0' + h) : h;//小时补0
+  var m = date.getMinutes();
+  m = m < 10 ? ('0' + m) : m;//分钟补0
+  var s = date.getSeconds();
+  s = s < 10 ? ('0' + s) : s;//秒补0
+  return  MM + '.' + d + '日  ' + h + ':' + m;
+}
+
+// 把2020-07-30 23:00:00改成2020-07-30
+function timeSliceDate(str){
+  if(str){
+    return str.slice(0,10)
+  }else{
+    str
+  }
+} 
+
+// 把2020-07-30 23:00:00改成 07.30
+function timeSlice(str){
+  if(str){
+    return str.slice(5,7) + '.' + str.slice(8,10)
+  }else{
+    str
+  }
+} 
+// 把2020-07-30 23:00:00改成07-30 22:00
+function timeFormatSlice(time) {
+  if (time) {
+    var d = time.substring(5, 10) + " " + time.substring(11, 16);
+    return d
+  } else {
+    return time
+  }
+}
+
+// 不要小数点
+function couponSlice(str){
+  return parseInt(str).toFixed(0)
+} 
+
+module.exports = {
+  sliceNumber: sliceNumber,
+  timeFormat:timeFormat,
+  timeFormatSlice:timeFormatSlice,
+  timeSlice:timeSlice,
+  couponSlice:couponSlice,
+  timeSliceDate:timeSliceDate
+}

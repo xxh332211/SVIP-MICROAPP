@@ -1,0 +1,24 @@
+<view class='dialog-mask' catchtouchmove='stop'>
+  <view class='dialog-mian'>
+    <swiper class="swiper" display-multiple-items='1' circular previous-margin='20px' next-margin='20px'
+     bindchange='change' current='{{current}}'>
+      <block wx:for="{{dataList}}" wx:key='index'>
+        <swiper-item class="swiper-item">
+          <view class="single-box" data-index='{{index}}'>
+            <!-- <view class="single-box" data-index='{{index}}' animation="{{index == current?animationData:animationDataShrink}}"> -->
+            <image class='single-img' src='{{item.image_url}}'></image>
+            <view class='text-content' wx:if="{{item.title}}">
+              <view class='text-name'>
+                <text>{{item.title}}</text>
+              </view>
+              <view class='text-dec'>
+                <text>{{item.description}}</text>
+              </view>
+            </view>
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class='iconfont iconguanbi close middle' bindtap='closedHandle'></view>
+  </view>
+</view>

@@ -1,0 +1,120 @@
+.count-btn {
+  height: 80rpx;
+  width: 80rpx;
+  transition: all .2s ease-in-out;
+}
+.count-btn.disabled{
+  opacity: 0.6;
+}
+.count-btn:not(.disabled):active{
+  opacity: 0.6;
+}
+.goods-buy{
+  padding-top: 80rpx;
+}
+.cont{
+  display: flex;
+  padding: 0 40rpx;
+}
+.cont>image{
+  width: 300rpx;
+  height: 300rpx;
+  margin-right: 30rpx;
+  border: solid 1rpx #FAFAFA;
+}
+.info{
+  display: flex;
+  flex-direction: column;
+}
+.info>view:first-child{
+  flex: 1;
+  min-height: 170rpx;
+}
+.buy-count .title{
+  font-size: 28rpx;
+  line-height: 1;
+  margin-bottom: 20rpx;
+}
+.buy-count .count{
+  display: flex;
+  width: 300rpx;
+  align-items: center;
+}
+.buy-count .count .num{
+  flex: 1;
+  text-align: center;
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #000;
+}
+.price{
+  font-size: 50rpx;
+  color: #000;
+}
+.tag{
+  display: inline-block;
+  color: #FFF;
+  font-size: 24rpx;
+  background: #D42B2B;
+  line-height: 1;
+  padding: 8rpx 8rpx;
+  margin-left: 20rpx;
+  border-radius: 5rpx;
+  vertical-align: middle;
+}
+.m-price, .sub-price{
+  color: #333;
+  font-size: 28rpx;
+  line-height: 45rpx;
+}
+.m-price{
+  text-decoration: line-through;
+}
+.sub-price > text:last-child{
+  margin-left: 10rpx;
+}
+.desc{
+  color: #BBB;
+  font-size: 28rpx;
+  line-height: 40rpx;
+}
+.desc > text:not(:first-child) {
+  margin-left: 20rpx;
+}
+
+.buy-btn{
+  margin-top: 60rpx;
+  margin-bottom: 60rpx;
+  margin-left: 40rpx;
+  margin-right: 40rpx;
+  background: #D42B2B;
+  box-shadow: 0 18rpx 18rpx 0 rgba(183,48,48,0.33);
+  border-radius: 5rpx;
+  height: 100rpx;
+  color: #FFF;
+  font-size: 34rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.order-price{
+  margin-right: 8rpx;
+  font-size: 28rpx;
+  display: inline-block;
+  background: #E3A014;
+  color: #FFF;
+  line-height: 1;
+  padding: 8rpx;
+  border-radius: 8rpx;
+}
+.vip-price{
+  margin-right: 8rpx;
+  font-size: 28rpx;
+  display: inline-block;
+  background: #E6002D;
+  color: #FFF;
+  line-height: 1;
+  padding: 8rpx;
+  border-radius: 8rpx;
+}

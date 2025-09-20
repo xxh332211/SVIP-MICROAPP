@@ -1,0 +1,183 @@
+<!--pages/mgg/mgg.wxml-->
+<wxs module="md">
+  var numFormat = function (num) {
+    if (num) {
+      return Number(num)
+    } else {
+      return num
+    }
+  }
+  var indexof = function (arr, num) {
+    if (arr.indexOf(num) > -1) {
+      return true
+    } else {
+      return false
+    }
+  }
+
+  module.exports = {
+    numFormat: numFormat,
+    indexof: indexof
+  }
+</wxs>
+<online-serve from="'custom'" />
+
+<view class="container">
+  <view class="navigate" id="navigate" style="padding-top:{{navigateHeight}}px">
+    <view class="city" bindtap='chooseCity'>{{curUserCityText}}<view class="ico"></view>
+    </view>
+    <view class="nav-text">华夏家博</view>
+  </view>
+  <view class="navigate-blank" style="padding-top:{{navigateHeight}}px"></view>
+
+  <!-- 轮播 -->
+  <banner-swiper wx:if="{{banner && banner.length > 0}}" banner="{{banner}}" liveData="{{liveData}}"></banner-swiper>
+
+  <!-- 爆品组 -->
+  <view wx:for="{{goodsGroup}}" wx:key="index" wx:if="{{md.indexof(item.banner_info,'76')}}">
+    <hot-goods-group groupItem="{{item}}"></hot-goods-group>
+  </view>
+
+  <!-- 品牌列表运营位 -->
+  <view class="brand-box" bindtap="toBrandList">
+    <banner-swiper wx:if="{{brandAdv && brandAdv.length > 0}}" banner="{{brandAdv}}" liveData="{{liveData}}"></banner-swiper>
+    <!-- <image class="adv-img" mode="widthFix" src="{{brandAdv[0].wap_image_url}}"></image> -->
+  </view>
+
+  <view class="tab-box" style="top:{{top}}px" wx:if="{{!actOffLine}}">
+    <scroll-view class="tab-scroll" scroll-x="true" enable-flex scroll-anchoring scroll-into-view="{{currentView}}">
+      <view class="tab-item {{currentView == item.id?'act':''}}" id="{{item.id}}" wx:for="{{tabData}}" wx:key="index"
+        data-item="{{item}}" bindtap="selTab" wx:if="{{item.goods_list.length != 0}}">
+        {{item.level_content}}
+      </view>
+    </scroll-view>
+  </view>
+
+  <view wx:if="{{item.goods_list.length != 0}}" class="seckill" id="{{item.id}}-detail" wx:for="{{goodsList}}"
+    wx:key="index">
+    <view class="seckill-title">
+      <view class="line"></view>
+      <view class="logo"></view>
+      <view class="price">
+        <view class="num">{{item.level_content}}</view>秒光光
+      </view>
+    </view>
+    <view class="item-wrap">
+      <view class="goods-item" wx:for="{{item.goods_list}}" wx:for-item="v" wx:key="index" data-item="{{v}}"
+        bindtap="toGoodsDetail">
+        <view class="img-box">
+          <image class="goods-img" src="{{v.image_url}}"></image>
+          <view class="end" wx:if="{{actEnd}}">活动已结束</view>
+        </view>
+        <view class="info-content">
+          <view class="name">{{v.prerogative_name}}</view>
+          <!-- is_openprice:是否开放自定义价格：-1：否1：是 -->
+          <!-- 配置自定义价格，显示自定义价格，否则显示活动价 -->
+          <!-- 全款商品 -->
+          <view class="current-price" wx:if="{{v.pay_way == 2}}"><text class="sign">￥</text><text
+              class="num">{{md.numFormat(v.activity_price)}}</text></view>
+          <!-- 定金商品 -->
+          <view class="current-price" wx:else>订金：<text class="sign">￥</text><text
+              class="num">{{md.numFormat(v.earnest)}}</text></view>
+          <!-- pay_way：1订金商品：订金价;2全款商品：活动价 -->
+          <!-- 全款商品 -->
+          <view class="total-price total" wx:if="{{v.pay_way == 2}}">￥{{md.numFormat(v.market_price)}}</view>
+          <!-- 定金商品自定义价格 -->
+          <view class="total-price" wx:if="{{v.pay_way == 1 && v.is_openprice == 1}}">
+            <text>优惠价：</text>￥{{v.define_price}}</view>
+          <!-- 定金商品非自定义价格 -->
+          <view class="total-price" wx:if="{{v.pay_way == 1 && v.is_openprice != 1}}">
+            <text>优惠价：</text>￥{{md.numFormat(v.activity_price)}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 购物清单 -->
+  <view class="shopping-list" id="shoppingList-detail" bindtap="toShoppingList">
+    <image class="list-img" mode="widthFix" src="https://img.51jiabo.com/2284fea9-4b61-4e97-86f6-fd0c87193508.png">
+    </image>
+  </view>
+
+  <!-- 主题馆 -->
+  <!-- <view class="theme" id="themePavilion-detail">
+    <view class="title">主题馆</view>
+    <view class="content">
+      <view class="left">
+        <view class="elec" data-type="35" bindtap="toTheme">
+          <image class="elec-img" src="https://img.51jiabo.com/70ba86ee-84a0-44e1-8f4b-9976b72c8d01.png"></image>
+          <view class="elec-layer">
+            <view class="text">家用电器</view>
+            <view class="go">GO</view>
+          </view>
+        </view>
+        <view class="theme-item" data-type="33" bindtap="toTheme">
+          <image class="theme-img" src="https://img.51jiabo.com/73a68fa1-7f44-4d70-b313-2d4ae8809b49.png"></image>
+          <view class="layer">地板门窗</view>
+        </view>
+      </view>
+      <view class="right">
+        <view class="theme-item" data-type="32" bindtap="toTheme">
+          <image class="theme-img" src="https://img.51jiabo.com/66ce0eb2-0b32-4d8a-ad50-92a1e086703c.png"></image>
+          <view class="layer">厨房卫浴</view>
+        </view>
+        <view class="theme-item" data-type="34" bindtap="toTheme">
+          <image class="theme-img" src="https://img.51jiabo.com/e536b353-d14d-4fc8-a702-f3c3343ae12a.png"></image>
+          <view class="layer">家具软装</view>
+        </view>
+        <view class="theme-item" data-type="36" bindtap="toTheme">
+          <image class="theme-img" src="https://img.51jiabo.com/6a2d6bed-2f8b-4e90-af6b-d398bdfbd032.png"></image>
+          <view class="layer">综合建材</view>
+        </view>
+      </view>
+    </view>
+  </view> -->
+
+  <!-- 最近浏览 -->
+  <view class="browse-history" id="browseHistory-detail">
+    <view class="history-title">最近浏览</view>
+    <view class="history-content">
+      <view class="history-item {{item.action_type == 1?'store':''}}" wx:for="{{historyData}}" wx:key="index">
+        <view class="type">{{item.action_type == 1?"店铺":"商品"}}</view>
+        {{item.action_info}}
+      </view>
+    </view>
+  </view>
+
+  <!-- 吐槽箱 -->
+  <view class="opinion" id="opinion-detail" bindtap="toOpinion">
+    <image class="opinion-img" src="https://img.51jiabo.com/da62f6a0-4201-4434-b217-373240358b1f.png"></image>
+  </view>
+</view>
+
+<!-- 领取门票弹层 -->
+<view class="ticket-popup" wx:if="{{showTicketPopup}}">
+  <view class="ticket-box">
+    <image class="bg" mode="widthFix" src="https://img.51jiabo.com/24c46ac5-798b-476f-b828-b74efe5dd0c6.png"></image>
+    <view class="head">
+      <view class="thin">您浏览的商品需到展会现场购买领取</view>
+      <view class="bold">免费赠送您价值20元华夏家博会门票</view>
+    </view>
+    <image class="ticket" src="https://img.51jiabo.com/2de83b03-000a-4896-b32a-c56039e8647e.png"></image>
+    <button class='get-btn' wx:if="{{!isLogin}}" open-type='getPhoneNumber'
+      bindgetphonenumber="getPhoneNumber">领取门票</button>
+    <view class="get-btn" wx:if="{{isLogin}}" bindtap="freeGet">领取门票</view>
+    <view class="ticket-close" bindtap="closeTicket"></view>
+  </view>
+</view>
+
+<!-- 领取svip抵扣券按钮 -->
+<coupon-btn wx:if="{{showCouponBtn}}"></coupon-btn>
+
+<!-- 领取svip抵扣券弹层 -->
+<coupon-popup couponInfo="{{couponInfo}}" isLogin="{{isLogin}}" showCouponPopup="{{showCouponPopup}}"
+  bindgetPhoneBack="getPhoneBack" bindcloseCouponPopup="closeCouponPopup"></coupon-popup>
+
+<!-- 微信授权手机号弹层 -->
+<authorize isMgg="true" navHeight="{{navigateHeight}}" bindgetPhoneBack="getPhoneBack" wx:if="{{!isAuth}}"></authorize>
+
+<!-- 直播运营位弹层 -->
+<live-adv isMgg="true" navHeight="{{navigateHeight}}" liveData="{{liveData}}" liveAdv="{{liveAdv}}" areaId="78"></live-adv>
+
+<!-- 自定义tabbar -->
+<tab-bar selected="{{selected}}"></tab-bar>

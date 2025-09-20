@@ -1,0 +1,74 @@
+<!--components/svipBuyBtn/svipBuyBtn.wxml-->
+<view class="button-box {{origin=='fixed'?'fixed-button-box':origin=='signDetail'?'fixed-sign-detail':''}}" wx:if="{{(origin!='fixed') || (origin=='fixed' && scrollShowBtn)}}">
+	<button class='auth-login' wx:if="{{!login}}" open-type='getPhoneNumber' bindgetphonenumber="getPhoneNumber"></button>
+	<!-- 展前未开通显示立即开通按钮 -->
+	<view class='btns flex-row' wx:if='{{!svip && !restoreOrigin && !openExpoSale}}' bindtap='buySvip'>
+		<view class='price flex-column'>
+			<view class="rush">超级会员SVIP：
+				<text class="amount">{{price}}</text>元/届</view>
+			<view class="original">原价：{{originPrice}}元/届</view>
+		</view>
+		<view class='open'>
+			<image class='bg' src='/imgs/buttonbg.png'></image>
+			<view class='open-main flex-row'>
+				<view class="discount">
+					<view class="after" wx:if="{{isDiscount}}">使用折扣券后</view>
+					<view class="dredge">{{isDiscount?discountPrice:price}}元抢购</view>
+				</view>
+				<view class='more iconfont iconjiantou'></view>
+			</view>
+		</view>
+	</view>
+	<!-- 恢复原价立即开通按钮 -->
+	<view class='btns flex-row' bindtap='buySvip' wx:if='{{!svip && restoreOrigin}}'>
+		<view class='price flex-column'>
+			<view class="origin">{{originPrice}}
+				<text class="unit">元/</text>
+				<text class="unit">届</text>
+			</view>
+		</view>
+		<view class='open'>
+			<image class='bg' src='/imgs/buttonbg.png'></image>
+			<view class='open-main flex-row'>
+				<view class="discount" wx:if="{{isDiscount}}">
+					<view class="after">使用折扣券后</view>
+					<view class="dredge">{{discountPrice}}元抢购</view>
+				</view>
+				<view class="discount" wx:else>
+					<view class="dredge">立即开通</view>
+				</view>
+				<view class='more iconfont iconjiantou'></view>
+			</view>
+		</view>
+	</view>
+	<!-- 展中售卖显示立即开通按钮 -->
+	<view class="showing" wx:if='{{!svip && openExpoSale}}'>
+		<view class='btns flex-row' bindtap='buySvip'>
+			<view class='price flex-column'>
+				<view class="origin">{{salePrice}}
+					<text class="unit">元/</text>{{isSend == 1?2:""}}
+					<text class="unit">届</text>
+				</view>
+			</view>
+			<view class='open'>
+				<image class='bg' src='/imgs/buttonbg.png'></image>
+				<view class='open-main flex-row'>
+					<view class="discount" wx:if="{{isDiscount}}">
+						<view class="after">使用折扣券后</view>
+						<view class="dredge">{{discountPrice}}元抢购</view>
+					</view>
+					<view class="discount" wx:else>
+						<view class="dredge">立即开通</view>
+					</view>
+					<view class='more iconfont iconjiantou'></view>
+				</view>
+			</view>
+		</view>
+		<view class="show-tips" wx:if="{{origin=='page' && isSend == 1}}">展中购买超级会员SVIP,将免费赠送您下一届SVIP超级会员</view>
+	</view>
+	<!-- 已开通显示会员中心按钮 -->
+	<view class='btns flex-row' wx:if="{{svip && origin!='signDetail'}}" style='justify-content:center;align-items: center;' bindtap='toUsercenterHandle'>
+		<view class="user-text">会员中心</view>
+		<view class="svip-arrow"></view>
+	</view>
+</view>

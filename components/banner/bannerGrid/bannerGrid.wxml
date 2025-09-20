@@ -1,0 +1,11 @@
+<!--components/banner/bannerDird.wxml-->
+<view class='comp flex-column'>
+  <view class='row-wrap flex-row' wx:for='{{dataList}}' wx:key="index" wx:for-index="index" wx:for-item="item">
+    <view class='row-item flex-column' data-item='{{item}}' bindtap="showRightsDialog" wx:for='{{item}}' wx:key="index" wx:for-index="*this">
+      <image class='row-item-image' src='{{item.small_image_url}}'></image>
+      <view class='text-hidden texts'>
+        {{item.title}}
+      </view>
+    </view>
+  </view>
+</view>

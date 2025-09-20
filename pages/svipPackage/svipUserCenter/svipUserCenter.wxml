@@ -1,0 +1,633 @@
+<online-serve />
+<view class=''>
+  <view class='banner'>
+    <image src='/imgs/vipbg.png' mode='widthFix' class='banner-bg'></image>
+    <view class='explain-pos'>
+      <view class='pos'>
+        <text class='iconfont icondingwei' style='color:#fff'></text>
+        <text style='font-size:30rpx;'>{{activityInfo.city_name}}</text>
+      </view>
+      <navigator class='explain' url="/pages/explain/explain">
+        <text>会员说明</text>
+        <text class='iconfont iconshuoming' style='color:#fff;margin-left:10rpx'></text>
+      </navigator>
+    </view>
+    <view class='banner-content'>
+      <image class='content-bg' src='https://img.51jiabo.com/20c01536-3cc1-4868-a1e3-55dd5d5f7407.png' mode='widthFix' style='position:absolate'></image>
+      <view class='content'>
+        <view class='user'>
+          <view class="user-left">
+            <image class='pic' src='{{user_info.avatar?user_info.avatar:"https://img.51jiabo.com/1a927c4f-1d8a-49a9-8720-c90ce2719f31.jpg"}}' mode='widthFix'></image>
+            <view class='info'>
+              <view class="phone">{{user_info.mobile}}</view>
+              <view class="period" wx:if='{{!isOut}}'>
+                有效期：{{ticket_info.buy_time}}~{{ticket_info.end_date}}
+              </view>
+              <view wx:if='{{isOut}}' class='isOut middle'>
+                已过期
+              </view>
+              <view class="hall">展馆：{{ticket_info.venue_name}}</view>
+            </view>
+          </view>
+          <view class='user-share middle'>
+            <form report-submit="true" bindsubmit="pushFormId">
+              <button form-type="submit" class="share-btn flex-row" open-type='share'>
+                邀请好友
+                <text class='iconfont iconjiantou1' style='font-size:22rpx;margin-left:14rpx'></text>
+              </button>
+            </form>
+          </view>
+        </view>
+        <view class='card-text'>
+          <view class="qr-1">点击出示核销码</view>
+          <view class="qr-2">{{topText}}</view>
+        </view>
+        <view class='code middle' bindtap="setCode" id='0'>
+          <view class='code-bg middle'>
+            <text class='iconfont iconerweima' style='font-size:100rpx'></text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- banner end -->
+  </view>
+  <!-- 入口 -->
+  <view class='flex-row entrance' style='color:#19151D;'>
+    <view class='ticket-entrance flex-column' bindtap='setCode' id='1'>
+      <text class='iconfont iconmenpiao1' style='font-size:100rpx'></text>
+      <text style='font-size:36rpx;font-weight:bold'>我的门票</text>
+    </view>
+    <view class="line"></view>
+    <view class='order-entrance flex-column' bindtap='toOrderList'>
+      <text class='iconfont icondingdan1' style='font-size:92rpx'></text>
+      <text style='font-size:36rpx;font-weight:bold;margin-top:6rpx'>查看订单</text>
+    </view>
+  </view>
+  <!-- end -->
+
+  <!-- 1元n选1活动 -->
+  <more-choose-one from="svipUserCenter" moreChooseOneGoodsData="{{moreChooseOneGoodsData}}" hasBuyFinish="{{hasBuyFinish}}" moreChooseOneGoodsListData="{{moreChooseOneGoodsListData}}"></more-choose-one>
+
+  <!-- 券 -->
+  <view class='session' wx:if="{{coupon&&coupon.length>0}}">
+    <view class='session-title'>
+      <text class='left'>{{centerInfo.coupon_title}}</text>
+      <text class='separator' wx:if="{{centerInfo.coupon_title && centerInfo.coupon_sub_title}}">|</text>
+      <text class='right'>{{centerInfo.coupon_sub_title}}</text>
+    </view>
+    <view class='tickets'>
+      <view class='ticket' style='opacity:{{isOut?"0.5":"1"}}' wx:for='{{coupon}}' wx:key='index' wx:if="{{item.isUniversal || (!item.isUniversal && showCoupon == 1)}}">
+        <view class='ticket-price'>
+          <view class="num">
+            <text>￥</text>{{item.coupon_value}}
+          </view>
+          <view class="full">满{{item.consume_amount}}元可用</view>
+        </view>
+        <view class='ticket-info'>
+          <view class="period">使用时间</view>
+          <view class="per-date">{{item.begin_date}}-{{item.end_date}}</view>
+          <view class="past">
+            <text>详细信息</text>
+            <!-- 上 -->
+            <image wx:if="{{index == curIndex && item.coupon_id == curId}}" catchtap="platformSpread" data-id="0" data-index="0" style="width: 24rpx;height: 24rpx;" src="https://img.51jiabo.com/5957d4e4-4bd8-4a3d-b5cd-c832d2bcc7d8.png"></image>
+            <!-- 下 -->
+            <image wx:else catchtap="platformSpread" data-id="{{item.coupon_id}}" data-index="{{index}}" style="width: 24rpx;height: 24rpx;" src="https://img.51jiabo.com/70802321-d930-453e-94a2-598429e906ff.png"></image>
+          </view>
+        </view>
+        <!-- 优惠券状态 -->
+        <view class='seal' wx:if="{{isOut && item.status==0}}">已过期</view>
+        <view class='seal' wx:if="{{item.status!=0}}">已使用</view>
+        <view class='unused' wx:if="{{item.status==0 && !isOut}}">未使用</view>
+        <!-- 商户通用券 -->
+        <view class="universal" wx:if="{{item.isUniversal}}"></view>
+        <view wx:if="{{index == curIndex && item.coupon_id == curId}}" class="spread">{{item.smemo}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 券运营位图片 -->
+  <view>
+    <view wx:for="{{couponAdv}}" wx:key="index">
+      <image style='width:100%;margin-top:20rpx;display:block' mode="widthFix" src="{{item.wap_image_url}}" data-item="{{item}}" bindtap="{{item.url?'advUrl':''}}"></image>
+    </view>
+  </view>
+
+  <!-- 商户优惠券 -->
+  <view class="session" wx:if='{{vendorCouponData.length>0}}'>
+
+    <view class='session-title'>
+      <text class='left'>商户专属优惠券</text>
+      <text class='separator'>|</text>
+      <text class=' right'>专属商户专享优惠</text>
+    </view>
+
+    <view class="vendor-coupon">
+      <!-- 单个 -->
+      <view class='single {{moreData?"":"active"}}' wx:for="{{vendorCouponData}}" wx:key="index">
+        <view class="above">
+          <view class="is-used" wx:if="{{item.status != '0'}}">已使用</view>
+          <view class="is-used" wx:if="{{item.status == '0' && isOut}}">已过期</view>
+          <view class="v-price">
+            <view class="p-top {{(item.status != '0' || isOut)?'gray':''}}">
+              <view class="symbol">￥</view>{{item.coupon_value}}
+            </view>
+            <view class='yet-get'>满{{item.consume_amount}}元可用</view>
+          </view>
+          <view class="ticket-info">
+            <image class='vendor-img' src="{{item.supplier_logo_url}}"></image>
+            <view class="ticket-title">{{item.brand_name}}</view>
+            <view class="use-time">使用时间{{item.begin_date}}-{{item.end_date}}</view>
+          </view>
+          <view class="get-ticket">
+            <view class="get-btn {{(item.status != '0' || isOut)?'gray':''}}" bindtap='checkCode' data-info="{{item}}">
+              查看券码</view>
+          </view>
+        </view>
+        <view class="below">
+          <view class="btm-t">
+            <view class="below-msg">
+              <text>详细信息</text>
+              <!-- 上 -->
+              <image wx:if="{{index == curIndex && item.coupon_id == curId}}" bindtap="platformSpread" data-id="0" data-index="0" style="width: 24rpx;height: 24rpx;" src="https://img.51jiabo.com/5957d4e4-4bd8-4a3d-b5cd-c832d2bcc7d8.png">
+              </image>
+              <!-- 下 -->
+              <image wx:else bindtap="platformSpread" data-id="{{item.coupon_id}}" data-index="{{index}}" style="width: 24rpx;height: 24rpx;" src="https://img.51jiabo.com/70802321-d930-453e-94a2-598429e906ff.png"></image>
+            </view>
+          </view>
+          <view wx:if="{{index == curIndex && item.coupon_id == curId}}" class="spread">{{item.smemo}}</view>
+        </view>
+      </view>
+      <!-- 查看更多按钮 -->
+      <view class='chakanBtn' bindtap='chakanBtn' wx:if='{{vendorCouponData.length > 3}}'>{{moreData?"收起":"查看更多 >"}}
+      </view>
+    </view>
+  </view>
+
+  <!--签到礼品-->
+  <view class='session' id="signGift" wx:if='{{showGift == 1 && (giftConfigImg || entityGift || couponGift)}}'>
+    <!-- 接口 未配置签到礼、已下线签到礼返回data中giftConfigImg字段为空数组 -->
+    <view class='session-title'>
+      <text class=' left'>专属签到礼</text>
+      <text class='separator'>|</text>
+      <text class=' right'>会员到场可享</text>
+    </view>
+    <!-- 未抽取签到礼 -->
+    <view class="not-sign" wx:if="{{giftConfigImg}}">
+      <image mode="widthFix" src="{{giftConfigImg[0].image_url}}" bindtap="toSignGift"></image>
+      <image mode="widthFix" src="{{giftConfigImg[1].image_url}}" bindtap="lottery"></image>
+    </view>
+    <!-- 实物签到礼 -->
+    <view class=' session-content' wx:if="{{entityGift}}">
+      <view class='gift'>
+        <view class="swiper-box">
+          <view class="indicate" wx:if="{{entityGift.master_img.length > 1}}">
+            {{giftCurrent+1}}/{{entityGift.master_img.length}}</view>
+          <swiper class="gifg-swiper" current="0" circular bindchange="swiperChange">
+            <block wx:for="{{entityGift.master_img}}" wx:key="index">
+              <swiper-item wx:if="{{item.type == 4}}">
+                <video id="video" class="gift-video" poster="{{item.cover_img_url}}" controls="{{false}}" show-center-play-btn="{{false}}" enable-progress-gesture="{{false}}" bindtap="playVideo" bindpause="videoPause" src="{{item.image_url}}">
+                  <view class="play" wx:if="{{!isPlay}}"></view>
+                </video>
+              </swiper-item>
+              <swiper-item wx:else bindtap="toSignDetail">
+                <image class='gift-picture' src='{{item.image_url}}' mode="aspectFill"></image>
+              </swiper-item>
+            </block>
+          </swiper>
+        </view>
+        <view class="sign-info {{isOut || userInfo.is_check_sign_gift != 0 ? 'gray':''}}" bindtap="toSignDetail">
+          <view class='gift-info'>
+            <view class='flex-row sign'>
+              <view class='middle tig'>签到礼</view>
+              <view class='triangle'></view>
+            </view>
+            <view class='text-hidden-3 gift-des'>
+              <text>{{entityGift.gift_name}}</text>
+            </view>
+          </view>
+          <view class='gift-address'>{{entityGift.get_state}}</view>
+          <!-- 核销码 -->
+          <view class="gift-check" wx:if="{{userInfo.check_time && userInfo.is_check_sign_gift == 0}}">
+            <view class="text">您的签到礼领取码为：<text>{{userInfo.check_num}}</text></view>
+            <view class="text">您前面还有<text class="red">{{userInfo.uncheck_user_num}}</text>位用户领取签到礼</view>
+          </view>
+          <view class='stamp-mask middle' wx:if='{{userInfo.is_check_sign_gift != 0}}'>
+            <view class='stamp middle'>
+              已领取
+            </view>
+          </view>
+          <view class='stamp-mask middle' wx:if='{{isOut}}'>
+            <view class='stamp middle'>
+              已过期
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- 优惠券签到礼 -->
+    <view class="sign-coupon-wrap" wx:if="{{couponGift}}">
+      <view wx:for='{{couponGift}}' wx:key="index">
+        <!-- 平台券 -->
+        <view class="coupon-item" wx:if="{{item.type == 1}}">
+          <view class="coupon-top {{item.smemo?'':'noDesc'}}">
+            <view class="left">
+              <view class="price">
+                <text class="symbol">￥</text>{{item.coupon_value}}
+              </view>
+              <view class="ticket-info">
+                <view class="ticket-title">满{{item.consume_amount}}返{{item.coupon_value}}</view>
+                <view class="use-time">
+                  <view>使用时间{{item.begin_date}} - {{item.end_date}}</view>
+                </view>
+              </view>
+            </view>
+            <view class="sign-exclusive">签到礼专属</view>
+            <view class="is-used" wx:if="{{item.status != '0'}}">已使用</view>
+            <view class="is-used" wx:if="{{item.status == '0' && isOut}}">已过期</view>
+          </view>
+          <view class="desc" wx:if="{{item.smemo}}">{{item.smemo}}</view>
+        </view>
+        <!-- 商户券 -->
+        <view class='single' wx:else>
+          <view class="above">
+            <view class="v-price">
+              <view class="p-top">
+                <view class="symbol">￥</view>{{item.coupon_value}}
+              </view>
+              <view class='yet-get'>满{{item.consume_amount}}元可用</view>
+            </view>
+            <view class="ticket-info">
+              <image class='vendor-img' src="{{item.logo_url}}"></image>
+              <view class="ticket-title">{{item.brand_name}}</view>
+              <view class="use-time">使用时间{{item.begin_date}}-{{item.end_date}}</view>
+            </view>
+            <view class="sign-exclusive">签到礼专属</view>
+            <view class="is-used" wx:if="{{item.status != '0'}}">已使用</view>
+            <view class="is-used" wx:if="{{item.status == '0' && isOut}}">已过期</view>
+          </view>
+          <view class="below" wx:if="{{item.smemo}}">{{item.smemo}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 签到礼运营位图片 -->
+  <view>
+    <view wx:for="{{signAdv}}" wx:key="index">
+      <image style='width:100%;margin-top:20rpx;display:block' mode="widthFix" src="{{item.wap_image_url}}" data-item="{{item}}" bindtap="{{item.url?'advUrl':''}}"></image>
+    </view>
+  </view>
+
+  <!-- 会员爆品 -->
+  <view class='session' wx:if='{{hotGoods&&hotGoods.length > 0}}'>
+    <view class='session-title'>
+      <text class=' left'>会员爆品</text>
+      <text class='separator'>|</text>
+      <text class=' right'>专属爆品等您拿</text>
+    </view>
+    <view class='session-content'>
+      <view class='hot-commodity'>
+        <!-- 公共 -->
+        <view class='gift-pic-wrap'>
+          <image src='{{hotGoods[0].goods_image}}' mode="widthFix" class='hot-commodity-picture'></image>
+        </view>
+        <view class="hot-info {{isOut || (check_baopin.id && check_baopin.id!=0) ? 'gray':''}}">
+          <view class='hot-commodity-info'>
+            <view class='hot-commodity-name'>
+              {{hotGoods[0].goods_name}}
+              <text wx:if="{{hotGoods[0].description}}"> | {{hotGoods[0].description}}</text>
+            </view>
+            <view class='hot-commodity-price'>
+              SVIP价格：￥
+              <text>{{hotGoods[0].sale_price}}</text>
+            </view>
+          </view>
+          <view class='hot-commodity-address'>
+            请您于{{ticket_info.begin_date}}-{{ticket_info.end_date}}日到
+            <text>【{{ticket_info.venue_name}}】</text> 展会现场低价购买
+          </view>
+          <view class='stamp-mask middle' wx:if='{{check_baopin.id && check_baopin.id!=0}}'>
+            <view class='stamp middle'>
+              已领取
+            </view>
+          </view>
+          <view class='stamp-mask middle' wx:if='{{isOut}}'>
+            <view class='stamp middle'>
+              已过期
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 专享商品 -->
+  <view class='session' wx:if="{{!isOut && ((allReserveList&& allReserveList.length>0) || (allPrepayList&&allPrepayList.length>0) || (allTotalList&&allTotalList.length>0))}}">
+    <view class='session-title'>
+      <text class=' left'>专享商品</text>
+      <text class='separator'>|</text>
+      <text class=' right'>超低价拿回家</text>
+    </view>
+    <!-- 预约商品 -->
+    <view class='products-session reserve-goods' wx:if="{{allReserveList && allReserveList.length!==0}}" style='padding-bottom:32rpx'>
+      <view class='products-title'>
+        <view class='products-title-Left'>
+          <text class='dingjin1'>预约商品</text>
+          <text class='dingjin3' wx:if="{{reserveGoodsDes}}"> | {{reserveGoodsDes}}</text>
+        </view>
+        <view class='products-title-Right' wx:if="{{allReserveList.length>2}}" data-type="4" bindtap='goodsList'>查看更多 >
+        </view>
+      </view>
+      <view class='product-wrap'>
+        <view class='product-list'>
+          <!-- 多个轮播 -->
+          <swiper class="swiper {{reserveList.length>1?'':'custom'}}" wx:if="{{allReserveList.length > 1}}" indicator-dots="{{reserveList.length>1?true:false}}" current="{{current}}" indicator-color="#f3f3f3" indicator-active-color="#e6002d" autoplay="true" interval="5000" circular>
+            <block class='product-item' wx:for="{{reserveList}}" wx:key="index">
+              <swiper-item class="swiper-item">
+                <view class="item-box" wx:for="{{item}}" wx:key="index" wx:for-item="v" bindtap='goodsDetail' data-id='{{v.goods_id}}' data-type='{{v.type}}' wx:if="{{v}}">
+                  <image src='{{v.goods_image}}' style='height:260rpx'></image>
+                  <view class='product-dic text-hidden-2'>
+                    {{v.goods_name}}
+                  </view>
+                  <view style='color:#666666;font-size:28rpx; margin-top:18rpx;font-weight:bold;color:#E6002D' class="{{v.sale_price == null?'visib':''}}">
+                    SVIP: ￥
+                    <text style='font-size:36rpx'>{{v.sale_price}}</text>
+                    <text style='font-size:20rpx;color:#666666'> /{{v.unit}}</text>
+                  </view>
+                  <view class='flex-row' class='repertory' style='margin-top:10rpx'>
+                    <view style='font-size:20rpx;color:#777777' class='payment middle {{v.origin_price == null?"visib":""}}'>
+                      市场价:
+                      <text style='font-size:24rpx;text-decoration:line-through'> ￥{{v.origin_price}}</text>
+                    </view>
+                    <view style='font-size:20rpx;color:#666;'>剩余 {{v.stock}} 件</view>
+                  </view>
+                  <view class='buy-btn middle' style='margin-top:20rpx' wx:if="{{!v.user_id && v.stock > 0}}" data-id='{{v.goods_id}}' catchtap='reserveGoods'>抢先预约</view>
+                  <view class='buy-btn middle gray' style='margin-top:20rpx' wx:if="{{v.user_id}}">已预约</view>
+                  <view class='buy-btn middle gray' style='margin-top:20rpx' wx:if="{{!v.user_id && v.stock <= 0}}">已约满
+                  </view>
+                </view>
+              </swiper-item>
+            </block>
+          </swiper>
+          <!-- 单个显示 -->
+          <view class='product-item2' wx:else bindtap='goodsDetail' data-id='{{reserveList[0].goods_id}}' data-type='{{reserveList[0].type}}'>
+            <image src='{{reserveList[0].goods_image}}'></image>
+            <view class='main-right'>
+              <view class='product-name text-hidden-2'>{{reserveList[0].goods_name}}</view>
+              <view style='color:#E6002D;font-size:28rpx;font-weight:800;' class="{{reserveList[0].sale_price == null?'visib':''}}">
+                SVIP:￥
+                <text style='font-size:36rpx;font-weight:800'>{{reserveList[0].sale_price}}</text>
+                <text style='font-size:20rpx;color:rgba(102,102,102,1);'>/{{reserveList[0].unit}}</text>
+              </view>
+              <view class='flex-row' class='repertory' style='margin-top:10rpx'>
+                <view style='font-size:24rpx;color:#777;' class="{{reserveList[0].origin_price == null?'visib':''}}">
+                  市场价
+                  <text style='text-decoration:line-through'>￥{{reserveList[0].origin_price}}</text>
+                </view>
+                <view style='font-size:20rpx;color:#666;'>剩余 {{reserveList[0].stock}} 件</view>
+              </view>
+              <view class='buy-btn middle' wx:if="{{!reserveList[0].user_id && reserveList[0].stock > 0}}" data-id='{{reserveList[0].goods_id}}' catchtap='reserveGoods'>抢先预约</view>
+              <view class='buy-btn middle gray' wx:if="{{reserveList[0].user_id}}">已预约</view>
+              <view class='buy-btn middle gray' wx:if="{{!reserveList[0].user_id && reserveList[0].stock <= 0}}">已约满
+              </view>
+            </view>
+          </view>
+          <!-- end -->
+        </view>
+      </view>
+    </view>
+    <!-- 定金商品 -->
+    <view class='products-session pre-goods' wx:if="{{allPrepayList && allPrepayList.length!==0}}">
+      <view class='products-title'>
+        <view class='products-title-Left'>
+          <text class='dingjin1'>定金商品</text>
+          <text class='dingjin3' wx:if="{{prepaygoodsDes}}"> | {{prepaygoodsDes}}</text>
+        </view>
+        <view class='products-title-Right' wx:if='{{allPrepayList.length>2}}' data-type="2" bindtap='goodsList'>查看更多 >
+        </view>
+      </view>
+      <view class='product-wrap'>
+        <view class='product-list'>
+
+          <!-- 多个轮播 -->
+          <swiper class="swiper {{prepayList.length>1?'':'custom'}}" wx:if="{{allPrepayList.length > 1}}" indicator-dots="{{prepayList.length>1?true:false}}" current="{{current}}" indicator-color="#f3f3f3" indicator-active-color="#e6002d" autoplay="true" interval="5000" circular>
+            <block class='product-item' wx:for="{{prepayList}}" wx:key="index">
+              <swiper-item class="swiper-item">
+                <view class="item-box" wx:for="{{item}}" wx:key="index" wx:for-item="v" bindtap='goodsDetail' data-id='{{v.goods_id}}' data-type='{{v.type}}' wx:if="{{v}}">
+                  <image src='{{v.goods_image}}' style='height:260rpx'></image>
+                  <view class='product-dic text-hidden-2'>
+                    {{v.goods_name}}
+                  </view>
+                  <view style='color:#666666;font-size:28rpx; margin-top:18rpx'>
+                    SVIP:￥{{v.sale_price}}
+                    <text style='font-size:20rpx;color:#666666'>/{{v.unit}}</text>
+                  </view>
+                  <view class='flex-row' class='repertory'>
+                    <view style='font-size:28rpx;color:#E6002D;font-weight:800' class='payment middle'>
+                      定金:￥
+                      <text style='font-size:40rpx;'>{{v.prepay_amount}}</text>
+                    </view>
+                    <view style='font-size:20rpx;color:#666;'>剩余 {{v.stock}} 件</view>
+                  </view>
+                  <view class='buy-btn middle' style='margin-top:20rpx' wx:if="{{v.stock > 0}}">￥{{v.prepay_amount}}
+                  </view>
+                  <view class='buy-btn middle gray' style='margin-top:20rpx' wx:else>已售罄</view>
+                </view>
+              </swiper-item>
+            </block>
+          </swiper>
+
+          <!-- 单个显示 -->
+          <view class='product-item2' wx:else bindtap='goodsDetail' data-id='{{prepayList[0].goods_id}}' data-type='{{prepayList[0].type}}'>
+            <image src='{{prepayList[0].goods_image}}'></image>
+            <view class='main-right'>
+              <view class='product-name text-hidden-2'>{{prepayList[0].goods_name}}</view>
+              <view class='flex-row' class='repertory'>
+                <view style='font-size:24rpx;color:#E6002D;font-weight:800' class='payment middle'>
+                  定金:￥
+                  <text style='font-size:40rpx;'>{{prepayList[0].prepay_amount}}</text>
+                </view>
+                <view style='font-size:20rpx;color:#666;'>剩余 {{prepayList[0].stock}} 件</view>
+              </view>
+              <view style='color:#666666;font-size:28rpx'>
+                SVIP:￥{{prepayList[0].sale_price}}
+                <text style='font-size:20rpx;color:#666666;'>/{{prepayList[0].unit}}</text>
+              </view>
+              <view class='buy-btn middle' wx:if="{{prepayList[0].stock > 0}}">￥{{prepayList[0].prepay_amount}}</view>
+              <view class='buy-btn middle gray' wx:else>已售罄</view>
+            </view>
+          </view>
+          <!-- end -->
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 定金商品运营位图片 -->
+  <view>
+    <view wx:for="{{prePayAdv}}" wx:key="index">
+      <image style='width:100%;margin-top:20rpx;display:block' mode="widthFix" src="{{item.wap_image_url}}" data-item="{{item}}" bindtap="{{item.url?'advUrl':''}}"></image>
+    </view>
+  </view>
+
+  <!-- 全款商品 -->
+  <view class='session' wx:if="{{!isOut && allTotalList && allTotalList.length!==0}}">
+    <view class='products-session total-goods'>
+      <view class='products-title'>
+        <view class='products-title-Left'>
+          <text class='dingjin1'>全款商品</text>
+          <text class='dingjin3' wx:if="{{allGoodsDes}}"> | {{allGoodsDes}}</text>
+        </view>
+        <view class='products-title-Right' wx:if='{{allTotalList.length>2}}' data-type="1" bindtap='goodsList'>查看更多 >
+        </view>
+      </view>
+      <view class='product-wrap'>
+        <view class='product-list'>
+
+          <!-- 多个轮播 -->
+          <swiper class="swiper {{totalList.length>1?'':'custom'}}" wx:if="{{allTotalList.length > 1}}" indicator-dots="{{totalList.length>1?true:false}}" current="{{current}}" indicator-color="#f3f3f3" indicator-active-color="#e6002d" autoplay="true" interval="5000" circular>
+            <block class='product-item' wx:for="{{totalList}}" wx:key="index">
+              <swiper-item class="swiper-item">
+                <view class="item-box" wx:for="{{item}}" wx:key="index" wx:for-item="v" bindtap='goodsDetail' data-id='{{v.goods_id}}' data-type='{{v.type}}' wx:if="{{v}}">
+                  <image src='{{v.goods_image}}' style='height:260rpx'></image>
+                  <view class='product-dic text-hidden-2'>
+                    {{v.goods_name}}
+                  </view>
+                  <view style='color:#E6002D;font-size:28rpx;font-weight:800;margin-top:28rpx'>
+                    SVIP:￥
+                    <text style='font-size:36rpx;font-weight:800'>{{v.sale_price}}</text>
+                    <text style='font-size:20rpx;color:rgba(102,102,102,1);'>/{{v.unit}}</text>
+                  </view>
+                  <view style='font-size:24rpx;color:#777;'>
+                    市场价
+                    <text style='text-decoration:line-through'>￥{{v.origin_price}}</text>
+                  </view>
+                  <view class='buy-btn middle' style='margin-top:20rpx' wx:if="{{v.stock > 0}}">购买</view>
+                  <view class='buy-btn middle gray' style='margin-top:20rpx' wx:else>已售罄</view>
+                </view>
+              </swiper-item>
+            </block>
+          </swiper>
+
+          <!-- 单个显示 -->
+          <view class='product-item2' wx:else bindtap='goodsDetail' data-id='{{totalList[0].goods_id}}' data-type='{{totalList[0].type}}'>
+            <image src='{{totalList[0].goods_image}}'></image>
+            <view class='main-right'>
+              <view class='product-name text-hidden-2'>{{totalList[0].goods_name}}</view>
+              <view style='color:#E6002D;font-size:28rpx;font-weight:800;'>
+                SVIP:￥
+                <text style='font-size:36rpx;font-weight:800'>{{totalList[0].sale_price}}</text>
+                <text style='font-size:20rpx;color:rgba(102,102,102,1);'>/{{totalList[0].unit}}</text>
+              </view>
+              <view style='font-size:24rpx;color:#777;'>
+                市场价
+                <text style='text-decoration:line-through'>￥{{totalList[0].origin_price}}</text>
+              </view>
+              <view class='buy-btn middle' wx:if="{{totalList[0].stock > 0}}">购买</view>
+              <view class='buy-btn middle gray' wx:else>已售罄</view>
+            </view>
+          </view>
+          <!-- end -->
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 全款商品运营位图片 -->
+  <view>
+    <view wx:for="{{totalAdv}}" wx:key="index">
+      <image style='width:100%;margin-top:20rpx;display:block' mode="widthFix" src="{{item.wap_image_url}}" data-item="{{item}}" bindtap="{{item.url?'advUrl':''}}"></image>
+    </view>
+  </view>
+
+  <!-- 二维码 -->
+  <view class='code-component' catchtouchmove='stop' bindtap='hideCode' hidden="{{!showCode}}">
+    <view class='code-main'>
+      <view class='title' style="background:{{codeType==1?'#e6002d':'#19151d'}}">{{codeType==1?"我的门票":"会员权益码"}}</view>
+      <view class="qrcode" catchtouchmove='stop'>
+        <view class='qrcode-main'>
+          <view class="qrcode-img">
+            <canvas class='canvas' canvas-id='qrcode'></canvas>
+          </view>
+          <view class="qrcode-num">{{codeVal}}</view>
+        </view>
+
+      </view>
+    </view>
+  </view>
+  <!-- svip支付成功弹窗 -->
+  <view class="suc-popup" wx:if="{{showPayPop}}">
+    <view class="popup-box">
+      <view class="box-in">
+        <view class='pop-tit'>恭喜您</view>
+        <view class='pop-detail' wx:if="{{cityId == 27}}">成功升级为京东·森图里家博会员svip，京东·森图里家博会为您的权益一路保驾护航。</view>
+        <view class='pop-detail' wx:elif="{{cityId == 54}}">成功升级为天府家博会员svip，天府家博会为您的权益一路保驾护航。</view>
+        <view class='pop-detail' wx:elif="{{cityId == 60}}">成功升级为宁波装修狂欢节会员svip，宁波装修狂欢节为您的权益一路保驾护航。</view>
+        <view class='pop-detail' wx:elif="{{cityId == 65}}">成功升级为现代家博会员svip，现代家博会为您的权益一路保驾护航。</view>
+        <view class="pop-detail" wx:else>成功升级为华夏家博会svip，华夏家博会为您的权益一路保驾护航。</view>
+        <image class='svip-img' mode='widthFix' src='https://img.51jiabo.com/fc5ecfd1-bf70-43c6-be97-79bb5f0792ff.png'>
+        </image>
+        <image class='svip-line-img' mode='widthFix' src='/imgs/svip-line.png'></image>
+        <!-- <view class='rule'>
+					分享好友购买SVIP，好友购买成功后，赠送您
+					<text>10元</text>奖励金，可在我的-奖励金页面查看详细活动规则
+				</view> -->
+        <button class='invite' open-type='share'>邀请好友购买SVIP，一起逛展</button>
+      </view>
+      <image class="suc-close" src='https://img.51jiabo.com/82bcc351-d8fe-42e1-84bf-140e243ded53.png' bindtap="closePayPop"></image>
+    </view>
+  </view>
+
+  <!-- 券码弹层 -->
+  <view class="code-popup" hidden="{{!showCouponCode}}" bindtap="closeCode" catchtouchmove='stop'>
+    <view class="code-box">
+      <view class="top">
+        <view class="tit">商家扫描券码使用优惠券</view>
+        <view class="period" wx:if="{{(isUsed == 0 && !isOut) || isUsed != 0}}">
+          有效期：{{ticket_info.begin_date}}-{{ticket_info.end_date}}</view>
+        <view class="period" wx:if="{{isUsed == 0 && isOut}}">已过期</view>
+      </view>
+      <view class="bottom">
+        <canvas class='canvas' disable-scroll="true" canvas-id='couponCode'></canvas>
+        <view class="cou-code {{isUsed != 0?'past':''}}">{{couCode}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 退款按钮 -->
+  <view class='btn-wrap'>
+    <view class="{{refundBtn == 2?'only':''}}" bindtap='switchAccount'>切换账号</view>
+    <view bindtap='refundHandle' wx:if="{{refundBtn == 1}}">会员退费</view>
+  </view>
+  <!-- end -->
+</view>
+<!-- 预约成功弹层 -->
+<view class="reserve-tips" wx:if="{{reserveTips}}">
+  <view class="reserve-box">
+    <view class="h6">
+      <view>恭喜您预约成功</view>
+      <view>请您到展会现场领取商品</view>
+    </view>
+    <view class="cancel" data-val="reserveTips" bindtap="closePopup">确定</view>
+  </view>
+</view>
+<!-- 签到礼抽取弹层 -->
+<view class="sign-popup" wx:if="{{showGift == 1 && notLotteryPopup && giftConfigImg}}">
+  <view class="sign-box">
+    <image mode="widthFix" src="{{giftConfigImg[0].image_url}}"></image>
+    <image mode="widthFix" src="{{giftConfigImg[1].image_url}}" bindtap="lottery"></image>
+    <view class="close" bindtap="closeSignPopup"></view>
+  </view>
+</view>
+<!-- 签到礼抽奖弹层 -->
+<view class="sign-popup" wx:if="{{signPopup}}">
+  <view class="sign-box">
+    <image mode="widthFix" src="{{signGiftGif}}">
+    </image>
+    <view class="close" bindtap="closeSignPopup"></view>
+  </view>
+</view>
+<!-- svip升级弹层 -->
+<upgradeSvip wx:if="{{showUpdatePopup}}" orderType="{{orderType}}" bindcloseUpdate="closeUpdate"></upgradeSvip>
+<!-- 导航 -->
+<navigation></navigation>
+
+<!-- 熊猫币顶部提示 -->
+<xmb-popup showXmbTips="{{showXmbTips}}" xmbPopupData="{{xmbPopupData}}"></xmb-popup>

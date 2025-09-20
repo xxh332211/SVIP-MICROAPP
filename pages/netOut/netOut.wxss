@@ -1,0 +1,40 @@
+/* pages/netOut/netOut.wxss */
+
+page {
+  background: #f4f4f4;
+}
+
+.notice-box {
+  padding-top: 190rpx;
+  box-sizing: border-box;
+  border-top: #e1e1e1 solid 1px;
+}
+
+.icon-notice image {
+  width: 57rpx;
+  height: 70rpx;
+  margin: 0 auto;
+  display: block;
+}
+
+.icon-notice .view-em {
+  text-align: center;
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 18rpx;
+}
+
+.renovate-btn {
+  width: 140rpx;
+  height: 60rpx;
+  /* background:#fff; *//* border:#e1e1e1 solid 1px; */
+  padding: 0;
+  font-size: 26rpx;
+  color: #4292ff;
+  line-height: 60rpx;
+  margin-top: 30rpx;
+}
+
+.renovate-btn::after {
+  border: none;
+}

@@ -1,0 +1,11 @@
+<view class="modal-wrap" catchtouchmove="stop">
+  <view class="bg"></view>
+  <view class="wrapper">
+    <view class="modal-content">
+      <slot></slot>
+      <view class="close" catchtap="close">
+        <image src="https://img.51jiabo.com/imgs-mall/popup-close.svg" mode="aspectFit"></image>
+      </view>
+    </view>
+  </view>
+</view>

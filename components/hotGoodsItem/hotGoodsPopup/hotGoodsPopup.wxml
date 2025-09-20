@@ -1,0 +1,31 @@
+<!--components/hotGoodsItem/hotGoodsPopup/hotGoodsPopup.wxml-->
+<!-- 预约成功弹层 -->
+<view class="order-popup">
+  <view class="order-box">
+    <view class='txt-box'>
+      <view class='tit1'>预约成功</view>
+      <view class='tit2'>{{activityInfo.begin_date}}-{{activityInfo.end_date}}前往{{activityInfo.venue_name}}下单使用</view>
+    </view>
+    <view class="order-top">
+      <image class='goods-img' src="{{hotGoodsItem.image_url}}"></image>
+      <view class='title'>{{hotGoodsItem.goods_name}}</view>
+      <view class="detail">
+        <view class="left">
+          <view class="market-price">市场价：{{marketPrice}}元</view>
+          <view class='unit'>
+            <text class="text">家博抢购价：</text>{{specialPrice}}
+            <view class='lab'>{{hotGoodsItem.price_unit}}</view>
+          </view>
+        </view>
+        <view class="sy">剩余{{stock}}件</view>
+      </view>
+    </view>
+    <!-- <view class='tips'>分享好友预约爆品，好友预约成功后，赠送您
+      <text class='tips-txt'>10元</text>奖励金，可在我的-奖励金页面查看详细活动规则</view> -->
+    <button open-type='share' data-shareData="{{shareData}}" class="share">赠送好友爆品，一起逛展</button>
+    <view class="close" bindtap='onClose'></view>
+  </view>
+</view>
+
+<!-- 熊猫币顶部提示 -->
+<xmb-popup showXmbTips="{{showXmbTips}}" xmbPopupData="{{xmbPopupData}}"></xmb-popup>

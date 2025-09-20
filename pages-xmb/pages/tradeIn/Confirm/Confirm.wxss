@@ -1,0 +1,349 @@
+/* pages-xmb/pages//tradeIn/Confirm/Confirm.wxss */
+.box {
+  position: relative;
+}
+
+.content {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+}
+
+.rule {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 32rpx;
+  color: #FFFFFF;
+  padding: 31rpx;
+}
+
+.rule .icon {
+  width: 32rpx;
+  height: 32rpx;
+  background: url(https://img.51jiabo.com/3298b99e-42a8-4404-855b-c0fd2aaec924.png) no-repeat;
+  background-size: 100% 100%;
+  margin-right: 10rpx;
+}
+
+.card {
+  width: 690rpx;
+  background: #FFFFFF;
+  box-shadow: 0 10rpx 20rpx 0 rgba(157, 157, 157, 0.09);
+  border-radius: 10rpx;
+  margin-left: 30rpx;
+  padding: 28rpx 20rpx;
+}
+
+.card .user {
+  font-size: 32rpx;
+  color: #222222;
+  margin-bottom: 8rpx;
+}
+
+.goods-info {
+  display: flex;
+  align-items: center;
+}
+
+.goods-info .img {
+  width: 230rpx;
+  height: 181rpx;
+  margin-right: 16rpx;
+}
+
+.goods-info .name {
+  width: 286rpx;
+  height: 96rpx;
+  font-size: 30rpx;
+  color: #222222;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  line-height: 48rpx;
+  word-break: break-all;
+}
+
+.goods-info .origin {
+  font-size: 24rpx;
+  color: #6A6A6A;
+  text-decoration: line-through;
+  margin-top: 4rpx;
+}
+
+.goods-info .now {
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  color: #E6002D;
+  margin-top: 12rpx;
+}
+
+.goods-info .now .icon {
+  width: 34rpx;
+  height: 35rpx;
+  background: url("https://img.51jiabo.com/fa453c56-6438-4fa6-a435-855877c2c6e5.png") no-repeat;
+  background-size: 100% 100%;
+  margin-right: 10rpx;
+}
+
+.svip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 690rpx;
+  height: 87rpx;
+  margin-left: 30rpx;
+  background: linear-gradient(138deg, rgba(253, 125, 80, 1), rgba(229, 26, 66, 1));
+  border-radius: 9rpx;
+  margin-top: 36rpx;
+}
+
+.svip .img {
+  width: 50rpx;
+  height: 43rpx;
+}
+
+.svip .svip-text {
+  font-size: 30rpx;
+  color: #fff;
+  margin: 0 26rpx;
+}
+
+.svip .svip-buy {
+  font-size: 36rpx;
+  color: #FFFFFF;
+  font-weight: bold;
+}
+
+.xmb-tradeIn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 690rpx;
+  height: 90rpx;
+  background: #FFE9EC;
+  border-radius: 45rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #D3122E;
+  margin-top: 40rpx;
+  margin-left: 30rpx;
+}
+
+.xmb-tradeIn .icon {
+  width: 41rpx;
+  height: 35rpx;
+  background: url(https://img.51jiabo.com/73ac393e-0a5f-4aea-80ed-265e2c69c63d.png) no-repeat;
+  background-size: 100% 100%;
+  margin-right: 20rpx;
+}
+
+.btn-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  position: fixed;
+  bottom: 0;
+  z-index: 2;
+}
+
+.origin-buy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 305rpx;
+  height: 85rpx;
+  border-radius: 50rpx;
+  color: #FFFFFF;
+  background: #E6002E;
+  margin: 0 30rpx 20rpx 0;
+}
+
+.origin-buy.disable {
+  border: 1px dashed #BBBBBB;
+  background: #fff;
+  color: #9E9E9E;
+}
+
+.origin-buy .num {
+  font-size: 36rpx;
+  line-height: 56rpx;
+  font-weight: bold;
+}
+
+.origin-buy .tips {
+  font-size: 26rpx;
+  line-height: 41rpx;
+  margin-top: -10rpx;
+}
+
+.buy-box {
+  display: flex;
+  width: 100%;
+  height: 96rpx;
+  background: #fff;
+  font-size: 36rpx;
+  color: #E6002E;
+}
+
+.buy-box .getnumebr {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  z-index: 2;
+}
+
+.buy-box view {
+  width: 376rpx;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.buy-box .confirm {
+  color: #FFFFFF;
+  background: #E6002E;
+}
+
+.svip-popup {
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, .7);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.svip-popup .svip-box {
+  width: 670rpx;
+  background-color: #fff;
+  border-radius: 15rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 65rpx;
+}
+
+.svip-popup .title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #222222;
+  padding-top: 100rpx;
+}
+
+.svip-popup .buy-svip {
+  font-size: 36rpx;
+  color: #FFFFFF;
+  width: 560rpx;
+  height: 90rpx;
+  background: rgba(230, 0, 45, 1);
+  border-radius: 5rpx;
+  text-align: center;
+  line-height: 90rpx;
+  margin-top: 50rpx;
+}
+
+.svip-popup .buy-svip.gray {
+  background-color: gray;
+}
+
+.svip-popup .tips {
+  font-size: 30rpx;
+  color: #999999;
+  margin-top: 40rpx;
+}
+
+.svip-popup .cancel {
+  width: 180rpx;
+  height: 66rpx;
+  border: 1px solid rgba(210, 210, 210, 1);
+  border-radius: 15rpx;
+  font-size: 30rpx;
+  color: #222222;
+  text-align: center;
+  line-height: 66rpx;
+  margin-top: 100rpx;
+}
+
+.tips-popup {
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, .7);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tips-popup .tips-box {
+  width: 600rpx;
+  background-color: #fff;
+  border-radius: 10rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 62rpx;
+}
+
+.tips-popup .top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 297rpx;
+  background: url("https://img.51jiabo.com/252530e8-b3a5-42c1-91ee-d6f513cd26b0.png") no-repeat;
+  background-size: 100% 100%;
+  position: relative;
+  margin-bottom: 30rpx;
+}
+
+.tips-popup .close {
+  width: 90rpx;
+  height: 90rpx;
+  background: url(https://img.51jiabo.com/77b2fb84-e92f-4f56-8879-362227db362b.png) no-repeat;
+  background-size: 30rpx 30rpx;
+  background-position: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.tips-popup .icon {
+  width: 78rpx;
+  height: 77rpx;
+  background: url("https://img.51jiabo.com/1b6e2d1b-71cb-4c46-997b-ab75c8a844f7.png") no-repeat;
+  background-size: 100% 100%;
+  margin-right: 27rpx;
+}
+
+.tips-popup .text {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #FFFFFF;
+}
+
+.tips-popup .btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 386rpx;
+  height: 76rpx;
+  border: 1px solid #E6002D;
+  border-radius: 37rpx;
+  font-size: 30rpx;
+  color: #E6002D;
+  margin-top: 35rpx;
+}

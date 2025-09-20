@@ -1,0 +1,13 @@
+<view class="counter">
+  <block wx:if="{{time && time.days}}">
+  <text class="time">{{time.days > 9 ? time.days : ('0' + time.days)}}</text>
+  <text class="label">天</text>
+  </block>
+  <block wx:if="{{!((!time || !time.hours) && autoHide)}}">
+  <text class="time">{{time ? (time.hours > 9 ? time.hours : ('0' + time.hours)) : '00'}}</text>
+  <text class="label">:</text>
+  </block>
+  <text class="time">{{time ? (time.minutes > 9 ? time.minutes : ('0' + time.minutes)) : '00'}}</text>
+  <text class="label">:</text>
+  <text class="time">{{time ? (time.seconds > 9 ? time.seconds : ('0' + time.seconds)) : '00'}}</text>
+</view>

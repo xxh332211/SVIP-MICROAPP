@@ -1,0 +1,126 @@
+<wxs src="../../../utils/util.wxs" module="filter" />
+<view class="container">
+<!-- 商品 -->
+  <view class="shop">
+    <!-- 图片轮播 -->
+    <swiper indicator-dots="true" class="swiper" autoplay='true' interval='3000' circular='true'  indicator-active-color='#fff' style="height:{{imgheights[current]}}rpx;">
+      <block wx:for="{{main_image}}" wx:key="*this" >
+        <swiper-item>
+          <image bindload="imageLoad" data-id='{{index}}' src="{{item.image_url}}"></image>
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class="shop_price">
+      <view class="left">
+        <view class="price">
+          <text  wx:if="{{is_openprice != '-1'}}">￥</text>
+          <text  wx:else></text>
+          <text>{{is_openprice != -1? exclusive_price : define_price}}{{is_openprice == '-1' ?'' :price_unit}}</text>
+          <text wx:if="{{is_openprice != '-1'}}">￥</text>
+          <text wx:if="{{is_openprice != '-1'}}">{{market_price}}</text>
+        </view>
+        <view class="earnest" wx:if='{{pay_way == 1}}'>定金支付{{earnest}}元</view>
+      </view>
+      <view class="right">已售:{{sold_stock_count}} 件</view>
+    </view>
+    <view class="shop_detail">
+      <view class="title">
+        <view class="left">{{prerogative_name}}</view>
+          <button form-type="submit" title='分享'  class="right"  open-type="share" plain="true">
+            <image src="/imgs/share.png" class="share"></image>
+            <text>分享</text>
+          </button>
+      </view>
+      <view class="shop_title">{{description}}</view>
+    </view>
+  </view>
+<!-- 卷 -->
+  <view class="ticket">
+    <view class="titket_list"  bindtap="showTicket" wx:if='{{coupon.length > 0}}'>
+      <view class="name">领劵:</view>
+      <view class="list" wx:for='{{coupon}}' wx:key='key' wx:if='{{index>=0 && index<=1}}'>
+        <image src="/imgs/borderjuan.png"></image>满￥{{filter.couponSlice(item.consume_amount)}}减￥{{filter.couponSlice(item.coupon_value)}}</view>
+      <view class="more">更多<image src="/imgs/rightArrow.png"></image></view>
+    </view>
+    <view class="mdoel">
+      <view class="name">型号:</view>
+      <view class="model_detail">{{model_number}}</view>
+    </view>
+  </view>
+<!-- 店铺详情 -->
+  <view class="shopDetail">
+    <view class="shops">
+      <view class="middle">
+        <image src="{{supplierShopInfo.logo_url}}"></image>
+        <text>{{supplierShopInfo.shop_name}}</text>
+      </view>
+      <view class="open_shop" bindtap="open_shop">进入店铺</view>
+    </view>
+    <!-- 详情图 -->
+    <view class="detail">
+      <view class="title">—— 商品详情 ——</view>
+      <!-- <view class="right">
+        <text>展开</text>
+        <view class="img">
+          <image src="/imgs/bottomArrow.png"></image>      
+        </view>
+      </view> -->
+    </view>
+    <view class="detail_img" wx:for="{{detail_images}}" wx:key='key'>
+      <image src="{{item.image_url}}"  mode="widthFix"></image>
+    </view>
+  </view>
+  <!-- 底部购买 -->
+  <view class="buy">
+    <view class="left">
+      <view class="buy_mine" catchtap="mineBtn">
+        <image src="/imgs/mine.png"></image>
+        <text>我的</text>
+      </view>
+      <view class="buy_shop" catchtap="open_shop">
+        <image src="/imgs/home.png"></image>
+        <text>店铺</text>
+      </view>
+    </view>
+    <view class="right" bindtap="payBtn" wx:if='{{showDatePay}}'>立即购买</view>
+    <view class="right" style="background:#ccc" wx:else>{{payName}}</view>
+  </view>
+  <!-- 返回頂部按鈕 -->
+  <image catchtap="top" src="https://img.51jiabo.com/64b592f0-3c1c-419b-9d7f-89156ce542bc.png" class="top" wx:if='{{showTop}}'></image>
+  <!-- 底部优惠券弹窗 -->
+  <view class="flag" wx:if='{{showFlag}}' catchtap="showFlag"></view>
+  <view class="popup" wx:if='{{showPopup}}'>
+    <view class="title">领取优惠券</view>
+    <view class="ticketlist" wx:for="{{coupon}}" wx:key='key'>
+      <view class="header">
+        <view class="ticket_box">
+          <image src="{{supplierShopInfo.logo_url}}" class="logo"></image>
+        </view>
+        <text>{{item.coupon_name}}</text>
+      </view>
+      <view class="priceList">
+        <view class="left">
+          <text>￥</text>
+          <text>{{filter.couponSlice(item.coupon_value)}}</text>
+        </view>
+        <view class="center">
+          <text>满{{filter.couponSlice(item.consume_amount)}}元可用</text>
+          <text>有效期：{{filter.timeSlice(item.begin_date)}}-{{filter.timeSlice(item.end_date)}}</text>
+          <text>全部商品可用</text>
+        </view>
+        <view class="pull"  style="background:{{item.user_id>0?'#bfbfbf':'linear-gradient(140deg,rgba(255,0,54,1),rgba(255,38,0,1))'}}" data-user_id="{{item.user_id}}" data-coupon_id="{{item.coupon_id}}" bindtap='getCoupon' wx:if='{{item.quantity - item.use_count > 0}}'>{{item.user_id>0?'已领取':'领取'}}</view>
+        <view class="pull"  style="background:#bfbfbf" wx:if='{{item.quantity - item.use_count == 0}}'>已抢光</view>
+      </view>
+    </view>
+    <view class="pullTicket" bindtap="hideTickek">完成</view>
+  </view>
+  <!-- 返回直播 -->
+  <view wx:if='{{liveId}}' class="liveNav" catchtap="navLive" data-liveid="{{liveId}}">返回直播</view>
+  <!-- 直播小窗 -->
+  <movable-area class='movable-area' wx:if='{{liveId && showLive}}'>
+    <movable-view x='280' y='100' class="movable-view"  direction="all">
+      <image catchtap="navLive" data-liveid="{{liveId}}" src="{{liveImg}}" class="liveimg"></image>
+      <image src="/imgs/fork.png" class="fork"  catchtap="forkBtn"></image>    
+    </movable-view>
+  </movable-area>
+</view>

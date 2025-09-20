@@ -1,0 +1,2 @@
+<!--pages-liebian/pages/rule/rule.wxml-->
+<text>{{rules}}</text>

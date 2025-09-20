@@ -1,0 +1,104 @@
+<import src="./template/floorTemplate.wxml"></import>
+
+<online-serve />
+<privacy-popup></privacy-popup>
+<view class="container" bindtouchmove="onTouchMove"
+  style="background-color: {{floorList.headerInfo.module_json.backgroundType == 1 && floorList.headerInfo.module_json.backgroundColor}};">
+
+  <!-- 页面背景图 -->
+  <image mode="widthFix" wx:if="{{floorList.headerInfo.module_json.backgroundType == 2}}" class="page-bgi" style="top: {{bgiTop}}rpx;" src="{{floorList.headerInfo.module_json.backgroundImage}}"></image>
+
+  <!-- 导航栏 -->
+  <view class="navigate" id="navigate"
+    style="padding-top:{{navigateHeight}}px;background-color: {{floorList.headerInfo.module_json.navBackgroundColor || '#fff'}};">
+    <!-- 导航栏背景图 -->
+    <image wx:if="{{floorList.headerInfo.module_json.navBackgroundType == 2}}" class="nav-bgi"
+      src="{{floorList.headerInfo.module_json.navBackgroundImage}}"></image>
+    <view class="city" bindtap='chooseCity'>{{curUserCityText}}<view class="ico"></view>
+    </view>
+    <view class="nav-text" style="color:{{floorList.headerInfo.module_json.navTextColor == 1? '#000':'#fff'}};">
+      {{floorList.headerInfo.module_json.pageName}}</view>
+  </view>
+  <view class="navigate-blank" style="padding-top:{{navigateHeight}}px"></view>
+
+  <!-- 楼层列表 -->
+  <block wx:for="{{floorList.contentInfo}}" wx:key="index">
+    <template is="{{item.module_name}}" data="{{...item,mggCurList,curTab}}" />
+  </block>
+
+  <!-- 商品列表 -->
+  <view wx:if="{{mallBtmList && mallBtmList.categoryList.length}}" class="goods-wrap">
+    <scroll-view scroll-x="true" class="goods-nav-box">
+      <view wx:for="{{mallBtmList.categoryList}}" wx:key="category_id"
+        class="goods-nav {{item.category_id === curCategoryId && 'goods-nav-act'}}" bindtap="toggleGoodsCategory"
+        data-id="{{item.category_id}}">{{item.category_name}}</view>
+    </scroll-view>
+
+    <view class="goods-main">
+      <view class="goods-tab-box">
+        <view wx:for="{{goodsTabList}}" wx:key="id" class="goods-tab {{item.id === curSortTab && 'goods-tab-act'}}"
+          bindtap="toggleSortTab" data-id="{{item.id}}">
+          <text>{{item.text}}</text>
+          <block>
+          </block>
+          <image wx:if="{{item.id === 3}}" style="width: 12rpx;height: 21rpx;margin-left: 6rpx;"
+            src="{{priceSortToUp ? '/imgs/up.png' : '/imgs/down.png'}}">
+          </image>
+        </view>
+      </view>
+
+      <view class="goods-list">
+        <waterfall id="waterfall" generic:layout="waterfall-item"></waterfall>
+        <view class="loadMore">{{loadDone?'没有更多商品了~':'加载中...'}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 侧边运营位 -->
+  <image wx:if="{{sideAdv}}" animation="{{animationData}}" class="side-yyw" catchtap="swiperUrl"
+    src="{{sideAdv.wap_image_url || 'https://img.51jiabo.com/77f127d4-58d1-4d2a-aa1c-482055da2c80.png'}}" data-type="sideAdv" data-item="{{sideAdv}}"></image>
+
+  <!-- 返回顶部按钮 -->
+  <image wx:if="{{showTopIcon}}" animation="{{animationData}}" class="to-top" catchtap="toTop"
+    src="https://img.51jiabo.com/eba89cd7-08d5-4aee-aeb7-c2b9f4841c2d.png"></image>
+
+  <!-- 弹屏广告 -->
+  <view wx:if="{{floorList.popImgInfo && showAdPopup}}" class="cover" catchtouchmove="true">
+    <view class="ad-img">
+      <image src="{{floorList.popImgInfo.module_json.popInfo.imageUrl}}" catchtap="swiperUrl" data-item="{{floorList.popImgInfo.module_json.popInfo}}"></image>
+      <image class="ad-del" src="/imgs/closed.png" catchtap="closeAD"></image>
+    </view>
+  </view>
+
+  <!-- 优惠券领取成功弹层 -->
+  <view class='get-ticket-box' wx:if="{{getCouponSuccess}}">
+    <view class='get-ticket'>
+      <view class='txt-box'>
+        <view class='tit1'>领取成功</view>
+        <view class='tit2'>{{activityInfo.begin_date}}-{{activityInfo.end_date}}前往{{activityInfo.venue_name}}下单使用</view>
+      </view>
+      <view class='coupon-box'>
+        <view class="left">
+          <view class='price'>
+            <view class='lab'>￥</view>{{couponItem.coupon_value}}
+          </view>
+          <view class='cond'>满{{couponItem.consume_amount}}元可用</view>
+        </view>
+        <view class="right">
+          <image class='s-img' src='{{couponItem.logo_url}}'></image>
+          <view class='name'>{{couponItem.brand_name}}</view>
+          <view class='date'>{{couponItem.begin_date}}-{{couponItem.end_date}}使用</view>
+        </view>
+      </view>
+      <!-- <view class='remaind'>分享好友优惠券，好友领取成功后，赠送您
+        <text class='remaind-txt'>10元</text>奖励金，可在我的-奖励金页面查看详细活动规则
+      </view> -->
+      <button open-type='share' data-shareData="{{shareData}}"  class="share">赠送好友优惠券，一起逛展</button>
+      <view class="close" bindtap='closeGetCoupon'></view>
+    </view>
+  </view>
+  
+  <!-- 预约成功弹窗 -->
+  <hot-goods-popup wx:if="{{reserveSuccess}}" shareData="{{shareData}}" hotGoodsItem="{{hotGoodsItem}}"
+    bindcloseReserve="closeReserve" />
+</view>

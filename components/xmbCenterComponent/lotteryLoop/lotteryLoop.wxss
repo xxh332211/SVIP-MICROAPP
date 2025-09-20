@@ -1,0 +1,145 @@
+/* components/xmbCenterComponent/lotteryLoop/lotteryLoop.wxss */
+.lottery {
+  margin-bottom: 50rpx;
+}
+
+.lottery-title {
+  color: #222;
+  font-size: 42rpx;
+  font-weight: bold;
+  margin-bottom: 30rpx;
+}
+
+.lottery-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  width: 640rpx;
+  height: 200rpx;
+  background: linear-gradient(to right, #FF304D, #FF8459);
+  border-radius: 10rpx;
+  padding: 20rpx;
+  padding-right: 10rpx;
+}
+.lottery.getTicket{
+  margin-bottom: 28rpx;
+}
+.lottery.getTicket .lottery-box {
+  width: 690rpx;
+  height: 220rpx;
+}
+
+.lottery.getTicket .lottery-prize-box {
+  width: 502rpx;
+  height: 129rpx;
+}
+
+.lottery.getTicket .lottery-check-prize {
+  margin-top: 22rpx;
+}
+
+.lottery-cover {
+  width: 78%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 130rpx;
+  bottom: 0;
+  z-index: 9;
+}
+
+.lottery-prize-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 470rpx;
+  height: 120rpx;
+  background: url(https://img.51jiabo.com/a20bccb2-c113-48b7-8f64-da5f90c08230.png) no-repeat;
+  background-size: cover;
+  padding: 10rpx 30rpx;
+}
+
+.lottery-left-swp {
+  width: 95rpx;
+  height: 85rpx;
+}
+
+.lottery-left-swp .swp-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 95rpx;
+  height: 85rpx;
+  border: 3rpx solid #ffddad;
+  border-bottom-width: 6rpx;
+  border-radius: 10rpx;
+  padding-top: 4rpx;
+}
+
+.lottery-left-swp .prize-img {
+  width: 70rpx;
+  height: 70rpx;
+}
+
+.lottery-notice {
+  height: 30rpx;
+  display: flex;
+  align-items: center;
+  transform: translateY(12rpx);
+}
+
+.lottery-notice-swp {
+  width: 400rpx;
+  height: 38rpx;
+  margin-left: 10rpx;
+  color: #fff;
+}
+
+.lottery-right {
+  color: #fff;
+  text-align: center;
+}
+
+.lottery-100 {
+  display: table-cell;
+  vertical-align: middle;
+  width: 130rpx;
+  height: 124rpx;
+  background: url(https://img.51jiabo.com/a26e1136-394e-4442-9f31-618f58b535ae.png) no-repeat;
+  background-size: cover;
+  font-size: 30rpx;
+  padding: 15rpx;
+  line-height: 36rpx;
+  transform: translateY(10rpx);
+}
+
+.lottery-check-prize {
+  margin-top: 15rpx;
+}
+
+.cover {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 9;
+  background-color: rgba(0, 0, 0, .8);
+}
+
+.freeze-box {
+  width: 600rpx;
+  height: 300rpx;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 80rpx 73rpx;
+  font-size: 32rpx;
+  color: #222;
+  line-height: 64rpx;
+  background-color: #fff;
+  border-radius: 10rpx;
+}

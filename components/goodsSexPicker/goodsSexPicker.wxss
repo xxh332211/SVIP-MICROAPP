@@ -1,0 +1,26 @@
+/* components/goodsSexPicker/goodsSexPicker.wxss */
+.container{
+  padding-top: 20rpx;
+}
+.title{
+  display: flex;
+  padding: 0 30rpx;
+  line-height: 80rpx;
+  font-size: 34rpx;
+  justify-content: center;
+}
+.list{
+  padding: 20rpx 0;
+  text-align: center;
+}
+.list > view{
+  line-height: 120rpx;
+  font-size: 38rpx;
+  transition: all .2s ease-in-out;
+}
+.list > view:active{
+  background: #e9e7e7;
+}
+.list > view:first-child{
+  border-bottom: solid 1rpx #e9e7e7;
+}

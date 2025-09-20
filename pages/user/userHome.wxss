@@ -1,0 +1,710 @@
+/* pages/user/user.wxss */
+
+page {
+  background: #f6f6f6;
+}
+
+image {
+  width: 100%;
+  height: 100%;
+}
+
+.wrapper {
+  padding-bottom: 150rpx;
+}
+
+.banner {
+  width: 100%;
+  height: 399rpx;
+  position: relative;
+  color: #fff;
+  background-color: #fff;
+  background-image: url("https://img.51jiabo.com/c4c7ffd4-c8e1-4bf1-8a9f-fcb8a3f1d9c0.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.head-box {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.banner.is-svip {
+  background-image: url("https://img.51jiabo.com/0f1ebe4a-ec3a-4c66-afe7-8b7b36a0afdd.png");
+}
+
+.banner.is-svip .login-box .title,
+.banner.is-svip .login-box .content {
+  color: #D9AF8C;
+}
+
+.banner.is-svip .crown {
+  display: block;
+}
+
+.banner.is-svip .integral {
+  background: linear-gradient(0deg, #FFF3D2 0%, #FFFAF0 100%);
+  color: #000000;
+}
+
+.banner.is-svip .bounty {
+  color: #D9AF8C;
+}
+
+.banner.is-svip .bounty .ico {
+  background-image: url("https://img.51jiabo.com/42d95d4a-e88d-4011-847d-84709ca28051.png");
+}
+
+.banner-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 280rpx;
+  position: relative;
+  padding-left: 50rpx;
+  align-items: center;
+}
+
+.person {
+  display: flex;
+  align-items: flex-end;
+}
+
+.crown {
+  display: none;
+  width: 94rpx;
+  height: 55rpx;
+  position: absolute;
+  top: -45rpx;
+  left: 25rpx;
+}
+
+.not-login {
+  display: flex;
+  flex: 1;
+  position: relative;
+}
+
+.auth-login {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background: none;
+}
+
+.user-icon {
+  width: 140rpx;
+  height: 140rpx;
+  position: relative;
+}
+
+.head-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 5rpx solid rgba(255, 255, 255, 0.8);
+}
+
+.integral {
+  width: 140rpx;
+  height: 40rpx;
+  border-radius: 20rpx;
+  font-size: 24rpx;
+  font-weight: bold;
+  background-color: #fff;
+  color: #E6002D;
+  text-align: center;
+  line-height: 40rpx;
+  margin-top: 30rpx;
+}
+
+.sign-in {
+  background: #FFFFFF;
+  color: #000;
+  border-radius: 35rpx;
+  height: 70rpx;
+  width: 185rpx;
+  font-size: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 30rpx;
+}
+
+.bounty {
+  display: flex;
+  align-items: center;
+  margin-top: 2rpx;
+}
+
+.bounty .ico {
+  width: 26rpx;
+  height: 26rpx;
+  background-image: url("https://img.51jiabo.com/c02bd9ce-4daf-4f57-9a23-b380cb4fd7f4.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  margin-left: 14rpx;
+}
+
+.bounty .desc-txt {
+  font-size: 24rpx;
+}
+
+.bounty .number {
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+/* 我的订单 */
+.my-order {
+  background-color: #fff;
+  position: relative;
+  padding: 10rpx 25rpx 30rpx;
+}
+
+.my-order .order-text {
+  width: 100%;
+  height: 87rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #E1E1E1;
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #222222;
+}
+
+.my-order .order-text .more-order {
+  display: flex;
+  align-items: center;
+  font-size: 24rpx;
+  font-weight: normal;
+  color: #777777;
+}
+
+.my-order .order-text .more-order::after {
+  content: "";
+  width: 10rpx;
+  height: 19rpx;
+  background: url(https://img.51jiabo.com/eb790f30-6175-40c7-af57-29076ae34084.png) no-repeat;
+  background-size: 100% 100%;
+  margin-left: 8rpx;
+}
+
+.my-order .status-list {
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 1px solid #E1E1E1;
+  padding-top: 39rpx;
+  padding-bottom: 30rpx;
+}
+
+.my-order .status-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.my-order .num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22rpx;
+  height: 22rpx;
+  background: #E6002D;
+  border-radius: 50%;
+  font-size: 16rpx;
+  color: #FFFFFF;
+  position: absolute;
+  top: -3rpx;
+  right: 2rpx;
+
+}
+
+.my-order .status-img {
+  width: 50rpx;
+  height: 50rpx;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.my-order .status-item:nth-child(1) .status-img {
+  background-image: url(https://img.51jiabo.com/7758c5fe-679a-4b86-9a40-8a1b3186dfd6.png);
+}
+
+.my-order .status-item:nth-child(2) .status-img {
+  background-image: url(https://img.51jiabo.com/d6dc8ed9-152d-4f40-acd1-f3eb1a4f46a4.png);
+}
+
+.my-order .status-item:nth-child(3) .status-img {
+  background-image: url(https://img.51jiabo.com/3e5a3d32-ddca-4c5f-bc7b-928ac6ccb614.png);
+}
+
+.my-order .status-text {
+  font-size: 24rpx;
+  margin-top: 12rpx;
+}
+
+.my-order .obligation-box {
+  width: 690rpx;
+  height: 150rpx;
+  background: #F5F5F5;
+  border-radius: 5rpx;
+  overflow: hidden;
+  padding: 0 20rpx 0 30rpx;
+  margin-top: 30rpx;
+}
+
+.my-order .obligation-box .wx-swiper-dot {
+  display: inline-block !important;
+  width: 6rpx !important;
+  height: 6rpx !important;
+  margin-right: 8rpx !important;
+}
+
+.my-order .obligation-box .wx-swiper-dot-active {
+  width: 12rpx !important;
+  height: 6rpx !important;
+  border-radius: 3rpx !important;
+}
+
+.obligation-swiper-box {
+  height: 150rpx;
+}
+
+.my-order .obligation-swiper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.my-order .obligation {
+  display: flex;
+}
+
+.my-order .obligation-swiper .img {
+  width: 80rpx;
+  height: 80rpx;
+  background-color: gray;
+  margin-right: 30rpx;
+}
+
+.my-order .obligation-swiper .tit {
+  font-size: 26rpx;
+  font-weight: bold;
+}
+
+.my-order .obligation-swiper .time {
+  font-size: 24rpx;
+  font-weight: bold;
+}
+
+.my-order .obligation-swiper .time text {
+  color: #E6002D;
+}
+
+.my-order .obligation-swiper .to-pay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100rpx;
+  height: 46rpx;
+  background: #E6002D;
+  box-shadow: 0 0 5rpx 0 rgba(230, 0, 45, 0.35);
+  border-radius: 23rpx;
+  font-size: 18rpx;
+  color: #FFFFFF;
+  margin-top: -60rpx;
+}
+
+
+
+.login-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 34rpx;
+  position: relative;
+  flex: 1;
+  min-height: 140rpx;
+}
+
+.login-box .title {
+  font-weight: bold;
+  font-size: 42rpx;
+}
+
+.login-box .content {
+  font-size: 24rpx;
+}
+
+/* 核销码 */
+.verify-code {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-right: 50rpx;
+}
+
+.verify-code .verify-text {
+  font-size: 28rpx;
+  color: #FFFFFF;
+  padding-bottom: 4rpx;
+}
+
+.verify-code .code {
+  width: 101rpx;
+  height: 101rpx;
+  background: url("https://img.51jiabo.com/e040d338-8420-49a5-b187-553e52363c37.png") no-repeat;
+  background-size: 100% 100%;
+}
+
+.verify-code .small-code {
+  width: 70px;
+  height: 70px;
+  border: 1px solid #fff;
+}
+
+.canvas-code {
+  width: 51px;
+  height: 51px;
+  position: absolute;
+  top: -100000px;
+}
+
+/* 头部权益 */
+.key-box {
+  width: 100%;
+  background-color: #fff;
+}
+
+.key-point {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 700rpx;
+  height: 200rpx;
+  box-shadow: 0 3rpx 16rpx 0 rgba(215, 215, 215, 0.56);
+  border-radius: 20rpx;
+  background-color: #fff;
+  position: relative;
+  z-index: 1;
+  margin-left: 25rpx;
+  margin-top: -106rpx;
+  padding: 0 80rpx;
+}
+
+.key-point .item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.key-point .item .ico {
+  width: 50rpx;
+  height: 50rpx;
+  background-image: url("https://img.51jiabo.com/687c0adc-3dfa-4868-9e63-2874547198e4.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.key-point .item:nth-child(2) .ico {
+  background-image: url("https://img.51jiabo.com/89199a6a-1e54-441d-b339-941092da6dd8.png");
+}
+
+.key-point .item:nth-child(3) .ico {
+  background-image: url("https://img.51jiabo.com/23ced3e2-66ce-45df-a26d-4b422f527821.png");
+}
+
+.key-point .item:nth-child(4) .ico {
+  background-image: url("https://img.51jiabo.com/23ced3e2-66ce-45df-a26d-4b422f527821.png");
+}
+
+.key-point .item .text {
+  font-size: 26rpx;
+  color: #222;
+  margin-top: 22rpx;
+}
+
+/* 权益列表 */
+.equity-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  width: 690rpx;
+  height: 312rpx;
+  background: #FFFFFF;
+  box-shadow: 0 10rpx 20rpx 0 rgba(157, 157, 157, 0.09);
+  border-radius: 10rpx;
+  position: relative;
+  padding: 30rpx 20rpx 0;
+  margin: 30rpx;
+}
+
+.equity-list .equity-item {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.equity-list .equity-item .mp-icon{
+  background-image: url(https://img.51jiabo.com/40733581-f700-4921-a405-9be8941a7dd9.png);
+}
+.equity-list .equity-item .dd-icon{
+  background-image: url(https://img.51jiabo.com/9c71c5e0-6258-4ee7-9ac9-38a982458dbf.png);
+}
+.equity-list .equity-item .ld-icon{
+  background-image: url(https://img.51jiabo.com/3011d13c-9aa2-43ff-9d3b-2dbe6cadf657.png);
+}
+.equity-list .equity-item .sh-icon{
+  background-image: url(https://img.51jiabo.com/2baa9451-1e2b-49fc-b225-be57547d35cf.png);
+}
+.equity-list .equity-item .sc-icon{
+  background-image: url(https://img.51jiabo.com/6af709d7-dc41-4034-b416-824d4c85bccc.png);
+}
+.equity-list .equity-item .lj-icon{
+  background-image: url(https://img.51jiabo.com/d4b5abdc-b539-4487-8cf3-7ba4942c7bae.png);
+}
+.equity-list .equity-item .jlj-icon{
+  background-image: url(https://img.51jiabo.com/4656dcbb-62e7-4de4-8ca5-5d280f96a6cf.png);
+}
+.equity-list .equity-item .ygz-icon{
+  background-image: url(https://img.51jiabo.com/84c32941-6e9c-4be0-8644-8d988c416758.png);
+}
+.equity-list .equity-item .zb-icon{
+  background-image: url(https://img.51jiabo.com/c5a6478b-3a8f-44da-a074-affe7452e83a.gif);
+}
+.equity-list .equity-item view:first-child {
+  width: 60rpx;
+  height: 60rpx;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.equity-list .equity-text {
+  font-size: 27rpx;
+  margin-top: 12rpx;
+}
+
+.user-content {
+  width: 100%;
+  position: relative;
+  background: #fff;
+}
+
+.equ-box {
+  height: 120rpx;
+  display: flex;
+  align-items: center;
+  margin: 0 30rpx;
+  font-size: 30rpx;
+  justify-content: space-between;
+  border-bottom: 1px solid #e1e1e1;
+}
+
+.svip-box .icon {
+  width: 41rpx;
+  height: 41rpx;
+}
+
+.left {
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+
+.more {
+  display: flex;
+  width: 12rpx;
+  height: 22rpx;
+}
+
+.icon {
+  display: block;
+  width: 38rpx;
+  height: 38rpx;
+  margin-right: 17rpx;
+}
+
+.my-sub {
+  border-bottom: none;
+}
+
+.log-out {
+  background-color: #fff;
+  border-top: 25rpx solid #f6f6f6;
+  box-sizing: border-box;
+  height: 125rpx;
+  text-align: center;
+  line-height: 100rpx;
+  font-size: 30rpx;
+  color: #777;
+}
+
+.svip-tips-popup {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, .7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.svip-tips-popup .svip-tips-box {
+  width: 620rpx;
+  background: #fff;
+  border-radius: 8rpx;
+}
+
+.svip-tips-popup .title {
+  font-size: 36rpx;
+  text-align: center;
+  padding: 73rpx 40rpx 0;
+  font-weight: 400;
+}
+
+.svip-tips-popup .btn-box {
+  display: flex;
+  justify-content: space-between;
+  padding: 75rpx 73rpx 50rpx;
+}
+
+.svip-tips-popup .btn-box view {
+  width: 190rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  text-align: center;
+  border-radius: 3rpx;
+  border: 1px solid rgba(170, 170, 170, 1);
+  font-size: 36rpx;
+}
+
+.svip-tips-popup .btn-box .right {
+  width: 190rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  text-align: center;
+  border-radius: 3rpx;
+  background: #E6002D;
+  border: 1px solid #E6002D;
+  font-size: 36rpx;
+  color: #fff;
+}
+
+.adv {
+  overflow: hidden;
+  padding: 0 30rpx;
+}
+
+.operate-site-top {
+  height: 130rpx;
+}
+
+.operate-site-bottom {
+  height: 180rpx;
+}
+
+/* 核销码弹层 */
+.verify-code-popup {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+.verify-code-popup .layer {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .8);
+  position: absolute;
+  top: 0;
+}
+
+.verify-code-popup .verify-box {
+  width: 680rpx;
+  background-color: #fff;
+  border-radius: 10rpx;
+  position: absolute;
+  z-index: 1;
+}
+
+.verify-code-popup .title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 140rpx;
+  background: #E6002D;
+  position: relative;
+  font-size: 42rpx;
+  font-weight: bold;
+  color: #FFFFFF;
+  border-radius: 10rpx 10rpx 0 0;
+}
+
+.verify-code-popup .close {
+  width: 35rpx;
+  height: 35rpx;
+  background: url("https://img.51jiabo.com/ceb7dde9-3194-4090-bdb5-d071ac58f3b4.png") no-repeat;
+  background-size: 100% 100%;
+  position: absolute;
+  top: 20rpx;
+  right: 20rpx;
+}
+
+.verify-code-popup .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50rpx 0;
+}
+
+.verify-code-popup .canvas {
+  width: 250px;
+  height: 250px;
+  margin-bottom: 30rpx;
+}
+
+.verify-code-popup .detail {
+  font-size: 38rpx;
+  color: #E6002D;
+  margin-top: -10rpx;
+}
+
+.login-box .xmb-entry {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  height: 50rpx;
+  background-color: #D20029;
+  font-size: 24rpx;
+  color: #fff;
+  padding: 14rpx 10rpx;
+  border-radius: 50rpx;
+}
+
+.login-box .xmb-icon {
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 8rpx;
+}

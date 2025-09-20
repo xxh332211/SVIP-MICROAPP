@@ -1,0 +1,125 @@
+/* pages-sh/pages/shDetail/shDetail.wxss */
+.top-status {
+  background: #fff;
+  padding-top: 16rpx;
+  padding-bottom: 30rpx;
+}
+
+.status-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #E6002D;
+}
+
+.status-box .icon {
+  width: 32rpx;
+  height: 32rpx;
+  background-image: url(https://img.51jiabo.com/b4d0896d-cc89-45ab-a8fd-57de26ae564b.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  margin-right: 12rpx;
+}
+
+.status-box .icon.receive {
+  background-image: url(https://img.51jiabo.com/971d3681-0a98-4d9b-a538-1633edbc9440.png);
+}
+
+.status-box .icon.repeal {
+  background-image: url(https://img.51jiabo.com/35eed410-ce02-4435-adad-4e2dc5dc7c0d.png);
+}
+
+.status-text {
+  font-size: 30rpx;
+  color: #E6002D;
+  margin-top: 4rpx;
+  padding: 0 32rpx;
+}
+
+.status-text.repeal {
+  color: #707070;
+}
+
+.reply {
+  width: 689rpx;
+  background: #FFE6C1;
+  border-radius: 10rpx;
+  position: relative;
+  line-height: 37rpx;
+  word-break: break-all;
+  padding: 20rpx;
+  margin-left: 30rpx;
+  margin-top: 13rpx;
+}
+
+.reply::before {
+  content: "";
+  display: block;
+  border-width: 0 30rpx 15rpx 30rpx;
+  border-style: solid;
+  border-color: transparent transparent #FFE6C1;
+  position: absolute;
+  top: -15rpx;
+  right: 70rpx;
+}
+
+.btn-box {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 34rpx;
+  padding-top: 4rpx;
+}
+
+.btn-box .btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 256rpx;
+  height: 78rpx;
+  background: #E6002D;
+  border-radius: 10rpx;
+  font-size: 36rpx;
+  color: #FFFFFF;
+  margin-left: 14rpx;
+}
+
+.btn-box .btn.xg {
+  color: #656565;
+  border: 1px dotted #B5B5B5;
+  background: none;
+}
+
+.ul {
+  width: 733rpx;
+  background: #fff;
+  border-radius: 30rpx;
+  margin: 19rpx 0 100rpx 8rpx;
+  padding: 12rpx 0 90rpx;
+}
+
+.li {
+  display: flex;
+  font-size: 36rpx;
+  color: #161616;
+  word-break: break-all;
+  margin-top: 26rpx;
+}
+
+.img {
+  width: 137rpx;
+  height: 137rpx;
+}
+
+.name {
+  flex-shrink: 0;
+  width: 215rpx;
+  color: #434343;
+  padding-left: 22rpx;
+}
+
+.name text {
+  color: #E6002D;
+  margin-left: 4rpx;
+}

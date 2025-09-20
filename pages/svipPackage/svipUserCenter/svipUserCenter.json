@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "navigation": "../../../components/navigation/navigation",
+    "upgradeSvip": "../../../components/upgradeSvip/upgradeSvip",
+    "more-choose-one":"../../../components/moreChooseOne/moreChooseOne",
+    "xmb-popup": "../../../components/xmbPopup/xmbPopup"
+  },
+  "navigationBarTitleText": "会员中心",
+  "enablePullDownRefresh":true,
+  "backgroundTextStyle":"dark"
+}

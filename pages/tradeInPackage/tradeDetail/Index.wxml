@@ -1,0 +1,120 @@
+<wxs module="md">
+	var timeFormat = function(time) {
+		if (time) {
+			var d = time.substring(5, 7) + '.' + time.substring(8, 10);
+			return d
+		} else {
+			return time
+		}
+	}
+
+	module.exports = {
+		timeFormat: timeFormat
+	}
+</wxs>
+
+<online-serve/>
+<view class="container">
+  <view class="tradeRule" bindtap="tradeRule">活动规则</view>
+  <view class="header">
+    <image src="https://img.51jiabo.com/acdb428d-a272-4756-a76c-ea51cd801e9b.png" class="topBtn"></image>
+    <view class="mobile">手机号：{{mobile}}</view>
+    <view class="getCode">
+      <text>提货码</text>
+      <text style="background:#C0C0C0" wx:if='{{goods_order_info.delivered == 1 || goods_refund_info.status == 1}}'>查看券码</text>
+      <text wx:else bindtap="getCode" >查看券码</text>
+    </view>
+    <view class="addresstext"><view style="display: inline-block;width: 100rpx;">配送</view><view style="width:580rpx">{{redeem_info.distribution_explain}}</view></view>
+    <view class="borderImg">
+      <image class="borderImg-box" mode="aspectFit"  src="{{goods_info.goods_image}}"></image>
+      <!-- 领取的戳 -->
+      <image wx:if='{{goods_order_info.delivered == 1}}' src="https://img.51jiabo.com/4dc68747-a582-477b-8995-0e32ca6ddd98.png" class="pokeImg"></image>
+      <!-- 退款的戳 -->
+      <image wx:if='{{goods_refund_info.status == 1}}' src="https://img.51jiabo.com/17f1a877-ae48-414c-95b4-6eefe3a6707c.png" class="pokeImg"></image>
+    </view>
+    <view class="shopName">
+      <view class="shopText">{{goods_info.goods_name}}</view>
+    </view>
+  </view>
+<!-- 换购订单 -->
+  <view class="ordeList">
+    <view class="header">
+      <text>换购订单</text>
+      <text>根据换购条件自动选择</text>
+    </view>
+    <view class="order" wx:for='{{hxjb_order_info}}' wx:key="*this">
+      <view class="left">
+        <image src="{{item.logo_url}}" mode="aspectFit"></image>
+      </view>
+      <view class="right">
+        <view>
+          <text class="textLeft">订单号</text>
+          <text class="textRight">{{item.order_num}}</text>
+        </view>
+        <view>
+          <text class="textLeft">品牌名</text>
+          <text class="textRight">{{item.name}}</text>
+        </view>
+        <view>
+          <text class="textLeft">实付</text>
+          <text class="textRight">￥{{item.paidMoney}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 订单信息 -->
+  <view class="message">
+    <view class="header">
+      <text>订单信息</text>
+    </view>
+    <view class="xinxi">
+      <view class="row">
+        <view class="message_left">下单用户</view>
+        <view class="message_right">{{mobile}}</view>
+      </view>
+      <view class="row">
+        <view class="message_left">订单编号</view>
+        <view class="message_right">{{goods_order_info.order_sn}}</view>
+      </view>
+      <view class="row">
+        <view class="message_left">下单时间</view>
+        <view class="message_right">{{goods_order_info.create_date}}</view>
+      </view>
+      <view class="row">
+        <view class="message_left">支付方式</view>
+        <view class="message_right">{{goods_order_info.pay_type == 1 ? '支付宝' :goods_order_info.pay_type == 5 ? '线下' : '微信'}}</view>
+      </view>
+      <view class="row">
+        <view class="message_left">实付金额</view>
+        <view class="message_right">￥{{goods_order_info.amount}}</view>
+      </view>
+    </view>
+  </view>
+  <!-- 退款 -->
+  <view class="refund" wx:if="{{!goods_refund_info.status && goods_order_info.delivered == 0 &&goods_order_info.pay_type != 5}}" bindtap="getRefund">退款</view>
+  <view class="refundProcess" wx:if="{{(goods_refund_info.status == 0 || goods_refund_info.status == -1)  && goods_order_info.delivered == 0 && goods_order_info.pay_type != 5}}">退款中</view>
+</view>
+
+
+<!-- 券码弹层 -->
+<view class="code-popup" hidden="{{!showCode}}" bindtap="closeCode" catchtouchmove='stop'>
+  <view>
+    <view class="code-box">
+      <view class="top">
+        <view class="tit">商家扫描券码领取商品</view>
+        <view class="period" >有效期：{{md.timeFormat(redeem_info.begin_time)}} - {{md.timeFormat(redeem_info.stop_time)}}</view>
+      </view>
+      <view class="bottom">
+        <view class="canvas-box">
+          <canvas class='canvas' disable-scroll="true" canvas-id='qrcode'></canvas>
+        </view>
+        <view class="cou-code">{{goods_order_info.verify_code}}</view>
+        <view class="code-status past" wx:if="{{!isActivetyTime}}">已过期</view>
+        <view class="code-status used" wx:elif="{{goods_order_info.delivered == 1 && isActivetyTime}}">已核销</view>
+        <view class="code-status" wx:elif="{{goods_order_info.delivered == 0 && isActivetyTime}}">未核销</view>
+
+      </view>
+    </view>
+    <image class="fork" src="https://img.51jiabo.com/29f688a5-f2cb-4f61-bc29-13327f3796f2.png"></image>
+  </view>
+</view>

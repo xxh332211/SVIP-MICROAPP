@@ -1,0 +1,31 @@
+<!--components/hotGoodsItem/hotGoodsItem.wxml-->
+<view class="goods-box">
+
+  <!-- 单个 -->
+  <navigator wx:for="{{hotGoods}}" wx:key="index" url='/pages/hotGoodsOrder/detail/detail?detail_id={{item.detail_id}}' class="item-box" hover-class="none">
+    <view class="item-wrap" bindtap="umengTj">
+      <image class='goods-img' src="{{item.image_url}}"></image>
+      <view class="item-bot">
+        <view class="desc">{{item.goods_name}}</view>
+        <view class="market-price">市场价：{{item.market_price}}元</view>
+        <view class="special-price">
+          <text class="text">家博抢购价：</text>
+          <view class='number'>{{item.special_price}} </view>
+          <view class='unit'>{{item.price_unit}}</view>
+        </view>
+        <view wx:if="{{item.is_get == 0 && item.goods_stock > 0}}" class="buy-btn" data-item="{{item}}" catchtap='reverseBtn'>抢先预约</view>
+
+        <view class="buy-btn gray" wx:else catchtap='false'>{{item.is_get != 0?"已预约":"已约满"}}</view>
+
+        <view class='remain'>剩余{{item.goods_stock}}件</view>
+      </view>
+    </view>
+  </navigator>
+
+</view>
+
+<!-- 预约成功弹窗 -->
+<hot-goods-popup wx:if="{{reserveSuccess}}" shareData="{{shareData}}" hotGoodsItem="{{hotGoodsItem}}" bindcloseReserve="closeReserve" />
+
+<!-- 熊猫币顶部提示 -->
+<xmb-popup showXmbTips="{{showXmbTips}}" xmbPopupData="{{xmbPopupData}}"></xmb-popup>

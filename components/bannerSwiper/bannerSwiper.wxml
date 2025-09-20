@@ -1,0 +1,15 @@
+<!--components/bannerSwiper/bannerSwiper.wxml-->
+
+
+<!-- 轮播 -->
+<swiper class="swiper" wx:if="{{banner.length > 1}}" indicator-dots="true" indicator-color="#f3f3f3" indicator-active-color="#e6002d" autoplay="true" interval="3000">
+  <block wx:for="{{banner}}" wx:key="index">
+    <swiper-item data-item="{{item}}" bindtap="swiperUrl">
+      <image src="{{item.wap_image_url}}" class="slide-image" mode="scaleToFill" />
+    </swiper-item>
+  </block>
+</swiper>
+
+<view class="single-swiper" wx:else data-item="{{banner[0]}}" bindtap="swiperUrl">
+  <image src="{{banner[0].wap_image_url}}" class="slide-image" mode="widthFix" />
+</view>

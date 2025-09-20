@@ -1,0 +1,69 @@
+/* pages-abs/pages/opinion/opinion.wxss */
+page {
+  background: #fff;
+}
+
+.banner {
+  display: block;
+  width: 729rpx;
+  height: 281rpx;
+  margin-left: 10rpx;
+}
+
+.content-box {
+  width: 730rpx;
+  height: 507rpx;
+  background: #F29B76;
+  border: 3rpx solid #000000;
+  border-radius: 10rpx;
+  margin-left: 10rpx;
+  margin-top: -14rpx;
+}
+
+.content {
+  width: 730rpx;
+  height: 486rpx;
+  background: #FFFFFF;
+  border: 3rpx solid #000000;
+  border-radius: 10rpx;
+  margin-left: -3rpx;
+  margin-top: -3rpx;
+}
+
+.title {
+  width: 710rpx;
+  height: 65rpx;
+  border-bottom: 1px dotted #000000;
+}
+
+.title .title-img {
+  width: 487rpx;
+  height: 27rpx;
+  margin: 25rpx 0 0 116rpx;
+}
+
+.text {
+  font-size: 30rpx;
+  padding: 30rpx 77rpx;
+}
+
+.btn-box {
+  width: 400rpx;
+  height: 108rpx;
+  background: #000000;
+  border-radius: 10rpx;
+  margin: 46rpx 0 0 175rpx;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 400rpx;
+  height: 91rpx;
+  background: #F29B76;
+  border: 3rpx solid #2F3030;
+  border-radius: 10rpx;
+  font-size: 46rpx;
+  color: #FFFFFF;
+}

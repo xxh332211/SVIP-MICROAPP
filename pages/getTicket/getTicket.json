@@ -1,0 +1,19 @@
+{
+  "component": true,
+  "usingComponents": {
+    "privacy-popup": "../../components/privacyPopup/privacyPopup",
+    "banner-swiper":"../../components/bannerSwiper/bannerSwiper",
+    "vendor-item":"../../components/vendorItem/vendorItem",
+    "hot-goods-item":"../../components/hotGoodsItem/hotGoodsItem",
+    "authorize":"../../components/authorize/authorize",
+    "coupon-btn":"../../components/couponBtn/couponBtn",
+    "coupon-popup":"../../components/couponPopup/couponPopup",
+    "hot-goods-group":"../../components/hotGoodsGroup/hotGoodsGroup",
+    "cell": "plugin://contactPlugin/cell",
+    "live-adv":"../../components/liveAdv/liveAdv",
+    "xmb-popup":"../../components/xmbPopup/xmbPopup",
+    "lottery-loop": "../../components/xmbCenterComponent/lotteryLoop/lotteryLoop"
+  },
+  "navigationBarBackgroundColor": "#E6002D",
+  "navigationBarTextStyle": "white"
+}

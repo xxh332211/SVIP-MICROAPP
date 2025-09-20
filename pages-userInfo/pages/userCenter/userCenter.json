@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "个人信息",
+  "usingComponents": {
+    "address-modal": "/components/goodsAreaPicker/goodsAreaPicker",
+    "sex-modal": "/components/goodsSexPicker/goodsSexPicker",
+    "date-modal": "/components/goodsDatePicker/goodsDatePicker",
+    "update-name-modal": "/components/goodsUpdateUserName/goodsUpdateUserName"
+  }
+}

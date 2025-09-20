@@ -1,0 +1,5 @@
+<!--pages-xmb/pages//tradeIn/Rule/Rule.wxml-->
+<online-serve />
+<view class="rule-box">
+  <text>{{tradeRuld}}</text>
+</view>

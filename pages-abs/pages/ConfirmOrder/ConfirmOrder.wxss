@@ -1,0 +1,356 @@
+/* pages-abs/pages/ConfirmOrder/ConfirmOrder.wxss */
+@import '../../subcontracting.wxss';
+
+button {
+    background-color: transparent;
+    padding-left: 0;
+    padding-right: 0;
+    line-height: inherit;
+    margin: 0;
+}
+
+.delivery-address {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background-color: #fff;
+    margin: 30rpx 0;
+    padding: 30rpx;
+}
+
+.delivery-address .left {
+    display: flex;
+    align-items: center;
+}
+
+.delivery-address .address-ico {
+    width: 22rpx;
+    height: 28rpx;
+    background: url(https://img.51jiabo.com/9d00a55a-9e46-4d67-8957-dadfd4ae566a.png) no-repeat;
+    background-size: 100% 100%;
+    margin-right: 26rpx;
+}
+
+.delivery-address .address-info {
+    width: 550rpx;
+    padding: 13rpx 0;
+}
+
+.delivery-address .address-user {
+    color: #222222;
+    font-size: 36rpx;
+    font-weight: bold;
+}
+
+.delivery-address .address-text {
+    color: #666666;
+    font-size: 28rpx;
+    margin-top: 13rpx;
+}
+
+.delivery-address .not-address {
+    color: #E6002D;
+    font-size: 36rpx;
+}
+
+.delivery-address .address-arrow {
+    width: 13rpx;
+    height: 29rpx;
+    background: url(https://img.51jiabo.com/db2754cc-f39a-47a1-ad42-ab877f9178a8.png) no-repeat;
+    background-size: 100% 100%;
+}
+
+.bodys {
+    padding: 30rpx;
+    padding-bottom: 0;
+    background: white;
+}
+
+.header {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin-bottom: 32rpx;
+}
+
+.face_img {
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 50%;
+    /* background: chartreuse; */
+}
+
+.nickname {
+    margin-left: 16rpx;
+    font-size: 34rpx;
+    font-family: PingFang;
+    font-weight: bold;
+    color: #464646;
+}
+
+.content {
+    display: flex;
+    justify-content: left;
+    padding-bottom: 60rpx;
+    border-bottom: 1rpx solid #EEEEEE;
+}
+
+.commodity_img {
+    flex-shrink: 0;
+    width: 200rpx;
+    height: 200rpx;
+    margin-right: 18rpx;
+}
+
+.commodity_msg {
+    width: 472rpx;
+    display: flex;
+    flex-direction: column;
+}
+
+.price {
+    font-size: 34rpx;
+    font-weight: bold;
+    color: #E6002D;
+    margin-top: 14rpx;
+}
+
+.unit {
+    font-size: 28rpx;
+    font-weight: normal;
+}
+
+.commodity_name {
+    font-size: 30rpx;
+    font-weight: bold;
+    width: 472rpx;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    line-height: 46rpx;
+    margin-top: -10rpx;
+}
+
+.price_icon {
+    font-size: 28rpx;
+    font-weight: normal;
+}
+
+.set {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 14rpx;
+}
+
+.price_label {
+    text-align: center;
+    line-height: 50rpx;
+    font-size: 24rpx;
+    color: #FFFFFF;
+    width: 185rpx;
+    height: 50rpx;
+    background: #E6002D;
+    border-radius: 5rpx;
+}
+
+.buy {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.rule {
+    margin-right: 10rpx;
+    font-size: 21rpx;
+    font-weight: 500;
+    color: #E6002D;
+}
+
+.buy_btns {
+    display: flex;
+    align-items: center;
+    width: 190rpx;
+    height: 60rpx;
+    border: 1rpx solid #BFBFBF;
+}
+
+.buy_btns>text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64rpx;
+    height: 100%;
+    color: #8A8787;
+}
+
+._ {
+    border-right: 1px solid #BFBFBF;
+}
+
+.buy_btns>.buy_number {
+    color: #202020;
+}
+
+.buy_btns .__ {
+    font-size: 30rpx;
+    color: #202020;
+    border-left: 1px solid #BFBFBF;
+}
+
+.message {
+    margin-top: 44rpx;
+    border-bottom: 1rpx solid #EEEEEE;
+    display: flex;
+    justify-content: left;
+    padding-bottom: 30rpx;
+}
+
+.left_msg {
+    flex-shrink: 0;
+    margin-right: 34rpx;
+    font-size: 28rpx;
+    color: #222222;
+}
+
+.rigth {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    font-size: 28rpx;
+    font-family: PingFang;
+    font-weight: 500;
+    color: #222222;
+    margin-bottom: 11rpx;
+}
+
+.msg1,
+.msg2,
+.msg3 {
+    font-size: 26rpx;
+    font-family: PingFang;
+    font-weight: 500;
+    color: #222222;
+}
+
+.Remarks {
+    height: 86rpx;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.Remarks_title {
+    font-size: 28rpx;
+    margin-right: 34rpx;
+}
+
+.Remarks input {
+    font-size: 26rpx;
+    width: 70%;
+    height: 100%;
+    border: none;
+}
+
+.submit {
+    background: white;
+    padding: 30rpx;
+    margin-top: 30rpx;
+    margin-bottom: 150rpx;
+}
+
+.submit_footer,
+.submit_title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.submit_title_msg {
+    font-size: 28rpx;
+    font-family: PingFang;
+    font-weight: 500;
+    color: #222222;
+}
+
+.submit_title_price {
+    font-size: 28rpx;
+    font-family: PingFang;
+    font-weight: 500;
+    color: #222222;
+}
+
+.kf-box {
+    padding: 30rpx 0 34rpx;
+}
+
+.CS {
+    width: 690rpx;
+    height: 80rpx;
+    background: #FFA751;
+    font-size: 30rpx;
+    color: #FFFFFF;
+    text-align: center;
+    line-height: 80rpx;
+    border-radius: 40rpx;
+}
+
+.the_way {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.WX {
+    width: 31rpx;
+    height: 31rpx;
+    margin-right: 20rpx;
+}
+
+.wx_text {
+    font-size: 30rpx;
+    font-family: PingFang;
+    font-weight: 500;
+    color: #222222;
+}
+
+.btn-box {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: fixed;
+    bottom: 0;
+    background-color: #fff;
+    padding-right: 30rpx;
+    padding-top: 15rpx;
+    padding-bottom: calc(15rpx + env(safe-area-inset-bottom));
+}
+
+.total-price {
+    font-size: 32rpx;
+    font-weight: bold;
+    color: #E6002D;
+    margin-right: 32rpx;
+}
+
+.footer_btn {
+    width: 400rpx;
+    height: 100rpx;
+    background: #E6002D;
+    box-shadow: 0 2rpx 7rpx 0 rgba(230, 0, 45, 0.35);
+    border-radius: 50rpx;
+    font-size: 36rpx;
+    font-family: PingFang;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-align: center;
+    line-height: 100rpx;
+}
+
+.btn_2 {
+    margin: 0 auto;
+}

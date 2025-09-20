@@ -1,0 +1,16 @@
+<modal bind:close="close">
+  <view class="share-opt-modal">
+    <view class="share-title">
+      <view style="font-size: 24rpx">分享</view>
+      <view bindtap="close">×</view>
+    </view>
+    <view class="share-opt-btns">
+      <button class="btn" open-type="share" plain="true">
+        分享微信好友
+      </button>
+      <button class="btn" bindtap="saveImage" plain="true">
+        生成分享海报
+      </button>
+    </view>
+  </view>
+</modal>

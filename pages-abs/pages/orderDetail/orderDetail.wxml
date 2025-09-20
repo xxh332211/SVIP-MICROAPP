@@ -1,0 +1,241 @@
+<!--pages-abs/pages/orderDetail/orderDetail.wxml-->
+<view class="wrap">
+  <!-- 线上订单 -->
+  <block wx:if="{{type == 3}}">
+    <view class="status-box">
+      <!-- 待付款 -->
+      <block wx:if="{{order.order_status_text == '待付款'}}">
+        <view class="status-text">
+          <view class="ico"></view>待付款
+        </view>
+        <view class="count-down"><text>{{minute}}</text>分钟<text>{{second}}</text>秒后将自动关闭订单</view>
+      </block>
+      <!-- 待提货 -->
+      <view class="status-text" wx:if="{{order.order_status_text == '待提货'}}">
+        <view class="ico dfh"></view>待提货
+      </view>
+      <!-- 已完成 -->
+      <block>
+        <view class="status-text" wx:if="{{order.order_status_text == '已完成'}}">
+          <view class="ico ywc"></view>已完成
+        </view>
+        <view class="has-refund" wx:if="{{order.completed_title}}">有退款</view>
+      </block>
+      <!-- 已取消 -->
+      <view class="status-text" wx:if="{{order.order_status_text == '已取消'}}">
+        <view class="ico yqx"></view>已取消
+      </view>
+      <!-- 待发货 -->
+      <view class="status-text" wx:if="{{order.order_status_text == '待发货'}}">
+        <view class="ico dfh"></view>待发货
+      </view>
+    </view>
+    <view class="order-info">
+      <view class="second-title">订单编号 {{order.order_num}}</view>
+      <view class="goods-info">
+        <image class="goods-img" src="{{order.image_url}}"></image>
+        <view class="good-right">
+          <view class="goods-name">{{order.prerogative_name}}</view>
+          <view class="unit-price">
+            <!-- is_openprice:是否开放自定义价格：-1：否1：是 -->
+            <!-- 展届未结束 && 配置自定义价格，显示自定义价格，否则显示活动价{{order.price_unit}} -->
+            <view class="unit">单价：￥{{(!expoEnd && order.is_openprice ==
+              1)?order.define_price:order.activity_price?order.activity_price:order.exclusive_price}}
+            </view>
+            <view class="count">x{{order.buy_count}}</view>
+          </view>
+          <view class="earnests" wx:if='{{order.pay_way == 1}}'>订金：￥{{order.earnest}}</view>
+        </view>
+      </view>
+      <view class="total-price">
+        <view wx:if='{{order.pay_way == 1}}'>商品订金总额：</view>
+        <view wx:else>商品总额：</view>
+        <view>￥{{order.buy_amount}}</view>
+      </view>
+
+      <view class="paid">
+        <block wx:if="{{order.order_status_text == '待付款'}}">应付总额：</block>
+        <block wx:else>实付总额：</block>
+        <text>￥{{order.buy_amount}}</text>
+      </view>
+    </view>
+    <view class="pick-up">
+      <view class="second-title">提货信息</view>
+      <!-- delivery_way 送货方式 0=未选择 1=展会自提 2=到店自提 3=线上发货 -->
+      <text class="expo-pickup" wx:if="{{order.delivery_way == 1}}">该商品须到展会现场自提\n请于{{order.expo_begin_time}}-{{order.expo_end_time}}到{{order.expo_venue_name}}{{order.booth}}\n向商家出示小程序个人中心核销码取货</text>
+      <view class="store-pickup" wx:if="{{order.delivery_way == 2}}">
+        <view class="store-item" wx:for="{{storeList}}" wx:key="index">
+          <view>{{item.stores_name}}</view>
+          <view>{{item.stores_address}}</view>
+        </view>
+        <view class="more-store" wx:if="{{order.supplier_stores_list.length > 1}}" bindtap="moreStore">{{showMore?'收起':'查看全部>>'}}</view>
+      </view>
+      <view class="express" wx:if="{{order.order_status_text != '已完成' && order.delivery_way == 3}}">
+        <view class="express-tit">收货地址</view>
+        <view class="address-detail">{{order.province_name}}{{order.city_name}}{{order.district_name}}{{order.address}}
+        </view>
+      </view>
+      <view class="express-box" wx:if="{{order.order_status_text == '已完成' && order.delivery_way == 3}}">
+        <view class="express-text" wx:if="{{!order.logistics_sn}}">快递信息暂无更新</view>
+        <view class="has-express" wx:else>
+          <view class="express-left">
+            <view class="text">快递公司：{{order.logistics_name}}</view>
+            <view class="text">快递单号：{{order.logistics_sn}}</view>
+            <view class="gray-text">一键复制单号，查询快递信息</view>
+          </view>
+          <view class="copy" data-order="{{order.logistics_sn}}" bindtap='copy'>复制</view>
+        </view>
+      </view>
+    </view>
+  </block>
+  <!-- 展会订单 -->
+  <block wx:else>
+    <view class="expo-box">
+      <!-- 状态编码0=交易关闭，1=未付款，2=已付定金，6=全款已付，10=有收货，14=交易成功，16=超时订单，17=商家已发货，其他值=未知状态 -->
+      <!-- 全款已付 -->
+      <view class="expo-text qk" wx:if="{{order.order_status == 6}}">
+        <view class="ico"></view>全款已付
+      </view>
+      <!-- 已付定金 -->
+      <view class="expo-text dj" wx:if="{{order.order_status == 2}}">
+        <view class="ico"></view>已付定金
+      </view>
+      <!-- 待付款 -->
+      <view class="expo-text dfk" wx:if="{{order.order_status == 1}}">
+        <view class="ico"></view>待付款
+      </view>
+      <!-- 交易关闭 -->
+      <view class="expo-text qx" wx:if="{{order.order_status == 0}}">
+        <view class="ico"></view>交易关闭
+      </view>
+    </view>
+    <view class="order-info">
+      <view class="goods-info" wx:for="{{order.goods}}" wx:key="index">
+        <image class="goods-img" src="{{item.image_url}}"></image>
+        <view class="good-right">
+          <view class="goods-name">{{item.goods_name}}</view>
+          <view class="unit-price" wx:if="{{item.special_price && item.special_price!='0' && item.special_price!='0.00'}}">
+            <view class="unit">单价：￥{{item.special_price}}
+            </view>
+            <view class="count">x{{item.goods_quantity}}</view>
+          </view>
+          <view class="earnests" wx:if='{{order.pay_type == 1 && order.paid_money && index == (order.goods.length - 1)}}'>定金：￥{{order.paid_money}}</view>
+        </view>
+      </view>
+      <view class="paid">
+        <block wx:if="{{order.order_status == 1 || order.order_status == 0}}">应付金额：<text>￥{{order.full_pay_money}}</text></block>
+        <block wx:else>实付总额：<text>￥{{order.paid_money}}</text></block>
+      </view>
+    </view>
+  </block>
+  <!-- 线上、展会公用部分 -->
+  <view class="order-detail">
+    <view class="second-title">订单信息</view>
+    <view class="detail-item"><text>订单编号</text>{{order.order_num}}</view>
+    <view class="detail-item"><text>下单用户</text>{{order.user_mobile?order.user_mobile:order.buyer_tel}}</view>
+    <view class="detail-item"><text>下单时间</text>{{order.create_time}}</view>
+    <view class="detail-item" wx:if="{{order.remarks}}"><text>订单备注</text>{{order.remarks}}</view>
+    <view class="detail-item" wx:if="{{order.comment}}"><text>订单备注</text>{{order.comment}}</view>
+  </view>
+</view>
+
+<!-- 线上订单 -->
+<block wx:if="{{type == 3}}">
+  <!-- 确认支付按钮  待付款 -->
+  <view class="btns" wx:if="{{order.order_status_text == '待付款'}}">
+    <view data-name="pop6" bindtap="closePopup">取消</view>
+    <view class="btn2" bindtap="payBtn">付款 {{msg}}</view>
+  </view>
+  <view class="btns" wx:if="{{order.order_status_text == '待发货' || order.order_status_text == '待提货'}}">
+    <view bindtap="applyRefund">申请退款</view>
+  </view>
+  <view class="btns" wx:if="{{order.order_status_text == '已完成' || order.order_status_text == '已取消'}}">
+    <view data-name="pop3" bindtap="closePopup">删除</view>
+  </view>
+</block>
+<!-- 展会订单 -->
+<view class="btns" wx:if="{{type == 1 && order.order_status != 1}}">
+  <view data-name="pop3" bindtap="closePopup">删除</view>
+</view>
+
+<!-- 选择退款数量弹层 -->
+<view class="refund-popup" wx:if="{{refundPopup}}">
+  <view class="refund-box">
+    <view class="close" data-name="refundPopup" bindtap="closePopup"></view>
+    <view class="title">选择退款数量</view>
+    <view class="goods-info">
+      <image class="goods-img" src="{{order.image_url}}"></image>
+      <view class="good-right">
+        <view class="goods-name">{{order.prerogative_name}}</view>
+        <view class="unit-price">
+          <!-- is_openprice:是否开放自定义价格：-1：否1：是 -->
+          <!-- 展届未结束 && 配置自定义价格，显示自定义价格，否则显示活动价{{order.price_unit}} -->
+          <view class="unit">单价：￥{{(!expoEnd && order.is_openprice ==
+            1)?order.define_price:order.activity_price?order.activity_price:order.exclusive_price}}
+          </view>
+          <view class="count">x{{order.buy_count}}</view>
+        </view>
+        <view class="unit-price">实付：￥{{order.buy_amount}}</view>
+      </view>
+    </view>
+    <view class="refund-num">
+      选择退款数量：
+      <view class="mp-box">
+        <view class="mp" bindtap="minus">-</view><text>{{refundNum}}</text>
+        <view class="mp" bindtap="plus">+</view>
+      </view>
+    </view>
+    <view class="refund-btn" bindtap="refundTips">申请退款</view>
+  </view>
+</view>
+
+<!-- 您确定要退该商品吗？ -->
+<view class="pop_back" wx:if="{{pop1}}">
+  <view class="pop twopop">
+    <view class="problem">确定要退款吗？</view>
+    <view class="pop_btns flexB">
+      <view class="btn_1" bindtap="closePopup" data-name="pop1">取消</view>
+      <view class="btn_2" bindtap="confirmRefund">确定</view>
+    </view>
+  </view>
+</view>
+<!-- 商品退款成功，
+24小时退回您的支付账户 -->
+<view class="pop_back" wx:if="{{pop2}}">
+  <view class="pop twopop">
+    <view class="problem">{{pop2Text}}</view>
+    <view class="pop_btns flexC">
+      <view class="btn_2" bindtap="closePopup" data-name="pop2">知道了</view>
+    </view>
+  </view>
+</view>
+<!-- 确定删除该订单吗？ -->
+<view class="pop_back" wx:if="{{pop3}}">
+  <view class="pop twopop">
+    <view class="problem">确定删除该订单吗？</view>
+    <view class="pop_btns flexB">
+      <view class="btn_1" bindtap="closePopup" data-name="pop3">取消</view>
+      <view class="btn_2" bindtap="deleteOrder">确定</view>
+    </view>
+  </view>
+</view>
+<!-- 退款失败弹层 -->
+<view class="pop_back fail-pop" wx:if="{{pop4}}">
+  <view class="pop twopop">
+    <view class="fail-text">退款失败</view>
+    <view class="problem">{{pop4Text}}</view>
+    <view class="pop_btns flexC">
+      <view class="btn_2" bindtap="closePopup" data-name="pop4">知道了</view>
+    </view>
+  </view>
+</view>
+<!-- 确定取消该订单吗？ -->
+<view class="pop_back" wx:if="{{pop6}}">
+  <view class="pop twopop">
+    <view class="problem">确定取消该订单吗？</view>
+    <view class="pop_btns flexB">
+      <view class="btn_1" bindtap="closePopup" data-name="pop6">取消</view>
+      <view class="btn_2" bindtap="cancelOrder">确定</view>
+    </view>
+  </view>
+</view>

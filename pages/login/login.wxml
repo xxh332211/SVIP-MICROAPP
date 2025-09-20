@@ -1,0 +1,40 @@
+<!--pages/login/login.wxml-->
+<online-serve />
+<view class="page">
+	<view class="form">
+		<view class="phone flex-row">
+			<span class="icon verticalHorizontal">
+				<image src="/imgs/login-icon.png"></image>
+			</span>
+			<input id="phone" value="" type="number" maxlength="11" bindinput='inputMobile' placeholder="请输入手机号"></input>
+		</view>
+		<view class="code flex-row">
+			<view class="flex-row code-box">
+				<span class="icon verticalHorizontal">
+					<image src="/imgs/login-icon2.png"></image>
+				</span>
+				<input class="verify-code" id="code" value="" type="number" bindinput='inputCode' maxlength="6" placeholder="验证码"></input>
+			</view>
+			<view bindtap="getIdCode" class="get-code {{sending==true?'send-btn':''}}">
+				{{timeTic==0?'获取验证码':timeTic+'秒'}}
+			</view>
+		</view>
+		<view class="login-wrap">
+			<checkbox-group bindchange="checkboxChange">
+				<checkbox checked="{{isChecked}}" value="1"></checkbox>
+			</checkbox-group>
+			<view class="agreed">登录即视为同意
+				<span class="agreement" bindtap="showProtocol">《用户隐私协议》</span>
+			</view>
+		</view>
+		<button id="login" class="login-btn verticalHorizontal" open-type='getUserInfo' bindgetuserinfo="login">登录</button>
+	</view>
+</view>
+<!-- 协议显示弹窗 -->
+<view class="protocol-dialog" wx:if="{{showProtocol}}">
+	<view class="protocol-main">
+		<view class="protocol-title">用户隐私协议</view>
+		<image src='https://img.51jiabo.com/6a98a33c-d9b6-4cbe-b889-f6a0da1e2b04.png' mode="widthFix"></image>
+		<view class='closed verticalHorizontal' bindtap='closedProtocol'>我知道了</view>
+	</view>
+</view>

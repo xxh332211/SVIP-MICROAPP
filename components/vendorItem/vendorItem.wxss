@@ -1,0 +1,147 @@
+/* components/vendorItem/vendorItem.wxss */
+
+/* 商户活动 */
+
+.vendor-list {
+  margin-top: 20rpx;
+}
+
+.vendor-list .vendor-single {
+  border-bottom: 20rpx solid #f6f6f6;
+  padding: 28rpx 30rpx;
+}
+
+.vendor-list .vendor-single .info {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  padding: 27rpx 0;
+}
+
+.vendor-list .vendor-single .info .info-left {
+  display: flex;
+}
+
+.vendor-list .vendor-single .img-box {
+  width: 170rpx;
+  height: 94rpx;
+  border: 1px solid #dcdcdc;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.vendor-list .vendor-single .name {
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-left: 36rpx;
+}
+
+.vendor-list .vendor-single .order {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150rpx;
+  height: 60rpx;
+  background: #e6002d;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.vendor-list .vendor-single .order.gray {
+  background: #d0d0d0;
+  color: #fff;
+}
+
+.vendor-list .vendor-single .prize {
+  display: flex;
+  border-top: 1px solid #f6f6f6;
+  padding: 22rpx 14rpx 0;
+  position: relative;
+}
+
+.vendor-list .vendor-single .prize .tag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80rpx;
+  height: 30rpx;
+  border: 1px solid #e6002d;
+  color: #e6002d;
+  font-size: 20rpx;
+  flex-shrink: 0;
+}
+
+.vendor-list .vendor-single .prize .p-list {
+  width: 510rpx;
+  margin-left: 38rpx;
+}
+
+.vendor-list .vendor-single .prize .p-list.hidden {
+  margin-left: 38rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+.vendor-list .vendor-single .prize .arrow-box{
+  position: absolute;
+  right: 9rpx;
+  top: 31rpx;
+  display: flex;
+  height: 100%;
+}
+.vendor-list .vendor-single .prize .arrow {
+  align-self: flex-start;
+  width: 23rpx;
+  height: 14rpx;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAOCAMAAADzLXfBAAAA81BMVEVHcEzPz8/Q0NDT09PR0dHQ0NDPz8/////////////Q0NDQ0NDPz8/Pz8/MzMzQ0NDPz8/Q0NDR0dHPz8/Nzc3Q0NDR0dHR0dHY2NjQ0NDR0dHT09PMzMzPz8/Ozs7R0dG2trbQ0NDPz8/Q0NDMzMzU1NTPz8/Q0NDQ0NDGxsbQ0NDQ0NDPz8/R0dHMzMzQ0NDQ0NDMzMzQ0NDQ0NDQ0NDPz8/Q0NDQ0NDPz88AAADMzMzQ0NDV1dXb29vU1NTQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDR0dHR0dHQ0NDR0dHQ0NDMzMzPz8/Q0NDQ0NDQ0NDQ0NDQ0NDnR2LhAAAAUHRSTlMAdBsXq+XRAQIDfdqE1hSNxv5kECTezAsNlJwdD6sfFgetwW0KBrqj5gn8uJ/9LVbiBcO0zrG+2JABGcgSBwzTyaeYve1IN/pe6yhQ++kx6iQr4MkAAAClSURBVBjTbZDXVgIBDAWDgEuVKh2U3qQJSm9KB2H+/2uUvqzkJTdzcpLciGE5E21sjQYxMilr8OqHnUzn5Lw3OFZlsxapFHh+UGG9ldJiL9wu7E8X7HmE5FHqwBc4Yb8TLOceGyTyB/WaAcd1ZhDqtb9sjkNItUvJwtgkyhtETerbzB/w1W5BMX3rpf8NXXhPab0PRkAj8u8n0hvSfJE70fkMX4tfGvEYClDUOAAAAAAASUVORK5CYII=) no-repeat;
+  background-size: 100%;
+}
+.vendor-list .vendor-single .prize .arrow.up {
+  align-self: flex-end;
+  margin-bottom: 32rpx;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAOCAMAAADzLXfBAAAA81BMVEVHcEzPz8/Pz8/Pz8/Q0NDR0dHQ0ND////////////T09PQ0NDPz8/MzMzR0dHR0dHPz8/Q0NDR0dHQ0NDPz8/Q0NDY2NjQ0NDPz8/Pz8+2trbQ0NDPz8/Q0NDQ0NDQ0NDU1NTGxsbNzc3Q0NDR0dHPz8/MzMzQ0NDQ0NDQ0NDOzs7Q0NDMzMzPz8/Pz8/MzMzQ0NDR0dHT09Pb29sAAADMzMzQ0NDQ0NDV1dXU1NTQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDR0dHQ0NDQ0NDMzMzQ0NDR0dHR0dHQ0NDQ0NDR0dHMzMzPz8/Q0NDQ0NDQ0NDQ0NDQ0NC4vsnTAAAAUHRSTlMAENbR5auNAQMCF32EFMycxv4LG3TeDZS6wQejq7it2gYJJLRknwrD5m0f/AWQsQ+nFh0HARmYyBIMydO+2M69/VbiLe1IN/rrXihQ++kx6nRT7vAAAACmSURBVBjTbZDnUsJgFAU/ICFEQJDelCZFBKRLkSJNpO77Pw0T0JAA59fOzpy5RQg97a+GuJPugGH9Vvf6wOjjWjfH8AmFvFk7qtBpVeA5ZdRKHGqqUHKQUA0+DNmyVnsBz0W7IJo+USwC9n8dgMfQH/u84Dzj6xNWt9612OBNg+93gn7DrIckk18hFj8UM6adS1O2GyExn13duN5xEPJqefOTvSQfATnoGAoKmvcBAAAAAElFTkSuQmCC) no-repeat;
+  background-size: 100%;
+}
+
+/* 弹层 */
+
+.get-success-popup {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.get-success-box {
+  width: 620rpx;
+  border-radius: 8rpx;
+  text-align: center;
+  background: #fff;
+}
+
+.get-success-box .title {
+  font-size: 42rpx;
+  font-weight: bold;
+  padding: 56rpx 0 30rpx;
+}
+
+.get-success-box .content {
+  font-size: 28rpx;
+  color: #999;
+  padding: 0 58rpx;
+}
+
+.get-success-box .confirm {
+  height: 97rpx;
+  line-height: 97rpx;
+  border-top: 1px solid #d2d3d5;
+  font-size: 36rpx;
+  margin-top: 50rpx;
+}

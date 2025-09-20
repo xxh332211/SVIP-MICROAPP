@@ -1,0 +1,25 @@
+/* pages/agreement/agreement.wxss */
+.protocol-dialog{
+  padding-left: 40rpx;
+  padding-right: 40rpx;
+  background-color: #fff;
+  padding-top: 40rpx;
+  padding-bottom: 80rpx;
+}
+
+.protocol-line .close{
+  float: left;
+  padding-top: 20rpx;
+}
+.protocol-line .close image{
+  width: 40rpx;
+  height: 40rpx;
+}
+.protocol-line .protocol-title{
+  text-align: center;
+  font-weight: 600;
+  font-size: 40rpx;
+}
+.protocol-main{
+  margin-top: 40rpx;
+}

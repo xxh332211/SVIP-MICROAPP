@@ -1,0 +1,31 @@
+<!--pages/expoPackage/bounty/bounty.wxml-->
+<online-serve />
+<view class='amount-bount'>
+  <view class="award">奖励金额</view>
+  <view class="num"><text>￥</text>{{bountyNum}}</view>
+</view>
+<view class='line'></view>
+<view class='rule'>
+  <text class='rule-title'>活动规则：</text>
+  <view>1 索票分享后，当好友索票后，即视为邀请成功（被邀请的好友需为未领取当届门票用户）;</view>
+  <view>2 优惠券分享后，当好友领取优惠券即视为邀约成功（被邀约好友需首次领取当届优惠券）;</view>
+  <view>3 爆品预约分享后，当好友预约爆品即视为邀约成功（被邀约好友需首次预约当届爆品）;</view>
+  <view>4 svip购买分享后，当好友购买svip即视为邀约成功（被邀约svip用户以手机号码为准，重复购买退费，按一个用户核算）;</view>
+  <view>5 发出邀请的用户（称为邀请者），成功邀请一位好友，邀请者即可获得10元奖励金，多次成功邀请奖励金累计增加，上不封顶（奖励金需到展会现场下单兑换，详见奖励金兑换规则）;</view>
+  <view>6 当届开展前的奖励金仅限当届展会兑换，当届展会结束后清零，当届展中的奖励金可在当届和下届兑换，下届展会结束清零。</view>
+</view>
+
+<view class='rule'>
+  <text class='rule-title'>奖励金兑换规则：</text>
+  <view>1、邀请者必须在展会举办的时间内，现场下单，在指定位置根据兑换条件和自身账户累积的奖励金进行兑换（如邀请者账户没有金额，下单满足条件也无法进行兑换）；</view>
+  <view>2、单笔订单金额支付满1000元最高可兑换50元现金（当账户奖励金不低于50元时，单笔满足条件订单可兑换50元现金，当奖励金低于50元时，单笔满足条件订单可兑换账户下全部奖励金）多张不同品牌订单可兑换多次；</view>
+  <view>3、同一个品牌仅可参与一次兑换；</view>
+  <view>4、仅限<text wx:if="{{cityId != 60}}">华夏家博会</text>专用销售单参与兑换；</view>
+  <view>5、若用户退单，需要退还参与兑换的现金；</view>
+  <view>6、邀请奖励金活动可与现场其他活动同时参加；</view>
+  <view>7、若发现恶意套取奖励金行为，华夏家博会有权追究法律责任。</view>
+  <view wx:if="{{cityId != 60}}">8、本活动解释权归华夏家博会所有。</view>
+</view>
+
+<!-- 导航 -->
+<navigation></navigation>

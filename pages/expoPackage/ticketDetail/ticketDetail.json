@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "privacy-popup": "../../../components/privacyPopup/privacyPopup",
+    "authorize": "../../../components/authorize/authorize",
+    "navigation": "../../../components/navigation/navigation"
+  },
+  "navigationBarTitleText": "我的门票"
+}

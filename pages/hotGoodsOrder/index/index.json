@@ -1,0 +1,10 @@
+{
+  "component": true,
+  "usingComponents": {
+    "banner-swiper": "../../../components/bannerSwiper/bannerSwiper",
+    "hot-goods-item": "../../../components/hotGoodsItem/hotGoodsItem",
+    "hot-goods-group":"../../../components/hotGoodsGroup/hotGoodsGroup",
+    "navigation": "../../../components/navigation/navigation"
+  },
+  "navigationBarTitleText": "爆品预约"
+}

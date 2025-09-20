@@ -1,0 +1,16 @@
+<!--components/xmbPopup/xmbPopup.wxml-->
+<!-- 熊猫币顶部提示 -->
+<view class="xmb-tips" wx:if="{{showXmbTips}}">
+  <view class="xmb-left">
+    <image class="xmb-icon" src="https://img.51jiabo.com/983e9af2-b384-4f5d-930c-d56f788699d9.png"></image>
+    <view>
+      <view>恭喜获得{{xmbPopupData.total_coin}}熊猫币!</view>
+      <view wx:if="{{xmbPopupData.activity_status != 3}}" class="xmb-desc">{{xmbPopupData.message}}</view>
+    </view>
+  </view>
+  <view class="xmb-right">
+    <view wx:if="{{xmbPopupData.activity_status == 0 || xmbPopupData.activity_status == 3}}" catchtap="toXmbCenter">{{xmbPopupData.activity_status == 0 ? '去领取':'点击查看'}}</view>
+    <view wx:elif="{{xmbPopupData.activity_status == 1 || xmbPopupData.activity_status == 2}}" catchtap="toXmbLottery">{{xmbPopupData.activity_status == 1 ? '去抽奖':'查看抽奖'}}</view>
+    <image class="xmb-arrow" src="/imgs/index-arrow.png"></image>
+  </view>
+</view>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="113px" height="118px" viewBox="0 0 113 118" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61 (89581) - https://sketch.com -->
+    <title>弹窗关闭按钮</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M42.9587751,0 C19.2306699,0 0,19.2330209 0,42.959069 C0,66.6826681 19.2307678,85.9178441 42.9587751,85.9178441 C66.6823743,85.9178441 85.9176482,66.6826681 85.9176482,42.959069 C85.9176482,19.2330209 66.6823743,0 42.9587751,0 Z" id="path-1"></path>
+        <filter x="-35.5%" y="-19.2%" width="171.0%" height="176.8%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="19" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="7" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.204936594 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="第一批" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="限时折扣-分享" transform="translate(-318.000000, -1302.000000)">
+            <g id="编组" transform="translate(318.000000, 1302.000000)">
+                <g id="Group-4" transform="translate(14.000000, 0.000000)">
+                    <g id="Path">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                        <use fill-opacity="0.909999967" fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    </g>
+                    <polygon id="Combined-Shape" fill="#000000" points="40.5566031 42.5170529 32.8177516 50.358209 30 53.2073181 32.8177516 56 43.340694 45.3379484 53.8636364 56 56.681388 53.2073181 53.8636364 50.358209 46.1247849 42.5170529 56.681388 31.8208955 53.8972971 29 43.340694 39.6961573 32.7840909 29 30 31.8208955"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

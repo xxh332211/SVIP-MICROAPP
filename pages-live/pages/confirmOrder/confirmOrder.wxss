@@ -1,0 +1,246 @@
+.container{
+  width:100%;
+  padding-bottom: 100rpx;
+  overflow: hidden;
+}
+.header{
+  width: 100%;
+  height: 120rpx;
+  background: #fff;
+  margin: 30rpx 0;
+  display: flex;
+  align-items: center;
+}
+.header image{
+  height: 80rpx;
+  width: 160rpx;  
+  border-radius:50%;
+  margin: 0 16rpx 0 33rpx;
+}
+.header text{
+  font-size: 34rpx;
+  color: #464646;
+}
+/* 订单详情 */
+.detail{
+  background: #fff;
+  padding: 0 42rpx 0 47rpx;
+  overflow: hidden;
+}
+.detail .top{
+  margin-top: 22rpx;  
+  display: flex;
+}
+.detail .top image{
+  width:210rpx;
+  height:210rpx;
+}
+.detail .top .right{
+  padding-left: 30rpx;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+}
+.detail .top .right .title{
+  font-size: 30rpx;
+  line-height: 46rpx;
+  font-weight: bold;
+}
+.detail .top .right .price{
+  color: #E6002D;
+  display: table-cell;
+  vertical-align: bottom;
+  padding: 10rpx 0 ;
+}
+.detail .top .right .price text:nth-of-type(1){
+  font-size: 24rpx;
+  line-height: 24rpx;
+}
+.detail .top .right .price text:nth-of-type(2){
+  font-size: 36rpx;
+  line-height: 36rpx;
+  font-weight: bold;
+}
+.detail .top .right .earnest text{
+  height:34rpx;
+  background:rgba(230,0,45,1);
+  border-radius:5rpx;
+  color: #fff;
+  font-size: 18rpx;
+  line-height: 34rpx;
+  padding: 0 10rpx;
+  display: inline-block;
+}
+.detail .top .right .num{
+  /* flex: 1; */
+  text-align: right;
+}
+.detail .top .right .num text:nth-of-type(1){
+  color: #E6002D;
+  font-size: 24rpx;
+  line-height: 24rpx;
+  margin-right:11rpx;
+}
+.detail .top .right .num text:nth-of-type(3){
+  margin: 0 20rpx;
+  font-size: 30rpx;
+  color: #E6002D;
+}
+.detail .top .right .num .jian,.detail .top .right .num .jia{
+  width:40rpx;
+  height:40rpx;
+  border:1px solid rgba(210,210,210,1);
+  border-radius:10rpx;
+  font-size: 30rpx;
+  text-align: center;
+  line-height: 40rpx;
+  display: inline-block;
+}
+.detail .list{
+  width: 100%;
+  margin-top:20rpx ;
+}
+.detail .list .commonlist{
+  line-height: 84rpx;
+  font-size: 28rpx;
+  color: #222;
+  display: block;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.detail .lsit1 text:nth-of-type(2){
+  font-size: 24rpx;
+  color: #777;
+}
+.detail  .lsit2 input{
+  width: 480rpx;
+  font-size: 24rpx;
+  color: #777;
+}
+.detail .total{
+  width: 100%;
+  font-size:26rpx ;
+  color: #E6002D;
+  line-height: 70rpx;
+  text-align: right;
+}
+.detail .total .border{
+  border: 1rpx solid #ededed;
+  height: 1rpx;
+  width: 620rpx;
+  margin:0 auto ;
+
+}
+
+/* 微信支付 */
+.wxpay{
+  width: 690;
+  padding: 0 30rpx;
+  height: 100rpx;
+  margin: 30rpx 0;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.wxpay .left .wxlogo{
+  width:31rpx;
+  height:31rpx;
+}
+.wxpay .left text{
+  font-size: 30rpx;
+  margin-left: 20rpx;
+}
+.wxpay .duigou{
+  width:37rpx;
+  height:37rpx;
+  border-radius:50%;
+}
+/* 提交订单 */
+.submitOrder{
+  width: 100%;
+  height: 100rpx;
+  background: #fff;
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 9999;
+}
+.submitOrder>text:nth-of-type(1){
+  font-size: 26rpx;
+  color: #777;
+}
+.submitOrder>text:nth-of-type(2){
+  font-size: 26rpx;
+  color: #222;
+}
+
+.submitOrder  .price{
+  display: table-cell;
+  vertical-align: bottom;
+  color: #E6002D;
+  font-weight: bold;
+
+}
+.submitOrder  .price text:nth-of-type(1){
+  font-size: 28rpx;
+}
+.submitOrder  .price text:nth-of-type(2){
+  font-size: 36rpx;
+  
+}
+.submitOrder  .confirm-order{
+  width:200rpx;
+  height:60rpx;
+  background:rgba(230,0,45,1);
+  border-radius:30rpx;
+  font-size:32rpx;
+  color: #fff;
+  text-align: center;
+  line-height: 60rpx;
+  margin: 0 30rpx 0 24rpx;
+}
+/* 弹窗 */
+.flag{
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}
+.flag .popup{
+  width: 620rpx;
+  background: #fff;
+  border-radius: 8rpx;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.flag .popup .title{
+  padding: 70rpx 70rpx 50rpx;
+  font-size: 36rpx;
+  line-height: 46rpx;
+  text-align: center;
+}
+.flag .popup .button{
+  width:190rpx;
+  height:70rpx;
+  background:rgba(230,0,45,1);
+  border-radius:3rpx;
+  margin: 0 auto 50rpx;
+  color: #fff;
+  text-align: center;
+  line-height: 70rpx;
+  font-size: 36rpx;
+}

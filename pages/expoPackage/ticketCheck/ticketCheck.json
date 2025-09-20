@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "华夏家博",
+  "navigationBarTextStyle": "white",
+  "navigationBarBackgroundColor": "#E6002D",
+  "usingComponents": {
+    "privacy-popup": "../../../components/privacyPopup/privacyPopup",
+    "authorize":"../../../components/authorize/authorize"
+  }
+}

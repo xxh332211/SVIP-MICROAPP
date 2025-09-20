@@ -1,0 +1,37 @@
+	<wxs src="../../../utils/util.wxs" module="filter" />
+	<view class="live-list">
+		<view class="live-item" wx:for='{{liveListAll}}' wx:key='key' catchtap="toLiveRoom" data-status="{{item.status}}" data-liveid="{{item.live_id}}">
+			<!-- <view class="get-userinfo" bindtap="toLiveRoom"></view> -->
+			<view class="left">
+				<image src="{{item.cover_image_url}}"></image>
+				<view class="live-status">
+					<view class="status live"  wx:if='{{item.status == 2 || item.status == 3}}'>
+						<view class="img"></view>
+            <text>直播中</text>
+					</view>
+          <view class="status notice"  wx:if='{{item.status == 1}}'>
+            <text>预告</text>
+					</view>
+          <view class="status playback" wx:if='{{item.status == 4}}'>
+            <text>回放</text>
+					</view>
+					<view class="text" wx:if="{{item.status == 2 || item.status == 3 || item.status == 4}}">{{item.look_count?filter.sliceNumber(item.lookLiveNum):0}}人观看</view>
+            <view class="text" wx:else>{{filter.timeFormatSlice(item.begin_time)}}</view>
+				</view>
+			</view>
+			<view class="right">
+				<view class="title">{{item.title}}</view>
+				<view class="brand">
+					<image src="{{item.logo_url}}"></image>
+					<view class="name">{{item.brand_name}}</view>
+				</view>
+				<view class="goods-list">
+            <view class="goods-item"  wx:for='{{item.goodsInfo}}' wx:key='index' wx:if="{{index < 3}}" wx:for-item="v">
+              <image src="{{v.image_url}}"  mode="aspectFit"></image>
+              <view class="more" wx:if="{{item.goodsInfo.length >= 3 && index == 2}}">更多</view>
+            </view>
+          </view>
+			</view>
+		</view>
+
+	</view>

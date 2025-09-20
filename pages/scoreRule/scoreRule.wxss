@@ -1,0 +1,17 @@
+page{
+  background: #FFF;
+}
+.title{
+  font-size: 32rpx;
+  margin-top: 20rpx;
+  padding: 0 40rpx;
+  font-weight: bold;
+}
+.cont{
+  font-size: 28rpx;
+  margin-bottom: 20rpx;
+  padding: 0 40rpx;
+}
+.cont text{
+  display: block;
+}

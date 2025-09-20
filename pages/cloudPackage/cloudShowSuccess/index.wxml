@@ -1,0 +1,11 @@
+<!--pages/cloudShowSuccess/index.wxml-->
+<online-serve />
+<view class="reserve-success">
+	<image src="https://img.51jiabo.com/c42b0007-fb9a-4fec-bed2-f8725b4519c7.png"></image>
+	<view class="tit">预约成功</view>
+	<view class="p">24小时内我们的客服将联系您，送您直播观看大礼包</view>
+	<button open-type='share' class="share" bindtap="shareBtn">邀请好友</button>
+	<button class="share" bindtap="subMessage">开播提醒我</button>
+</view>
+<!-- 运营位 -->
+<image wx:for="{{reserveAdv}}" wx:key="index" class='adv' mode='widthFix' src='{{item.wap_image_url}}' data-item="{{item}}" bindtap="{{item.url?'swiperUrl':''}}"></image>

@@ -1,0 +1,260 @@
+<!--pages/payloadDetail.wxml-->
+<online-serve />
+<view class="page page-bot">
+	<view class="product">
+		<!-- 商品共用部分 -->
+		<!-- <text class="product-title" wx:if="{{goodsType==1}}">全款会员商品</text>
+    <text class="product-title" wx:if="{{goodsType==2}}">定金会员商品</text>
+    <text class="product-title" wx:if="{{goodsType==4}}">预约商品</text> -->
+		<view class="item">
+			<view class="product-box">
+				<image class="item-img" mode="widthFix" src="{{goodsInfo.goods_image}}"></image>
+				<!-- 下单换购弹窗 -->
+				<view class="trand" bindtap="trandDetail"
+					wx:if="{{goodsInfo.redeemInfo.redeemstatus == 1 && goodsInfo.redeemInfo && goodsInfo.redeemInfo.exchange_method == 0}}">
+					<view class="trand-left">
+						<view>去换购￥{{goodsInfo.redeemInfo.redeem_price?goodsInfo.redeemInfo.redeem_price:'--'}}</view>
+						<view>展会现场下单，可超值换购</view>
+					</view>
+					<image class="trand-right" src="https://img.51jiabo.com/c76d4c32-a296-4015-a477-861518365a7f.png"></image>
+				</view>
+				<!-- 熊猫币换购弹窗 -->
+				<view class="trand" bindtap="toTradeConfirm"
+					wx:if="{{goodsInfo.redeemInfo && goodsInfo.redeemInfo.redeemstatus == 1 && goodsInfo.redeemInfo.exchange_method == 1}}">
+					<view class="trand-left">
+						<view>熊猫币兑换商品</view>
+						<view>展会现场下单，可超值换购</view>
+					</view>
+					<image class="trand-right" src="https://img.51jiabo.com/c76d4c32-a296-4015-a477-861518365a7f.png"></image>
+				</view>
+			</view>
+			<view class='product-main'>
+				<view class="name-box">
+					<view class="names">{{goodsInfo.goods_name}}</view>
+					<button class='share' open-type='share' plain="true"></button>
+				</view>
+				<view class='dis'>{{goodsInfo.description}}</view>
+			</view>
+		</view>
+
+		<!-- 预约会员商品 -->
+		<view class="yuyue-box" wx:if="{{goodsType==4}}">
+			<view class='reserve-svip' wx:if="{{goodsInfo.sale_price != null}}">
+				<text class="svip-price">SVIP:￥</text>
+				<text class="price-num">{{goodsInfo.sale_price}}</text> /{{goodsInfo.unit}}
+			</view>
+			<view class="reserve-price">
+				<view class="market-price" wx:if="{{goodsInfo.origin_price != null}}">
+					市场价:<text>￥{{goodsInfo.origin_price}}</text></view>
+				<view class='stock' wx:if="{{goodsInfo.stock != null}}">剩余:{{goodsInfo.stock}}件</view>
+			</view>
+			<view class='tis'>
+				{{goodsInfo.activity_begin_date}}~{{goodsInfo.activity_end_date}}到{{goodsInfo.venue_name}}，{{goodsInfo.contract_info.brand_name}}{{goodsInfo.contract_info.booth}}处，查看领取商品
+			</view>
+		</view>
+
+		<!-- 定金会员商品 -->
+		<view class="dingjin-box" wx:if="{{goodsType==2}}">
+			<view class="product-price flex-row">
+				<view class='price-wrap'>
+					<text class="svip-price">SVIP:￥</text>
+					<text class="price-num">{{goodsInfo.sale_price}}</text> /{{goodsInfo.unit}}
+				</view>
+				<view class='stock'>剩余:{{goodsInfo.stock}}件</view>
+			</view>
+			<view class='prepay-amount'>
+				<text>定金：</text>￥{{goodsInfo.prepay_amount}}
+			</view>
+			<view class='tis'>
+				{{goodsInfo.activity_begin_date}}~{{goodsInfo.activity_end_date}}到{{goodsInfo.venue_name}}，{{goodsInfo.contract_info.brand_name}}{{goodsInfo.contract_info.booth}}处，查看领取商品
+			</view>
+		</view>
+
+		<!-- 全款会员商品 -->
+		<view class="quankuan-box" wx:if="{{goodsType==1}}">
+			<view class="product-price flex-row">
+				<view class='price-wrap'>
+					<text class="svip-price">SVIP:￥</text>
+					<text class="price-num">{{goodsInfo.sale_price}}</text> /{{goodsInfo.unit}}
+				</view>
+				<view>
+					<view class="market-price">市场价:<text>￥{{goodsInfo.origin_price}}</text></view>
+				</view>
+			</view>
+			<view class='tis' wx:if="{{goodsInfo.send_type == 1}}">
+				{{goodsInfo.activity_begin_date}}~{{goodsInfo.activity_end_date}}到{{goodsInfo.venue_name}}，{{goodsInfo.contract_info.brand_name}}{{goodsInfo.contract_info.booth}}处，查看领取商品
+			</view>
+		</view>
+	</view>
+	<!-- 配送方式 -->
+
+	<view class="select-distribution" wx:if='{{goodsInfo.send_type != 1 && goodsType == 1}}'>
+		<view class="distribution" bindtap="selectDistribution">
+			<view class="distribution-text">配送方式:
+				<text class="distribution-sendtype" wx:if='{{goodsInfo.send_type == "2"}}'>邮寄到家</text>
+				<text class="distribution-sendtype" wx:if='{{goodsInfo.send_type == "1"}}'>到展提货</text>
+			</view>
+			<image wx:if='{{showSelectbox }}' class="arror-top"
+				src="https://img.51jiabo.com/e6931d6a-82ae-4bdc-88f4-0ac9d256153e.png"></image>
+			<image wx:if='{{!showSelectbox }}' class="arror-top"
+				src="https://img.51jiabo.com/d6ea0f35-ee13-47f1-8296-02b14cace76a.png"></image>
+
+		</view>
+		<view class="select-box" wx:if='{{showSelectbox}}'>
+			<!-- 到展提货 -->
+			<view class="pick-activity" wx:if='{{goodsInfo.send_type == "1,2" || goodsInfo.send_type == "1"}}'>
+				<view class="pick-left">
+					<view wx:if='{{goodsInfo.send_type == "1,2"}}'>到展提货:</view>
+					<view>
+						{{goodsInfo.activity_begin_date}}~{{goodsInfo.activity_end_date}}到{{goodsInfo.venue_name}}，{{goodsInfo.contract_info.brand_name}}{{goodsInfo.contract_info.booth}}处，查看领取商品
+					</view>
+				</view>
+				<icon wx:if='{{!showPickactivity && showActivity && (goodsInfo.send_type == "1,2" || send_type_detail == 2)}}'
+					class="pick-right" type="circle" size="16" bindtap="pickbtn"></icon>
+				<icon wx:if='{{ showPickactivity && showActivity && (goodsInfo.send_type == "1,2" || send_type_detail == 1)}}'
+					type="success" size="16" color="#E6002D"></icon>
+			</view>
+			<!-- 邮寄到家 -->
+			<view class="mainHome" wx:if='{{goodsInfo.send_type == "1,2" || goodsInfo.send_type == "2"}}'>
+				<view class="pick-mainhome" wx:if='{{goodsInfo.send_type == "1,2"}}'>
+					<view class="mainhome-left">邮寄到家</view>
+					<icon class="mainhome-right" type="circle" size="16"
+						wx:if="{{!showPickAddress && showActivity && (goodsInfo.send_type == '1,2'  || send_type_detail == 1)}}"
+						bindtap="pickaddressbtn"></icon>
+					<icon wx:if='{{showPickAddress && showActivity && (goodsInfo.send_type == "1,2"  || send_type_detail == 2)}}'
+						type="success" size="16" color="#E6002D"></icon>
+				</view>
+				<view class="mian-message" wx:if="{{showAddress || goodsInfo.send_type == 2 || send_type_detail == 2}}">
+					<view class="message-top">
+						<view class="user" style="width:220rpx">
+							<view class="usertext">姓名:</view>
+							<input type="text" name="name" value="{{consignee}}" bindinput='inputConsignee'></input>
+						</view>
+						<view class="user" style="width:360rpx">
+							<view class="usertext">手机号：</view>
+							<input type="number" maxlength='11' value="{{mobile}}" name="name" bindinput='inputMobile'></input>
+						</view>
+					</view>
+					<view class="region">
+						<view class="usertext">所在地区：</view>
+						<!--三级联发-->
+						<view class='text' bindtap="showPicker">{{province}} {{city}} {{county}} </view>
+					</view>
+					<view class="getaddress">
+						<view class="usertext">详细地址：</view>
+						<view class="text-box">
+							<text>{{address}}</text>
+							<textarea value="{{address}}" maxlength="30" bindinput='inputAddress'></textarea>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+
+	</view>
+	<!-- 商品详情 -->
+	<view class="goods-detail" wx:if="{{goodsInfo.goods_detail_images && goodsInfo.goods_detail_images.length > 0}}">
+		<view class="detail-text">
+			<view class="l"></view>商品详情
+			<view class="r"></view>
+		</view>
+		<image wx:for="{{goodsInfo.goods_detail_images}}" wx:key="index" mode="widthFix" src="{{item.image_url}}"></image>
+	</view>
+
+	<!--支付方式-->
+	<view class="pay-method" wx:if="{{goodsType!=4}}">
+		<view class="wechat flex-row" id="Alipay">
+			<view class="wechat-logo">
+				<view class="logo-img verticalHorizontal">
+					<image src="/imgs/svip-wx.jpg" mode='widthFix'></image>
+				</view>
+				<text>微信</text>
+			</view>
+			<icon type="success" size="16" color="#E6002D"></icon>
+		</view>
+		
+		<!-- n选1 -->
+		<view class="more-choose-one-btn pos-fixed" wx:if="{{isMoreChooseOneActivity}}">
+			<button wx:if="{{goodsInfo.user_id > 0}}" class="mco-btn mco-btn-gray">已选购</button>
+			<button wx:elif="{{goodsInfo.stock <= 0}}" class="mco-btn mco-btn-gray">已售罄</button>
+			<block wx:else>
+				<button wx:if="{{goodsInfo.buy_choose_status == 2}}" class="mco-btn mco-btn-gray" >{{goodsInfo.pay_todo}}</button>
+				<button wx:elif="{{goodsInfo.buy_choose_status == 1}}" class="mco-btn" bindtap="buyHandle">{{goodsInfo.pay_todo}}</button>
+			</block>
+		</view>
+
+		<view class="pay-btn pos-fixed" wx:else>
+			<block>
+				<view class="price">实付：<text class="sign">￥</text><text
+						class="num">{{goodsType==2?goodsInfo.prepay_amount:goodsInfo.sale_price}}</text></view>
+				<view class="btn verticalHorizontal" bindtap='pay' wx:if="{{goodsInfo.stock > 0 || orderStatus == 0}}">
+					{{isPayment?'支付中..':'立即支付'}}</view>
+				<view class="btn verticalHorizontal gray" wx:else>已售罄</view>
+			</block>
+		</view>
+	</view>
+
+	<!-- 预约按钮 -->
+	<view class="pay-btn pos-fixed" wx:if="{{goodsType==4}}">
+		<view class="price">svip：<text class="sign">￥</text><text class="num">{{goodsInfo.sale_price}}</text></view>
+		<view class="btn verticalHorizontal" bindtap='reserveGoods' wx:if="{{!goodsInfo.user_id && goodsInfo.stock > 0}}">
+			免费预约</view>
+		<view class="btn verticalHorizontal gray" wx:if="{{goodsInfo.user_id}}">已预约</view>
+		<view class="btn verticalHorizontal gray" wx:if="{{!goodsInfo.user_id && goodsInfo.stock <= 0}}">已约满</view>
+	</view>
+
+</view>
+
+<!-- 非会员提示弹层 -->
+<view class="not-svip-tips" wx:if="{{svipTips}}">
+	<view class="not-svip-box">
+		<view class="h6">仅限超级会员用户专享</view>
+		<!-- <view class="h6">{{notReserve?"非超级会员SVIP用户不可以购买":"非超级会员SVIP用户不可以预约"}}</view> -->
+		<view class="btn-box">
+			<!-- <view class="cancel" data-val="svipTips" bindtap="closePopup">取消</view> -->
+			<view class="svip-pay" bindtap="reserveBuySvip">成为超级会员</view>
+		</view>
+		<image class="close-img" data-val="svipTips" bindtap="closePopup" src="https://img.51jiabo.com/2fbbd2d6-e895-4b88-9c7b-223aa880f70f.png"></image>
+	</view>
+</view>
+<!-- 预约成功弹层 -->
+<view class="reserve-tips" wx:if="{{reserveTips}}">
+	<view class="reserve-box">
+		<view class="h6">
+			<view>恭喜您预约成功</view>
+			<view>请您到展会现场领取商品</view>
+		</view>
+		<view class="cancel" data-val="reserveTips" bindtap="closePopup">确定</view>
+	</view>
+</view>
+<!-- 支付成功弹层 -->
+<view class="success-popup" wx:if="{{successTips}}">
+	<view class="success-box">
+		<view class="title">恭喜您购买成功！</view>
+		<image src="https://img.51jiabo.com/c5790f5f-c38f-43a7-9b71-3d47742a2afd.png"></image>
+		<view class="tips">已购商品在“我的-我的会员-查看订单”查看</view>
+		<view class="btn-box">
+			<view class="btn" data-val="successTips" bindtap="toSvipHome">继续逛逛</view>
+			<view class="btn" bindtap="toOrderList">查看订单</view>
+		</view>
+	</view>
+</view>
+
+<!-- n选1提示框 -->
+<view class="more-choose-one-tips" wx:if="{{showMoreChooseOneTips}}">
+  <view class="mco-box">
+    <view class="mco-tips-title">{{isSvip?'确认选购付款吗？':'仅限超级会员用户专享'}}</view>
+    <button class="mco-tips-btn" bindtap="pay" wx:if="{{isSvip}}">确认付款</button>
+    <button class="mco-tips-btn" bindtap="toBuySvip" wx:else>成为超级会员</button>
+    <image class="mco-close" bindtap="closeTips" src="https://img.51jiabo.com/2fbbd2d6-e895-4b88-9c7b-223aa880f70f.png">
+    </image>
+  </view>
+</view>
+
+
+<!-- svip升级弹层 -->
+<upgradeSvip wx:if="{{showUpdatePopup}}" orderType="{{orderType}}" bindcloseUpdate="closeUpdate"></upgradeSvip>
+<!-- 模版语法 -->
+<import src="../../../components/cityPickerModel/model.wxml" />
+<template is="areaData" data="{{...item}}" />
+

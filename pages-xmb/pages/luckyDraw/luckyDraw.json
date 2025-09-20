@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "熊猫币抽大奖",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "privacy-popup": "../../../components/privacyPopup/privacyPopup",
+    "dial": "../../components/dial/dial"
+  }
+}

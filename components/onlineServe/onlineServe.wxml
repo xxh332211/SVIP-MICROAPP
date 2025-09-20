@@ -1,0 +1,5 @@
+<!--components/onlineServe/onlineServe.wxml-->
+<movable-area class="area" wx:if="{{cityId != 60}}">
+  <movable-view class="tencent-serve" direction="vertical" y="{{y}}" animation="{{false}}" bindtap="toServe">
+  </movable-view>
+</movable-area>

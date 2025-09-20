@@ -1,0 +1,37 @@
+<!--components/goodsCouponModal/goodsCouponModal.wxml-->
+<modal bind:close="close">
+  <view class="coupon">
+    <view class="cont">
+      <view class="title">优惠券</view>
+      <scroll-view class="list" scroll-y="{{true}}">
+        <view class="item" data-idx="{{index}}" bind:tap="collect" wx:for="{{list}}" wx:key="couponId">
+          <image src="https://img.51jiabo.com/imgs-mall/coupon-bg.svg" mode="aspectFill" class="bg"></image>
+          <view class="info">
+            <view class="left">
+              <view class="price">
+                <block wx:if="{{item.couponType === 1}}">
+                  <text class="u">¥</text>
+                  <text>{{item.couponValue}}</text> 
+                </block>
+                <block wx:else>
+                  <text>{{item.couponValue / 10}}</text> 
+                  <text class="u">折</text>
+                </block>
+              </view>
+              <view class="desc">满{{item.minAmount}}元可用</view>
+            </view>
+            <view class="right">
+              <view class="name">{{item.couponName}}</view>
+              <view class="desc">有效期{{item.beginDate}}-{{item.endDate}}</view>
+            </view>
+          </view>
+          <view class="btn" wx:if="{{!item.collected}}">领取</view>
+          <view class="btn disabled" wx:else>已领</view>
+        </view>
+      </scroll-view>
+    </view>
+    <view class="buy-btn" bindtap="close">
+      关闭
+    </view>
+  </view>
+</modal>

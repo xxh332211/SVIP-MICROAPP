@@ -1,0 +1,8 @@
+/* pages/expoPackage//hotGoodsGroup/hotGoodsGroup.wxss */
+page {
+  background: #fff;
+}
+.goods-wrap{
+  margin-top: -33rpx;
+  padding-bottom: 100rpx;
+}

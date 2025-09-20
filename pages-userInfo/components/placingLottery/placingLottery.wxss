@@ -1,0 +1,252 @@
+/* pages-userInfo/components/placingLottery/placingLottery.wxss */
+
+.lottery-report {
+  width: 100%;
+  height: 88rpx;
+  background: #F5F5F5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.lottery-report .report-box {
+  display: flex;
+  align-items: center;
+  padding-left: 20rpx;
+}
+
+.lottery-report .horn {
+  width: 27rpx;
+  height: 24rpx;
+  background: url(https://img.51jiabo.com/16b194d7-75dd-40a5-b952-2ec0e7369441.png) no-repeat;
+  background-size: 100% 100%;
+  margin-right: 10rpx;
+}
+
+.lottery-report .report {
+  width: 450rpx;
+  height: 88rpx;
+}
+
+.lottery-report .swiper-item {
+  display: flex;
+  align-items: center;
+}
+
+.lottery-report .report .text {
+  width: 450rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 26rpx;
+  color: #282828;
+}
+
+.lottery-report .rule-box {
+  display: flex;
+  align-items: center;
+  font-size: 26rpx;
+  color: #E6002D;
+  text-decoration: underline;
+  padding-right: 28rpx;
+}
+
+.lottery-report .rule-box .ico {
+  width: 27rpx;
+  height: 27rpx;
+  background: url(https://img.51jiabo.com/af24d980-691a-463d-b6d5-20416fda9ab0.png) no-repeat;
+  background-size: 100% 100%;
+  margin-right: 10rpx;
+}
+
+.log-order {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 90rpx;
+  background: #E6002D;
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #FFFFFF;
+}
+
+/* 抽奖规则 */
+.rule-popup {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  background: rgba(0, 0, 0, .82);
+}
+
+.rule-popup .rule-box {
+  width: 561rpx;
+  background: #FFFFFF;
+  position: relative;
+  padding-bottom: 45rpx;
+}
+
+.rule-popup .close {
+  width: 75rpx;
+  height: 72rpx;
+  background: url(https://img.51jiabo.com/359415fb-1dc5-4d57-a482-e04df03f10f6.png) no-repeat;
+  background-size: 25rpx 24rpx;
+  background-position: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.rule-popup .title {
+  font-size: 42rpx;
+  font-weight: bold;
+  color: #262626;
+  text-align: center;
+  margin-top: 64rpx;
+}
+
+.rule-text {
+  display: block;
+  font-size: 30rpx;
+  overflow-y: scroll;
+  max-height: 720rpx;
+  padding: 14rpx 47rpx 0;
+}
+
+.rule-img {
+  width: 460rpx;
+  display: block;
+  margin-left: 50rpx;
+  margin-top: 28rpx;
+}
+
+.lottery-loading {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  background: rgba(0, 0, 0, .82);
+}
+
+.lottery-loading .loading-img {
+  width: 494rpx;
+  height: 466rpx;
+}
+
+/* 抽奖弹层 */
+.lottery-popup {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  background: rgba(0, 0, 0, .82);
+}
+
+.lottery-popup .bg {
+  width: 100%;
+}
+
+.lottery-popup .lottery-box {
+  width: 670rpx;
+  background: #FFFFFF;
+  border-radius: 15rpx;
+  position: absolute;
+  overflow: hidden;
+}
+
+.lottery-popup .head {
+  background: #E6002D;
+  padding-top: 90rpx;
+}
+
+.lottery-popup .head-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lottery-popup .head-text {
+  font-size: 56rpx;
+  font-weight: bold;
+  color: #FFFFFF;
+  margin-top: -17rpx;
+}
+
+.not-price {
+  font-size: 48rpx;
+  color: #FFFFFF;
+  padding-top: 40rpx;
+  padding-bottom: 28rpx;
+}
+
+.lottery-popup .prize {
+  width: 366rpx;
+  height: 211rpx;
+}
+
+.lottery-popup .xs {
+  display: block;
+  width: 100%;
+  height: 42rpx;
+}
+
+.lottery-popup .qr-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 50rpx;
+  padding-top: 20rpx;
+}
+
+.lottery-popup .tips-text{
+  font-size: 24rpx;
+  padding: 0 50rpx;
+}
+
+.first-tip {
+  font-size: 36rpx;
+  margin-top: 76rpx;
+}
+
+.second-tip {
+  font-size: 36rpx;
+  padding-bottom: 128rpx;
+}
+
+.lottery-popup .canvas {
+  width: 130px;
+  height: 130px;
+}
+
+.lottery-popup .qr-text {
+  font-size: 30rpx;
+  color: #222222;
+  margin-top: 8rpx;
+}
+
+.lottery-popup .know-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 213rpx;
+  height: 72rpx;
+  background: #E6002D;
+  border-radius: 15rpx;
+  font-size: 30rpx;
+  color: #FFFFFF;
+  margin-top: 20rpx;
+  margin-bottom: 30rpx;
+}

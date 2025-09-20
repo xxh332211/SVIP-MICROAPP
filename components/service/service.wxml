@@ -1,0 +1,37 @@
+<!--components/service/service.wxml-->
+<!-- 客服 -->
+<view class='session'>
+  <view class='session-title'>
+    <text class='left'>专属客服</text>
+    <text class='separator'>|</text>
+    <text class='right'>专人专线</text>
+  </view>
+  <view class='server'>
+    <view class='server-tel'>
+      <view class='tel'>
+        <view class="exclusive">专属客服，即时回复无需等待</view>
+        <view bindtap="calling">
+          <text wx:if="{{cityId == 65}}" class="phone">400-618-3555</text>
+
+          <text wx:else class="phone">400-6188-555</text>
+
+          <!-- <text class="phone">400-6188-555</text> -->
+        </view>
+      </view>
+      <view class='wxChat' wx:if='{{cityConfig.kefuwx && cityConfig.kefuwx.length>0}}'>
+        <view class='online'>长按识别添加客服微信</view>
+        <image class="add-service-qr" wx:if="{{cityConfig.qr_url}}"	show-menu-by-longpress src="{{cityConfig.qr_url}}"></image>
+        <view class="add-service-content">
+          微信号：{{cityConfig.kefuwx}}
+          <view class="copy" id="copyBtn" data-order="{{cityConfig.kefuwx}}" bindtap="copy">点击复制</view>
+        </view>
+        <!-- <view class="add">添加微信号在线服务</view>
+        <view class='server-people'>
+          <view class="wx-ico"></view>
+          <text class='name'>小夏：</text>
+          <text class='num text-hidden' selectable="true">{{cityConfig.kefuwx}}</text>
+        </view> -->
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,166 @@
+<!--pages/user/selfHelp/FillIn/FillIn.wxml-->
+<online-serve />
+<privacy-popup></privacy-popup>
+<view class="box" >
+
+  <view class="top">
+    <view class="title">请按照订单内容填写相关信息</view>
+  </view>
+
+  <!-- 表单 -->
+  <view class="form-box ">
+    <view class="tab" wx:if="{{!orderId}}">
+      <view class="{{isVendor?'':'active'}}" data-type="unify" bindtap="tabSwitch">家博订单</view>
+      <view class="vendor {{isVendor?'active':''}}" data-type="vendor" bindtap="tabSwitch">商户订单</view>
+    </view>
+
+    <view class="form-item" wx:if="{{!isVendor}}" bindtap="wxScan">
+      <view class="name">订单号</view>
+      <view class="content">
+        <input placeholder="点击扫描订单条形码" disabled="true" value="{{orderNum}}"></input>
+        <view class="error" wx:if="{{error2}}">订单号与订单上的不符</view>
+        <view class="error" wx:if="{{error8}}">该订单已录入</view>
+      </view>
+      <image class="scan-img" src="https://img.51jiabo.com/fadf7b50-04f9-41b7-8242-c495b2ee40ac.png"></image>
+    </view>
+
+    <view class="form-item">
+      <view class="name">品牌名称</view>
+      <view class="content">
+        <input value="{{brandName}}" maxlength="30" disabled="{{isVendor?false:true}}" bindinput="inputBrandName" placeholder="{{isVendor?'请按照订单信息填写':'扫描后自动填写'}}"></input>
+        <view class="error" wx:if="{{error7}}">品牌名称与订单上的不符</view>
+      </view>
+      <image wx:if='{{isVendor && brandName}}' src="/imgs/chaInput.png" class="chaInput" bindtap="chaInput"></image>
+    </view>
+
+    <view class="form-item">
+      <view class="name">姓名</view>
+      <view class="content" style="flex-grow:1">
+        <input maxlength="10" placeholder="请按照订单信息填写（选填）" value="{{name}}" bindinput="inputName"></input>
+        <view class="error" wx:if="{{error3}}">姓名与订单上的不符</view>
+      </view>
+    </view>
+
+    <view class="form-item">
+      <view class="name">手机号码</view>
+      <view class="content">
+        <input type="number" maxlength="11" value="{{mobile}}" bindinput="inputMobile"></input>
+        <view class="error" wx:if="{{error4}}">手机号与订单上的不符</view>
+      </view>
+      <view class="q" bindtap="phoneTips"></view>
+    </view>
+
+    <view class="amount">
+      <view class="amount-top">
+        <view class="name">订单金额</view>
+        <view class="content">
+          <view class="way">
+            <view class="item" data-way="1" bindtap="switchWay">
+              <view class="label {{payWay == 1?'active':''}}"></view>支付全款</view>
+            <view class="item" data-way="2" bindtap="switchWay">
+              <view class="label {{payWay == 2?'active':''}}"></view>支付定金</view>
+          </view>
+          <view class="error" wx:if="{{error6}}">订单金额与订单上的不符</view>
+        </view>
+      </view>
+      <view class="amount-form">
+        <cover-view class="layer" wx:if="{{!payWay}}" bindtap="notWayTip"></cover-view>
+        <view class="symbols">￥</view>
+        <input type="digit"  placeholder="请按照订单金额填写" value="{{amountNum}}" bindinput="inputAmount" placeholder-class="placeholder" maxlength="8"></input>
+        <view class="clear" bindtap="clearForm" wx:if="{{amountNum}}"></view>
+      </view>
+    </view>
+    <!-- 模糊搜索 -->
+    <cover-view class="fuzzySearch" wx:if='{{isVendor && showFuzzySearch}}'>
+      <cover-view class="text" wx:for="{{searchList}}" wx:key='*this' data-index="{{index}}" catchtap="getInputSearch">
+        {{item}}
+      </cover-view>
+    </cover-view>
+  </view>
+
+  <view class="goods-photo">
+    <view class="take-photo">
+      <view class="name">拍照上传订单</view>
+      <view class="error" wx:if="{{error1}}">订单照片不清晰，请重新拍照提交</view>
+      <view class="photo">
+        <view class="photo-item" wx:for="{{photoList}}" wx:key="index">
+          <image src="{{item.imageUrl}}" data-img="{{item.imageUrl}}" bindtap="bigImg"></image>
+          <view class="del" data-id="{{index}}" bindtap="delImg"></view>
+        </view>
+        <view class="take-btn" bindtap="takePhoto">
+          <image class="img" src="https://img.51jiabo.com/dc216ddc-0650-4f03-a7cd-7df155ab0f7c.png"></image>
+          <view class="order-img">订单图</view>
+        </view>
+      </view>
+    </view>
+    <view class="goods-name">
+      <view class="name">商品名称</view>
+      <view class="error" wx:if="{{error5}}">商品名称与订单上的不符</view>
+      <!-- https://img.51jiabo.com/d6379691-6c3d-481d-bee1-642d31e6c8a1.png -->
+      <textarea placeholder="请按照订单信息填写（选填）" maxlength="100" value="{{goodsName}}" bindinput="inputGoodsName" ></textarea>
+    </view>
+  </view>
+
+  <view class="rule">
+    <view class="rule-tit">规则说明</view>
+    <view class="rule-content">1、请按照订单信息填写内容，内容填写完整后才可以提交审核；</view>
+    <view class="rule-content">2、审核通过后可参与现场福利活动；</view>
+    <view class="rule-content">3、同一个品牌仅限一单参与现场福利活动；</view>
+    <view class="rule-content" wx:if="{{cityId != 60}}">4、本活动最终解释权归华夏家博会所有。</view>
+  </view>
+
+  <view class="submit-btn" bindtap="submit">确认提交</view>
+
+</view>
+
+<!-- 手机号提示 -->
+<cover-view class="phone-tips" wx:if="{{phoneTips}}">
+  <cover-view class="phone-tips-box">
+    <cover-view class="text">1、请根据订单上的号码填写；</cover-view>
+    <cover-view class="text">2、如更改手机号码，订单将会被记录在修改的手机号码下，如订单审核通过，请根据修改的手机号码参与现场福利活动；</cover-view>
+    <cover-view class="text">3、订单审核通过后将会显示在已修改手机号码用户录单列表中，不再显示在录单用户列表中；已修改手机号码用户可登录华夏家博小程序在录单列表中查看订单详情。</cover-view>
+    <cover-view class="text">4、为方便您与亲友逛展，如修改手机号码未索票，将同时索票；可在首页绑定亲友页面查看已绑定的亲友</cover-view>
+    <cover-view class="close" bindtap="phoneTips">知道了</cover-view>
+  </cover-view>
+</cover-view>
+
+<!-- 报错提示 -->
+<cover-view class="error-tips" wx:if="{{showError}}">{{errorText}}</cover-view>
+
+<!-- 提交成功提示 -->
+<cover-view class="tips-popup" wx:if="{{submitSuccess}}">
+  <cover-view class="tips-box">
+    <cover-view class="tit">提交成功</cover-view>
+    <cover-view class="content">如审核通过后可参与现场福利活动，请注意查看审核结果</cover-view>
+    <cover-view class="confirm" bindtap="confirmNav">确定</cover-view>
+  </cover-view>
+</cover-view>
+
+<!-- 审核未通过提示 -->
+<cover-view class="tips-popup" wx:if="{{notPassTip}}">
+  <cover-view class="tips-box">
+    <cover-view class="tit">审核未通过</cover-view>
+    <cover-view class="content">请查看修改订单信息，再次提交审核</cover-view>
+    <cover-view class="confirm" bindtap="confirm">确定</cover-view>
+  </cover-view>
+</cover-view>
+
+<!-- 审核通过提示 -->
+<cover-view class="pass-tips" wx:if="{{auditPass}}">
+  <cover-view class="pass-box">
+    <cover-image mode="widthFix" src="https://img.51jiabo.com/551ab023-fe09-4bd2-92c9-7a0d688fcc31.png"></cover-image>
+    <cover-view class="content">快去参加现场福利活动吧</cover-view>
+    <cover-view class="confirm" bindtap="confirm">确定</cover-view>
+  </cover-view>
+</cover-view>
+
+<!-- 判断订单号是否在系统中已绑定用户 -->
+<cover-view class="tips-popup" wx:if="{{showBindUser}}">
+  <cover-view class="tips-box">
+    <cover-view class="content">{{BindUserText}}</cover-view>
+    <cover-view class="confirm" bindtap="confirm">知道了</cover-view>
+  </cover-view>
+</cover-view>
+
+<!-- 微信授权手机号弹层 -->
+<authorize bindgetPhoneBack="getPhoneBack"></authorize>

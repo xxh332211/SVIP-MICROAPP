@@ -1,0 +1,827 @@
+page, .page, .page__bd {
+  height: 100%;
+}
+
+.page__bd {
+  padding-bottom: 0;
+}
+
+.tab-box {
+  width: 100%;
+  height: 100rpx;
+  display: flex;
+  justify-content: space-around;
+  background: #fff;
+  box-shadow: 0px 5rpx 15rpx 0px rgba(81, 81, 81, 0.05);
+}
+
+.tab-box .tab {
+  height: 100rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  /* margin: 0 105rpx 0 144rpx; */
+}
+
+/* .tab-box .tab.active {
+  color: #e5002d;
+} */
+/* 
+.tab-line {
+  width: 114rpx;
+  height: 4rpx;
+  background: #e6002d;
+  position: absolute;
+  bottom: 0;
+  left: 144rpx;
+  transition: left 0.2s linear;
+} */
+.active{
+  color: #e5002d;
+  border-bottom: 4rpx solid #e5002d;
+}
+/* .tab-line.active {
+  width: 114rpx;
+  left: 507rpx;
+} */
+
+.list-content {
+  margin-top: 22rpx;
+}
+
+.weui-navbar {
+  background: #fff;
+  border-top: 1px solid #d4dce1;
+  border-bottom: none;
+}
+
+.weui-navbar__item {
+  color: #999;
+}
+
+.weui-bar__item_on .weui-navbar__title {
+  color: #ff001b;
+}
+
+.weui-navbar__slider {
+  background: #ff001b;
+  width: 70rpx;
+}
+
+/* 单个商品 */
+
+.product {
+  background: #fff;
+  padding: 0 30rpx;
+  align-items: center;
+  margin-bottom: 22rpx;
+}
+
+.product-info {
+  flex: 1;
+  justify-content: space-around;
+  padding-left: 44rpx;
+  position: relative;
+}
+
+.goods-name {
+  min-height: 70rpx;
+  color: #222;
+  font-size: 28rpx;
+  font-weight: 800;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  line-height: 36rpx;
+}
+
+.more-choose-one-msg{
+  font-size: 24rpx;
+  color: #E6002D;
+  position: absolute;
+  left: 44rpx;
+  top: 53rpx;
+}
+
+.goods-price {
+  color: #777;
+  font-size: 32rpx;
+  margin-top: 20rpx;
+}
+
+.goods-price text {
+  font-size: 24rpx;
+}
+.goods-price .visib{
+  visibility: hidden;
+}
+.product-pic {
+  width: 190rpx;
+  height: 150rpx;
+}
+
+.product-price {
+  color: #222;
+  font-size: 32rpx;
+  font-weight: 800;
+  margin-top: 30rpx;
+}
+
+.product-price text {
+  color: #666;
+  font-size: 20rpx;
+  font-weight: normal;
+  margin-left: 20rpx;
+  text-decoration: line-through;
+}
+
+.product-state {
+  width: 100%;
+  height: 89rpx;
+  line-height: 89rpx;
+}
+
+.product-state view {
+  font-size: 32rpx;
+  font-weight: 400;
+}
+
+.product-state view.red {
+  color: #e5002d;
+}
+
+.logistics-sn {
+  font-size: 24rpx;
+  color: #E6002D;
+  padding: 17rpx 0 23rpx;
+  margin-top: -15rpx;
+  border-top: 1rpx solid #e1e1e1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logistics-sn-view{
+  display: flex;
+  
+}
+.logistics-sn-right{
+  width: 160rpx;
+  height: 50rpx;
+  background: rgba(229,229,229,1);
+  border: 1px solid rgba(210,210,210,1);
+  border-radius: 10rpx;
+  text-align: center;
+  line-height: 50rpx;
+  font-size: 24rpx;
+  color: #2a2a2a;
+  
+}
+/*定金*/
+
+.product-content {
+  padding-bottom: 34rpx;
+}
+
+.refund {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 0 30rpx;
+  margin-top: -18rpx;
+}
+
+.refund .earnest {
+  color: #e5002d;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.refund .earnest text {
+  font-size: 24rpx;
+  font-weight: normal;
+}
+.btn-wrap{
+  display: flex;
+}
+.earnest-product {
+  padding: 0 30rpx;
+  background: #fff;
+  margin-bottom: 20rpx;
+}
+.flex{
+  display: flex;
+  justify-content: space-between;
+}
+/* .flex text:nth-child(2){
+  border: 1px solid #959595;
+  line-height:50rpx;
+  color: #222;
+  border-radius: 25rpx;
+  padding: 0 20rpx; 
+} */
+.shopTxt{
+  font-size: 24rpx;
+  color: #e5002d;
+  line-height: 36rpx;
+  padding: 29rpx 0 27rpx 0;
+  border-top: 1px solid #E1E1E1;
+  margin-top: 10rpx;
+}
+.earnest-dic {
+  flex: 1;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  color: #e5002d;
+  border-top: 1px solid #e1e1e1;
+  padding: 22rpx 0;
+  font-size: 24rpx;
+  font-weight: 400;
+}
+
+.product-refund {
+  color: #222;
+  width: 130rpx;
+  height: 50rpx;
+  border-radius: 50rpx;
+  border: 1px solid #959595;
+  font-size: 24rpx;
+  margin-left: 13rpx;
+}
+.product-refunds {
+  color: #fff;
+  width: 159rpx;
+  height: 50rpx;
+  border-radius: 50rpx;
+  font-size: 24rpx;
+  margin-left: 23rpx;
+}
+.product-refunds.await{
+  background: #E6002D;
+} 
+.product-refunds.then{
+  border: 1px dotted #E6002D;
+  color: #E6002D;
+} 
+.product-refunds.disable {
+  background: #EEEEEE;
+  color: #6D6D6D;
+}
+.product-refunds.nodisable {
+  border: 1px dotted #B5B5B5;
+  color:#747474 ;
+}
+/* 无门票空白页 */
+
+.no-ticket {
+  /* background: darkblue; */
+  margin-top: 180rpx;
+}
+
+.subscribe {
+  width: 650rpx;
+  height: 96rpx;
+  margin: 20rpx auto;
+  background: #e6002d;
+  border-radius: 50rpx;
+  font-size: 32rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  color: #fff;
+}
+
+.explain {
+  color: #e6002d;
+  font-size: 28rpx;
+  width: 100%;
+  text-align: center;
+}
+
+/*  */
+
+.tic-wrap {
+  height: 106rpx;
+  width: 100%;
+}
+
+.share-tic {
+  width: 100%;
+  background: #fee;
+  color: #e6002d;
+  font-weight: 500;
+  font-size: 28rpx;
+  padding: 22rpx;
+}
+
+/* 弹窗 */
+
+.modal-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  width: 620rpx;
+  background: #fff;
+  border-radius: 8px;
+  font-size: 32rpx;
+  overflow: hidden;
+  padding-bottom: 41rpx;
+}
+
+.dialog-title {
+  font-weight: bold;
+  color: #19151d;
+  font-size: 36rpx;
+  padding-top: 65rpx;
+}
+
+.dialog-info {
+  text-align: center;
+  color: #777;
+  font-size: 23rpx;
+}
+
+.dialog-price {
+  margin: 20rpx 0;
+  text-align: center;
+  color: #777;
+  font-size: 23rpx;
+}
+.dialog-price .label{
+  font-size: 24rpx;
+  color: #E5002D;
+  font-weight: bold;
+}
+
+.price {
+  color: #e5002d;
+  font-weight: bold;
+  font-size: 48rpx;
+}
+
+.modalCancel{
+  width: 190rpx;
+  height: 70rpx;
+  border-radius: 3rpx;
+  background: #E6002D;
+  font-size: 36rpx;
+  color: #fff;
+  text-align: center;
+  line-height: 70rpx;
+  margin: 32rpx 0 0 215rpx;
+}
+
+/* 空白页 */
+
+.empty-content {
+  margin-top: 200rpx;
+  text-align: center;
+  color: #777;
+  font-size: 32rpx;
+}
+
+.empty-content image {
+  width: 300rpx;
+  height: 300rpx;
+}
+
+/* 待支付按钮 */
+
+.bot-pay {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 30rpx;
+  margin-top: -18rpx;
+}
+
+.bot-pay.prev {
+  padding-bottom: 34rpx;
+}
+
+.bot-pay .yf-num {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: rgba(229, 0, 45, 1);
+}
+.bot-pay .yf-right {
+  display: flex;
+}
+.bot-pay .yf-right .yf-cancel{
+  /* display: flex; */
+  width:159rpx;
+  height:50rpx;
+  line-height: 50rpx;
+  box-sizing: border-box;
+  text-align: center;
+  border:1px solid rgba(230,0,45,1);
+  border-radius:25rpx;
+  color: #E6002D;
+  margin-right:25rpx ;
+}
+.bot-pay .pay-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 159rpx;
+  height: 50rpx;
+  background: rgba(230, 0, 45, 1);
+  border-radius: 25rpx;
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 1);
+}
+
+/* 退款提示 */
+
+.refound-tips {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 29;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.refound-tips .tips-box {
+  width: 620rpx;
+  background: #fff;
+  border-radius: 8rpx;
+  padding-top: 53rpx;
+  padding-bottom: 53rpx;
+}
+
+.refound-tips .tips-box .tit {
+  color: #000;
+  font-weight: bold;
+  font-size: 36rpx;
+  text-align: center;
+}
+
+.refound-tips .tips-box .btn-box {
+  display: flex;
+  justify-content: center;
+  margin-top: 77rpx;
+}
+
+.refound-tips .tips-box .btn-box view {
+  width: 190rpx;
+  height: 70rpx;
+  border-radius: 3rpx;
+  font-size: 36rpx;
+  background: #e6002d;
+  color: #fff;
+  text-align: center;
+  line-height: 70rpx;
+}
+
+.refound-tips .tips-box .btn-box .cancel {
+  border: 1px solid #aaa;
+  background: #fff;
+  color: #000;
+  margin-right: 94rpx;
+}
+
+.code-popup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 29;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.code-popup .code-box {
+  width: 610rpx;
+  background: url("https://img.51jiabo.com/cf8a82d1-8ad7-4232-b7e9-b51af6efa331.png") no-repeat;
+  background-size: 100% 100%;
+  padding-bottom: 42rpx;
+}
+
+.code-popup .code-box .top {
+  text-align: center;
+}
+
+.code-popup .code-box .top .tit {
+  font-size: 36rpx;
+  font-weight: bold;
+  padding: 46rpx 0 0;
+}
+
+.code-popup .code-box .top .period {
+  font-size: 30rpx;
+  color: #e6002d;
+  padding-bottom: 36rpx;
+}
+
+.code-popup .code-box .bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.code-popup .code-box .bottom .canvas {
+  width: 170px;
+  height: 170px;
+  margin-top: 55rpx;
+  overflow: hidden;
+  position: relative;
+}
+
+.code-popup .code-box .bottom .cou-code {
+  font-size: 32rpx;
+  margin-top: 20rpx;
+}
+.code-popup .code-box .bottom .cou-code.past {
+  text-decoration: line-through;
+}
+
+.code-popup .code-box .bottom .status {
+  width: 240rpx;
+  height: 70rpx;
+  border-radius: 5rpx;
+  font-size: 36rpx;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+  line-height: 70rpx;
+  background: #e6002d;
+  margin-top: 40rpx;
+}
+
+.code-popup .code-box .bottom .status.used {
+  background: #f1c679;
+}
+
+.code-popup .code-box .bottom .status.past {
+  background: #bababa;
+}
+
+.more-choose-one-popup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 29;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.more-choose-one-popup>.main{
+  position: relative;
+  width: 680rpx;
+  background-color: #fff;
+  border-radius: 10rpx;
+  overflow: hidden;
+}
+
+.more-choose-one-popup>.main>.title{
+  width: 100%;
+  height: 126rpx;
+  line-height: 126rpx;
+  text-align: center;
+  font-size: 42rpx;
+  font-weight: bold;
+  color: #222;
+  background-color: #F8F8F8;
+  margin-bottom: 60rpx;
+}
+
+.more-choose-one-popup>.main .sc-view{
+  width: 100%;
+  white-space: nowrap;
+}
+
+.more-choose-one-popup>.main .item {
+  width: 260rpx;
+  margin-left: 20rpx;
+  display: inline-block;
+}
+
+.more-choose-one-popup>.main .item:last-of-type{
+  margin-right: 20rpx;
+}
+
+.more-choose-one-popup>.main .pro-img {
+  display: block;
+  width: 100%;
+  height: 205rpx;
+  margin-bottom: 16rpx;
+}
+
+.more-choose-one-popup>.main .desc {
+  font-size: 24rpx;
+  color: #222;
+  height: 65rpx;
+  line-height: 34rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  white-space: normal;
+}
+
+
+.more-choose-one-popup>.main .price {
+  display: flex;
+  align-items: baseline;
+  color: #E6002D;
+  font-size: 28rpx;
+  font-weight: bold;
+  margin: 13rpx 0 28rpx;
+  padding-top: 20rpx;
+  border-top: 1rpx solid #EFEFEF;
+}
+
+.more-choose-one-popup>.main .num {
+  font-size: 36rpx;
+}
+
+.more-choose-one-popup>.main .unit {
+  font-size: 20rpx;
+  font-weight: normal;
+  letter-spacing: 2rpx;
+  padding-left: 4rpx;
+}
+
+.more-choose-one-popup>.main .buy-btn {
+  width: 100%;
+  height: 65rpx;
+  line-height: 65rpx;
+  border-radius: 2rpx;
+  font-size: 28rpx;
+  color: #fff;
+  background-color: #E6002D;
+  margin-top: 28rpx;
+}
+
+.more-choose-one-popup>.main .dis-buy-btn{
+  background-color: #D0D0D0;
+}
+
+
+.more-choose-one-popup>.main .mco-btn{
+  width: 280rpx;
+  height: 86rpx;
+  line-height: 86rpx;
+  border-radius: 4rpx;
+  background-color: #E5002D;
+  color: #fff;
+  font-size: 32rpx;
+  margin: 40rpx auto 60rpx;
+}
+
+.more-choose-one-popup>.main>.mco-close{
+  position: absolute;
+  top: 30rpx;
+  right: 30rpx;
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.more-choose-one-tips {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 30;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.more-choose-one-tips>.mco-box{
+  position: relative;
+  width: 680rpx;
+  background-color: #fff;
+  border-radius: 8rpx;
+  text-align: center;
+  padding-bottom: 50rpx;
+}
+
+.more-choose-one-tips .mco-tips-btn{
+  width: 280rpx;
+  height: 86rpx;
+  line-height: 86rpx;
+  color: #fff;
+  font-size: 32rpx;
+  background-color: #E5002D;
+  margin: 50rpx auto 0;
+}
+
+.more-choose-one-tips>.mco-box1>.mco-tips-title{
+  font-size: 36rpx;
+  margin-top: 90rpx;
+}
+
+.more-choose-one-tips>.mco-box2>.mco-tips-text{
+  font-size: 32rpx;
+}
+
+.more-choose-one-tips>.mco-box2>.mco-tips-text:first-of-type{
+  margin: 70rpx 0 20rpx;
+}
+
+.more-choose-one-tips>.mco-box2>.mco-tips-text:last-of-type{
+  margin-top: 40rpx;
+}
+
+.more-choose-one-tips .mco-close{
+  position: absolute;
+  top: 30rpx;
+  right: 30rpx;
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.refund-popup{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 30;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.refund-popup>.refund-popup-box{
+  width: 680rpx;
+  background-color: #fff;
+  border-radius: 8rpx;
+  padding: 60rpx 50rpx 50rpx;
+}
+
+.refund-popup>.refund-popup-box>.title{
+  font-size: 36rpx;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 50rpx;
+}
+
+.refund-popup>.refund-popup-box>.content{
+  font-size: 32rpx;
+  width: 100%;
+  height: 338rpx;
+  margin-bottom: 82rpx;
+}
+
+.refund-popup>.refund-popup-box>.refund-popup-btns{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.refund-popup>.refund-popup-box .rpb-btn{
+  width: 280rpx;
+  height: 86rpx;
+  line-height: 86rpx;
+  font-size: 32rpx;
+  text-align: center;
+  border-radius: 3rpx;
+}
+
+.refund-popup>.refund-popup-box .rpb-cancel{
+  border: 1rpx solid #C9C9C9;
+  color: #222;
+}
+.refund-popup>.refund-popup-box .rpb-confirm{
+  background-color: #E5002D;
+  color: #fff;
+}
+.refund-popup>.refund-popup-box .rpb-dis-confirm{
+  background-color: #D0D0D0;
+  color: #FFFFFF;
+}
+.refund-popup>.refund-popup-box>.rpb-know{
+  margin: 0 auto;
+  background-color: #E5002D;
+  color: #fff;
+}

@@ -1,0 +1,6 @@
+/* pages-qy/pages/onlineServe/onlineServe.wxss */
+.loading{
+  text-align: center;
+  padding-top: 200rpx;
+  font-size: 30rpx;
+}

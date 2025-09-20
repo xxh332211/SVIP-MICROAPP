@@ -1,0 +1,18 @@
+<view class='modal-wrap' catchtouchmove='stop'>
+  <block>
+    <view class='modal-mask'>
+      <view class='modal-content'>
+        <view class='title' wx:if="{{hasTitle.showTitle}}">{{hasTitle.titleText}}</view>
+        <view class='content'>
+          <slot>
+          </slot>
+        </view>
+        <view class='footer' wx:if='{{hasBtns}}'>
+          <view bindtap='modalConfirm'>确认</view>
+          <view bindtap='modalCancel' wx:if="{{!isSingle.alone}}">取消</view>
+        </view>
+        <slot name='footer'></slot>
+      </view>
+    </view>
+  </block>
+</view>

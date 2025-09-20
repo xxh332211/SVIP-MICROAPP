@@ -1,0 +1,10 @@
+<!--pages-liebian/pages/winners/winners.wxml-->
+<view class="box">
+  <view class="win-list">
+    <view class="win-item" wx:for="{{winnerList}}" wx:key="index">
+      <image class="avatar" src="{{item.avatar}}"></image>
+      <view class="nick">{{item.nick_name}}</view>
+    </view>
+  </view>
+  <view class="more" wx:if="{{showMore}}" bindtap="loadMore">加载更多</view>
+</view>

@@ -1,0 +1,23 @@
+/* components/onlineServe/onlineServe.wxss */
+.tencent-serve {
+  width: 175rpx;
+  height: 46rpx;
+  position: fixed;
+  left: 0;
+  bottom: 240rpx;
+  z-index: 10;
+  background: url("https://img.51jiabo.com/6c7dfa89-f81f-4330-8c08-863aaade9d15.png") no-repeat;
+  background-size: 100% 100%;
+  pointer-events: auto;
+}
+.area{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  pointer-events: none;
+  /* z-index: -1; */
+}
+.move-view{
+
+}

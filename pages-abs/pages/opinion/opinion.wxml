@@ -1,0 +1,14 @@
+<!--pages-abs/pages/opinion/opinion.wxml-->
+<online-serve />
+<image class="banner" mode="widthFix" src="https://img.51jiabo.com/da62f6a0-4201-4434-b217-373240358b1f.png"></image>
+<view class="content-box">
+  <view class="content">
+    <view class="title">
+      <image class="title-img" src="https://img.51jiabo.com/6d4d637f-8d45-42fb-ab47-e3ed09abcc33.png"></image>
+    </view>
+    <textarea class="text" placeholder="什么么么么么么没有找到你想要的商品/品牌？不开心和吐槽，有什么来说吧" name="" id="" maxlength="200" bindinput="opinionInput" value="{{opinion}}"></textarea>
+  </view>
+</view>
+<view class="btn-box">
+  <view class="btn" bindtap="submit">提 交</view>
+</view>

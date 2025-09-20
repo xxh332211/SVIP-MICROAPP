@@ -1,0 +1,4 @@
+<!--components/liveAdv/liveAdv.wxml-->
+<view class="live-popup {{isMgg?'top':''}}" style="margin-top:{{isMgg?navHeight:''}}px"  wx:if="{{liveAdv.length > 0}}"  wx:for="{{liveAdv}}" wx:key="index" data-item="{{item}}" bindtap="swiperUrl">
+  <image src="{{item.wap_image_url}}"></image>
+</view>

@@ -1,0 +1,7 @@
+<!--pages/svipPackage/getUnionId/getUnionId.wxml-->
+<image mode="widthFix" src="https://img.51jiabo.com/0edb6103-051d-40bc-8e29-13f419cb6afd.png"></image>
+<view class="wrapper">
+  <view class="text">华夏家博会申请获取以下权限</view>
+  <view class="text">获取你的公开信息（昵称.头像等）</view>
+  <button open-type="getUserInfo" bindgetuserinfo="getUserInfo" class="btn">确认授权</button>
+</view>

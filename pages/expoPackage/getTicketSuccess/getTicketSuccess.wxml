@@ -1,0 +1,94 @@
+<!--pages/expoPackage/getTicketSuccess/getTicketSuccess.wxml-->
+<wxs module="md">
+  var indexof = function (arr, num) {
+    if (arr.indexOf(num) > -1) {
+      return true
+    } else {
+      return false
+    }
+  }
+  module.exports = { indexof: indexof }
+</wxs>
+<online-serve />
+<privacy-popup></privacy-popup>
+<view class='wrapper'>
+  <image style="height:40rpx;" src="/imgs/label.png"></image>
+
+  <view class="top">
+    <view class="success-title" wx:if="{{!hasAddress}}">
+      <image mode='widthFix' src="/imgs/chenggong.png"></image>
+      恭喜您索票成功
+    </view>
+    <view class="success-address" wx:if="{{hasAddress}}">
+      <view class="one">索票地址提交成功</view>
+      <view>我们会在开展前2周为您免费寄送门票</view>
+    </view>
+    <view class="add-serve" wx:if="{{cityConfig.qr_url}}">添加客服领取电子门票和优惠，请按下方引导及时添加，超时未添加优惠将失效</view>
+    <view class="add-kith" bindtap="toAddKin">添加亲友，一起逛展</view>
+  </view>
+  <view class="schedule">
+    <!-- 纸质门票填写收货地址 -->
+    <view class='place-form' wx:if="{{!isElectron && !hasAddress}}">
+      <input placeholder='请填写详细地址：如古美路1582号C栋8楼' bindinput="addressInput" value='{{address}}'></input>
+      <!-- <input placeholder='请填写身份证号' maxlength="18" bindinput="idCardInput" value='{{idCard}}'></input> -->
+      <view class='confirm' bindtap='submitForm'>确认提交</view>
+    </view>
+    <!-- 微信二维码 -->
+    <view class="code-box" wx:if="{{cityConfig.qr_url}}">
+      <view class="title"><text>长按二维码</text>添加客服微信，享受专属活动福利</view>
+      <view class="code-wrap">
+        <image class="code-img" show-menu-by-longpress="true" src="{{cityConfig.qr_url}}"></image>
+      </view>
+    </view>
+    <view class="h5">
+      <image mode='widthFix' src="/imgs/richeng.png"></image>
+      参观日程安排
+    </view>
+    <view class="time-list">
+      <view class='time'>{{expoYear}}
+        <view class='Hz'>年</view>{{expoMonth}}
+        <view class='Hz'>月</view>
+      </view>
+      <view class='ul'>
+        <view class='li {{item.isActive?"active":""}}' wx:for="{{dateList}}" wx:key="index">
+          <view>{{item.date}}</view>
+          <view>{{item.day}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="site">活动地址：{{activityInfo.venue_address}}</view>
+    <view class="tips">
+      <image src="/imgs/icon_011.png"></image>
+      <view class='warm'>温馨提示：<text wx:if="{{cityId == 60}}">宁波装修狂欢节</text><text wx:else>家博会</text>客服将会与您电话联系核实索票信息，请保持手机顺通，如有疑问可添加客服微信。</view>
+    </view>
+  </view>
+
+  <!-- 爆品组 -->
+  <view wx:for="{{goodsGroup}}" wx:key="index" wx:if="{{md.indexof(item.banner_info,'73')}}">
+    <hot-goods-group groupItem="{{item}}"></hot-goods-group>
+  </view>
+
+  <!-- 运营位 -->
+  <image wx:for="{{successAdv}}" wx:key="index" class='oprate' mode='widthFix' src='{{item.wap_image_url}}' data-item="{{successAdv[0]}}" bindtap="{{item.url?'swiperUrl':''}}"></image>
+
+  <!-- 客服 -->
+  <service wx:if="{{cityId != 60}}" cityConfig="{{cityConfig}}"></service>
+</view>
+
+<!-- 地址提交成功 -->
+<view class="submit-popup" wx:if="{{submitSuccess}}">
+  <view class="submit-box">
+    <view class="text">地址提交成功，请注意接听来电。</view>
+    <view class="confirm" bindtap="confirm">确定</view>
+  </view>
+</view>
+
+<!-- 添加客服微信运营位 -->
+<view class="serve-popup" wx:if="{{showServePopup}}">
+  <view class="serve-box">
+    <view class="serve-close" catchtap="closeServe"></view>
+    <button class="btn" open-type="contact" hover-class="none">
+      <image class="img" mode="widthFix" bindload="imgLoad" src="{{serviceAdv[0].wap_image_url}}"></image>
+    </button>
+  </view>
+</view>

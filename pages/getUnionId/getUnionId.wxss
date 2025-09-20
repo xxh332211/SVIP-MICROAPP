@@ -1,0 +1,28 @@
+/* pages/svipPackage/getUnionId/getUnionId.wxss */
+page {
+  background-color: #fff;
+}
+.wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 60rpx;
+}
+.text {
+  font-size: 32rpx;
+  color: #222222;
+  margin-bottom: 20rpx;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 600rpx;
+  height: 90rpx;
+  background: #E6002D;
+  border-radius: 45rpx;
+  font-size: 36rpx;
+  color: #FFFFFF;
+  margin-top: 30rpx;
+}

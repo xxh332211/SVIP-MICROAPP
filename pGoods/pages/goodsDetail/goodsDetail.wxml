@@ -1,0 +1,103 @@
+<!-- pages/goodsDetail/goodsDetail.wxml -->
+<online-serve />
+<view class="page">
+  <scroll-view scroll-y="{{true}}">
+    <view class="swiper-container">
+      <swiper indicator-color="rgba(255,255,255,.66)" indicator-active-color="#0CC187" autoplay="{{true}}" interval="5000" duration="1000" circular="false" class="tac" style="height: 400rpx;" bindchange="onSwiperChange">
+        <swiper-item wx:for="{{swiperData}}" wx:key="index">
+          <video wx:if="{{item.type === 'video'}}" style="width: 100%;height: 400rpx;" controls="false" autoplay="{{false}}" bindplay="videos" bindpause="videos" src='{{item.url}}'></video>
+          <navigator wx:else>
+            <image src="{{item.url}}" mode="aspectFill" style="height: 400rpx;"></image>
+          </navigator>
+        </swiper-item>
+      </swiper>
+      <view class="indicator" wx:if="{{swiperData.length > 1}}">
+        <block wx:for="{{swiperData}}">
+          <view wx:key="item.url" class="video {{index === current ? 'active' : ''}}" wx:if="{{item.type === 'video'}}">
+            <view></view>
+          </view>
+          <view wx:key="item.url" class="text {{index === current ? 'active' : ''}}" wx:else>
+            <text>{{item.label}}</text>
+          </view>
+        </block>
+      </view>
+    </view>
+    <view class="content">
+      <view class="price">
+        <text class="order-price" wx:if="{{info.catalog === 0}}">定</text><text class="vip-price" wx:if="{{info.catalog === 3 && isSvip}}">SVIP</text>
+        <text class="sale-price" wx:if="{{info.catalog === 0}}">¥{{info.price}}<text class="full-price">销售价： ¥{{info.sellingPrice}}</text></text>
+        <text class="sale-price" wx:else>¥{{info.price}}</text>
+        <block wx:if="{{info.catalog !== 0}}">
+        <text class="market-label">市场价</text>
+        <text class="market-price">¥{{info.marketPrice}}</text>
+        </block>
+        <text class="market-price"></text>
+        <text class="sale-info">已售{{info.soldCount}} | {{ info.unlimitStock ? '有货' : ('剩余' + (info.stock || '0'))}}</text>
+      </view>
+      <view class="goods-title">
+        <text>{{info.title}}</text>
+        <button open-type='share' data-shareData="{{shareData}}" class="share">
+          <image src="https://img.51jiabo.com/imgs-mall/share-btn.svg"></image>
+        </button>
+      </view>
+      <view class="goods-desc">
+        <text wx:for="{{specs}}" wx:key="index" class="tag">{{item}}</text>
+        <view class="txt" wx:if="{{info.catalog === 0}}">
+          线上支付定金锁定超低价，该商品需到展会现场支付销售价领取商品
+        </view>
+      </view>
+      <view class="vip-btn" wx:if="{{info.catalog === 3 && !isSvip}}" bind:tap="buySvip">
+        <image src="https://img.51jiabo.com/imgs-mall/svip.png"></image>
+        <view class="cont">开通SVIP超级会员下单预估省 ¥ {{svipDiscount}}</view>
+        <view></view>
+      </view>
+      <block wx:if="{{coupons.length}}">
+        <view class="gap"></view>
+        <view class="coupon normal-btn" bind:tap="showCouponModal">
+          <view class="label">券</view>
+          <view class="items">
+            <view class="item" wx:for="{{coupons}}" wx:key="couponId">
+              <image mode="scaleToFill" src="https://img.51jiabo.com/imgs-mall/coupon-small-bg.png" />
+              <view wx:if="{{item.couponType === 1}}">
+                满¥{{item.minAmount}}减¥{{item.discountValue}}
+              </view>
+              <view wx:if="{{item.couponType === 2}}">
+                满¥{{item.minAmount}}打{{item.discountValue}}折
+              </view>
+            </view>
+          </view>
+          <view class="btn-label">领券</view>
+          <image src="https://img.51jiabo.com/imgs-mall/gray_right.svg" mode="aspectFit" />
+        </view>
+      </block>
+      <view class="gap"></view>
+      <view class="delivery">
+        <view>提货</view>
+        <view>
+          该商品须到展会现场取货，请您于{{info.activityBeginDate}}-{{info.activityEndDate}}到{{info.venueAddress}}领取商品。
+        </view>
+      </view>
+      <view class="gap"></view>
+      <view class="tabs" wx:if="{{false}}">
+        <view class="{{curTab === 0 ? 'active' : ''}}" data-id="{{0}}" bindtap="onTabClick">
+          介绍
+        </view>
+        <view class="{{curTab === 1 ? 'active' : ''}}" data-id="{{1}}" bindtap="onTabClick">
+          参数
+        </view>
+        <view class="{{curTab === 2 ? 'active' : ''}}" data-id="{{2}}" bindtap="onTabClick">
+          售后
+        </view>
+      </view>
+      <view class="goods-detail">
+        <block wx:for="{{detailImgs}}" wx:key="index">
+          <video wx:if="{{item.imageType==='video'}}" src="{{item.imageUrl}}" autoplay="true" controls="{{false}}" muted="true" loop object-fit="fill"></video>
+          <image wx:else mode="widthFix" src="{{item.imageUrl}}"></image>
+        </block>
+      </view>
+    </view>
+  </scroll-view>
+  <view class="buy-btn {{hasStock ? '' : 'disabled'}}" bindtap="buy">{{!hasStock ? '已售罄' : '购买 →'}}</view>
+  <buy-modal goodsInfo="{{originInfo}}" wx:if="{{buyModalVisible}}" bind:next="confirmOrder" bind:close="closeBuyModal"></buy-modal>
+  <coupon-modal wx:if="{{couponModalVisible}}" bind:close="closeCouponModal"></coupon-modal>
+</view>

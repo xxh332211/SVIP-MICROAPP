@@ -1,0 +1,69 @@
+<!--pages-sh/pages/shDetail/shDetail.wxml-->
+
+<!-- 等待售后接收 -->
+<view class="top-status" wx:if="{{data.status == 1}}">
+  <view class="status-box">
+    <view class="icon"></view>
+    等待售后接收
+  </view>
+  <view class="status-text">您已成功提交售后申请，请耐心等待。售后人员将在提交申请后1个工作日内尽快与您联系，请保持电话畅通。</view>
+  <view class="btn-box">
+    <view class="btn" bindtap="repealApply">撤销申请</view>
+    <view class="btn xg" bindtap="toAmend">修 改</view>
+  </view>
+</view>
+<!-- 申请已撤销 -->
+<view class="top-status" wx:if="{{data.status == 3}}">
+  <view class="status-box">
+    <view class="icon repeal"></view>
+    申请已撤销
+  </view>
+  <view class="status-text repeal">您已成功提交售后申请，请耐心等待。售后人员将在提交申请后1个工作日内尽快与您联系，请保持电话畅通。</view>
+</view>
+<!-- 申请已收到 -->
+<view class="top-status" wx:if="{{data.status == 2}}">
+  <view class="status-box">
+    <view class="icon receive"></view>
+    申请已收到
+  </view>
+  <view class="status-text">售后人员已接到您的申请。后续售后流程请保持电话畅通。</view>
+  <view class="reply" wx:if="{{data.service_reply}}">售后回复：{{data.service_reply}}</view>
+</view>
+
+<!-- 订单详情 -->
+<view class="ul">
+  <view class="li">
+    <view class="name">订单编号</view>{{data.order_sn}}
+  </view>
+  <view class="li">
+    <view class="name">买家姓名</view>{{data.buyer_name}}{{data.buyer_sex == 1?"先生":"女士"}}
+  </view>
+  <view class="li">
+    <view class="name">买家电话<text>*</text></view>{{data.buyer_mobile}}
+  </view>
+  <view class="li">
+    <view class="name">商户品牌</view>{{data.brand_name}}
+  </view>
+  <view class="li">
+    <view class="name">订单城市<text>*</text></view>{{data.city_name}}
+  </view>
+  <view class="li">
+    <view class="name">订单图片<text>*</text></view>
+    <image mode="aspectFit" class="img" bindtap="showBig" src="{{data.order_images}}"></image>
+  </view>
+  <view class="li">
+    <view class="name">退款类型<text>*</text></view>{{data.type_text}}
+  </view>
+  <view class="li">
+    <view class="name">退款原因<text>*</text></view>{{data.reason_text}}
+  </view>
+  <view class="li">
+    <view class="name">问题描述</view>{{data.problem}}
+  </view>
+  <view class="li">
+    <view class="name">申请编号</view>{{data.number}}
+  </view>
+  <view class="li">
+    <view class="name">申请时间</view>{{data.update_time}}
+  </view>
+</view>

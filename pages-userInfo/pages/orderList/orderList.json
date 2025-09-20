@@ -1,0 +1,15 @@
+{
+  "navigationBarTitleText": "我的订单",
+  "usingComponents": {
+    "placing-lottery": "../../components/placingLottery/placingLottery",
+    "total-order": "../../components/totalOrder/totalOrder",
+    "prepay-order": "../../components/prepayOrder/prepayOrder",
+    "reserve-order": "../../components/reserveOrder/reserveOrder",
+    "online-order": "../../components/onlineOrder/onlineOrder",
+    "tradein-order":"../../components/tradeinOrder/tradeinOrder",
+    "cash-order":"../../components/cashOrder/cashOrder",
+    "expo-order":"../../components/expoOrder/expoOrder",
+    "recycle-view": "miniprogram-recycle-view/recycle-view",
+    "recycle-item": "miniprogram-recycle-view/recycle-item"
+  }
+}

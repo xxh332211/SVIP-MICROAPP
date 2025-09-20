@@ -1,0 +1,88 @@
+<view class="block">
+  <view class="head">
+    什么是多人拼团？
+  </view>
+  <view class="cont">
+  多人拼团(以下简称:拼团)是指由多人一起拼单购买的团购活动，通过拼团买家可以享受比一般网购更低的折扣。
+  </view>
+</view>
+<view class="block">
+  <view class="head">
+    怎样算拼团成功?
+  </view>
+  <view class="cont">
+  在拼团有效期内找到满足人数的好友参加拼团，即可算拼团成功。
+  </view>
+</view>
+
+<view class="block">
+  <view class="head">
+    拼团失败，怎样退款?
+  </view>
+  <view class="cont">
+  若拼团有效期内没有凑齐人数，即算作拼团失败。系统会自动将所支付的货款原路退回，具体到账时间以各银行为准。
+  </view>
+</view>
+
+<view class="gap"></view>
+
+<view class="item">
+<view>1</view>
+<view>
+  <view class="head">
+    选择商品
+  </view>
+  <view class="cont">
+    点击「我要开团」确定商品的规格
+  </view>
+  <image src="https://img.51jiabo.com/imgs-mall/pt-intr (1).png" mode="widthFix"></image>
+</view>
+</view>
+<view class="item">
+<view>2</view>
+<view>
+  <view class="head">
+    完成支付
+  </view>
+  <view class="cont">
+    选择支付方式完成付款即刻开团
+  </view>
+  <image src="https://img.51jiabo.com/imgs-mall/pt-intr (2).png" mode="widthFix"></image>
+</view>
+</view>
+<view class="item">
+<view>3</view>
+<view>
+  <view class="head">
+    分享给好友
+  </view>
+  <view class="cont">
+    点击「已参团，去邀请好友」分享好友参团
+  </view>
+  <image src="https://img.51jiabo.com/imgs-mall/pt-intr (3).png" mode="widthFix"></image>
+</view>
+</view>
+<view class="item">
+<view>4</view>
+<view>
+  <view class="head">
+    好友参团
+  </view>
+  <view class="cont">
+    好友点击「我要参团」完成支付后，成功参团
+  </view>
+  <image src="https://img.51jiabo.com/imgs-mall/pt-intr (5).png" mode="widthFix"></image>
+</view>
+</view>
+<view class="item">
+<view>5</view>
+<view>
+  <view class="head">
+    团购成功
+  </view>
+  <view class="cont">
+    有效期内达到人数团购成功，等待商家发货
+  </view>
+  <image src="https://img.51jiabo.com/imgs-mall/pt-intr (4).png" mode="widthFix"></image>
+</view>
+</view>

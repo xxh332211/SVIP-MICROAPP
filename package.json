@@ -1,0 +1,21 @@
+{
+  "name": "svip-microapp",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://172.16.1.85/h5/SVIP-MICROAPP.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@tarojs/plugin-platform-h5": "^3.6.23",
+    "crypto-js": "^3.1.9-1",
+    "miniprogram-recycle-view": "^0.1.5",
+    "umtrack-wx": "^2.4.6"
+  },
+  "description": ""
+}

@@ -1,0 +1,167 @@
+/* pages/userCenter/userCenter.wxss */
+.receiver-address-edit {
+  width: 100%;
+  height: 100%;
+  border-bottom: solid 1px #F6F6F6;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  position: relative;
+  min-height: 100rpx;
+  padding: 30rpx 55rpx 30rpx 40rpx;
+  background: #FFF;
+  width: 100%;
+  border-bottom: solid 1px #F6F6F6;
+  transition: all .2s ease-out;
+  border-radius: 0;
+}
+
+.item:before,
+.item:after {
+  border: none;
+  border-radius: 0;
+}
+
+.item:active {
+  background: #F7F7F7;
+}
+
+.cont {
+  flex: 1;
+  width: 0;
+  min-width: 0;
+  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  color: #BBB;
+  font-size: 30rpx;
+}
+
+.cont image {
+  width: 130rpx;
+  height: 130rpx;
+  border-radius: 10rpx;
+}
+
+.label {
+  color: #000;
+  font-size: 30rpx;
+  margin-right: 20rpx;
+  white-space: nowrap;
+  width: 120rpx;
+}
+
+.gap {
+  height: 20rpx;
+  width: 100%;
+}
+
+.link {
+  position: absolute;
+  right: 20rpx;
+  top: 50%;
+  margin-top: -10rpx;
+  width: 20rpx;
+  height: 20rpx;
+}
+
+.item.not-editable .cont {
+  color: #000;
+}
+
+.item.not-editable .link {
+  display: none;
+}
+
+.form {
+  padding: 30rpx 55rpx 30rpx 40rpx;
+  background: #FFF;
+}
+
+.form textarea {
+  width: 100%;
+  height: 450rpx;
+  font-size: 36rpx;
+  padding: 30rpx 10rpx;
+}
+
+.picker {
+  position: absolute;
+  left: 160rpx;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 55rpx;
+  color: #BBB;
+  font-size: 30rpx;
+}
+
+.submit-btn {
+  bottom: 60rpx;
+  background: #D42B2B;
+  box-shadow: 0 18rpx 18rpx 0 rgba(183, 48, 48, 0.33);
+  border-radius: 5rpx;
+  height: 100rpx;
+  color: #FFF;
+  font-size: 34rpx;
+  position: fixed;
+  left: 40rpx;
+  width: 670rpx;
+  line-height: 95rpx;
+}
+
+.default-address {
+  display: flex;
+  margin: 0 0 0 20rpx;
+  flex-direction: row;
+  text-align: right;
+} 
+
+.default-address-no {
+  text-align: right;
+  margin: 0 0 0 20rpx;
+  color: #BBB;
+  font-size: 30rpx;
+}
+
+.default-address>.default-address-badge {
+  color: #BDBDBD;
+  background-color: #F8F8F8;
+  line-height: 30rpx;
+  padding: 8rpx;
+  flex-shrink: 0;
+  font-size: 24rpx;
+}
+
+.default-address>.default-address-text {
+  margin-left: 2rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 30rpx;
+}
+
+.switcher {
+  flex-grow: 1;
+  text-align: right;
+}
+
+.addres-edit-form {
+  margin-left: 20rpx;
+}
+
+.detail-area {
+  font-size: 30rpx;
+  padding-left: 4rpx;
+  line-height: 30rpx;
+}
+
+.input{
+  width: 100%;
+}

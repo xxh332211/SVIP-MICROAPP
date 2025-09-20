@@ -1,0 +1,275 @@
+/* pages/couponList/couponList.wxss */
+
+.wrapper {
+  background: #fff;
+}
+
+image {
+  display: block;
+}
+
+.coupon-wrap {
+  padding-bottom: 100rpx;
+}
+
+.h4 {
+  display: flex;
+  align-items: center;
+  font-size: 42rpx;
+  font-weight: bold;
+  padding: 60rpx 0 0 30rpx;
+}
+
+.h4 .square {
+  width: 31rpx;
+  height: 31rpx;
+  background: #e6002d;
+  margin-right: 23rpx;
+}
+
+.coupon-bag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 690rpx;
+  height: 223rpx;
+  border-radius: 10rpx;
+  background: linear-gradient(90deg, #FFEED4 0%, #FFD7B2 100%);
+  position: relative;
+  margin: 30rpx 0 0 30rpx;
+}
+
+.coupon-bag-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 682rpx;
+  height: 212rpx;
+  border: 1px solid #D5863B;
+  border-radius: 10rpx;
+}
+
+.coupon-bag .label {
+  display: flex;
+  justify-content: center;
+  width: 27rpx;
+  height: 36rpx;
+  background: url("https://img.51jiabo.com/47213674-3585-40b7-acc1-1c4d6319c058.png") no-repeat;
+  background-size: 100% 100%;
+  font-size: 18rpx;
+  color: #FFFFFF;
+  position: absolute;
+  top: 0;
+  left: 30rpx;
+}
+
+.coupon-bag .left {
+  display: flex;
+  flex-direction: column;
+  margin-left: 72rpx;
+}
+
+.coupon-bag .title {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #E83433;
+}
+
+.coupon-bag .detail {
+  font-size: 28rpx;
+  color: #E83433;
+}
+
+.coupon-bag .include {
+  font-size: 20rpx;
+  color: #E83433;
+  width: 360rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.coupon-bag .buy {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150rpx;
+  height: 50rpx;
+  background: #e6002d;
+  color: #fff;
+  font-size: 25rpx;
+  border-radius: 25rpx;
+  margin-right: 44rpx;
+}
+
+.coupon-box .own-item {
+  width: 690rpx;
+  height: 209rpx;
+  background: url("https://img.51jiabo.com/7ed7c05f-9915-4573-830d-6e6a2358ac75.png") no-repeat;
+  background-size: 688rpx 100%;
+  margin: 30rpx 0 0 30rpx;
+}
+
+.coupon-box .long-bg{
+  height: 294rpx;
+  background: url("https://img.51jiabo.com/35c62b09-cb50-42d4-a026-6de5500264c3.png") no-repeat;
+  background-size: 688rpx 100%;
+}
+
+.own-item .top {
+  width: 100%;
+  height: 154rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.own-item .left {
+  display: flex;
+  align-items: center;
+}
+
+.coupon-box .own-item .price {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 210rpx;
+  font-size: 66rpx;
+  font-weight: bold;
+  color: #e6002d;
+}
+
+.coupon-box .own-item .price .symbol {
+  font-size: 36rpx;
+  margin-top: -9rpx;
+  font-weight: normal;
+}
+
+.coupon-box .own-item .ticket-info {
+  font-size: 42rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.coupon-box .own-item .ticket-info .ticket-title {
+  color: #222;
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.coupon-box .own-item .ticket-info .use-time {
+  color: #222222;
+  font-size: 24rpx;
+}
+
+.coupon-box .own-item .get-ticket {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.coupon-box .own-item .get-ticket .get-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150rpx;
+  height: 50rpx;
+  background: #e6002d;
+  color: #fff;
+  font-size: 25rpx;
+  font-weight: normal;
+  border-radius: 25rpx;
+  margin-right: 48rpx;
+}
+
+.own-item .bottom {
+  width: 100%;
+  padding: 0 51rpx 0 31rpx;
+}
+
+.own-item .btm-t {
+  height: 54rpx;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.own-item .desc {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 470rpx;
+  font-size: 20rpx;
+  color: #777777;
+  padding: 0 40rpx 0 20rpx;
+}
+
+.own-item .spread {
+  width: 100%;
+  font-size: 20rpx;
+  color: #777777;
+  padding-left: 20rpx;
+}
+
+.own-item .share {
+  display: flex;
+  align-items: center;
+  font-size: 24rpx;
+  color: #E6002D;
+  padding: 0;
+  margin: 0;
+  background: none;
+}
+
+.own-item .ico {
+  width: 25rpx;
+  height: 24rpx;
+  background: url("https://img.51jiabo.com/0865cd60-7a7a-4905-a7f8-c315f6265ef5.png") no-repeat;
+  background-size: 100%;
+  margin-right: 11rpx;
+}
+
+
+/* 商户优惠券 */
+.vendor-coupon-box {
+  margin-top: 20rpx;
+}
+
+/* 分类 */
+
+.swiper-wrapper {
+  height: 100rpx;
+  transition-property: -webkit-transform;
+  display: flex;
+  align-items: center;
+  box-shadow: 0px 7rpx 15rpx 0px rgba(81, 81, 81, 0.05);
+  margin-top: 10rpx;
+}
+
+.swiper-slide {
+  height: 100%;
+  flex-shrink: 0;
+  float: left;
+}
+
+.slide-box {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+}
+
+.swiper-slide .content {
+  color: #777;
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+
+.swiper-slide .content.active {
+  color: #222;
+  border-bottom: 4rpx solid #222;
+}

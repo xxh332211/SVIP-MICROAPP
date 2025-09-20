@@ -1,0 +1,11 @@
+<!--pages/expoPackage//hotGoodsGroup/hotGoodsGroup.wxml-->
+<online-serve />
+<!-- banner -->
+<banner-swiper wx:if="{{banner && banner.length > 0}}" banner="{{banner}}"></banner-swiper>
+<!-- 单个 -->
+<view class="goods-wrap">
+  <hot-goods-item hotGoods="{{hotGoods}}"></hot-goods-item>
+</view>
+
+<!-- 导航 -->
+<navigation hiddenItem="hotGoods"></navigation>

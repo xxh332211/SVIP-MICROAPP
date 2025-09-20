@@ -1,0 +1,9 @@
+/* pages/tradeInPackage//Rule/Index.wxss */
+.rule-box {
+  padding: 30rpx;
+}
+.rule-box text{
+  font-size: 28rpx;
+  color: #282828;
+  word-wrap: break-word;
+}

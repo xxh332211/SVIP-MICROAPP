@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "签到礼详情",
+  "usingComponents": {
+    "privacy-popup": "../../../components/privacyPopup/privacyPopup",
+    "buy-btn": "../../../components/svipBuyBtn/svipBuyBtn"
+  }
+}

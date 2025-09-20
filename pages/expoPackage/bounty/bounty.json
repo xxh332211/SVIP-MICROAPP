@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "navigation": "../../../components/navigation/navigation"
+  },
+  "navigationBarTitleText": "我的奖励金"
+}

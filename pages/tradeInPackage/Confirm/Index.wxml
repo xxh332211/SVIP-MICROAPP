@@ -1,0 +1,70 @@
+<online-serve />
+<privacy-popup></privacy-popup>
+<view class="container">
+	<!-- 头部信息 -->
+	<view class="message">
+		<view class="trandText" bindtap="trandTextBtn">活动规则</view>
+		<view class="mobile">手机号：{{mobile}}</view>
+		<view class="condition">换购条件：本人现场下{{need_orders}}单，订单实付金额满{{need_orders_amount}},同一订单仅可换购1次，同一品牌订单限换购1单</view>
+		<view class="detail-box">
+			<view class="left">
+				<image mode="aspectFit" src="{{goods_image}}"></image>
+			</view>
+			<view class="right">
+				<view class="title">{{goods_name}}</view>
+				<view class="bottom">
+					<view class="price">￥{{origin_price}}</view>
+					<view class="buyPrice">换购价￥{{redeem_price}}</view>
+				</view>
+			</view>
+		</view>
+		<!-- 换购浮层 -->
+		<view class="tradeIn-fixed" bindtap="toTradeInRule">
+			<view class="trade-bag" style="margin-top:{{(!trandInNum || trandInNum.length == 1)?24:14}}rpx"></view>
+			<view class="content">
+				<view class="top" wx:if='{{trandInNum.length > 1 }}'>
+					<view class="commonFlex" wx:for="{{trandInNum}}" wx:key="index">
+						<view class="amount">{{item}}单</view>
+						<view class="cirl {{orderNum >= item?'act':''}}"></view>
+						<view class="line"></view>
+					</view>
+				</view>
+
+				<view class="bottom" style="margin-top:{{(!trandInNum || trandInNum.length == 1)?0:-10}}rpx" wx:if="{{!orderNum || orderNum == 0}}">现场下单得换购资格GO>></view>
+				<view class="bottom" style="margin-top:{{(!trandInNum || trandInNum.length == 1)?0:-10}}rpx" wx:if="{{orderNum && orderNum > 0}}">您已达到{{orderNum}}单换购GO>></view>
+			</view>
+		</view>
+	</view>
+	<!-- 换购订单 -->
+	<view class="ordeList">
+		<view class="header">
+			<text>换购订单</text>
+			<text>根据换购条件自动选择</text>
+		</view>
+		<view class="noOrdernum" wx:if='{{usableSupplierOrder.length == 0 }}'>无可换购订单</view>
+		<view class="order" wx:for='{{usableSupplierOrder}}' wx:key='*this' wx:if="{{usableSupplierOrder.length > 0 }}">
+			<view class="left">
+				<image src="{{item.brand_img}}" mode="aspectFit"></image>
+			</view>
+			<view class="right">
+				<view>
+					<text class="textLeft">订单号</text>
+					<text class="textRight">{{item.order_num}}</text>
+				</view>
+				<view>
+					<text class="textLeft">品牌名</text>
+					<text class="textRight">{{item.brand_name}}</text>
+				</view>
+				<view>
+					<text class="textLeft">实付</text>
+					<text class="textRight">￥{{item.paidMoney}}</text>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>
+<!-- 底部支付 -->
+<view class="pay">
+	<view class="pay_left">￥ {{redeem_price}}</view>
+	<view class="pay_right" bindtap="confirmPay">确定</view>
+</view>

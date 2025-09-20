@@ -1,0 +1,42 @@
+<!--components/couponPopup/couponPopup.wxml-->
+<view class="coupon-popup" wx:if="{{showCouponPopup}}">
+	<view class="coupon-box">
+		<image class="flower" mode="widthFix" src="https://img.51jiabo.com/06e23eb9-ab84-49a0-942d-96889833e290.png">
+		</image>
+		<view class="close" bindtap="closeCouponPopup"></view>
+		<view class="title">恭喜获得</view>
+		<view class="content">
+			<view class="scroll-box">
+				<view class="coupon" wx:for="{{couponData}}" wx:key="index">
+					<view class="left"><text class="text">￥</text>{{item.coupon_value}}</view>
+					<view class="right">
+						<view class="name">{{item.coupon_name}}</view>
+						<view class="time">有效时间：{{item.begin_date}}-{{item.end_date}}</view>
+						<view class="desc">{{item.smemo}}</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="bottom">
+			<!-- 未登录按钮文案 -->
+			<button wx:if="{{!login}}" open-type='getPhoneNumber' bindgetphonenumber="getPhoneNumber" class="btn">
+				{{couponData.length == 1?'立即领取 GO >':'一键领取'}}
+			</button>
+			<!-- 多张券未领取按钮文案 -->
+			<view class="btn" wx:if="{{!getSuccess && login && couponData.length > 1}}" bindtap="getCoupon">一键领取</view>
+			<!-- 一张券未领取按钮文案 -->
+			<view class="btn" wx:if="{{!getSuccess && login && couponData.length == 1}}" bindtap="getCoupon">立即领取 GO ></view>
+			<!-- 多张券已领取按钮文案 -->
+			<view wx:if="{{getSuccess && couponData.length > 1}}" class="btn use-btn" bindtap="toUse">
+				立即使用
+				<view class="tips">将为您匹配最优优惠方式</view>
+			</view>
+			<!-- 一张券已领取按钮文案 -->
+			<view class="btn" wx:if="{{getSuccess && couponData.length == 1}}" bindtap="toUse">立即使用 GO ></view>
+		</view>
+		<view class="pinion"></view>
+	</view>
+</view>
+<cover-view class="tips-box-pop" wx:if='{{showTips}}'>
+	{{ticketName}}
+</cover-view>

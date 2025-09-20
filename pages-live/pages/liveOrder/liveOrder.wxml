@@ -1,0 +1,34 @@
+<view class="container">
+  <!-- tab -->
+  <view class="tab-box">
+    <view  class="tab" data-id='{{item.id}}' data-index='{{index}}' bindtap="tabClick" wx:for='{{qiehuan}}' wx:key='index'>
+    <view  class="tab-padding {{isTotalTab == index?'active':''}}">
+        {{item.txt}}
+        <text wx:if='{{index != 0 && index != 3}}'> ({{item.num}})</text>
+    </view>
+
+    </view>
+  </view>
+
+  <!-- 订单列表内容 -->
+  <orderAll
+    wx:if='{{isTotalTab == 0}}' 
+    bind:detailBtn='detailBtn' 
+    bind:removeBtn='removeBtn'
+    bind:payBtn='payBtn'
+    orderAllList='{{liveOrderList0}}'
+  />
+  <noOrder wx:if='{{isTotalTab == 1}}'
+    orderAllList='{{liveOrderList1}}'
+    bind:detailBtn='detailBtn' 
+    bind:removeBtn='removeBtn'
+    bind:payBtn='payBtn'
+  />
+  <noCargo wx:if='{{isTotalTab == 2}}'
+    orderAllList='{{liveOrderList2}}'
+    bind:detailBtn='detailBtn' 
+    bind:removeBtn='removeBtn'
+    bind:payBtn='payBtn'
+  />
+
+</view>

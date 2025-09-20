@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "我的订单",
+  "usingComponents": {
+    "total-order": "../../components/totalOrder/totalOrder",
+    "prepay-order": "../../components/prepayOrder/prepayOrder",
+    "reserve-order": "../../components/reserveOrder/reserveOrder",
+    "online-order": "../../components/onlineOrder/onlineOrder",
+    "tradein-order": "../../components/tradeinOrder/tradeinOrder",
+    "cash-order": "../../components/cashOrder/cashOrder",
+    "expo-order":"../../components/expoOrder/expoOrder"
+  }
+}

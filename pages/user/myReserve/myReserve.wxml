@@ -1,0 +1,57 @@
+<!--pages/user/myReserve/myReserve.wxml-->
+<online-serve />
+<view class="tab-box">
+  <view class="tab {{isHot?'active':''}}" data-id="Hot" bindtap="switchTab">爆品</view>
+  <view class="tab {{!isHot?'active':''}}" data-id="Act" bindtap="switchTab">商户活动</view>
+  <view class="line {{!isHot?'active':''}}"></view>
+</view>
+
+
+<!-- 爆品 -->
+<view class='hot-wrapper' wx:if="{{isHot}}">
+  <view wx:if="{{hotGoodsList && hotGoodsList.length > 0}}">
+    <view class='tj'>本届展会您已预约的爆品共{{hotGoodsList.length}}个</view>
+    <view class='hot-box'>
+
+      <view class='hot-li' wx:for="{{hotGoodsList}}" wx:key="index">
+        <image class='goods-img' mode="aspectFit" src="{{item.image_url}}"></image>
+        <view class='right'>
+          <view class='title text-hidden-2'>{{item.goods_name}}</view>
+          <view class='price'>¥{{item.special_price}}</view>
+          <view class='status' wx:if="{{item.status == 1}}">
+            <view class="ico"></view>已预约
+          </view>
+          <view class='status' wx:if="{{item.status == 2}}">
+            <view class="ico finish"></view>已完成
+          </view>
+        </view>
+      </view>
+
+    </view>
+  </view>
+
+  <!-- 无预约 -->
+  <navigator wx:else class="no-order" url='/pages/hotGoodsOrder/index/index'>去预约 ></navigator>
+</view>
+
+
+<!-- 商户活动 -->
+<view class="box-wrapper" wx:else>
+  <view class="vendor-active" wx:if="{{vendorActList && vendorActList.length > 0}}">
+
+    <view class='act-li' wx:for="{{vendorActList}}" wx:key="index">
+      <view class="img-box">
+        <image mode='widthFix' src="{{item.logo_url}}"></image>
+      </view>
+      <view class="text">
+        <view class='h6'>{{item.activity_name}}</view>
+        <view class='p'>活动时间：{{item.begin_time}}-{{item.end_time}}</view>
+      </view>
+    </view>
+
+
+  </view>
+
+  <!-- 无预约 -->
+  <navigator wx:else class="no-order" url='/pages/vendorAction/vendorAction'>去预约 ></navigator>
+</view>

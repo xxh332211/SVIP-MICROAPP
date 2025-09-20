@@ -1,0 +1,75 @@
+<scroll-view class="order-confirm" scroll-y="{{true}}">
+  <view class="header">
+    <view class="info">
+      <view class="state">该商品须到展会现场取货!</view>
+      <view class="desc">请您于{{info.activityBeginDate}}-{{info.activityEndDate}}到{{info.venueAddress}}领取商品</view>
+    </view>
+  </view>
+  <image class="gap-1" src="/imgs/label.png" mode="scaleToFill"></image>
+  <view class="goods">
+    <image src="{{info.imageUrl || '/imgs/default-avatar.png'}}" mode="aspectFit" />
+    <view class="goods-info">
+      <view class="name">{{info.title}}</view>
+      <view class="tag">限时折扣</view>
+      <view class="price">
+        ￥{{info.promotionPrice}}
+      </view>
+      <view class="oprice">
+        价格<text>￥{{info.sellingPrice}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="gap-2">
+  </view>
+  <block wx:if="{{info.price > 0}}">
+    <view class="gap-2"></view>
+    <view class="coupon normal-btn" wx:if="{{coupons.length}}" bind:tap="selectCoupon">
+      <view class="label">优惠券</view>
+      <view class="text" wx:if="{{!curCoupon}}">{{coupons.length}} 张可用</view>
+      <view class="text" wx:else>抵扣￥{{discount}}</view>
+      <image src="https://img.51jiabo.com/imgs-mall/gray_right.svg" mode="aspectFit"></image>
+    </view>
+    <block wx:if="{{score > 0 && (total * percent) > 1}}">
+      <view class="gap-2"></view>
+      <view class="score">
+        <view class="label">积分<text>( 共{{score}}<block wx:if="{{scoreUsed}}">, 最多可用{{scoreUsed}}, 抵￥{{scoreUsed / 100}}</block> )</text></view>
+        <view class="text">
+          <switch color="#E6001B" checked="{{useScore}}" bindchange="useScoreChange"/>
+        </view>
+      </view>
+    </block>
+  </block>
+  <view class="gap-2"></view>
+  <view class="amount">
+    <view class="item">
+      <view>商品金额</view>
+      <view>x{{count}}</view>
+      <view>￥{{info.price}}</view>
+    </view>
+    <view class="item" wx:if="{{curCoupon}}">
+      <view>优惠券({{curCoupon.couponType === 1 ? '满减' : '折扣'}})</view>
+      <view>x1</view>
+      <view>-￥{{discount}}</view>
+    </view>
+    <view class="item" wx:if="{{score > 0 && scoreUsed > 0}}">
+      <view>积分抵扣</view>
+      <view></view>
+      <view>-￥{{scoreUsed / 100}}</view>
+    </view>
+    <view class="total">
+      <text>实付金额：</text>
+      <text>￥{{payTotal || '0'}}</text>
+    </view>
+  </view>
+  <view class="gap-2">
+  </view>
+  <view class="pay-type">
+    <image class="wx" mode="aspectFill" src="https://img.51jiabo.com/imgs-mall/wxpay.svg"/>
+    <text>微信支付</text>
+    <image class="check" mode="aspectFill" src="https://img.51jiabo.com/imgs-mall/checked.svg"/>
+  </view>
+  <view class="blank"></view>
+</scroll-view>
+<view class="pay-btn normal-btn {{hasStock ? '' : 'disabled'}}" bind:tap="confirmOrder">
+  购买 →
+</view>

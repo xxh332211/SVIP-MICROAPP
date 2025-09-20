@@ -1,0 +1,62 @@
+<!--pages/userCenter/userCenter.wxml-->
+<online-serve />
+<scroll-view class="usercenter" scroll-y="true">
+  <button class="item"  bindtap="getUserInfo">
+    <view class="label">头像</view>
+    <view class="cont">
+      <image src="{{userInfo.avatarUrl || 'https://img.51jiabo.com/5f157b9d-75b9-4227-a0b5-e52567963ea8.png'}}" mode="aspectFill"/>
+    </view>
+    <image class="link" src="https://img.51jiabo.com/imgs-mall/gray_right.svg" mode="aspectFit"/>
+  </button>
+  <view class="gap"></view>
+  <view class="item">
+    <view class="label">手机</view>
+    <view class="cont">{{info.mobile || ''}}</view>
+    <image class="link" src="https://img.51jiabo.com/imgs-mall/gray_right.svg" mode="aspectFit"/>
+  </view>
+  <view class="item" bind:tap="openNameModal">
+    <view class="label">姓名</view>
+    <view class="picker">
+      {{shortName || '请填写'}}
+    </view>
+    <image class="link" src="https://img.51jiabo.com/imgs-mall/gray_right.svg" mode="aspectFit"/>
+  </view>
+  <view class="item" bind:tap="openSexSelector">
+    <view class="label">性别</view>
+    <view class="picker">
+      <block>
+      {{info.sex == '1' ? '男' : info.sex == '0' ? '女' : '请选择'}}
+      </block>
+    </view>
+    <image class="link" src="https://img.51jiabo.com/imgs-mall/gray_right.svg" mode="aspectFit"/>
+  </view>
+  <view class="item" bind:tap="openDateSelector">
+    <view class="label">生日</view>
+    <view class="picker">{{info.birthday || '请选择'}}</view>
+    <image class="link" src="https://img.51jiabo.com/imgs-mall/gray_right.svg" mode="aspectFit"/>
+  </view>
+  <view class="item" bind:tap="openAddrSelector">
+    <view class="label">地区</view>
+    <view class="picker">
+      <block wx:if="{{region.length}}">
+        {{region[0] || ''}}/{{region[1] || ''}}/{{region[2] || ''}}
+      </block>
+      <block wx:else>请选择</block>
+    </view>
+    <image class="link" src="https://img.51jiabo.com/imgs-mall/gray_right.svg" mode="aspectFit"/>
+  </view>
+  <view class="gap"></view>
+  <view class="item" bind:tap="routerToRecevierAddresss">
+    <view class="label">收货地址</view>
+    <view wx:if="{{receiverAddress}}" class="default-address">
+      <view class="default-address-badge">默认</view>
+      <view class="default-address-text">{{receiverAddress.provinceName}}{{receiverAddress.cityName}}{{receiverAddress.districtName}}{{receiverAddress.address}}</view>
+    </view>
+    <image class="link" src="https://img.51jiabo.com/imgs-mall/gray_right.svg" mode="aspectFit"/>
+  </view>
+  <button class="logout" bindtap="logout">退出登录</button>
+</scroll-view>
+<address-modal wx:if="{{selectAddrVisible}}" init-value="{{region}}" bind:close="closeAddrSelector" bind:select="selectAddr"></address-modal>
+<sex-modal wx:if="{{selectSexVisible}}" init-value="{{info.sex}}" bind:close="closeSexSelector" bind:select="selectSex"></sex-modal>
+<date-modal wx:if="{{selectDateVisible}}" init-value="{{info.birthday}}" bind:close="closeDateSelector" bind:select="selectDate"></date-modal>
+<update-name-modal wx:if="{{updateNameVisible}}" init-value="{{info.truename}}" bind:close="closeNameModal" bind:submit="onUpdateName"></update-name-modal>

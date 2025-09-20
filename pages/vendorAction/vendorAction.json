@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "banner-swiper": "../../components/bannerSwiper/bannerSwiper",
+    "vendor-item": "../../components/vendorItem/vendorItem",
+    "navigation": "../../components/navigation/navigation"
+  },
+  "navigationBarTitleText": "商户活动"
+}

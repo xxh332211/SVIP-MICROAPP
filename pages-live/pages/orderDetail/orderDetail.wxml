@@ -1,0 +1,209 @@
+<wxs src="../../../utils/util.wxs" module="filter" />
+<view class="container">
+  <!-- 红色头部 -->
+  <!-- 待支付 -->
+  <view class="header" wx:if="{{order.order_status_text == '待付款'}}">
+    <view class="status unpaid">
+      <image src="https://img.51jiabo.com/7be7bdd0-94f1-4672-bbfb-f4d4f941bc04.png"></image>
+      <text>待支付</text>
+    </view>
+    <text wx:if="{{order.delivery_way == 1}}" class="txt1">该商品须到展会现场自提</text>
+    <text wx:if="{{order.delivery_way == 1}}"
+      class="txt2">请于{{order.expo_begin_time}}-{{order.expo_end_time}}到{{order.expo_venue_name}}{{order.booth}}</text>
+    <text wx:if="{{order.delivery_way == 1}}" class="txt3">向商家出示核销码取货</text>
+  </view>
+  <!-- 待提货 -->
+  <view class="header" wx:if="{{order.order_status_text == '待提货'}}">
+    <view class="status">
+      <image src="https://img.51jiabo.com/ac5b16ff-6ca4-49fe-b5ca-edfea153a69d.png"></image>
+      <text>待提货</text>
+    </view>
+    <text wx:if="{{order.delivery_way == 1}}" class="txt1">该商品须到展会现场自提</text>
+    <text wx:if="{{order.delivery_way == 1}}"
+      class="txt2">请于{{order.expo_begin_time}}-{{order.expo_end_time}}到{{order.expo_venue_name}}{{order.booth}}</text>
+    <text wx:if="{{order.delivery_way == 1}}" class="txt3">向商家出示核销码取货</text>
+  </view>
+  <!-- 已完成 -->
+  <view class="header" wx:if="{{order.order_status_text == '已完成'}}">
+    <view class="status">
+      <image class="fang" src="https://img.51jiabo.com/dd81ee68-d114-4cef-9727-d527eeae4260.png"></image>
+      <text>已完成</text>
+    </view>
+    <text class="txt1">华夏家博会欢迎您再次逛展~</text>
+  </view>
+  <!-- 订单 -->
+  <view class="order">
+    <view class="orderNumber">订单编号 {{order.order_num}}</view>
+    <view class="main">
+      <image src="{{order.image_url}}"></image>
+      <view class="mainRight">
+        <view class="title">{{order.prerogative_name}}</view>
+        <view class="detail flexB">
+          <!-- is_openprice:是否开放自定义价格：-1：否1：是 -->
+          <!-- 展届未结束 && 配置自定义价格，显示自定义价格，否则显示活动价 -->
+          <view class="left">￥{{(!expoEnd && order.is_openprice == 1)?order.define_price:order.activity_price?order.activity_price:order.exclusive_price}}{{order.price_unit}}
+          </view>
+          <view class="right">x{{order.buy_count}}</view>
+        </view>
+        <view class="detail" wx:if='{{order.pay_way == 1}}'>
+          <text class="price">订金支付 ￥{{order.earnest}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="total">
+      <text>共计：</text>
+      <text>￥{{order.buy_amount}}</text>
+    </view>
+  </view>
+  <!-- 请向商家出示核销码取货 -->
+  <view class="WriteOff" wx:if="{{order.order_status != 1}}">
+    <text class="txt1">请向商家出示核销码取货</text>
+    <text class="txt2">有效期至 {{order.expo_end_time}}</text>
+    <view wx:for="{{order.goodsCode}}" wx:key="index">
+      <!-- use_status: -2=购买中 -1=用户取消购买 1=未使用 2=占用 3=已用 4=已退 5=退款中 -->
+      <view wx:if="{{item.use_status == 1}}">
+        <text class="txt3">核销码 {{item.use_code}}</text>
+        <view class="btns check-btn">
+          <view class="btn2" wx:if="{{item.is_can_refund == 1 && order.activity_type != 2}}" bindtap="popUnShow"
+            data-name="pop1" data-use_code="{{item.use_code}}">退款</view>
+          <view class="btn2" bindtap="popUnShow" data-name="pop5" data-d="{{item}}">核销码</view>
+        </view>
+      </view>
+      <view wx:if="{{item.use_status == 3}}">
+        <text class="txt3">核销码 {{item.use_code}}</text>
+        <text class="txt4">提货时间 {{item.use_time}}</text>
+        <view class="btns check-btn">
+          <view class="btn2" bindtap="popUnShow" data-name="pop5" data-d="{{item}}">核销码</view>
+        </view>
+      </view>
+      <view wx:if="{{item.use_status == 4}}">
+        <text class="txt4">核销码 {{item.use_code}}</text>
+        <view class="flexB btn-box">
+          <text class="txt5">退款时间 <text>{{item.refund_time}}</text></text>
+          <view class="btn2">已退款</view>
+        </view>
+      </view>
+      <view wx:if="{{item.use_status == 5}}">
+        <text class="txt4">核销码 {{item.use_code}}</text>
+        <view class="flexB btn-box">
+          <text class="txt5"></text>
+          <view class="btn2">退款中</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 订单信息 -->
+  <view class="orderMessage">
+    <view class="title">订单信息</view>
+    <view class="commonVal">
+      <text>下单用户</text>
+      <text>{{order.user_mobile}}</text>
+    </view>
+    <view class="commonVal">
+      <text>订单编号</text>
+      <text>{{order.order_num}}</text>
+    </view>
+    <view class="commonVal">
+      <text>下单时间</text>
+      <text>{{order.create_time}}</text>
+    </view>
+    <view class="commonVal" wx:if="{{order.order_status_text != '待付款' && order.activity_type != 2}}">
+      <text>付款时间</text>
+      <text>{{order.pay_time}}</text>
+    </view>
+    <view class="commonVal" wx:if="{{order.order_status_text != '待付款'}}">
+      <text>实付金额</text>
+      <text>￥ {{order.buy_amount}}</text>
+    </view>
+    <view class="commonVal">
+      <text>订单备注</text>
+      <text>{{order.remarks}}</text>
+    </view>
+  </view>
+</view>
+<!-- 确认支付按钮  待付款 -->
+<view class="btns" wx:if="{{order.order_status_text == '待付款'}}">
+  <view class="btn2" bindtap="popUnShow" data-name="pop6">取消</view>
+  <view class="btn1" bindtap="payBtn">付款 {{msg}}</view>
+</view>
+<!-- 删除订单 已完成 -->
+<view class="btns" wx:if="{{order.order_status_text == '已完成'}}">
+  <view class="btn2" bindtap="popUnShow" data-name="pop3">删除</view>
+</view>
+<!-- ------------------------------------------------弹窗--------------------------- -->
+<!-- 您确定要退该商品吗？ -->
+<view class="pop_back" wx:if="{{pop1}}">
+  <view class="pop twopop">
+    <view class="problem">您确定要退该商品吗？</view>
+    <view class="pop_btns flexB">
+      <view class="btn_1" bindtap="popUnShow" data-name="pop1">取消</view>
+      <view class="btn_2" bindtap="Refund">确认</view>
+    </view>
+  </view>
+</view>
+<!-- 商品退款成功，
+24小时退回您的支付账户 -->
+<view class="pop_back" wx:if="{{pop2}}">
+  <view class="pop twopop">
+    <view class="problem">商品退款成功，</view>
+    <view class="problem">24小时退回您的支付账户</view>
+    <view class="pop_btns flexC">
+      <view class="btn_2" bindtap="popUnShow" data-name="pop2">确认</view>
+    </view>
+  </view>
+</view>
+<!-- 确定删除该订单吗？ -->
+<view class="pop_back" wx:if="{{pop3}}">
+  <view class="pop twopop">
+    <view class="problem">确定删除该订单吗？</view>
+    <view class="pop_btns flexB">
+      <view class="btn_1" bindtap="popUnShow" data-name="pop3">取消</view>
+      <view class="btn_2" bindtap="deleteOrder">确认</view>
+    </view>
+  </view>
+</view>
+<!-- 您已领取该商品，不可退款。 -->
+<view class="pop_back" wx:if="{{pop4}}">
+  <view class="pop twopop">
+    <view class="problem">您已领取该商品，不可退款。</view>
+    <view class="pop_btns flexB">
+      <view class="btn_2" bindtap="popUnShow" data-name="pop4">确认</view>
+    </view>
+  </view>
+</view>
+
+<!-- 核销码 二维码弹窗 -->
+<view class="pop_back" hidden="{{!pop5}}" catchtouchmove='stop'>
+  <view class="layer" data-name="pop5" bindtap="popUnShow"></view>
+  <view class="pop hexiao_pop">
+    <mp-icon bindtap="popUnShow" data-name="pop5" class="close" icon="close" color="#BBBBBB" size="{{25}}"></mp-icon>
+    <view class="h1">商家扫描券码提货</view>
+    <view class="h2 gray" wx:if="{{expoEnd && qrCodeD.use_status != 3}}">已过期</view>
+    <view class="h2" wx:if="{{!expoEnd && qrCodeD.use_status == 1}}">有效期至{{order.expo_end_time}}</view>
+    <view class="h2" wx:if="{{qrCodeD.use_status == 3}}">已提货</view>
+    <view class="qrcode">
+      <canvas style='width:100%; height:100%' disable-scroll="true" canvas-id='myqrcode'></canvas>
+    </view>
+    <view class="hx_code {{qrCodeD.use_status == 3?'through':''}}">{{qrCodeD.use_code}}</view>
+  </view>
+</view>
+<!-- 确定取消该订单吗？ -->
+<view class="pop_back" wx:if="{{pop6}}">
+  <view class="pop twopop">
+    <view class="problem">确定取消该订单吗？</view>
+    <view class="pop_btns flexB">
+      <view class="btn_1" bindtap="popUnShow" data-name="pop6">取消</view>
+      <view class="btn_2" bindtap="cancelPreOrder">确认</view>
+    </view>
+  </view>
+</view>
+
+<!-- 福袋 -->
+<view class="pop_back" wx:if="{{fudaipop}}">
+  <view class="fudai_pop">
+    <mp-icon bindtap="onfudai" data-name="pop5" class="close" icon="close" color="#BBBBBB" size="{{25}}"></mp-icon>
+    <view class="fudai_title">{{brandAdv.win_title}}</view>
+    <image class="fudai_img" src="{{brandAdv.win_image_url}}"></image>
+    <view class="fudai_btn1" data-item="{{brandAdv}}" data-area_id="63" bindtap="{{brandAdv.url?'swiperUrl':''}}">查看福利</view>
+  </view>
+</view>

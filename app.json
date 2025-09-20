@@ -1,0 +1,241 @@
+{
+  "pages": [
+    "pages/getTicket/getTicket",
+    "pages/cloudShow/cloudShow",
+    "pages/goodsIndex/goodsIndex",
+    "pages/mgg/mgg",
+    "pages/scoreRecords/scoreRecords",
+    "pages/scoreRule/scoreRule",
+    "pages/user/scoreCenter/scoreCenter",
+    "pages/user/userHome",
+    "pages/home/home",
+    "pages/reserve/reserveTicket",
+    "pages/explain/explain",
+    "pages/user/myOrder/myOrder",
+    "pages/user/myReserve/myReserve",
+    "pages/user/myCoupon/myCoupon",
+    "pages/user/myCollection/myCollection",
+    "pages/user/expoOrder/expoOrder",
+    "pages/user/selfHelp/Index/Index",
+    "pages/user/selfHelp/FillIn/FillIn",
+    "pages/user/selfHelp/Detail/Detail",
+    "pages/login/login",
+    "pages/address/index",
+    "pages/vendorAction/vendorAction",
+    "pages/brandList/brandList",
+    "pages/hotGoodsOrder/index/index",
+    "pages/hotGoodsOrder/detail/detail",
+    "pages/couponList/couponList",
+    "pages/goodsList/goodsList",
+    "pages/netOut/netOut",
+    "pages/web/web",
+    "pages/getUnionId/getUnionId",
+    "pages/goodsIndex/template/floorTemplate",
+    "pages/agreement/agreement"
+  ],
+  "subPackages": [{
+      "root": "pages/cloudPackage/",
+      "pages": [
+        "cloudShowSuccess/index",
+        "cloudRule/index",
+        "cloudAward/index"
+      ]
+    },
+    {
+      "root": "pages/svipPackage/",
+      "pages": [
+        "signGift/signGift",
+        "signDetail/Index",
+        "payProductDetail/payProductDetail",
+        "paySvip/paySvip",
+        "svipUserCenter/svipUserCenter",
+        "svipUserOrder/svipUserOrder",
+        "moreChooseOneDetail/moreChooseOneDetail"
+      ]
+    },
+    {
+      "root": "pages/expoPackage/",
+      "pages": [
+        "hotGoodsGroup/hotGoodsGroup",
+        "getCoupon/getCoupon",
+        "getTicketSuccess/getTicketSuccess",
+        "shareTicket/shareTicket",
+        "ticketDetail/ticketDetail",
+        "ticketList/ticketList",
+        "bounty/bounty",
+        "ticketCheck/ticketCheck",
+        "couponDetail/couponDetail"
+      ]
+    },
+    {
+      "root": "pages-live/pages/",
+      "pages": [
+        "address/address",
+        "theme/theme",
+        "confirmOrder/confirmOrder",
+        "storeDetail/storeDetail",
+        "liveRome/liveRome",
+        "shopDetail/shopDetail",
+        "orderDetail/orderDetail",
+        "liveOrder/liveOrder"
+      ]
+    },
+    {
+      "root": "pages/tradeInPackage/",
+      "pages": [
+        "List/Index",
+        "Detail/Index",
+        "Rule/Index",
+        "My/Index",
+        "Confirm/Index",
+        "tradeDetail/Index"
+      ]
+    },
+    {
+      "root": "pages-xmb/pages/",
+      "pages": [
+        "xmbIndex/xmbIndex",
+        "tradeIn/List/List",
+        "tradeIn/Rule/Rule",
+        "tradeIn/Confirm/Confirm",
+        "tradeIn/tradeDetail/tradeDetail",
+        "xmbCenter/index/index",
+        "xmbCenter/rules/rules",
+        "luckyDraw/luckyDraw"
+      ]
+    },
+    {
+      "root": "pages-abs/pages/",
+      "pages": [
+        "shoppingList/shoppingList",
+        "opinion/opinion",
+        "exchangeList/exchangeList",
+        "brandList/brandList",
+        "ConfirmOrder/ConfirmOrder",
+        "OrderList/OrderList",
+        "orderDetail/orderDetail",
+        "mggOrderList/mggOrderList",
+        "mggGoodsList/mggGoodsList",
+        "productDetails/productDetails"
+      ]
+    },
+    {
+      "root": "pGoods",
+      "pages": [
+        "pages/goodsOrderList/goodsOrderList",
+        "pages/goodsTuangouOrderList/goodsOrderList",
+        "pages/goodsTuangouOrderConfirm/goodsTuangouOrderConfirm",
+        "pages/goodsTuangouDetail/goodsTuangouDetail",
+        "pages/goodsSeckillDetail/goodsSeckillDetail",
+        "pages/goodsSecKillGoods/goodsSecKillGoods",
+        "pages/goodsReturns/goodsReturns",
+        "pages/goodsDetail/goodsDetail",
+        "pages/goodsMyCoupon/goodsMyCoupon",
+        "pages/goodsCategoryGoods/goodsCategoryGoods",
+        "pages/goodsSelectCoupon/goodsSelectCoupon",
+        "pages/goodsSeckillOrderConfirm/goodsSeckillOrderConfirm",
+        "pages/goodsOrderConfirm/goodsOrderConfirm",
+        "pages/goodsOrderDetail/goodsOrderDetail",
+        "pages/goodsTuangouIntro/goodsTuangouIntro",
+        "pages/goodsTuangouGoods/goodsTuangouGoods"
+      ]
+    },
+    {
+      "root": "pages-qy",
+      "pages": [
+        "pages/onlineServe/onlineServe"
+      ],
+      "plugins": {
+        "myPlugin": {
+          "version": "1.10.7",
+          "provider": "wxae5e29812005203f"
+        }
+      }
+    },
+    {
+      "root": "pages-sh",
+      "pages": [
+        "pages/shIndex/shIndex",
+        "pages/shList/shList",
+        "pages/shDetail/shDetail",
+        "pages/shForm/shForm"
+      ]
+    },
+    {
+      "root": "pages-userInfo",
+      "pages": [
+        "pages/searchOrder/searchOrder",
+        "pages/orderList/orderList",
+        "pages/userCenter/userCenter",
+        "pages/userCenter/receiverAddress/addressEdit",
+        "pages/userCenter/receiverAddress/receiverAddress",
+        "pages/wechat/info"
+      ]
+    },
+    {
+      "root": "pages-liebian/pages/",
+      "pages": [
+        "homePage/homePage",
+        "rule/rule",
+        "winners/winners",
+        "index/index",
+        "historyList/historyList"
+      ]
+    }
+  ],
+  "plugins": {
+    "contactPlugin": {
+      "version": "1.4.7",
+      "provider": "wx104a1a20c3f81ec2"
+    }
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于获取小程序电子门票"
+    }
+  },
+  "requiredPrivateInfos":[
+    "getLocation"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#CDCDCF",
+    "selectedColor": "#E6002D",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [{
+        "pagePath": "pages/goodsIndex/goodsIndex",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/getTicket/getTicket",
+        "text": "门票"
+      },
+      {
+        "pagePath": "pages/home/home",
+        "text": "会员"
+      },
+      {
+        "pagePath": "pages/user/userHome",
+        "text": "我的"
+      }
+    ]
+  },
+  "usingComponents": {
+    "online-serve": "./components/onlineServe/onlineServe"
+  },
+  "networkTimeout": {
+    "request": 30000,
+    "connectSocket": 20000,
+    "uploadFile": 20000,
+    "downloadFile": 20000
+  },
+  "sitemapLocation": "sitemap.json",
+  "__usePrivacyCheck__": true
+}

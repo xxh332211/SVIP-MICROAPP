@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "积分中心",
+  "navigationBarBackgroundColor": "#E6001B",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "normal-modal": "/components/goodsNormalSuccessModal/goodsNormalSuccessModal",
+    "douyin-modal": "/components/goodsSaveDouyinModal/goodsSaveDouyinModal"
+  }
+}

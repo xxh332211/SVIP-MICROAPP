@@ -1,0 +1,250 @@
+page{
+  background: #fff;
+}
+.container{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 25rpx 120rpx 30rpx;
+}
+/* 头部信息 */
+.message{
+  width: 100%;
+  overflow: hidden;
+  border-bottom: 1px solid #d2d2d2;
+}
+.message .trandText{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  line-height: 48rpx;
+  font-size: 30rpx;
+  padding-top: 26rpx;
+}
+.message .mobile{
+  font-size:36rpx;
+  font-weight:500;
+  line-height:36rpx;
+  margin: 10rpx 0 21rpx;
+  color: #222222;
+}
+.message .condition{
+  color: #FF0000;
+  font-size:26rpx;
+  line-height:40rpx;
+}
+.message .detail-box{
+  height: 183rpx;
+  width: 100%;
+  margin-top: 47rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.message .detail-box .left{
+  width: 183rpx;
+  height: 183rpx;
+  /* border: 1rpx solid #C0C0C0; */
+}
+.message .detail-box .left image{
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 5rpx;
+}
+.message .detail-box .right{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width:472rpx;
+}
+.message .detail-box .right .title{
+  font-size: 34rpx;
+  color: #000;
+  line-height: 40rpx;
+  overflow : hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.message .detail-box .right .bottom .price{
+  font-size:24rpx;
+  line-height: 56rpx;
+  font-weight:500;
+  text-decoration:line-through;
+  color:rgba(106,106,106,1);
+}
+.message .detail-box .right .bottom .buyPrice{
+  font-size:36rpx;
+  line-height: 36rpx;
+  font-weight:bold;
+  color:rgba(230,0,46,1);
+}
+/* 换购单数 */
+.trande{
+  width: 100%;
+  height: 100rpx;
+  background: #FED9DE;
+  border-radius: 50rpx;
+  margin: 65rpx 0;
+}
+.tradeIn-fixed{
+  display: flex;
+  justify-content: center;
+  width: 690rpx;
+  height: 99rpx;
+  margin: 65rpx 0;
+  background-color: #FDD9DD;
+  border-radius: 50rpx;
+}
+.trade-bag{
+  width: 44rpx;
+  height: 41rpx;
+  background: url(https://img.51jiabo.com/33ba50f4-9413-4fbd-9cee-ad8e930f0d7f.png) no-repeat;
+  background-size: 100% 100%;
+  /* margin-top: 14rpx; */
+  margin-right: 26rpx;
+}
+
+.tradeIn-fixed .content{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.tradeIn-fixed .top{
+  display: flex;
+  align-items: center;
+  width: 550rpx;
+}
+.tradeIn-fixed .top .commonFlex{
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+.tradeIn-fixed .top .commonFlex:last-child{
+  flex: none;
+}
+.tradeIn-fixed .top .amount{
+  font-size: 30rpx;
+  color: #D3122D;
+  font-weight: bold;
+  margin: 0 13rpx;
+}
+.tradeIn-fixed .top .cirl{
+  width: 15rpx;
+  height: 15rpx;
+  border-radius: 50%;
+  border: 3rpx solid #D3112D;
+}
+.tradeIn-fixed .top .cirl.act{
+  background: #D3112D;
+}
+.tradeIn-fixed .top .line{
+  flex: 1;
+  height: 1px;
+  background: #FF0000;
+}
+.tradeIn-fixed .bottom{
+  font-size: 26rpx;
+  font-weight: bold;
+  color: #D3122D;
+  /* margin-top: -10rpx; */
+}
+
+/* 换购订单 */
+.ordeList{
+  overflow: hidden;
+  margin-top:70rpx;
+}
+.ordeList .header text:nth-of-type(1){
+  font-size:32rpx;
+  font-weight:bold;
+  color:rgba(40,40,40,1);
+  line-height:32px;
+  border-left:7rpx solid #E6002D ;
+  padding-left: 15rpx;
+}
+.ordeList .header text:nth-of-type(2){
+  font-size:24rpx;
+  color:#4B4B4B;
+  line-height:24px;
+  padding-left: 15rpx;
+}
+.ordeList .order{
+  width: 100%;
+  height: 226rpx;
+  box-sizing: border-box;
+  padding: 35rpx;
+  background: #F1F1F1;
+  margin-top: 24rpx;
+  display: flex;
+}
+.ordeList .order .left{
+  width: 180rpx;
+  height: 76rpx;
+  box-sizing: border-box;
+  padding: 10rpx;
+  background: #fff;
+}
+.ordeList .order .left image{
+  width: 100%;
+  height: 100%;
+}
+
+.ordeList .order .right{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 30rpx;
+  color: #1c1c1c;
+  padding-left: 46rpx;
+}
+.ordeList .order .right .textLeft{
+  width: 120rpx;
+  display: inline-block;
+}
+.ordeList .noOrdernum{
+  color: #999;
+  font-size: 28rpx;
+  text-align: center;
+  margin: 40rpx;
+}
+
+/*支付 */
+.pay{
+  width: 100%;
+  height:113rpx;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 99;
+}
+.pay .pay_left{
+  width: 750rpx;
+  padding-right: 300rpx;
+  background: #DCDCDC;
+  text-align: center;
+  font-size: 40rpx;
+  height: 96rpx;
+  line-height: 96rpx;
+  font-weight:800;
+  color: #E6002D;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.pay .pay_right{
+  width:313rpx;
+  height:113rpx;
+  background: url(https://img.51jiabo.com/c250be92-de2d-4d43-8ef3-b14306c3962c.png) no-repeat; 
+  background-size: cover;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  font-weight:800;
+  text-align: center;
+  font-size: 40rpx;
+  line-height: 113rpx;
+  color: #fff;
+}
+

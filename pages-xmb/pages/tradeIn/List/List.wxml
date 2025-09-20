@@ -1,0 +1,47 @@
+<!--pages-xmb/pages//tradeIn/List/List.wxml-->
+
+<online-serve />
+<view class="container">
+  <view class="adv-box">
+    <image class="adv" wx:if="{{tradeAdv.length > 0}}" mode="widthFix" data-area_id="42" data-item="{{tradeAdv[0]}}"
+      bindtap="{{tradeAdv[0].url?'swiperUrl':''}}" src="{{tradeAdv[0].wap_image_url}}"></image>
+    <!-- 规则icon -->
+    <view class="rule" catchtap="toXmbTradeInRule">规则</view>
+  </view>
+
+  <view class="total-xmb">
+    <view class="icon"></view>熊猫币{{totalXmb}}
+  </view>
+
+  <view class="goods-list" wx:if="{{goodsList && goodsList.length > 0}}">
+    <view class="goods-item" wx:for="{{goodsList}}" wx:key="index">
+      <view class="img-box">
+        <image class="img" mode="aspectFit" src="{{item.goods_image}}"></image>
+        <view class="sell-out" wx:if="{{item.stock == 0}}">抢光了</view>
+      </view>
+      <view class="center">
+        <view class="name">{{item.goods_name}}</view>
+        <view class="origin">￥{{item.origin_price}}</view>
+        <view class="now">
+          <view class="icon"></view>熊猫币{{item.panda_coin}}
+        </view>
+      </view>
+      <view class="right">
+        <view class="btn" wx:if="{{item.stock > 0}}" data-id="{{item.id}}" bindtap="toConfirm">熊猫币换购</view>
+        <view class="btn gray" wx:else>熊猫币换购</view>
+        <view class="stock">剩余：{{item.stock}}</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+<!-- 熊猫币换购浮层 -->
+<view class="xmb-tradeIn" bindtap="toSelfHelp">
+  <view class="icon"></view>获得熊猫币参与换购GO >>
+</view>
+
+<view class="tab-box">
+  <view class="tab act">换购商品</view>
+  <view class="tab" bindtap="toMyXmbTradeIn">我的换购</view>
+</view>

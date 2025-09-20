@@ -1,0 +1,66 @@
+<!--pages-xmb/components/dial/dial.wxml-->
+<view animation="{{animationData}}" class="canvas-content">
+  <view class="canvas-item" wx:for="{{awardsList}}" wx:key="unique">
+    <view class="canvas-item-text" style="-webkit-transform: rotate({{item.turn}});transform: rotate({{item.turn}})">
+      <view class="name">{{item.name}}</view>
+      <image class="img" src="{{item.awardImg}}"></image>
+    </view>
+  </view>
+</view>
+<view class="lottery-btn {{(countNumber < 1 && isLogin)?'gray':''}}" bindtap='getLottery'>
+  <view>点击抽奖</view>
+  <view class="tj">{{awards.panda_coin}}熊猫币/次</view>
+</view>
+<button class='auth-btn' wx:if="{{!isLogin}}" open-type='getPhoneNumber' bindgetphonenumber="getPhoneNumber"></button>
+
+<!-- 抽到奖品弹层 -->
+<view class="prize-popup" wx:if="{{prizePopup}}">
+  <view class="prize-box">
+    <view class="head">
+      <!-- 优惠券，等虚拟奖品才有关闭按钮 -->
+      <view class="close" data-popup="prizePopup" bindtap="closePopup" wx:if="{{prizeType != 1}}"></view>
+      <view class="name">恭喜获得{{prizeName}}</view>
+      <view class="tips">奖品在“熊猫币抽大奖--我的中奖记录”中查看</view>
+    </view>
+    <view class="img-box">
+      <image class="img" src="{{prizeImg}}"></image>
+    </view>
+    <view class="text" wx:if="{{surNum}}">再抽{{surNum}}次，100%获得{{awards.big_award}}</view>
+    <!-- 优惠券，等虚拟奖品 && 熊猫币足够抽奖 -->
+    <view class="again" bindtap='getLottery' wx:if="{{prizeType != 1 && countNumber > 0}}">{{awards.panda_coin}}熊猫币再抽一次
+    </view>
+    <!-- 实物发货礼品需要提交收货地址 -->
+    <view class="again" bindtap='toAddress' wx:elif="{{prizeType == 1}}">提交收货地址</view>
+    <!-- 熊猫币不够抽奖 -->
+    <view class="again" bindtap='getCoin' wx:else>熊猫币不足，去领取>></view>
+  </view>
+</view>
+
+<!-- 地址已提交提示弹层 -->
+<view class="prize-popup" wx:if="{{submitAddress}}">
+  <view class="prize-box">
+    <view class="head">
+      <view class="close" data-popup="submitAddress" bindtap="closePopup"></view>
+      <view class="name">地址已提交</view>
+      <view class="tips" wx:if="{{surNum}}">奖品将会在7个工作日寄出</view>
+    </view>
+    <view class="tips not-big" wx:if="{{!surNum}}">奖品将会在7个工作日寄出</view>
+    <view class="text lackof" wx:if="{{surNum}}">再抽{{surNum}}次，100%获得{{awards.big_award}}</view>
+    <!-- 熊猫币足够抽奖 -->
+    <view class="again" bindtap='getLottery' wx:if="{{countNumber > 0}}">{{awards.panda_coin}}熊猫币再抽一次</view>
+    <!-- 熊猫币不够抽奖 -->
+    <view class="again" bindtap='getCoin' wx:else>熊猫币不足，去领取>></view>
+  </view>
+</view>
+
+<!-- 熊猫币不足 -->
+<view class="prize-popup" wx:if="{{lackofPopup}}">
+  <view class="prize-box">
+    <view class="head">
+      <view class="close" data-popup="lackofPopup" bindtap="closePopup"></view>
+      <view class="name">熊猫币不足</view>
+    </view>
+    <view class="text lackof">去熊猫币中心获取熊猫币</view>
+    <view class="again" bindtap='getCoin'>去领熊猫币</view>
+  </view>
+</view>

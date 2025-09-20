@@ -1,0 +1,354 @@
+<!--pages/svipPackage/svipUserOrder/svipUserOrder.wxml-->
+<online-serve />
+<view class="container">
+  <view class="page">
+    <view class="page__bd">
+      <view class="weui-tab">
+        <!-- tab -->
+        <view class="tab-box">
+          <view class="tab {{activeIndex == item.id?'active':''}}" data-id='{{item.id}}' bindtap="tabClick"
+            wx:for='{{qiehuan}}' wx:key='index'>{{item.txt}}</view>
+        </view>
+
+      </view>
+
+      <!-- 栏 -->
+      <view>
+        <!-- 预约商品 -->
+        <view class="list-content" wx:if="{{activeIndex == 4}}">
+          <!-- 单个商品 -->
+          <view class='earnest-product' wx:for="{{oriderList4}}" wx:key='index' data-item="{{item}}" bindtap="toDetail">
+            <!-- is_check==1已核销；status==-1订单失效 -->
+            <view class='product-state'>
+              <view wx:if="{{item.is_check == 1 && item.status != -1}}">商品已领取</view>
+              <view wx:if="{{item.is_check != 1 && item.status != -1 && !item.isOut}}">商品未领取</view>
+              <view wx:if="{{item.status == -1}}">商品已失效</view>
+              <view wx:if="{{item.is_check != 1 && item.status != -1 && item.isOut}}">商品已过期</view>
+            </view>
+            <view class='product-content flex-row'>
+              <image class='product-pic' src='{{item.goods_image}}'></image>
+              <view class='product-info'>
+                <view class='goods-name'>{{item.goods_name}}</view>
+                <view class="more-choose-one-msg" wx:if="{{item.activity_type == 1}}">n选1活动</view>
+                <view class="goods-price flex">
+                  <!-- 用样式占位 visib -->
+                  <text class="{{item.goods_price == null?'visib':''}}">SVIP：￥{{item.goods_price}}</text>
+                  <text class='product-refunds middle await' catchtap='checkCode' data-info="{{item}}"
+                    wx:if="{{item.status != -1}}">查看券码</text>
+                </view>
+              </view>
+            </view>
+            <view class='shopTxt' wx:if="{{item.status != -1}}">
+              您已成功预约SVIP商品，{{item.begin_date}}~{{item.end_date}}日到{{item.venue_name}}，{{item.contract_info.brand_name}}{{item.contract_info.booth}}处，查看商品
+            </view>
+          </view>
+          <!-- 没有订单 -->
+          <view wx:if="{{no_ticket4_data}}" class='middle'>
+            <view class='empty-content flex-column'>
+              <image src='/imgs/empty.png'></image>
+              <text class=''>暂时没有订单哦！</text>
+            </view>
+          </view>
+        </view>
+
+        <!-- 定金商品 -->
+        <view class="list-content" wx:if="{{activeIndex == 2}}">
+
+          <!-- 单个商品 -->
+          <view class="earnest-product" wx:for="{{oriderList2}}" wx:key='index' data-item="{{item}}" bindtap="toDetail">
+            <view class='product-state'>
+              <view wx:if='{{item.isOut&&item.status==1}}'>已过期</view>
+              <view wx:if='{{item.status==-2}}'>定金已退</view>
+              <view wx:if="{{item.status == -1}}">订单已取消</view>
+              <view wx:if='{{!item.isOut && item.status==1 && item.is_check != 1}}'>定金已付</view>
+              <view wx:if="{{item.status == 0}}">待付款</view>
+              <view wx:if="{{item.is_check == 1 && !item.isOut}}">商品已领取</view>
+            </view>
+            <view class='product-content flex-row'>
+              <image class='product-pic' src='{{item.goods_image}}'></image>
+              <view class='product-info'>
+                <view class='goods-name'>{{item.goods_name}}</view>
+                <view class="more-choose-one-msg" wx:if="{{item.activity_type == 1}}">n选1活动</view>
+                <view class="goods-price">
+                  <text>SVIP：</text>￥{{item.goods_price}}
+                </view>
+              </view>
+            </view>
+            <view class='refund' wx:if="{{item.status == 1}}">
+              <view class="earnest">定金：￥{{item.prepay_amount}}
+                <text>（已支付）</text>
+              </view>
+              <view class="btn-wrap">
+                <view class='product-refunds middle nodisable' catchtap='goodsRefund' data-item="{{item}}"
+                  data-price="{{item.prepay_amount}}" id='{{item.order_sn}}' wx:if="{{item.is_check != 1}}">退款</view>
+                <view class='product-refunds disable middle' catchtap='reFundTips' wx:if="{{item.is_check == 1}}">退款
+                </view>
+                <view class='product-refunds middle await' catchtap='checkCode' data-info="{{item}}">查看券码</view>
+              </view>
+            </view>
+            <!-- 待支付按钮 -->
+            <view class="bot-pay" wx:if="{{item.status == 0}}">
+              <view class='yf-num'>定金：￥{{item.prepay_amount}}</view>
+              <view class="yf-right">
+                <view class="yf-cancel" data-item='{{item}}' catchtap="toCancel">取消</view>
+                <view class="pay-btn" data-item='{{item}}' catchtap="toPay">付款 {{item.goods_time}}</view>
+              </view>
+            </view>
+            <!-- 已退款状态按钮 -->
+            <view class='refund'
+              wx:if="{{item.send_type == 2 && item.status == -2 && (item.refund_status == 0 || item.refund_status == 2)}}">
+              <view class="earnest"></view>
+              <view class="btn-wrap">
+                <view class='product-refunds middle nodisable' wx:if="{{item.refund_status == 0}}" data-item="{{item}}">
+                  退款中</view>
+                <view class='product-refunds middle nodisable' wx:elif="{{item.refund_status == 2}}"
+                  data-item="{{item}}" data-reason="{{item.refund_reason}}" catchtap="refundFail">退款失败</view>
+              </view>
+            </view>
+            <!-- 提示 -->
+            <view class='earnest-dic' wx:if="{{item.status == 1}}">
+              您已成功预定SVIP专享商品，{{item.begin_date}}~{{item.end_date}}日到
+              {{item.venue_name}}，{{item.contract_info.brand_name}}{{item.contract_info.booth}}处，付款取货。</view>
+          </view>
+
+          <!--空白页-->
+          <view wx:if="{{no_ticket2_data==true}}" class='middle'>
+            <view class='empty-content flex-column'>
+              <image src='/imgs/empty.png'></image>
+              <text class=''>暂时没有订单哦！</text>
+            </view>
+          </view>
+
+        </view>
+
+        <!-- 全款商品 -->
+        <view class="list-content" wx:if="{{activeIndex == 1}}">
+
+          <!-- 单个商品 -->
+          <view class="product" wx:for="{{oriderList}}" wx:key='index' data-item="{{item}}" bindtap="toDetail">
+            <view class='product-state'>
+              <view wx:if="{{item.status == 1 && item.send_type == 2}}">{{item.delivered == 0 ? '待发货' : '已发货'}}</view>
+              <!-- <view wx:if="{{item.status == 1 && item.delivered == 1 && item.send_type == 2}}">已发货</view> -->
+              <view wx:if="{{item.status == 0}}">待付款</view>
+              <view wx:if="{{item.status == -1}}">订单已取消</view>
+              <view wx:if='{{item.status == -2}}'>
+                <block wx:if="{{(item.refund_status == 0||item.refund_status == 2) && item.send_type == 2}}">
+                  {{item.delivered == 0 ? '待发货' : '已发货'}} - 退款中</block>
+                <block wx:else>全款已退</block>
+              </view>
+              <!-- 到展提货且已核销为已领取，未核销为未领取 -->
+              <view wx:if="{{item.is_check == 0 && item.send_type == 1 && item.status == 1}}">待领取</view>
+              <view wx:if="{{item.is_check == 1 && item.send_type == 1 && item.status == 1}}">已领取</view>
+            </view>
+            <view class='product-content flex-row'>
+              <image class='product-pic' src='{{item.goods_image}}'></image>
+              <view class='product-info'>
+                <view class="goods-name">{{item.goods_name}}</view>
+                <view class="more-choose-one-msg" wx:if="{{item.activity_type == 1}}">n选1活动</view>
+                <view class='product-price'>
+                  SVIP：{{item.goods_price}}
+                  <text> 市场价：￥{{item.origin_price}}</text>
+                </view>
+              </view>
+            </view>
+            <!-- 券码 -->
+            <view class='refund' wx:if="{{item.status == 1}}">
+              <view class="earnest"></view>
+              <view class="btn-wrap">
+                <view class='product-refunds middle disable' catchtap='reFundTips'
+                  wx:if='{{item.is_check == 1 }}'>退款</view>
+                <view wx:else class='product-refunds middle nodisable' data-item="{{item}}"
+                  data-price="{{item.prepay_amount}}" id='{{item.order_sn}}' catchtap='goodsRefund'>退款</view>
+                <view class='product-refunds middle await' data-info="{{item}}" catchtap='checkCode'
+                  wx:if="{{item.send_type == 1 && item.status == 1}}">查看券码</view>
+              </view>
+            </view>
+            <!-- 提示 -->
+            <view class='earnest-dic' wx:if="{{item.send_type == 1 && item.status == 1}}">
+              您已成功购买SVIP商品，{{item.begin_date}}~{{item.end_date}}日到
+              {{item.venue_name}}，{{item.contract_info.brand_name}}{{item.contract_info.booth}}处，查看领取商品</view>
+            <!-- 待支付按钮 -->
+            <view class="bot-pay" wx:if="{{item.status == 0}}">
+              <view class='yf-num'>应付：￥{{item.goods_price}}</view>
+              <view class="yf-right">
+                <view class="yf-cancel" data-item='{{item}}' catchtap="toCancel">取消</view>
+                <view class="pay-btn" data-item='{{item}}' catchtap="toPay">付款 {{item.goods_time}}</view>
+              </view>
+            </view>
+            <!-- 已退款状态按钮 -->
+            <view class='refund'
+              wx:if="{{item.send_type == 2 && item.status == -2 && (item.refund_status == 0 || item.refund_status == 2)}}">
+              <view class="earnest"></view>
+              <view class="btn-wrap">
+                <view class='product-refunds middle nodisable' wx:if="{{item.refund_status == 0}}" data-item="{{item}}">
+                  退款中</view>
+                <view class='product-refunds middle nodisable' wx:elif="{{item.refund_status == 2}}"
+                  data-item="{{item}}" data-reason="{{item.refund_reason}}" catchtap="refundFail">退款失败</view>
+              </view>
+            </view>
+            <!-- 物流 -->
+            <view class='logistics-sn' wx:if="{{item.logistics_sn}}">
+              <view class="logistics-sn-left">
+                <view>
+                  <text>快递:{{item.logistics_name}}，</text>
+                  <text>单号：{{item.logistics_sn}}</text>
+                </view>
+                <view>查询物流单号跟踪物流信息</view>
+              </view>
+              <view class="logistics-sn-view">
+                <view wx:if="{{item.send_type == 1}}" class='product-refunds middle disable'
+                  data-price="{{item.prepay_amount}}" catchtap='drawTips'>退款</view>
+                <view class="logistics-sn-right" style="margin-left: 23rpx;" data-order="{{item.logistics_sn}}"
+                  catchtap="copy">复制</view>
+              </view>
+
+            </view>
+          </view>
+
+          <!--空白页-->
+          <view wx:if="{{no_ticket1_data==true}}" class='middle'>
+            <view class='empty-content flex-column'>
+              <image src='/imgs/empty.png'></image>
+              <text class=''>暂时没有订单哦！</text>
+            </view>
+          </view>
+
+        </view>
+
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 退款成功弹层 -->
+<view class="modal-wrap" wx:if='{{success}}'>
+  <view class="modal-content">
+    <view>
+      <view class='dialog-title middle'>{{refundTypeText}}</view>
+      <view class="dialog-info">24小时退回您的账户</view>
+      <view class="dialog-price">
+        <text>退款金额：</text>
+        <text class="label">￥</text>
+        <text class='price'>{{price}}</text>
+      </view>
+    </view>
+    <view class='modalCancel' bindtap='confirmHandle'>确定</view>
+  </view>
+</view>
+
+<!-- 退款提示弹层 -->
+<view class="refound-tips" wx:if="{{sureRefund}}">
+  <view class="tips-box">
+    <view class="tit">您确定要退该商品吗？</view>
+    <view class="btn-box">
+      <view class="cancel" bindtap="closeSure">取消</view>
+      <view class="confirm" bindtap="reFund">确定</view>
+    </view>
+  </view>
+</view>
+<!-- 取消提示弹层 -->
+<view class="refound-tips" wx:if="{{sureCancel}}">
+  <view class="tips-box">
+    <view class="tit">确定取消该订单么？</view>
+    <view class="btn-box">
+      <view class="cancel" bindtap="cancelSure">取消</view>
+      <view class="confirm" bindtap="cancelRefund">确定</view>
+    </view>
+  </view>
+</view>
+<!-- 已领取商品，不能退款 -->
+<view class="refound-tips" wx:if="{{unRefund}}">
+  <view class="tips-box">
+    <view class="tit">{{unRefundText}}</view>
+    <view class="btn-box">
+      <view class="confirm" bindtap="closeUn">确定</view>
+    </view>
+  </view>
+</view>
+<!-- 该商品已下线，无法查看 -->
+<view class="refound-tips" wx:if="{{offLinePopup}}">
+  <view class="tips-box">
+    <view class="tit">该商品已下线，无法查看</view>
+    <view class="btn-box">
+      <view class="confirm" bindtap="offLine">确定</view>
+    </view>
+  </view>
+</view>
+<!-- 券码弹层 -->
+<view class="code-popup" hidden="{{!showCode}}" bindtap="closeCode" catchtouchmove='stop'>
+  <view class="code-box">
+    <view class="top">
+      <view class="tit">商家扫描券码领取商品</view>
+      <view class="period" wx:if="{{!pastDue || (pastDue && isCheck != 0)}}">有效期：{{beginDate}}-{{endDate}}</view>
+      <view class="period" wx:if="{{pastDue && isCheck == 0}}">已过期</view>
+    </view>
+    <view class="bottom">
+      <view class="canvas-box">
+        <canvas class='canvas' disable-scroll="true" canvas-id='qrcode'></canvas>
+      </view>
+      <view class="cou-code {{isCheck != 0?'past':''}}">{{couCode}}</view>
+    </view>
+  </view>
+</view>
+
+<!-- n选1退款弹层列表 -->
+<view class="more-choose-one-popup" wx:if="{{showMoreChooseOnePopup}}">
+  <view class="main">
+    <view class="title">{{moreChooseOneGoodsAllListData.choose_info.activity_name}}</view>
+    <image class="mco-close" bindtap="close_MCOP"
+      src="https://img.51jiabo.com/2fbbd2d6-e895-4b88-9c7b-223aa880f70f.png"></image>
+    <scroll-view class="sc-view" scroll-x="true">
+      <view class="item" wx:for="{{moreChooseOneGoodsListData}}" wx:key="goods_id">
+        <image src="{{item.goods_image}}" class="pro-img"></image>
+        <view class="desc">{{item.goods_name}}</view>
+        <button wx:if="{{item.stock == 0}}" class="buy-btn dis-buy-btn">已售罄</button>
+        <button wx:else class="buy-btn" bindtap="MCO_choose" data-goods_id="{{item.goods_id}}">选TA</button>
+      </view>
+    </scroll-view>
+
+    <button class="mco-btn" bindtap="reFund" data-type="mco">确认退款</button>
+  </view>
+</view>
+
+<!-- n选1提示框 -->
+<view class="more-choose-one-tips" wx:if="{{showMoreChooseOneTips}}">
+  <!-- 选购 -->
+  <view class="mco-box mco-box1" wx:if="{{isMCOChoose}}">
+    <view class="mco-tips-title">恭喜您选购商品成功</view>
+    <button class="mco-tips-btn" bindtap="MCO_closeTips">知道了</button>
+    <image class="mco-close" bindtap="MCO_closeTips"
+      src="https://img.51jiabo.com/2fbbd2d6-e895-4b88-9c7b-223aa880f70f.png"></image>
+  </view>
+
+  <!-- 退款 -->
+  <view class="mco-box mco-box2" wx:else>
+    <view class="mco-tips-text">全款商品退款成功</view>
+    <view class="mco-tips-text">24小时退回您的账户</view>
+    <view class="mco-tips-text">退款金额：￥{{price}}元</view>
+    <button class="mco-tips-btn" bindtap="MCO_closeTips">确定</button>
+    <image class="mco-close" bindtap="MCO_closeTips"
+      src="https://img.51jiabo.com/2fbbd2d6-e895-4b88-9c7b-223aa880f70f.png"></image>
+  </view>
+</view>
+
+<!-- 全款退款须知/失败 弹框 -->
+<view class="refund-popup" wx:if="{{showRefundPopup && curItem.send_type == 2}}">
+  <view class="refund-popup-box">
+    <view class="title" wx:if="{{curItem.refund_status == 0}}">退款须知</view>
+    <view class="title" wx:elif="{{curItem.refund_status == 2}}">退款失败</view>
+    <scroll-view class="content" scroll-y="true">
+      <block wx:if="{{curItem.delivered == 0}}">
+        {{curItem.refund_status == 2 ? refundFailReason : sendingRefundNotice}}
+      </block>
+      <block wx:elif="{{curItem.delivered == 1}}">
+        {{curItem.refund_status == 2 ? refundFailReason : sentRefundNotice}}
+      </block>
+    </scroll-view>
+    <view class="rpb-btn rpb-know" wx:if="{{curItem.refund_status == 2}}" bindtap="closeRefundPopup">知道了</view>
+    <view class="refund-popup-btns" wx:else>
+      <view class="rpb-btn rpb-cancel" bindtap="closeRefundPopup">取消</view>
+      <view wx:if="{{canClickConfirmRefund}}" class="rpb-btn rpb-confirm" bindtap="reFund">确认退款</view>
+      <view wx:else class="rpb-btn rpb-dis-confirm">确认退款 {{refundInterval}}s</view>
+    </view>
+  </view>
+</view>

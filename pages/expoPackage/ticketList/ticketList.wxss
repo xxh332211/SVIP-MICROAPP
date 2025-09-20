@@ -1,0 +1,106 @@
+/* pages/expoPackage/ticketList/ticketList.wxss */
+
+page {
+  background: #fff;
+}
+
+.ticket{
+  padding-bottom: 100rpx;
+}
+
+.ticket .ticket-item {
+  width: 690rpx;
+  box-shadow: 0 0 15rpx 5rpx rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+  margin-top: 50rpx;
+  margin-left: 30rpx;
+}
+
+.ticket .ticket-item .info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  background: #e6002d;
+  border-radius: 2px 2px 0 0;
+  padding: 0 31rpx 34rpx 43rpx;
+}
+
+.ticket .ticket-item .info .city .name {
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-top: 30rpx;
+}
+
+.ticket .ticket-item .info .city .time {
+  font-size: 44rpx;
+}
+
+.ticket .ticket-item .info .city .cover {
+  display: block;
+  opacity: 0.7;
+  margin-top: 24rpx;
+}
+
+.ticket .ticket-item .info .qr {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 31rpx;
+}
+
+.ticket .ticket-item .info .qr canvas {
+  width: 60px;
+  height: 60px;
+  border: 13rpx solid #fff;
+}
+
+.ticket .ticket-item .info .qr .see {
+  width: 130rpx;
+  height: 38rpx;
+  border: 1px solid #fff;
+  border-radius: 19rpx;
+  text-align: center;
+  line-height: 38rpx;
+  opacity: 0.7;
+  margin-top: 11rpx;
+}
+
+.ticket .ticket-item .site {
+  height: 103rpx;
+  display: flex;
+  align-items: center;
+  padding: 0 0 0 40rpx;
+  font-size: 32rpx;
+}
+
+.ticket .ticket-item .site image {
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 20rpx;
+}
+
+/* 无门票 */
+.get-ticket {
+  margin-top: 330rpx;
+}
+
+.get-ticket .get-btn {
+  display: block;
+  width: 660rpx;
+  height: 95rpx;
+  background: #E6002D;
+  border-radius: 2px;
+  color: #fff;
+  font-size: 36rpx;
+  text-align: center;
+  line-height: 95rpx;
+  margin-left: 45rpx;
+}
+
+.get-ticket .note {
+  font-size: 28rpx;
+  text-align: center;
+  margin-top: 45rpx;
+}

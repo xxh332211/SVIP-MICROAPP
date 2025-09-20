@@ -1,0 +1,151 @@
+/* pages/user/myReserve/myReserve.wxss */
+
+.tab-box {
+  display: flex;
+  align-items: center;
+  box-shadow: 0px 5rpx 15rpx 0px rgba(81, 81, 81, 0.05);
+  background: #fff;
+  position: relative;
+}
+
+.tab-box .tab {
+  height: 100rpx;
+  width: 50%;
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #777;
+}
+
+.tab-box .tab.active {
+  color: #222;
+  font-weight: bold;
+}
+
+.tab-box .line {
+  width: 115rpx;
+  height: 4rpx;
+  background: #e6002d;
+  position: absolute;
+  bottom: 0;
+  left: 130rpx;
+  transition: left 0.2s linear;
+}
+
+.tab-box .line.active {
+  left: 506rpx;
+}
+
+/* 爆品 */
+
+.hot-wrapper {
+}
+
+.tj {
+  height: 99rpx;
+  padding-left: 33rpx;
+  line-height: 99rpx;
+  font-size: 28rpx;
+  color: #999;
+}
+
+.hot-li {
+  display: flex;
+  background: #fff;
+  padding: 30rpx;
+  margin-bottom: 22rpx;
+}
+
+.hot-li .goods-img {
+  width: 310rpx;
+  height: 242rpx;
+  flex-shrink: 0;
+}
+
+.hot-li .right{
+  margin-left: 40rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+.hot-li .title {
+  font-size: 32rpx;
+  font-weight: bold;
+  line-height: 40rpx;
+  word-break: break-all;
+}
+
+.hot-li .price {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #e6002d;
+  margin-top: 15rpx;
+}
+
+.hot-li .status .ico {
+  width: 46rpx;
+  height: 46rpx;
+  background-image: url("https://img.51jiabo.com/d8b6c7d1-da5d-4532-b5c1-f8cfd1052e00.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  margin-right: 16rpx;
+}
+.hot-li .status .ico.finish{
+  background-image: url("https://img.51jiabo.com/9eeb01b1-7d86-433b-87df-d758c478fab8.png");
+}
+
+.hot-li .status {
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  color: #7A7A7A;
+  margin-top: 12rpx;
+}
+
+/* 商户活动 */
+
+.box-wrapper {
+  margin-top: 20rpx;
+  padding-bottom: 200rpx;
+}
+
+.vendor-active .act-li {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 32rpx 60rpx;
+  background: #fff;
+  margin-bottom: 23rpx;
+}
+
+.vendor-active .act-li .img-box image {
+  width: 166rpx;
+}
+
+.vendor-active .act-li .text {
+  border-left: 1px dashed #898989;
+  padding-left: 32rpx;
+  margin-left: 25rpx;
+}
+
+.vendor-active .act-li .text .h6 {
+  font-size: 28rpx;
+}
+
+.vendor-active .act-li .text .p {
+  color: #777;
+  margin-top: 16rpx;
+}
+
+.no-order {
+  width: 320rpx;
+  height: 88rpx;
+  border-radius: 10rpx;
+  background: #e6002d;
+  margin: 390rpx 0 0 215rpx;
+  text-align: center;
+  line-height: 88rpx;
+  color: #fff;
+  font-size: 36rpx;
+}

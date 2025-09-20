@@ -1,0 +1,10 @@
+<view class="container">
+  <view class="shopList">全部{{map.length}}家门店</view>
+  <view class="address">
+    <view class="addressList" wx:for='{{map}}' wx:key='index' style="border-bottom:{{map.length - 1 == index?'none':'1rpx dashed #707070'}}">
+      <view class="shop">{{item.name}}</view>
+      <view >{{item.address}}</view>
+    </view>
+    <view class="endAddress">已经到底了</view>
+  </view>
+</view>

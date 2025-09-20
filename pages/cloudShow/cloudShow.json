@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "云逛展",
+  "navigationBarTextStyle": "white",
+  "navigationBarBackgroundColor": "#e5002d",
+  "usingComponents": {
+    "banner-swiper": "../../components/bannerSwiper/bannerSwiper",
+    "authorize": "../../components/authorize/authorize",
+    "coupon-btn":"../../components/couponBtn/couponBtn",
+    "coupon-popup":"../../components/couponPopup/couponPopup"
+  }
+}

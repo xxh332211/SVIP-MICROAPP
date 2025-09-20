@@ -1,0 +1,70 @@
+/* pages/address/index.wxss */
+
+page {
+  background: #f4f4f4;
+}
+
+.content {
+  width: 100%;
+  font-size: 0.7rem;
+  position: relative;
+}
+
+.icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.more {
+  width: 0.5rem;
+  height: 0.7rem;
+  margin-left: 0.5rem;
+}
+
+.scope {
+  align-items: center;
+}
+
+.title {
+  padding: 0 0.7rem;
+  height: 2.02rem;
+  line-height: 2.02rem;
+}
+
+.cur {
+  padding: 0 0.7rem;
+  height: 2.02rem;
+  background: #fff;
+  align-items: center;
+}
+
+.cur-title {
+  padding: 0 0.7rem;
+  height: 2.02rem;
+  /* border: 1px solid red; */
+  align-items: center;
+  justify-content: space-between;
+}
+
+.city-list {
+  padding: 26rpx 26rpx  0  26rpx;
+  width: 100%;
+  box-sizing: border-box;
+  /* justify-content: space-evenly; */
+}
+
+.city-list view {
+  width: 30%;
+  height: 70rpx;
+  margin-right: 5%;
+  margin-bottom: 5%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background: white;
+}
+
+.city-list view:nth-child(3n) {
+  margin-right: 0;
+}

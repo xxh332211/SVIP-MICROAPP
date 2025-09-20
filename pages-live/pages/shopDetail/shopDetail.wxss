@@ -1,0 +1,516 @@
+.container{
+  height: 100%;
+}
+.shop{
+  width: 100%;
+  overflow: hidden;
+}
+.shop .shopImg{
+  width: 100%;
+  height: 460rpx;
+  display: block;
+}
+.shop  .shop_price{
+  width: 100%;
+  min-height: 120rpx;
+  display: flex;
+  justify-content: space-between;
+  padding: 10rpx 30rpx;
+  background: #E6002D;
+}
+.shop  .shop_price .left{
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.shop  .shop_price .left .price{
+  color: #fff;
+  display: flex;
+  align-items: flex-end;
+}
+.shop  .shop_price .left .price text:nth-of-type(1){
+  font-size:28rpx ;
+  line-height: 28rpx;
+}
+.shop  .shop_price .left .price text:nth-of-type(2){
+  font-size:42rpx ;
+  max-width: 420rpx;
+  /* overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap; */
+  line-height: 42rpx;
+  font-weight: 900;
+}
+.shop  .shop_price .left .price text:nth-of-type(3){
+  font-size:24rpx ;
+  line-height: 24rpx;
+  padding-left: 10rpx;
+}
+.shop  .shop_price .left .price text:nth-of-type(4){
+  text-decoration: line-through;
+  opacity:0.8;
+  font-size:24rpx ;
+  line-height: 24rpx;
+}
+.shop  .shop_price .left .earnest{
+  color: #fff;
+  height: 30rpx;
+  border: 1px solid #fff;
+  font-size: 22rpx ;
+  display: flex;
+  border-radius: 15rpx;
+  padding: 0 20rpx;
+  align-items: center;
+  justify-content: center;
+}
+.shop  .shop_price .right{
+  font-size: 26rpx;
+  line-height: 26rpx;
+  color: #fff;
+  padding-top: 30rpx;
+}
+.shop .shop_detail{
+  width: 100%;
+  padding: 0 30rpx;
+  background: #fff;
+
+}
+.shop .shop_detail .title{
+  border-bottom: 1rpx solid #ededed;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30rpx 0;
+}
+.shop .shop_detail .title .left{
+  width:520rpx ;
+  line-height:45rpx;
+  font-size: 32rpx;
+}
+.shop .shop_detail .title .right{
+  display: flex;
+  border: none;
+}
+.shop .shop_detail .title .right image{
+  width:38rpx;
+  height:35rpx;
+}
+.shop .shop_detail .title .right text{
+  font-size:26rpx ;
+  line-height: 35rpx;
+  padding-left: 12rpx;
+}
+.shop .shop_detail .shop_title{
+  font-size: 28rpx;
+  color:#777777 ;
+  line-height: 45rpx;
+  padding:20rpx 0;
+}
+/* 领劵 */
+.ticket{
+  background: #fff;
+  margin-top: 30rpx;
+  width: 100%;
+  padding: 0 30rpx;
+}
+.ticket .titket_list{
+  height: 85rpx;
+  border-bottom: 1rpx solid #ededed;
+  display: flex;
+  align-items: center;
+}
+.ticket .titket_list .name{
+  font-size:28rpx;
+  color: #777;
+}
+.ticket .titket_list  .list{
+  height:42rpx;
+  width: 230rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding:0 10rpx;
+  line-height: 22rpx;
+  font-size: 22rpx;
+  margin-left: 16rpx;
+  position: relative;
+  color: #E6002D;
+}
+.ticket .titket_list  .list image{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+.ticket .titket_list .more{
+  font-size: 26rpx;
+  flex: 1;
+  text-align: right;
+}
+
+.ticket .titket_list .more image{
+  width: 12rpx;
+  height: 24rpx;
+  margin-left: 15rpx;
+}
+.ticket .mdoel{
+  background: #fff;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height:84rpx;
+}
+.ticket .mdoel .name{
+  font-size:28rpx;
+  color: #777;
+}
+.ticket .mdoel  .model_detail{
+  font-size: 28rpx;
+  color: #222;
+  margin-left: 16rpx;
+}
+/* 商品详情 */
+.shopDetail{
+  background: #fff;
+  padding:0 0 130rpx;
+  width: 100%;
+  margin-top: 30rpx;
+  overflow: hidden;
+
+}
+.shopDetail .shops{
+  width: 690rpx;
+  height: 120rpx;
+  margin: 0 auto;
+  background: #f6f6f6;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  margin-top: 40rpx;
+}
+.shopDetail .shops .middle{
+  height: 100%;
+}
+.shopDetail .shops image{
+  /* width:80rpx ;
+  height: 80rpx;
+  border-radius: 50%; */
+  height: 80rpx;
+  width: 160rpx;
+  margin:0 16rpx 0 35rpx ;
+}
+.shopDetail .shops text{
+  font-size: 34rpx;
+  color: #464646;
+  font-weight: bold;
+  width: 220rpx;
+  overflow:hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap
+}
+.shopDetail .shops .open_shop{
+  width:203rpx;
+  height:56rpx;
+  background:rgba(230,0,45,1);
+  border-radius:28rpx;
+  color: #fff;
+  font-size: 26rpx;
+  line-height: 56rpx;
+  text-align: center;
+  margin-right:35rpx ;
+}
+.shopDetail .detail{
+  width: 690;
+  padding:0 30rpx;
+  height: 112rpx;
+  border-bottom: 1rpx solid #ededed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.shopDetail .detail .title{
+  font-size: 30rpx;
+  color: #141414;
+}
+.shopDetail .detail .right{
+  display: flex;
+  align-items: center;
+}
+.shopDetail .detail .right text{
+  font-size: 24rpx;
+  line-height: 24rpx;
+  color: #7D7D7D;
+}
+.shopDetail .detail .right .img{
+  width: 30rpx ;
+  height: 30rpx;
+  margin-left: 5rpx;
+  background: #f6f6f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+.shopDetail .detail .right .img image{
+  width: 20rpx;
+  height: 10rpx;
+}
+.detail_img{
+  width: 100%;
+}
+.detail_img image{
+  width: 100%;
+  margin: 0;
+  display: block;
+}
+/* 购买 */
+.buy{
+  width: 100%;
+  height: 120rpx;
+  padding: 20rpx 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: #fff;
+  z-index: 99;
+}
+.buy .left{
+  display: flex;
+}
+.buy .left view{
+  height: 80rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.buy .left view image{
+  width:40rpx ;
+  height: 42rpx;
+}
+.buy .left .buy_mine{
+  margin:0 46rpx 0 10rpx;
+}
+.buy .left .buy_shop image{
+  height: 37rpx;
+  margin-top: 2rpx;
+}
+.buy .left view text{
+  color: #7D7D7D;
+  font-size: 24rpx;
+  line-height: 24rpx;
+}
+.buy .right{
+  width:400rpx;
+  height:80rpx;
+  background:rgba(230,0,45,1);
+  border-radius:40rpx;
+  font-size:32rpx;
+  color:#fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* 返回頂部按鈕 */
+.top{
+  width:80rpx;
+  height:80rpx;
+  position: fixed;
+  bottom: 130rpx;
+  right: 30rpx;
+  z-index: 9999;
+}
+/* 优惠券弹窗 */
+.flag{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background:rgba(0,0,0,0.72);
+  z-index: 9999;
+}
+.popup{
+  width: 100%;
+  max-height: 1000rpx;
+  overflow-y: scroll;
+  background: #fff;
+  z-index: 99999;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  border-radius: 20rpx 20rpx 0 0;
+}
+.popup .title{
+  text-align: center;
+  font-size:38rpx;
+  color:rgba(230,0,45,1);
+  line-height: 120rpx;
+}
+.popup  .ticketlist{
+  width:690rpx;
+  margin: 0 auto 40rpx;
+  background:rgba(255,255,255,1);
+  border:1px solid rgba(238,238,238,1);
+  border-radius:10rpx;
+  position: relative;
+}
+.popup  .ticketlist {
+  width:690rpx;
+  margin: 0 auto 40rpx;
+  background:rgba(255,255,255,1);
+  border:1px solid rgba(238,238,238,1);
+  border-radius:10rpx;
+  background: url('https://img.51jiabo.com/a21c046d-c447-4520-937c-3bfdc4065347.png');
+  background-repeat: no-repeat;
+  background-size:100% 100% ;
+}
+.popup  .ticketlist .header{
+  width: 100%;
+  height: 91rpx;
+  display: flex;
+  align-items: center;
+}
+.popup  .ticketlist .header .ticket_box{
+  width: 100rpx;
+  height: 50rpx;
+  border-radius: 25rpx;
+  margin:0 34rpx ;
+  background: #fff;
+  overflow: hidden;
+
+}
+.popup  .ticketlist .header .ticket_box image{
+  width: 88rpx;
+  height: 100%;
+  margin: 0 auto;
+  display: block;
+}
+
+.popup  .ticketlist .header text{
+  font-size:32rpx;
+  font-weight:bold;
+  color:rgba(255,255,255,1);
+  line-height:32px;
+}
+.popup  .ticketlist .priceList{
+  width: 100%;
+  height: 160rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.popup  .ticketlist .priceList .left{
+  display:table-cell;
+  vertical-align: bottom;
+}
+.popup  .ticketlist .priceList .left text:nth-of-type(1){
+  font-size: 36rpx;
+  line-height: 36rpx;
+  font-weight: bold;
+  color:#FF0036 ;
+  /* margin-left: 45rpx; */
+}
+.popup  .ticketlist .priceList .left text:nth-of-type(2){
+  font-size: 72rpx;
+  line-height: 72rpx;
+  font-weight: bold;
+  color:#FF0036 ;
+}
+.popup  .ticketlist .priceList .center{
+  width:300rpx ;
+  display: flex;
+  flex-direction: column;
+  
+}
+.popup  .ticketlist .priceList .center text{
+  font-size: 24rpx;
+  line-height: 40rpx;
+  margin-left: 30rpx;
+}
+.popup  .ticketlist .priceList .center text:nth-of-type(1){
+  color: #222;
+} 
+.popup  .ticketlist .priceList .center text:nth-of-type(2){
+  color: #777;
+} 
+.popup  .ticketlist .priceList .center text:nth-of-type(3){
+  color: #777;
+} 
+.popup  .ticketlist .priceList .pull{
+  width:140rpx;
+  height:56rpx;
+  background:linear-gradient(140deg,rgba(255,0,54,1),rgba(255,38,0,1));
+  border-radius:28rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size:24rpx ;
+}
+.popup .pullTicket{
+  width:659rpx;
+  height:88rpx;
+  background:rgba(230,0,45,1);
+  border-radius:44rpx;
+  font-size: 28rpx;
+  text-align: center;
+  line-height: 88rpx;
+  margin: 30rpx auto 60rpx;
+  color: #fff;
+}
+
+
+/* 返回直播 */
+.liveNav{
+  position: fixed;
+  top: 132rpx;
+  left: 0;
+  width:140rpx;
+  height:52rpx;
+  background:rgba(230,0,45,1);
+  border-radius:0px 26rpx 26rpx 0px;
+  color: #fff;
+  text-align: center;
+  line-height: 52rpx;
+  font-size: 24rpx;
+}
+
+.movable-area{
+  position:fixed;
+  top:0;
+  left:0;
+  width:750rpx;
+  height:100%;
+  pointer-events: none;
+}
+.movable-view{
+  color:#F00;
+  position:relative;
+  pointer-events: auto;
+  width:160rpx;
+  height:180rpx;
+  display:inline-block;
+}
+.movable-view .liveimg{
+  width:120rpx;
+  height:160rpx;
+  border-radius:5rpx;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.movable-view .fork{
+  width:30rpx;
+  height:30rpx;
+  position: absolute;
+  right: 0;
+  top: 0;
+}

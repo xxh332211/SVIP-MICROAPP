@@ -1,0 +1,7 @@
+/* components/bannerSwiper/bannerSwiper.wxss */
+.swiper{
+  height: 450rpx;
+}
+.slide-image{
+  display: block;
+}

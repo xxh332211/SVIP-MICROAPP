@@ -1,0 +1,9 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "privacy-popup": "../../components/privacyPopup/privacyPopup",
+    "waterfall": "../../components/waterfall",
+    "waterfall-item": "./components/waterfall-item",
+    "hot-goods-popup": "../../components/hotGoodsItem/hotGoodsPopup/hotGoodsPopup"
+  }
+}

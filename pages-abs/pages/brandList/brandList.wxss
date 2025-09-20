@@ -1,0 +1,66 @@
+/* pages-abs/pages/brandList/brandList.wxss */
+
+.banner {
+    width: 750rpx;
+    height: 450rpx;
+    /* background: #E6002D; */
+    position: relative;
+}
+
+.banner image {
+    width: 100%;
+}
+
+.bodys {
+    padding: 30rpx;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.list {
+    width: 335rpx;
+    height: 346rpx;
+    background: #FFFFFF;
+    box-shadow: 0rpx 2rpx 18rpx 0rpx rgba(147, 135, 137, 0.28);
+    border-radius: 5rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 30rpx;
+    padding-bottom: 25rpx;
+    margin-bottom: 30rpx;
+}
+
+.brand-logo {
+    width: 270rpx;
+    height: 147rpx;
+    border-radius: 5rpx;
+}
+
+.brand-name {
+    width: 270rpx;
+    font-size: 26rpx;
+    font-family: PingFang;
+    font-weight: bold;
+    color: #000000;
+    word-wrap: break-word;
+    text-align: center;
+    margin-top: 20rpx;
+}
+
+.zwh {
+    font-size: 24rpx;
+    font-weight: 500;
+    color: #222222;
+}
+swiper,swiper-item{
+    width: 100%;
+    height: 100%;
+}
+swiper image{
+    width: 100%;
+    height: 100%;
+    /* background: pink; */
+}

@@ -1,0 +1,28 @@
+<!--pages-xmb/pages/xmbIndex/xmbIndex.wxml-->
+<view class="container">
+  <view class="banner-bg"></view>
+  <view class="num-title">
+    <text class="num">{{coin}}</text>
+    <text>积分</text>
+  </view>
+  <view class="main">
+    <view class="titles">
+      <view class="title {{status === 1?'active-title':''}}" bindtap="getHandle">收入</view>
+      <view class="title {{status === 2?'active-title':''}}" bindtap="payHandle">支出</view>
+    </view>
+    <block wx:if="{{status === 1 && getInfo}}">
+      <view class="item" wx:for="{{getInfo}}" wx:key="log_id">
+        <view class="type-name">{{item.name}}</view>
+        <view class="date">{{item.update_time}}</view>
+        <view class="point">+{{item.coin_num}}</view>
+      </view>
+    </block>
+    <block wx:elif="{{status === 2 && payInfo}}">
+      <view class="item" wx:for="{{payInfo}}" wx:key="log_id">
+        <view class="type-name">{{item.name}}</view>
+        <view class="date">{{item.update_time}}</view>
+        <view class="point">-{{item.coin_num}}</view>
+      </view>
+    </block>
+  </view>
+</view>

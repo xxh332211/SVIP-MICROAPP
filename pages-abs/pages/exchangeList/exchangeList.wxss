@@ -1,0 +1,210 @@
+/* pages-abs/pages//exchangeList/exchangeList.wxss */
+@import '../../subcontracting.wxss';
+
+.exchange-card {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  padding: 30rpx;
+  margin-top: 30rpx;
+}
+
+.exchange-card .logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  width: 240rpx;
+  height: 150rpx;
+  border-radius: 10rpx;
+  overflow: hidden;
+}
+
+.exchange-card .img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10rpx;
+}
+
+.exchange-card .info {
+  margin-left: 20rpx;
+}
+
+.exchange-card .title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #000000;
+}
+
+.exchange-card .name {
+  font-size: 28rpx;
+  color: #000000;
+  margin-top: -5rpx;
+}
+
+.exchange-card .time {
+  font-size: 28rpx;
+  color: #222222;
+  margin-top: -4rpx;
+}
+
+.exchange-card .rule {
+  font-size: 26rpx;
+  color: #F90B33;
+  margin-top: -5rpx;
+}
+
+.goods-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background: #fff;
+  padding: 0 41rpx 150rpx;
+  margin-top: 30rpx;
+}
+
+.item {
+  width: 313rpx;
+  margin-top: 30rpx;
+}
+
+.item .img-box {
+  margin-left: 11rpx;
+  position: relative;
+}
+
+.item .img {
+  display: block;
+  width: 300rpx;
+  height: 230rpx;
+}
+
+.item .mgg {
+  width: 119rpx;
+  height: 56rpx;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.item .name {
+  height: 80rpx;
+  font-size: 24rpx;
+  color: #222222;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  word-break: break-all;
+  overflow: hidden;
+  margin-top: 18rpx;
+  padding-left: 11rpx;
+}
+
+.item .price {
+  display: flex;
+  align-items: center;
+  margin-top: -7rpx;
+}
+
+.define-price {
+  height: 50rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #E6002D;
+  padding-left: 11rpx;
+}
+
+.item .origin {
+  height: 50rpx;
+  font-size: 24rpx;
+  font-weight: normal;
+  color: #676767;
+  text-decoration: line-through;
+  padding-left: 11rpx;
+}
+
+.item .act-price {
+  width: 100%;
+  font-size: 36rpx;
+  color: #E6002D;
+  font-weight: bold;
+  border-bottom: 1px solid #EFEFEF;
+  padding-left: 11rpx;
+  padding-bottom: 10rpx;
+  margin-top: -12rpx;
+}
+
+.item .act-price text {
+  font-size: 32rpx;
+}
+
+.item .btn {
+  width: 280rpx;
+  height: 70rpx;
+  background: #E6002D;
+  border-radius: 5rpx;
+  font-size: 32rpx;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30rpx;
+  margin-left: 21rpx;
+}
+
+.item .btn.gray {
+  background: #BABABA;
+}
+
+.rule-popup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  background: rgba(0, 0, 0, .8);
+}
+
+.rule-popup .rule-box {
+  width: 640rpx;
+  height: 764rpx;
+  background: #FFFFFF;
+  border-radius: 10px;
+  position: relative;
+}
+
+.rule-popup .close {
+  width: 53rpx;
+  height: 53rpx;
+  position: absolute;
+  top: -94rpx;
+  right: 0;
+  background: url("https://img.51jiabo.com/19539365-1b55-4edc-8552-d350e2d8c008.png") no-repeat;
+  background-size: 100% 100%;
+}
+
+.rule-popup .title {
+  display: flex;
+  justify-content: center;
+  width: 299rpx;
+  height: 72rpx;
+  font-size: 36rpx;
+  color: #FFFFFF;
+  background: url("https://img.51jiabo.com/bd11e552-286b-43bf-a263-49da7c3527a6.png") no-repeat;
+  background-size: 100% 100%;
+  margin-left: 171rpx;
+  margin-top: -10rpx;
+}
+
+.rule-popup .content {
+  display: block;
+  height: 650rpx;
+  overflow-y: scroll;
+  padding: 35rpx;
+}

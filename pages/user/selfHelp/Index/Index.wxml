@@ -1,0 +1,46 @@
+<!--pages/user/selfHelp/Index/Index.wxml-->
+<wxs src="../../../../utils/util.wxs" module="filter" />
+<online-serve />
+<privacy-popup></privacy-popup>
+<view class="box" wx:if="{{orderList.length > 0}}">
+  <view class="pull-down">下拉查询审核进度</view>
+  <!-- orderStatus 1=待审核 2=审核中 3=未通过  4=审核通过-礼品未领 5=活动结束' -->
+  <view class="item" wx:for="{{orderList}}" wx:key="index" data-item="{{item}}" bindtap="toDetail">
+    <view class="name">{{item.goodsName}}</view>
+    <view class="right">
+      <view class="green" wx:if="{{item.orderStatus == 4}}">审核通过</view>
+      <view class="red" wx:if="{{item.orderStatus == 3}}">审核未通过</view>
+      <view class="orange" wx:if="{{item.orderStatus == 1}}">待审核</view>
+      <view class="orange" wx:if="{{item.orderStatus == 2}}">审核中</view>
+      <!-- <view class="gray" wx:if="{{item.orderStatus == 5}}">已领取礼品</view> -->
+      <view class="green" wx:if="{{item.orderStatus == 6}}">审核通过</view>
+      <view class="gray" wx:if="{{item.orderStatus == 5}}">活动结束</view>
+      <image class="arrow" src="/imgs/index-arrow.png"></image>
+    </view>
+    <view class="lottery" wx:if="{{item.orderStatus == 6}}"></view>
+  </view>
+
+</view>
+
+<!-- 没有订单 -->
+<view wx:if="{{orderList.length == 0}}" class='not-order'>
+  <image src='/imgs/empty.png'></image>
+  <text>您还没有订单录入，快去录单吧~</text>
+</view>
+
+<button class='self-btn' wx:if="{{!isLogin}}" open-type='getPhoneNumber'
+  bindgetphonenumber="getPhoneNumber">自助录单</button>
+<view class="self-btn" wx:if="{{isLogin}}" bindtap="fillInBtn">自助录单</view>
+
+<!-- 弹窗 -->
+<view class="flag" hidden='{{flag}}' catchtouchmove="true">
+  <!-- 展会未开始 -->
+  <view class="fillInPopup" wx:if='{{showFillInPopup}}'>
+    <view class="title">展会还未开始，请在{{filter.timeSlice(item.begin_date)}}-{{filter.timeSlice(item.end_date)}}展会期间录单参加活动哟~
+    </view>
+    <view bindtap="knowBtn" class="know">知道了</view>
+  </view>
+</view>
+
+<!-- 熊猫币顶部提示 -->
+<xmb-popup showXmbTips="{{showXmbTips}}" xmbPopupData="{{xmbPopupData}}"></xmb-popup>

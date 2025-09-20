@@ -1,0 +1,70 @@
+<!--pages/expoPackage/getCoupon/getCoupon.wxml-->
+
+<online-serve />
+<privacy-popup></privacy-popup>
+<!-- svip优惠券 -->
+<view class="svip-coupon" wx:if="{{couponType == 1}}">
+  <view class="top">
+    <view class="left">
+      <view class="lab">￥</view>{{couponDetail.coupon_value}}
+    </view>
+    <view class="right">
+      <view class="condition">满{{couponDetail.consume_amount}}返{{couponDetail.coupon_value}}</view>
+      <view class="time">使用时间：{{couponDetail.begin_date}}-{{couponDetail.end_date}}</view>
+    </view>
+  </view>
+  <view class="bottom">{{couponDetail.description}}</view>
+</view>
+<!-- 普通商户优惠券 -->
+<view class='coupon-box' wx:else>
+  <view class="left">
+    <view class='price'>
+      <view class='lab'>￥</view>{{couponDetail.coupon_value}}
+    </view>
+    <view class='cond'>支付满{{couponDetail.consume_amount}}元可用</view>
+  </view>
+  <view class="right">
+    <view class="top">
+      <image src='{{couponDetail.logo_url}}'></image>
+      <view class='name'>{{couponDetail.brand_name}}</view>
+    </view>
+    <view class='date'>使用时间：{{couponDetail.begin_date}}-{{couponDetail.end_date}}</view>
+    <view class="desc">{{couponDetail.smemo}}</view>
+  </view>
+</view>
+
+<view wx:if="{{couponType == 1}}">
+  <!-- 未授权并且未登录 -->
+  <button class='free-get' wx:if="{{couponDetail.user_is_vip == 0 && !isLogin && !isAuth}}" open-type='getPhoneNumber'
+    bindgetphonenumber="getPhoneNumber">点击购买</button>
+
+  <!-- 已授权过 || 已登录 -->
+  <view class='free-get' wx:if="{{couponDetail.user_is_vip == 0 && (isLogin || isAuth)}}" bindtap="linkTo">点击购买</view>
+
+  <view class='free-get' wx:if="{{couponDetail.user_is_vip == 1}}" bindtap="linkTo">已购买点击查看</view>
+</view>
+<view wx:else>
+  <!-- 未授权并且未登录 -->
+  <button class='free-get' wx:if="{{couponDetail.is_get == 0 && !isLogin && !isAuth}}" open-type='getPhoneNumber'
+    bindgetphonenumber="getPhoneNumber">免费领取</button>
+
+  <!-- 已授权过 || 已登录 -->
+  <view class='free-get' wx:if="{{couponDetail.is_get == 0 && (isLogin || isAuth)}}" bindtap="freeGet">免费领取</view>
+
+  <view class='free-get gray' wx:if="{{couponDetail.is_get != 0}}">已领取</view>
+</view>
+
+
+<navigator url='/pages/couponList/couponList' class='get-more'>领取更多优惠券</navigator>
+
+<view>
+  <view class='use-explain'>优惠券使用说明：</view>
+  <view class='use-cont'>
+    <view>1、仅限华夏家博会现场下单使用</view>
+    <view>2、满减金额以展会现场实际支付及金额为准</view>
+    <view>3、用领券手机号至商家展位处下单，满足条件即可使用优惠券</view>
+  </view>
+</view>
+
+<!-- 导航 -->
+<navigation></navigation>

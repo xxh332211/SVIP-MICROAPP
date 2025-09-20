@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "预约商品",
+  "usingComponents": {
+    "upgradeSvip": "../../components/upgradeSvip/upgradeSvip"
+  }
+}

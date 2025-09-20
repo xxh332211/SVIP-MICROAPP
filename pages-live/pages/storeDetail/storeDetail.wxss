@@ -1,0 +1,385 @@
+.container {
+  width: 100%;
+}
+
+.header {
+  width: 100%;
+  background: #fff;
+  height: 92rpx;
+  display: flex;
+  align-items: center;
+}
+
+.header .logo {
+  width: 150rpx;
+  height: 60rpx;
+  padding-left: 35rpx;
+}
+.header .brand-box{
+  display: flex;
+  align-items: baseline;
+}
+.header .name {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #222;
+  margin-left: 15rpx;
+}
+
+.header .booth {
+  font-size: 26rpx;
+  margin-left: 12rpx;
+}
+
+/* 轮播图 */
+.swiper {
+  width: 100%;
+  height: 320rpx;
+}
+
+.swiper image {
+  width: 100%;
+  height: 100%;
+}
+
+/* 优惠券列表 */
+.ticketList {
+  width: 100%;
+  overflow-x: scroll;
+  height: 328rpx;
+  white-space: nowrap;
+}
+
+/**
+去除横向滚动条
+*/
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+.ticketList .box {
+  width: 200rpx;
+  height: 260rpx;
+  border-radius: 10rpx;
+  box-shadow: 0px 3px 7px 0px rgba(246, 246, 246, 0.35);
+  background: #fff;
+  margin: 40rpx 0 0 20rpx;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+}
+
+.ticketList .box:last-child {
+  margin-right: 20rpx;
+}
+
+.ticketList .box .ticketimg {
+  width: 100%;
+  height: 104rpx;
+}
+
+.ticketList .box .price {
+  height: 100rpx;
+  width: 100%;
+  height: 100rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.ticketList .box .price .top {
+  text-align: center;
+  font-size: 38rpx;
+  line-height: 38rpx;
+  color: #fff;
+  font-weight: bold;
+  padding-top: 20rpx;
+
+}
+
+.ticketList .box .price .top text {
+  font-size: 24rpx;
+  line-height: 24rpx;
+}
+
+.ticketList .box .money {
+  color: #fff;
+  text-align: center;
+  line-height: 20rpx;
+  font-size: 20rpx;
+  margin-top: 14rpx;
+}
+
+.ticketList .ticketDetail {
+  overflow: hidden;
+  margin-top: -6rpx;
+
+}
+
+.ticketList .ticketDetail .title1 {
+  font-size: 20rpx;
+  line-height: 30rpx;
+  margin: 20rpx 0 0 8rpx;
+}
+
+.ticketList .ticketDetail view:nth-of-type(2) {
+  font-size: 20rpx;
+  line-height: 30rpx;
+  margin-left: 8rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap
+}
+
+.ticketList .ticketDetail view:nth-of-type(3) {
+  width: 144rpx;
+  height: 38rpx;
+  line-height: 38rpx;
+  margin: 15rpx auto;
+  border-radius: 18rpx;
+  text-align: center;
+  color: #f2f2f2;
+  font-size: 22rpx;
+}
+
+/* 门店列表 */
+.storeList {
+  width: 100%;
+}
+
+.storeList .store_box {
+  background: #fff;
+  width: 100%;
+  padding: 35rpx 30rpx 20rpx;
+}
+
+.storeList .store_box .header {
+  display: flex;
+  align-items: center;
+  height: 36rpx;
+
+}
+
+.storeList .store_box .header .addressimg {
+  width: 25rpx;
+  height: 35rpx;
+}
+
+.storeList .store_box .header text {
+  font-size: 34rpx;
+  line-height: 34rpx;
+  font-weight: bold;
+  padding-left: 20rpx;
+}
+
+.storeList .store_box .storeTxt {
+  width: 100%;
+  /* border-bottom: 1rpx dashed #707070; */
+  font-size: 24rpx;
+  line-height: 36rpx;
+  padding: 25rpx 40rpx;
+  color: #282828;
+}
+
+.storeList .store_box .storeTxt .txt1 {
+  margin-bottom: 10rpx;
+}
+
+.storeList .storeMore {
+  width: 144rpx;
+  height: 38rpx;
+  background: linear-gradient(140deg, rgba(255, 0, 54, 1), rgba(255, 38, 0, 1));
+  border-radius: 18rpx;
+  color: #fff;
+  font-size: 24rpx;
+  text-align: center;
+  line-height: 38rpx;
+  margin: 10rpx auto;
+}
+
+/* 购物列表 */
+.cart {
+  width: 100%;
+  padding-bottom: 20rpx;
+  margin-top: 20rpx;
+}
+
+.cart .cart_header {
+  height: 100rpx;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 32rpx;
+  font-weight: bold;
+  background: #fff;
+}
+
+.cart .cart_header>view {
+  padding: 10rpx;
+}
+
+.cart .cart_header .active {
+  color: #E6002D;
+}
+
+.cart .cart_header .sales image,
+.cart .cart_header .price image {
+  width: 14rpx;
+  height: 24rpx;
+  margin-left: 10rpx;
+}
+
+.cart .active {
+  color: #E6002D;
+}
+
+.cart .cartlist {
+  display: flex;
+  flex-wrap: wrap;
+  background: #fff;
+}
+
+.cart .cartlist .detail {
+  width: 50%;
+  margin-top: 2rpx;
+  overflow: hidden;
+  border-top: 4rpx solid #F6F6F6;
+  padding: 26rpx 35rpx 0 50rpx;
+}
+
+.cart .cartlist .detail:nth-child(2n) {
+  padding: 26rpx 50rpx 0 35rpx;
+}
+
+.cart .cartlist .detail .goods-img {
+  display: block;
+  width: 100%;
+  height: 291rpx;
+}
+
+.cart .cartlist .detail .goods-box {
+  position: relative;
+}
+
+.cart .cartlist .detail .mgg {
+  width: 119rpx;
+  height: 56rpx;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.cart .cartlist .detail .title {
+  width: 100%;
+  height: 90rpx;
+  border-bottom: 1rpx solid #efefef;
+  font-size: 24rpx;
+  line-height: 40rpx;
+  padding: 9rpx 0 15rpx;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  white-space: normal !important;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.cart .cartlist .detail .price {
+  text-align: center;
+  color: #E6002D;
+  font-weight: bold;
+  font-size: 30rpx;
+  padding-top: 18rpx;
+  padding-bottom: 20rpx;
+}
+
+.cart .cartlist .detail .price text {
+  font-size: 42rpx;
+  line-height: 42rpx;
+}
+
+/* 返回直播 */
+.liveNav {
+  position: fixed;
+  top: 132rpx;
+  left: 0;
+  width: 140rpx;
+  height: 52rpx;
+  background: rgba(230, 0, 45, 1);
+  border-radius: 0px 26rpx 26rpx 0px;
+  color: #fff;
+  text-align: center;
+  line-height: 52rpx;
+  font-size: 24rpx;
+}
+
+.movable-area {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 750rpx;
+  height: 100%;
+  pointer-events: none;
+}
+
+.movable-view {
+  color: #F00;
+  position: relative;
+  pointer-events: auto;
+  width: 160rpx;
+  height: 180rpx;
+  display: inline-block;
+}
+
+.movable-view .liveimg {
+  width: 120rpx;
+  height: 160rpx;
+  border-radius: 5rpx;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.movable-view .fork {
+  width: 30rpx;
+  height: 30rpx;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+/* 自定义弹窗内容 */
+.ticket-qr-box-pop {
+  height: 80rpx;
+  color: #fff;
+  text-align: center;
+  line-height: 80rpx;
+  background: rgba(51, 51, 51, .9);
+  border-radius: 10rpx;
+  z-index: 999;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  margin: auto;
+  font-size: 26rpx;
+  padding: 0 40rpx;
+}
+
+/* 返回顶部按钮 */
+.posTop {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  position: fixed;
+  right: 30rpx;
+  bottom: 60rpx;
+  background: #fff;
+  z-index: 99;
+}

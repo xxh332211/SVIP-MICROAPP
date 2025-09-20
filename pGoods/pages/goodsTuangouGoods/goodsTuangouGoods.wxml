@@ -1,0 +1,93 @@
+<view class="container">
+
+<scroll-view scroll-y="{{true}}" bindscrolltolower="loadMore">
+<view class="head">
+  <view class="title">
+    <view class="name">{{title}}</view>
+    <view class="time">{{subDesc}}</view>
+  </view>
+  <button bindtap="showShareModal" data-shareData="{{shareData}}" class="share">
+    <image src="https://img.51jiabo.com/imgs-mall/icon-share.svg" mode="aspectFill"></image>
+    <text>分享</text>
+  </button>
+</view>
+
+<block wx:if="{{coupons.length}}">
+  <view class="gap"></view>
+  <view class="coupon normal-btn" bind:tap="showCouponModal">
+    <view class="label">券</view>
+    <view class="items">
+      <view class="item" wx:for="{{coupons}}" wx:key="couponId">
+        <image mode="scaleToFill" src="https://img.51jiabo.com/imgs-mall/coupon-small-bg.png" />
+        <view wx:if="{{item.couponType === 1}}">
+          满¥{{item.minAmount}}减¥{{item.discountValue}}
+        </view>
+        <view wx:if="{{item.couponType === 2}}">
+          满¥{{item.minAmount}}打{{item.discountValue}}折
+        </view>
+      </view>
+    </view>
+    <view class="btn-label">领券</view>
+    <image src="https://img.51jiabo.com/imgs-mall/gray_right.svg" mode="aspectFit" />
+  </view>
+</block>
+
+<view class="gap"></view>
+<view class="play-intro" bind:tap="toIntro">
+  <view class="label">玩法</view>
+  <view class="cont">
+    支付开团邀请多人参团，人数不足自动退款
+  </view>
+  <image src="https://img.51jiabo.com/imgs-mall/gray_right.svg" mode="aspectFit" />
+</view>
+
+
+<block wx:if="{{banners.length > 0}}">
+<image wx:for="{{banners}}" wx:key="item" src="{{banners[index].imageUrls}}" bind:tap="toUrl" data-url="{{banners[index].linkUrls}}" mode="widthFix"></image>
+</block>
+<view class="gap" wx:else></view>
+
+<view class="tabs">
+  <view class="tab {{orderType === 0 ? 'active' : ''}}}" bind:tap="switchOrder" data-id="{{0}}">
+    <view class="text">综合</view>
+  </view>
+  <view class="tab {{orderType === 1 ? 'active' : ''}}}" bind:tap="switchOrder" data-id="{{1}}">
+    <view class="text">价格</view>
+    <image mode="aspectFit" wx:if="{{orderType === 1}}" src="{{'https://img.51jiabo.com/imgs-mall/orderby-' + (orderDesc ? 'up' : 'down') + '.svg'}}"/>
+  </view>
+  <view class="tab {{orderType === 2 ? 'active' : ''}}}" bind:tap="switchOrder" data-id="{{2}}">
+    <view class="text">销量</view>
+  </view>
+</view>
+<view class="cont">
+  <view class="no-data" wx:if="{{!loading && list.length === 0}}">
+    <image src="/imgs/empty.png" mode="aspectFill"></image>
+    <text>暂无相关商品</text>
+  </view>
+  <view class="goods-item" wx:for="{{list}}" wx:key="grouponProductId" data-id="{{item.grouponProductId}}" bind:tap="goodsDetail">
+    <video wx:if="{{item.imageType==='video'}}" src="{{item.imageUrl}}" autoplay="true" controls="{{false}}" muted="true" loop object-fit="fill"/>
+    <image wx:else src="{{item.imageUrl}}" mode="aspectFill"/>
+    <view wx:if="{{item.started && !item.ended}}" class="time-left {{!item.started || item.ended ? 'disabled' : ''}}">
+      <view class="left">{{!item.started ? '未开始' : item.ended ? '已结束' : '距结束'}}</view>
+      <view class="right" wx:if="{{!item.ended}}"><counter bind:timeEnd="onTimeEnd" counterclass="counter" timeclass="time" labelclass="label" data-idx="{{index}}" end="{{item.started ? item.grouponEndTime : item.grouponStartTime}}"></counter></view>
+    </view>
+    <view class="cont">
+      <view class="name">{{item.title}}</view>
+      <view class="buy">
+        <view class="left">已拼{{item.soldCount}}件</view>
+        <view wx:if="{{item.unlimitStock}}" class="right">有货</view>
+        <view wx:else class="right">剩{{item.stock || 0}}件</view>
+      </view>
+      <view class="btm">
+        <text class="price">￥{{item.promotionPrice}}</text>
+        <text class="price1">￥{{item.marketPrice}}</text>
+        <view class="btn {{item.ended || !item.started || !(item.stock > 0 || item.unlimitStock) ? 'disabled' : ''}}">{{!item.started ? '未开始' : item.ended ? '已结束' : (item.stock > 0 || item.unlimitStock ? '去拼团' : '已售罄')}}</view>
+      </view>
+    </view>
+  </view>
+</view>
+  </scroll-view>
+</view>
+<coupon-modal wx:if="{{couponModalVisible}}" bind:close="closeCouponModal"></coupon-modal>
+<share-modal wx:if="{{shareModalVisbile}}" title="{{shareTitle}}" url="{{shareUrl}}" bind:close="closeShareModal" bind:show="showPosterModal"></share-modal>
+<poster-modal wx:if="{{posterModalVisible}}" type="3" url="{{shareUrl}}" scene="{{shareScene}}" title="{{title}}" drawData="{{shareInfo}}" bind:close="closePosterModal"></poster-modal>

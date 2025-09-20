@@ -1,0 +1,190 @@
+<!--pages-abs/pages/mggOrderList/mggOrderList.wxml-->
+<view class="top_bar">
+    <view bindtap="hoverBar" data-inx="0" class="bar {{swiperCurrent == 0?'hover':''}}">全部</view>
+    <view bindtap="hoverBar" data-inx="1" class="bar {{swiperCurrent == 1?'hover':''}}">待付款({{ total1 }})</view>
+    <view bindtap="hoverBar" data-inx="2" class="bar {{swiperCurrent == 2?'hover':''}}">待提货({{ total2 }})</view>
+    <view bindtap="hoverBar" data-inx="3" class="bar {{swiperCurrent == 3?'hover':''}}">已完成</view>
+</view>
+
+<swiper bindchange="swiperBindChange" current="{{swiperCurrent}}">
+    <!-- 全部 -->
+    <swiper-item>
+        <scroll-view scroll-y="true" bindscrolltolower="scrollStop" data-id="0">
+            <view class="list" hidden="{{item.status == -1}}" wx:for="{{list0}}" wx:key="index" bindtap="toOrderDetail"
+                data-order_id="{{item.order_id}}">
+                <view class="header">
+                    <text class="t1">{{item.brand_name}}</text>
+                    <text class="t2"
+                        style="color:{{item.order_status_text == '待付款'?'#E5002D':'#222222'}}">{{item.order_status_text}}</text>
+                </view>
+                <view class="bodys">
+                    <image src="{{item.image_url}}"></image>
+                    <view class="msg">
+                        <text class="name">{{item.join_act == 1?'[秒光光]':item.join_act == 2?'[兑换卡]':''}}{{item.prerogative_name}}</text>
+                        <view class="price_number">
+                            <view class="box">
+                                <!-- 全款秒光光||兑换卡 -->
+                                <text class="price" wx:if="{{item.pay_way == 2 && item.join_act == 1}}">￥{{item.activity_price}}<text>{{item.price_unit}}</text></text>
+                                <!-- 全款普通 -->
+                                <text class="price" wx:if="{{item.pay_way == 2 && item.join_act == 0}}">￥{{item.exclusive_price}}<text>{{item.price_unit}}</text></text>
+                                <!-- 定金商品 -->
+                                <text class="price" wx:if="{{item.pay_way == 1}}"><text>订金：</text>￥{{item.earnest}}<text>{{item.price_unit}}</text></text>
+                                <text class="yellow" wx:if="{{item.isHaveRefund == 1}}">有退款</text>
+                            </view>
+                            <text class="number"><text>x</text>{{item.buy_count}}</text>
+                        </view>
+                        <view class="btns" wx:if="{{item.order_status_text == '待付款'}}">
+                            <view class="btn1" catchtap="cancelPop" data-order_id="{{item.order_id}}"
+                                wx:if="{{item.isCancel == 1}}">取消</view>
+                            <view class="btn2" catchtap="payBtn" data-orderid="{{item.order_id}}" data-orderNum="{{item.order_num}}">
+                                付款{{item.goods_time}}</view>
+                        </view>
+                        <view class="btns" wx:if="{{item.order_status_text == '已完成'}}">
+                            <view class="btn1" catchtap="popUnShow" data-name="pop3" data-id="{{item.order_id}}">删除</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </scroll-view>
+    </swiper-item>
+    <!-- 待付款 -->
+    <swiper-item>
+        <scroll-view scroll-y="true" bindscrolltolower="scrollStop" data-id="1">
+            <view class="list" hidden="{{item.status == -1}}" wx:for="{{list1}}" wx:key="index" bindtap="toOrderDetail"
+                data-order_id="{{item.order_id}}">
+                <view class="header">
+                    <text class="t1">{{item.brand_name}}</text>
+                    <text class="t2"
+                        style="color:{{item.order_status_text == '待付款'?'#E5002D':'#222222'}}">{{item.order_status_text}}</text>
+                </view>
+                <view class="bodys">
+                    <image src="{{item.image_url}}"></image>
+                    <view class="msg">
+                        <text class="name">{{item.join_act == 1?'[秒光光]':item.join_act == 2?'[兑换卡]':''}}{{item.prerogative_name}}</text>
+                        <view class="price_number">
+                            <view class="box">
+                                <!-- 全款秒光光||兑换卡 -->
+                                <text class="price" wx:if="{{item.pay_way == 2 && item.join_act == 1}}">￥{{item.activity_price}}<text>{{item.price_unit}}</text></text>
+                                <!-- 全款普通 -->
+                                <text class="price" wx:if="{{item.pay_way == 2 && item.join_act == 0}}">￥{{item.exclusive_price}}<text>{{item.price_unit}}</text></text>
+                                <!-- 定金商品 -->
+                                <text class="price" wx:if="{{item.pay_way == 1}}"><text>订金：</text>￥{{item.earnest}}<text>{{item.price_unit}}</text></text>
+                                <text class="yellow" wx:if="{{item.isHaveRefund == 1}}">有退款</text>
+                            </view>
+                            <text class="number"><text>x</text>{{item.buy_count}}</text>
+                        </view>
+                        <view class="btns" wx:if="{{item.order_status_text == '待付款'}}">
+                            <view class="btn1" bindtap="cancelPop" data-order_id="{{item.order_id}}"
+                                wx:if="{{item.isCancel == 1}}">取消</view>
+                            <view class="btn2" catchtap="payBtn" data-orderid="{{item.order_id}}" data-orderNum="{{item.order_num}}">
+                                付款{{item.goods_time}}</view>
+                        </view>
+                        <view class="btns" wx:if="{{item.order_status_text == '已完成'}}">
+                            <view class="btn1" catchtap="popUnShow" data-name="pop3" data-id="{{item.order_id}}">删除</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </scroll-view>
+    </swiper-item>
+    <!-- 待提货 -->
+    <swiper-item>
+        <scroll-view scroll-y="true" bindscrolltolower="scrollStop" data-id="2">
+            <view class="list" wx:for="{{list2}}" wx:key="index" bindtap="toOrderDetail"
+                data-order_id="{{item.order_id}}">
+                <view class="header">
+                    <text class="t1">{{item.brand_name}}</text>
+                    <text class="t2"
+                        style="color:{{item.order_status_text == '待付款'?'#E5002D':'#222222'}}">{{item.order_status_text}}</text>
+                </view>
+                <view class="bodys">
+                    <image src="{{item.image_url}}"></image>
+                    <view class="msg">
+                        <text class="name">{{item.join_act == 1?'[秒光光]':item.join_act == 2?'[兑换卡]':''}}{{item.prerogative_name}}</text>
+                        <view class="price_number">
+                            <view class="box">
+                                <!-- 全款秒光光||兑换卡 -->
+                                <text class="price" wx:if="{{item.pay_way == 2 && item.join_act == 1}}">￥{{item.activity_price}}<text>{{item.price_unit}}</text></text>
+                                <!-- 全款普通 -->
+                                <text class="price" wx:if="{{item.pay_way == 2 && item.join_act == 0}}">￥{{item.exclusive_price}}<text>{{item.price_unit}}</text></text>
+                                <!-- 定金商品 -->
+                                <text class="price" wx:if="{{item.pay_way == 1}}"><text>订金：</text>￥{{item.earnest}}<text>{{item.price_unit}}</text></text>
+                                <text class="yellow" wx:if="{{item.isHaveRefund == 1}}">有退款</text>
+                            </view>
+                            <text class="number"><text>x</text>{{item.buy_count}}</text>
+                        </view>
+                        <!-- <view class="btns" wx:if="{{item.order_status_text == '待付款'}}">
+                            <view class="btn1" bindtap="cancelPop" data-order_id="{{item.order_id}}"
+                                wx:if="{{item.isCanDel == 1}}">取消</view>
+                            <view class="btn2" catchtap="payBtn" data-orderNum="{{item.order_num}}">付款{{item.goods_time}}</view>
+                        </view>
+                        <view class="btns" wx:if="{{item.order_status_text == '已完成'}}">
+                            <view class="btn1">删除</view>
+                        </view> -->
+                    </view>
+                </view>
+            </view>
+        </scroll-view>
+    </swiper-item>
+    <!-- 已完成 -->
+    <swiper-item>
+        <scroll-view scroll-y="true" bindscrolltolower="scrollStop" data-id="3">
+            <view class="list" wx:for="{{list3}}" wx:key="index" bindtap="toOrderDetail"
+                data-order_id="{{item.order_id}}">
+                <view class="header">
+                    <text class="t1">{{item.brand_name}}</text>
+                    <!-- <text class="t2"style="color:{{item.order_status_text == '待付款'?'#E5002D':'#222222'}}">{{item.order_status_text}}</text> -->
+                </view>
+                <view class="bodys">
+                    <image src="{{item.image_url}}"></image>
+                    <view class="msg">
+                        <text class="name">{{item.join_act == 1?'[秒光光]':item.join_act == 2?'[兑换卡]':''}}{{item.prerogative_name}}</text>
+                        <view class="price_number">
+                            <view class="box">
+                                <text class="price">￥{{item.exclusive_price}}<text>{{item.price_unit}}</text></text>
+                                <text class="yellow" wx:if="{{item.isHaveRefund == 1}}">有退款</text>
+                            </view>
+                            <text class="number"><text>x</text>{{item.buy_count}}</text>
+                        </view>
+                        <view class="btns">
+                            <view class="btn1" catchtap="popUnShow" data-name="pop3" data-id="{{item.order_id}}">删除</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </scroll-view>
+    </swiper-item>
+</swiper>
+
+<!-- 确定取消该订单吗？ -->
+<view class="pop_back" wx:if="{{pop6}}">
+  <view class="pop twopop">
+    <view class="problem">确定取消该订单吗？</view>
+    <view class="pop_btns flexB">
+      <view class="btn_1" bindtap="popUnShow" data-name="pop6">取消</view>
+      <view class="btn_2" bindtap="cancelPreOrder">确认</view>
+    </view>
+  </view>
+</view>
+
+<!-- 确定删除该订单吗？ -->
+<view class="pop_back" wx:if="{{pop3}}">
+  <view class="pop twopop">
+    <view class="problem">确定删除该订单吗？</view>
+    <view class="pop_btns flexB">
+      <view class="btn_1" bindtap="popUnShow" data-name="pop3">取消</view>
+      <view class="btn_2" bindtap="deleteOrder">确认</view>
+    </view>
+  </view>
+</view>
+
+<!-- 福袋 -->
+<view class="pop_back" wx:if="{{fudaipop}}">
+  <view class="fudai_pop">
+    <mp-icon bindtap="onfudai" data-name="pop5" class="close" icon="close" color="#BBBBBB" size="{{25}}"></mp-icon>
+    <view class="fudai_title">{{brandAdv.win_title}}</view>
+    <image class="fudai_img" src="{{brandAdv.win_image_url}}"></image>
+    <view class="fudai_btn1" data-item="{{brandAdv}}" data-area_id="63" bindtap="{{brandAdv.url?'swiperUrl':''}}">查看福利</view>
+    <view class="fudai_btn2" bindtap="toOrderDetail" data-order_id="{{fudaiId}}">查看订单</view>
+  </view>
+</view>

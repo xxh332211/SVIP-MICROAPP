@@ -1,0 +1,89 @@
+/* pages-abs/components/floatNavigate/floatNavigate.wxss */
+.navigate-wrap {
+  width: 70rpx;
+  position: fixed;
+  bottom: 280rpx;
+  right: 30rpx;
+  z-index: 9;
+  transition: all .2s linear;
+}
+
+.navigate-wrap.hide {
+  right: -100rpx;
+}
+
+.more-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70rpx;
+  background: #E71438;
+  transition: height .2s linear;
+  border-radius: 35rpx;
+  padding-top: 16rpx;
+}
+
+.more-box.show {
+  height: 332rpx;
+  padding-top: 16rpx;
+}
+
+.more-box .more-item {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 17rpx;
+}
+
+.more-box .more-item .ico {
+  width: 30rpx;
+  height: 30rpx;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.more-box .more-item:nth-child(1) .ico {
+  background-image: url(https://img.51jiabo.com/d2b760c9-de81-44e8-9821-ed838a5727cd.png);
+}
+
+.more-box .more-item:nth-child(2) .ico {
+  background-image: url(https://img.51jiabo.com/5a8a4e0b-2490-415a-8994-09864be8a6ec.png);
+}
+
+.more-box .more-item:nth-child(3) .ico {
+  background-image: url(https://img.51jiabo.com/74374632-94c1-42e6-abf7-21dc3f3ca55c.png);
+}
+
+.more-box .close {
+  width: 100%;
+  height: 76rpx;
+  background: url(https://img.51jiabo.com/fc584e8a-3345-460e-8485-bb459b472732.png) no-repeat;
+  background-size: 24rpx 24rpx;
+  background-position: center center;
+}
+
+.more-box .more-item .text {
+  font-size: 22rpx;
+  color: #FFFFFF;
+}
+
+.nav-item {
+  width: 70rpx;
+  height: 70rpx;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  margin-top: 20rpx;
+}
+
+.nav-item:nth-child(1) {
+  background-image: url(https://img.51jiabo.com/2726aa60-42fd-48a8-806a-500fe81ae459.png);
+}
+
+.nav-item:nth-child(2) {
+  background-image: url(https://img.51jiabo.com/00c73e9a-1a08-4253-b5dd-043b8a4bce35.png);
+}
+
+.nav-item:nth-child(3) {
+  background-image: url(https://img.51jiabo.com/0919b7fc-26c9-4f7a-9929-f7451be01004.png);
+}

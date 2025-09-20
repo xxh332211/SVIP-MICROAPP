@@ -1,0 +1,344 @@
+/* pages/tradeInPackage//Detail/Index.wxss */
+image {
+  display: block;
+}
+
+page {
+  background: #fff;
+}
+.adv {
+  height: auto;
+  width: 100%;
+}
+.wrapper {
+  padding-bottom: 200rpx;
+}
+
+.price-box {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 120rpx;
+  background: #E5002C;
+  padding: 0 30rpx;
+}
+
+.price-box .price {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.price-box .trade-p {
+  font-size: 40rpx;
+  color: #FFFFFF;
+  font-weight: bold;
+}
+
+.price-box .origin {
+  font-size: 30rpx;
+  color: #FFFFFF;
+  text-decoration: line-through;
+  margin-top: -12rpx;
+}
+
+.price-box .status {}
+
+.price-box .img {
+  width: 210rpx;
+  height: 78rpx;
+  margin-top: -6rpx;
+}
+
+.price-box .time {
+  font-size: 22rpx;
+  color: #fff;
+  margin-top: 6rpx;
+  text-align: center;
+}
+
+.svip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 690rpx;
+  height: 87rpx;
+  margin-left: 30rpx;
+  background: linear-gradient(138deg, rgba(253, 125, 80, 1), rgba(229, 26, 66, 1));
+  border-radius: 9rpx;
+  margin-top: 36rpx;
+}
+
+.svip .img {
+  width: 50rpx;
+  height: 43rpx;
+}
+
+.svip .svip-text {
+  font-size: 30rpx;
+  color: #fff;
+  margin: 0 26rpx;
+}
+
+.svip .svip-buy {
+  font-size: 36rpx;
+  color: #FFFFFF;
+  font-weight: bold;
+}
+
+.name-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30rpx;
+  margin-top: 34rpx;
+}
+
+.name-box .name {
+  font-size: 32rpx;
+  color: #212121;
+  font-weight: bold;
+  line-height: 60rpx;
+  word-wrap: break-word;
+}
+
+.name-box .share {
+  flex-shrink: 0;
+  width: 40rpx;
+  height: 37rpx;
+  background: url(https://img.51jiabo.com/74c4ec62-ece4-450a-a2b8-01ceb04b011f.png) no-repeat;
+  background-size: 38rpx 35rpx;
+  margin-left: 60rpx;
+  margin-right: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  overflow: auto;
+}
+
+.desc-box {
+  border-top: 1px solid #D2D2D2;
+  line-height: 42rpx;
+  padding: 30rpx 0 48rpx;
+  margin: 20rpx 30rpx 0;
+}
+
+.desc-box .desc {
+  font-size: 26rpx;
+  color: #777777;
+  padding-bottom: 24rpx;
+  word-wrap: break-word;
+}
+
+.query {
+  display: flex;
+  font-size: 26rpx;
+}
+
+.query .key {
+  flex-shrink: 0;
+  color: #777777;
+}
+
+.query .val {
+  color: #343434;
+  margin-left: 16rpx;
+  word-wrap: break-word;
+}
+
+.sell-out {
+  position: fixed;
+  bottom: 140rpx;
+  width: 100%;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  color: #fff;
+  background: #9E9E9E;
+}
+
+.buy-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 140rpx;
+  position: fixed;
+  bottom: 0;
+  background: #fff;
+  padding: 0 49rpx 20rpx;
+}
+
+.buy-box .origin-buy,.trade-buy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 305rpx;
+  height: 85rpx;
+  border-radius: 50rpx;
+  color: #F64E62;
+  background: #FECECC;
+  position: relative;
+}
+.getnumebr {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  z-index: 2;
+}
+.origin-buy.disable {
+  border: 1px dashed #BBBBBB;
+  background: #fff;
+  color: #9E9E9E;
+}
+
+.buy-box .origin-buy .num {
+  font-size: 36rpx;
+  line-height: 56rpx;
+  font-weight: bold;
+}
+
+.buy-box .origin-buy .tips {
+  font-size: 26rpx;
+  line-height: 41rpx;
+  margin-top: -10rpx;
+}
+
+.buy-box .trade-buy {
+  width: 305rpx;
+  height: 85rpx;
+  border-radius: 50rpx;
+  background: #FE0102;
+  color: #FFFFFF;
+  border: none;
+}
+
+.trade-buy.disable {
+  background: #9E9E9E;
+}
+
+.buy-box .trade-buy .num {
+  font-size: 36rpx;
+  line-height: 56rpx;
+  font-weight: bold;
+}
+
+.buy-box .trade-buy .tips {
+  font-size: 26rpx;
+  line-height: 41rpx;
+  margin-top: -10rpx;
+}
+
+.svip-popup {
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, .7);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.svip-popup .svip-box {
+  width: 670rpx;
+  background-color: #fff;
+  border-radius: 15rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 65rpx;
+}
+
+.svip-popup .title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #222222;
+  padding-top: 100rpx;
+}
+
+.svip-popup .buy-svip {
+  font-size: 36rpx;
+  color: #FFFFFF;
+  width: 560rpx;
+  height: 90rpx;
+  background: rgba(230, 0, 45, 1);
+  border-radius: 5rpx;
+  text-align: center;
+  line-height: 90rpx;
+  margin-top: 50rpx;
+}
+
+.svip-popup .tips {
+  font-size: 30rpx;
+  color: #999999;
+  margin-top: 40rpx;
+}
+
+.svip-popup .cancel {
+  width: 180rpx;
+  height: 66rpx;
+  border: 1px solid rgba(210, 210, 210, 1);
+  border-radius: 15rpx;
+  font-size: 30rpx;
+  color: #222222;
+  text-align: center;
+  line-height: 66rpx;
+  margin-top: 100rpx;
+}
+
+/* 换购弹窗 */
+.svip-popup .ticket-box{
+  width: 670rpx;
+  background-color: #fff;
+  border-radius: 15rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 48rpx;
+}
+.svip-popup .ticket-box .fork{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.svip-popup .ticket-box .fork image{
+  width: 35rpx;
+  height: 35rpx;
+  margin: 32rpx 32rpx 0 0;
+}
+.svip-popup .ticket-box  .ticket-title{
+  text-align: center;
+  font-size: 42rpx;
+  font-weight: 500;
+  color: #222222;
+  line-height: 42rpx;
+  padding: 29rpx 0 40rpx 0;
+}
+.svip-popup .ticket-box  .ticket-tips{
+  text-align: center;
+  font-size: 30rpx;
+  color: #999;
+  line-height: 48rpx;
+  width: 100%;
+  padding: 0 100rpx;
+}
+.svip-popup .ticket-box .ticket-cancel{
+  width: 320rpx;
+  height: 90rpx;
+  text-align: center;
+  line-height: 90rpx;
+  font-size: 36rpx;
+  background: #E6002D;
+  box-shadow: 0px 20px 20px 0px rgba(204, 13, 50, 0.2);
+  border-radius: 5px;
+  color: #fff;  
+  margin-top: 44rpx;
+
+}
+

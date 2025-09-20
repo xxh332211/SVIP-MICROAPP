@@ -1,0 +1,26 @@
+<!--pages-sh/pages/shList/shList.wxml-->
+<view class="ul">
+  <view class="li" wx:for="{{applyList}}" wx:key="index">
+    <view class="top">
+      <image mode="aspectFit" class="img" data-img="{{item.order_images}}" bindtap="showBig" src="{{item.order_images}}"></image>
+      <view class="info">
+        <view class="item">订单编号：{{item.order_sn}}</view>
+        <view class="item">商户品牌：{{item.brand_name}}</view>
+        <view class="item">买家电话：{{item.buyer_mobile}}</view>
+      </view>
+    </view>
+    <view class="bottom" data-item="{{item}}" bindtap="toDetail">
+      <view class="left" wx:if="{{item.status==1}}">
+        <view class="icon"></view>等待售后接收
+      </view>
+      <view class="left" wx:if="{{item.status==2}}">
+        <view class="icon receive"></view>申请已收到
+      </view>
+      <view class="left" wx:if="{{item.status==3}}">
+        <view class="icon repeal"></view>申请已撤销
+      </view>
+      <view class="detail">查看详情 ></view>
+    </view>
+  </view>
+</view>
+<view class="empty" wx:if="{{applyList.length == 0}}">没有申请记录</view>

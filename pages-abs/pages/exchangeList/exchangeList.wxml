@@ -1,0 +1,60 @@
+<!--pages-abs/pages//exchangeList/exchangeList.wxml-->
+<wxs module="md">
+  var numFormat = function (num) {
+    if (num) {
+      return Number(num)
+    } else {
+      return num
+    }
+  }
+
+  module.exports = {
+    numFormat: numFormat
+  }
+</wxs>
+<online-serve />
+<view class="exchange-card">
+  <view class="logo">
+    <image mode="widthFix" class="img" src="{{cardInfo.cover_image_url}}"></image>
+  </view>
+  <view class="info">
+    <view class="title">兑换卡</view>
+    <view class="name">{{cardInfo.card_name}}</view>
+    <view class="time">{{cardInfo.use_begin_time}} - {{cardInfo.use_end_time}}</view>
+    <view class="rule" bindtap="toggleRule">使用须知 ></view>
+  </view>
+</view>
+<view class="goods-list">
+  <view class="item" wx:for="{{goodsList}}" wx:key="index" data-item="{{item}}" bindtap="toDetail">
+    <view class="img-box">
+      <image class="img" src="{{item.image_url}}"></image>
+      <image class="mgg" wx:if="{{item.activity_price > 0}}"
+            src="https://img.51jiabo.com/ccd31b42-6a8e-4540-bf23-506e36bfdf30.png"></image>
+    </view>
+    <view class="name">{{item.prerogative_name}}</view>
+    <view class="price">
+      <!-- is_openprice:是否开放自定义价格：-1：否1：是 -->
+      <!-- 展届未结束 && 配置自定义价格，显示自定义价格，否则显示活动价，没有活动价显示售价 -->
+      <view class="origin" wx:if="{{item.pay_way == 2}}">原价:￥{{md.numFormat(item.market_price)}}</view>
+      <text class="define-price"
+        wx:if="{{item.pay_way == 1 && item.is_openprice != 1}}">￥{{md.numFormat(item.activity_price?item.activity_price:item.exclusive_price)}}</text>
+    </view>
+    <view class="define-price" wx:if="{{item.pay_way == 1 && item.is_openprice == 1}}">￥{{item.define_price}}</view>
+    <view class="act-price" wx:if="{{item.pay_way == 1}}"><text>订金:￥</text>{{md.numFormat(item.earnest)}}</view>
+    <view class="act-price" wx:else>￥{{md.numFormat(item.activity_price?item.activity_price:item.exclusive_price)}}
+    </view>
+    <view class="btn" data-item="{{item}}" wx:if="{{item.stock_count > 0 && !isOffline}}" catchtap="toConfirm">选TA
+    </view>
+    <view class="btn gray" wx:elif="{{isOffline}}" catchtap>选TA</view>
+    <view class="btn gray" wx:else catchtap>已兑光</view>
+  </view>
+</view>
+
+<!-- 使用须知弹层 -->
+<view class="rule-popup" wx:if="{{rulePopup}}">
+  <view class="rule-box">
+    <view class="close" bindtap="toggleRule"></view>
+    <view class="title">使用须知</view>
+    <text class="content">{{cardInfo.use_remark}}</text>
+  </view>
+</view>

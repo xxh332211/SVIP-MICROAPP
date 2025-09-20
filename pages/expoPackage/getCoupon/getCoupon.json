@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "privacy-popup": "../../../components/privacyPopup/privacyPopup",
+    "navigation": "../../../components/navigation/navigation"
+  },
+  "navigationBarTitleText": "优惠券领取"
+}

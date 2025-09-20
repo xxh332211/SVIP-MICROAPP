@@ -1,0 +1,5 @@
+.DS_Store
+.idea
+.history/
+node_modules/
+project.private.config.json

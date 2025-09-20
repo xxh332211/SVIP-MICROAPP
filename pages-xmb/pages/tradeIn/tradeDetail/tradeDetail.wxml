@@ -1,0 +1,90 @@
+<!--pages-xmb/pages//tradeIn/tradeDetail/tradeDetail.wxml-->
+<wxs module="md">
+	var timeFormat = function(time) {
+		if (time) {
+			var d = time.substring(5, 7) + '.' + time.substring(8, 10);
+			return d
+		} else {
+			return time
+		}
+	}
+
+	module.exports = {
+		timeFormat: timeFormat
+	}
+</wxs>
+<online-serve />
+<view class="box">
+  <image mode="widthFix" src="https://img.51jiabo.com/767a3b2c-aff3-411d-af04-f1116da3cb8e.png"></image>
+  <view class="content">
+    <view class="rule" bindtap="toXmbTradeInRule">
+      <view class="icon"></view>活动规则
+    </view>
+    <view class="card">
+      <view class="title">
+        <view class="icon"></view>换购成功
+      </view>
+      <view class="xmb-info">手机号：{{mobile}}</view>
+      <view class="xmb-info">熊猫币总数：{{totalXmb}}</view>
+      <view class="xmb-info">提货码：
+        <view class="check gray" wx:if='{{info.goods_order_info.delivered == 1 || info.goods_refund_info.status == 1}}'>
+          查看券码</view>
+        <view class="check" wx:else bindtap="getCode">查看券码</view>
+      </view>
+      <view class="xmb-info">配送：{{info.redeem_info.distribution_explain}}</view>
+      <view class="goods-box">
+        <view class="img-box">
+          <!-- 领取的戳 -->
+          <image wx:if='{{info.goods_order_info.delivered == 1}}' src="https://img.51jiabo.com/4dc68747-a582-477b-8995-0e32ca6ddd98.png"
+            class="pokeImg"></image>
+          <!-- 退款的戳 -->
+          <image wx:if='{{info.goods_refund_info.status == 1}}' src="https://img.51jiabo.com/17f1a877-ae48-414c-95b4-6eefe3a6707c.png"
+            class="pokeImg"></image>
+          <image class="img" mode="aspectFit" src="{{info.goods_info.goods_image}}"></image>
+        </view>
+        <view class="goods-name">{{info.goods_info.goods_name}}</view>
+      </view>
+      <view class="order-info">订单信息</view>
+      <view class="order-item">
+        <view class="tit">下单用户</view>{{info.user_info.mobile}}
+      </view>
+      <view class="order-item">
+        <view class="tit">订单编号</view>{{info.goods_order_info.order_sn}}
+      </view>
+      <view class="order-item">
+        <view class="tit">下单时间</view>{{info.goods_order_info.create_date}}
+      </view>
+      <view class="order-item">
+        <view class="tit">支付方式</view>熊猫币
+      </view>
+      <view class="order-item">
+        <view class="tit">付款价格</view>熊猫币{{info.goods_order_info.amount}}
+      </view>
+      <!-- 退款 -->
+      <view class="refund" wx:if="{{!info.goods_refund_info.status && info.goods_order_info.delivered == 0}}" bindtap="getRefund">退款</view>
+    </view>
+  </view>
+</view>
+
+<!-- 券码弹层 -->
+<view class="code-popup" hidden="{{!showCode}}" bindtap="closeCode" catchtouchmove='stop'>
+  <view>
+    <view class="code-box">
+      <view class="top">
+        <view class="tit">商家扫描券码领取商品</view>
+        <view class="period">有效期：{{md.timeFormat(info.redeem_info.begin_time)}} - {{md.timeFormat(info.redeem_info.stop_time)}}
+        </view>
+      </view>
+      <view class="bottom">
+        <view class="canvas-box">
+          <canvas class='canvas' disable-scroll="true" canvas-id='qrcode'></canvas>
+        </view>
+        <view class="cou-code">{{info.goods_order_info.verify_code}}</view>
+        <view class="code-status past" wx:if="{{!isActivetyTime}}">已过期</view>
+        <view class="code-status used" wx:elif="{{info.goods_order_info.delivered == 1 && isActivetyTime}}">已核销</view>
+        <view class="code-status" wx:elif="{{info.goods_order_info.delivered == 0 && isActivetyTime}}">未核销</view>
+      </view>
+    </view>
+    <image class="fork" src="https://img.51jiabo.com/29f688a5-f2cb-4f61-bc29-13327f3796f2.png"></image>
+  </view>
+</view>

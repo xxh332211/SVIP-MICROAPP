@@ -1,0 +1,9 @@
+<view class="poster-save-wrap" catchtouchmove="stop">
+  <view class="bg" catchtap="close"></view>
+  <view class="modal-content">
+    <canvas canvas-id="poster" style="top: {{spaceHeight}}"></canvas>
+    <view wx:if="{{!saveBtnEnable}}" class="close-btn" bindtap="close" style="top:{{closeBtnTop}}">×</view>
+    <button wx:if="{{!saveBtnEnable}}" class="save-btn" bindtap="saveImage">保存图片</button>
+  </view>
+  <canvas canvas-id="ssqrcode"></canvas>
+</view>

@@ -1,0 +1,70 @@
+/* components/banner/dialogSwiper2/dialogSwiper2.wxss */
+@import "../../../app.wxss";
+
+.dialog-mask {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 30;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dialog-mian {
+  width: 100%;
+  height: 700rpx;
+  box-sizing: border-box;
+}
+
+.swiper {
+  height: 100%;
+}
+
+.swiper-item {
+  text-align: center;
+}
+
+.single-box {
+  margin: auto;
+  width: 95%;
+  height: 660rpx;
+  border-radius: 12rpx;
+  overflow: hidden;
+  background: #fff;
+}
+
+.single-img{
+  width: 100%;
+  height: 400rpx;
+}
+
+.text-content {
+  font-size: 16px;
+  height: 260rpx;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.text-name {
+  font-size: 40rpx;
+  color: #222222;
+  font-weight:800; 
+}
+.text-dec {
+  color: #666;
+  font-size: 28rpx;
+
+}
+.close {
+  width: 60rpx;
+  height: 60rpx;
+  font-size: 30rpx;
+  color: #fff;
+  margin: auto;
+  border: 1rpx solid #fff;
+  border-radius: 50%;
+}

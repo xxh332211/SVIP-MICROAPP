@@ -1,0 +1,42 @@
+<!--pages-abs/pages/mggGoodsList/mggGoodsList.wxml-->
+<view class="container">
+  <swiper class="banner-swp" wx:if="{{list.activity_list_page_banner.length>1}}" indicator-active-color="#E6002D"
+    indicator-color="#F3F3F3" indicator-dots="true" autoplay="true" circular="true">
+    <swiper-item wx:for="{{list.activity_list_page_banner}}" wx:key="index">
+      <image src="{{item}}"></image>
+    </swiper-item>
+  </swiper>
+  <image wx:else mode="widthFix" src="{{list.activity_list_page_banner[0]}}"></image>
+
+  <view wx:if="{{list.level_info.length > 1}}" class="mgg-tab-box">
+    <view wx:for="{{list.level_info}}" wx:key="index" class="mgg-tab {{index === curTab && 'mgg-tab-act'}}"
+      style="width: {{list.level_info.length == 2 ? '360rpx':''}};" data-item="{{item}}" data-index="{{index}}"
+      bindtap="toggleMggTab">{{item.level_content}}</view>
+    <block wx:if="{{list.level_info.length == 3}}">
+      <view hidden="{{curTab != 2}}" class="mgg-line1"></view>
+      <view hidden="{{curTab != 0}}" class="mgg-line2"></view>
+    </block>
+  </view>
+
+  <view class="list">
+    <view wx:for="{{mggCurList || list.level_info[0].goods_list}}" wx:key="index" class="item" bindtap="toMggDetail"
+      data-id="{{item.prerogative_id}}">
+      <view class="item-top">
+        <image class="mgg-img" src="{{item.image_url}}"></image>
+        <image class="mgg-icon" src="https://img.51jiabo.com/5542dd4a-328c-4e22-b3cb-ea07c4ae9b28.png"></image>
+      </view>
+      <view class="item-btm">
+        <view class="item-name">{{item.prerogative_name}}</view>
+        <block wx:if="{{item.pay_way == 1}}">
+          <view class="price"><text style="color: #666;font-size: 28rpx;">订金:</text>￥<text
+              style="font-size:40rpx;font-weight:bold;">{{item.earnest}}</text></view>
+          <view class="del-price" style="text-decoration: none;">秒光价:￥{{item.activity_price}}</view>
+        </block>
+        <block wx:elif="{{item.pay_way == 2}}">
+          <view class="price"><text style="color: #666;font-size: 28rpx;">秒光价:</text>￥<text style="font-size:40rpx;font-weight:bold;">{{item.activity_price}}</text></view>
+          <view class="del-price">￥{{item.market_price}}</view>
+        </block>
+      </view>
+    </view>
+  </view>
+</view>

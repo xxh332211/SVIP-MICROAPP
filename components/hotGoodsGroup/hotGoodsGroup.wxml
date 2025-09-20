@@ -1,0 +1,9 @@
+<!--components/hotGoodsGroup/hotGoodsGroup.wxml-->
+<view class="hot-goods-group">
+  <image class="group-bg" mode="widthFix" data-groupid="{{groupItem.group_info.goods_group_id}}" bindtap="toGroupList" src="{{groupItem.group_info.background_image}}">
+  </image>
+  <view class="group-box">
+    <image class="group-item" wx:for="{{groupItem.goods_info}}" wx:key="index" wx:if="{{index < 4}}" data-item="{{item}}"
+      bindtap="toHotGoodsDetail" src="{{item.image_url}}"></image>
+  </view>
+</view>

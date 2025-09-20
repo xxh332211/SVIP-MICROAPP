@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="710px" height="200px" viewBox="0 0 710 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61 (89581) - https://sketch.com -->
+    <title>领券-下弹窗金色</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M705.002112,0 C707.762369,0 710,2.24609375 710,4.99374564 L710.000303,29.0548953 C705.500207,29.5522017 702,33.3673423 702,38 C702,42.6326577 705.500207,46.4477983 710.000303,46.9451047 L710.000303,69.0548953 C705.500207,69.5522017 702,73.3673423 702,78 C702,82.6326577 705.500207,86.4477983 710.000303,86.9451047 L710.000303,109.054895 C705.500207,109.552202 702,113.367342 702,118 C702,122.632658 705.500207,126.447798 710.000303,126.945105 L710.000303,149.054895 C705.500207,149.552202 702,153.367342 702,158 C702,162.632658 705.500207,166.447798 710.000303,166.945105 L710,195.006254 C710,197.764224 707.770063,200 705.002112,200 L4.99788785,200 C2.23763061,200 0,197.753906 0,195.006254 L0.000505806701,166.945015 C4.50021273,166.447341 8,162.63238 8,158 C8,153.36762 4.50021273,149.552659 0.000505806701,149.054985 L0.000505806701,126.945015 C4.50021273,126.447341 8,122.63238 8,118 C8,113.36762 4.50021273,109.552659 0.000505806701,109.054985 L0.000505806701,86.9450153 C4.50021273,86.447341 8,82.6323801 8,78 C8,73.3676199 4.50021273,69.552659 0.000505806701,69.0549847 L0.000505806701,46.9450153 C4.50021273,46.447341 8,42.6323801 8,38 C8,33.3676199 4.50021273,29.552659 0.000505806701,29.0549847 L0,4.99374564 C0,2.23577608 2.22993687,0 4.99788785,0 L705.002112,0 Z" id="path-1"></path>
+        <filter x="-2.8%" y="-5.0%" width="105.6%" height="120.0%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="10" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.0450721154 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="第一批" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="商品详情-领券" transform="translate(-20.000000, -764.000000)">
+            <g id="编组备份-2" transform="translate(20.000000, 764.000000)">
+                <g id="Group">
+                    <g id="Combined-Shape" opacity="0.300000012">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                        <use fill="#AE9B75" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    </g>
+                    <line x1="209" y1="2" x2="209" y2="199.96658" id="215_Path-3" stroke="#FFFFFF" stroke-width="2" opacity="0.577219203" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4,4"></line>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

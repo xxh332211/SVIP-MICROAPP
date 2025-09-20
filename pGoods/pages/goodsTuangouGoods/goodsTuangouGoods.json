@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "拼团活动",
+  "usingComponents": {
+    "counter": "/components/goodsTimeLeftCounter/goodsTimeLeftCounter",
+    "coupon-modal": "/components/goodsCouponModal/goodsCouponModal",
+    "share-modal": "/components/shareModal/shareModal",
+    "poster-modal": "/components/posterSave/posterSave"
+  }
+}

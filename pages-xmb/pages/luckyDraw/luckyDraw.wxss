@@ -1,0 +1,529 @@
+/* pages-xmb/pages//luckyDraw/luckyDraw.wxss */
+page {
+  /* background-color: #9711bc; */
+}
+
+.navigate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 84rpx;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  box-sizing: content-box;
+  background: url(https://img.51jiabo.com/87fd54cc-f548-4181-8f49-0055dd89f182.png) no-repeat;
+  background-size: 100% auto;
+  background-position: center bottom;
+}
+
+.navigate image {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+}
+
+.navigate .return {
+  width: 75rpx;
+  height: 60rpx;
+  background: url("https://img.51jiabo.com/3841b3ab-d83e-492f-adca-7bed46b86ead.png") no-repeat;
+  background-size: 20rpx 35rpx;
+  background-position: 20rpx center;
+  position: absolute;
+  bottom: 14rpx;
+  left: 4rpx;
+  z-index: 2;
+  padding-left: 20rpx;
+  padding-right: 35rpx;
+}
+
+.navigate .nav-text {
+  color: #fff;
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+.navigate-blank {
+  width: 100%;
+  height: 82rpx;
+  box-sizing: content-box;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  min-height: 1273rpx;
+  background: url(https://img.51jiabo.com/b5262bfc-395d-4890-bda6-fc072bc94909.png) no-repeat;
+  /* background: url(https://img.51jiabo.com/8abed5d8-3a34-4f20-9de7-a44811824584.png) no-repeat; */
+  background-size: 750rpx 1273rpx;
+  background-color: #632FB5;
+  overflow: hidden;
+}
+
+.title-img {
+  width: 620rpx;
+  height: 176rpx;
+  margin-top: 30rpx;
+}
+
+.remain {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 350rpx;
+  height: 70rpx;
+  font-size: 26rpx;
+  color: #FFFDFF;
+  background: url(https://img.51jiabo.com/3e20ffb4-3a36-465d-a834-a487b296eb48.png) no-repeat;
+  background-size: 100% 100%;
+}
+
+.turnplate {
+  width: 750rpx;
+  height: 864rpx;
+  background: url(https://img.51jiabo.com/02fc90ad-7807-402a-856a-fe1922afe924.png) no-repeat;
+  /* background: url(https://img.51jiabo.com/f57b3aa7-a187-4967-a5bb-2194c1ecce2f.png) no-repeat; */
+  background-size: 100% 100%;
+  margin-top: -18rpx;
+}
+
+.light {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 750rpx;
+  height: 720rpx;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(https://img.51jiabo.com/496f368c-c230-4734-9e5a-8380a3bcf962.png);
+  position: relative;
+  /* animation: flicker 1s linear infinite; */
+}
+
+@keyframes flicker {
+  0% {
+    background-image: url(https://img.51jiabo.com/496f368c-c230-4734-9e5a-8380a3bcf962.png);
+  }
+
+  100% {
+    background-image: url(https://img.51jiabo.com/496f368c-c230-4734-9e5a-8380a3bcf962.png);
+  }
+}
+
+.jackpot-title {
+  width: 730rpx;
+  background: #481894;
+  box-shadow: 5rpx 4rpx 29rpx 0 rgba(255, 221, 239, 0.38) inset, 3rpx 3rpx 15rpx 0 rgba(78, 253, 228, 0.4) inset;
+  border-radius: 10rpx;
+  margin-top: 39rpx;
+  padding: 20rpx;
+}
+
+.jackpot-title .jackpot-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 75rpx;
+  background: #FFFDFF;
+  border-radius: 10rpx;
+  font-size: 32rpx;
+  font-weight: 800;
+  color: #5723A8;
+}
+
+.jackpot-title .ico {
+  width: 29rpx;
+  height: 15rpx;
+  background: url(https://img.51jiabo.com/ccc27f72-e4e5-4d59-8ce1-8cdf99925496.png) no-repeat;
+  background-size: 100% 100%;
+  margin-left: 18rpx;
+}
+
+.jackpot-list {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  background: #FFFDFF;
+  border-radius: 10rpx;
+  overflow: hidden;
+  transition: height .1s linear;
+}
+
+.jackpot-list .prize-item {
+  height: 292rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  padding-top: 40rpx;
+}
+
+.jackpot-list .prize-item .img {
+  width: 140rpx;
+  height: 140rpx;
+}
+
+.jackpot-list .prize-item .name {
+  width: 200rpx;
+  color: #6832BC;
+  font-size: 28rpx;
+  font-weight: bold;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-top: 15rpx;
+}
+
+.jackpot-list .prize-item .level {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200rpx;
+  height: 60rpx;
+  background: linear-gradient(90deg, #8263FF, #EF00B0);
+  box-shadow: 5rpx 4rpx 29rpx 0 rgba(255, 221, 239, 0.38) inset;
+  border-radius: 30rpx;
+  color: #FFFFFF;
+  font-size: 34rpx;
+  margin-top: 9rpx;
+}
+
+.jackpot-list .pack-up {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 110rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #5723A8;
+}
+
+.jackpot-list .pack-up .ico {
+  width: 29rpx;
+  height: 15rpx;
+  background: url(https://img.51jiabo.com/ccc27f72-e4e5-4d59-8ce1-8cdf99925496.png) no-repeat;
+  background-size: 100% 100%;
+  transform: rotate(180deg);
+  margin-left: 16rpx;
+}
+
+.info-box {
+  width: 730rpx;
+  border-radius: 20rpx;
+  box-shadow: 5rpx 4rpx 29rpx 0 rgba(255, 221, 239, 0.38) inset, 3rpx 3rpx 15rpx 0 rgba(78, 253, 228, 0.4) inset;
+  padding: 20rpx 0 20rpx 20rpx;
+  margin-top: 40rpx;
+}
+
+.info-box .info-tab {
+  display: flex;
+  justify-content: space-between;
+  width: 690rpx;
+  position: relative;
+}
+
+.auth-btn {
+  height: 80rpx;
+  width: 345rpx;
+  position: absolute;
+  right: 0;
+  z-index: 1;
+  background-color: transparent;
+}
+
+.info-box .tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 345rpx;
+  height: 80rpx;
+  color: #FFFFFF;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.info-box .tab.act {
+  color: #632FB5;
+  background: #FFFFFF;
+  border-radius: 10rpx 10rpx 0 0;
+}
+
+.info-box .prize-list {
+  width: 690rpx;
+  height: 721rpx;
+  background: #FFFFFF;
+  border-radius: 0 10rpx 10rpx 10rpx;
+  padding: 33rpx 0;
+}
+
+.swiper {
+  height: 655rpx;
+  position: relative;
+  pointer-events: none;
+}
+
+.info-box .prize-list .log-item {
+  padding: 10rpx 0;
+}
+
+.info-box .prize-list .item {
+  display: flex;
+  justify-content: space-around;
+  font-size: 28rpx;
+  color: #A4A4A4;
+}
+
+.info-box .prize-list .item text:nth-child(1) {
+  width: 200rpx;
+}
+
+.info-box .prize-list .item text:nth-child(2) {
+  width: 130rpx;
+}
+
+.info-box .prize-list .item text:nth-child(3) {
+  width: 160rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break: break-all;
+}
+
+.info-box .my-log {
+  width: 690rpx;
+  height: 721rpx;
+  background: #FFFFFF;
+  border-radius: 10rpx 0 10rpx 10rpx;
+}
+
+.info-box .log-title {
+  display: flex;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #AF6223;
+  padding-top: 42rpx;
+}
+
+.info-box .log-title view:nth-child(1) {
+  width: 247rpx;
+  padding-left: 78rpx;
+}
+
+.info-box .log-title view:nth-child(2) {
+  width: 239rpx;
+  padding-left: 15rpx;
+}
+
+.info-box .log-title view:nth-child(3) {
+  padding-left: 10rpx;
+}
+
+.info-box .log-list {
+  height: 580rpx;
+  overflow-y: scroll;
+  /* overscroll-behavior: none; */
+}
+
+.info-box .my-log .item {
+  display: flex;
+  font-size: 28rpx;
+  color: #A4A4A4;
+  margin-top: 20rpx;
+}
+
+.info-box .my-log .item>view:nth-child(1) {
+  flex-shrink: 0;
+  width: 247rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break: break-all;
+  text-align: center;
+  padding: 0 20rpx;
+}
+
+.info-box .my-log .item>view:nth-child(2) {
+  width: 190rpx;
+}
+
+.info-box .my-log .item>view:nth-child(3) {
+  width: 176rpx;
+  display: flex;
+  justify-content: center;
+}
+
+.status-text {
+  position: relative;
+}
+
+.info-box .my-log .item text {
+  font-size: 24rpx;
+  color: #632FB5;
+  position: absolute;
+  right: -86rpx;
+  top: 4rpx;
+}
+
+.info-box .empty {
+  width: 100%;
+  text-align: center;
+  padding: 30rpx;
+  font-size: 24rpx;
+}
+
+.rule-box {
+  width: 100%;
+  padding: 35rpx 52rpx 100rpx;
+}
+
+.rule-box .rule-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #FFFFFF;
+  padding-bottom: 8rpx;
+}
+
+.rule-box .rule-detail {
+  color: #FFFFFF;
+  font-size: 24rpx;
+}
+
+/* 弹层 */
+.address-popup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, .8);
+}
+
+.address-popup .address-box {
+  width: 680rpx;
+  background: #FFFFFF;
+  border-radius: 10rpx;
+  padding: 60rpx 30rpx;
+}
+
+.address-popup .prize-name {
+  font-size: 36rpx;
+  font-weight: bold;
+  text-align: center;
+  margin-top: -12rpx;
+}
+
+.address-popup .prize-info {
+  display: flex;
+  font-size: 32rpx;
+  margin-top: 40rpx;
+  color: #B3B3B3;
+}
+
+.address-popup .prize-info text {
+  flex-shrink: 0;
+  width: 160rpx;
+  color: #222222;
+}
+
+.address-popup .add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 164rpx;
+  height: 57rpx;
+  border: 2rpx solid #E6002D;
+  border-radius: 27rpx;
+  font-size: 28rpx;
+  color: #E6002D;
+}
+
+.address-popup .change {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150rpx;
+  height: 55rpx;
+  border: 1px solid #AAAAAA;
+  border-radius: 27rpx;
+  font-size: 32rpx;
+  color: #222222;
+  margin-top: 22rpx;
+}
+
+.address-popup .prize-info .express {
+  display: flex;
+  flex-direction: column;
+}
+
+.jj {
+  margin-top: 8rpx;
+}
+
+.address-popup .copy {
+  display: flex;
+  align-items: center;
+  font-size: 26rpx;
+}
+
+.address-popup .copy-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150rpx;
+  height: 55rpx;
+  background: #FFFFFF;
+  border: 1px solid #AAAAAA;
+  border-radius: 27rpx;
+  font-size: 32rpx;
+  color: #222222;
+  margin-right: 13rpx;
+}
+
+.address-popup .confirm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300rpx;
+  height: 80rpx;
+  background: #E6002D;
+  border-radius: 40rpx;
+  font-size: 36rpx;
+  color: #FFFFFF;
+  margin: 100rpx 0 0 160rpx;
+}
+
+.freeze-popup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, .8);
+}
+
+.freeze-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 600rpx;
+  height: 300rpx;
+  background: #FFFFFF;
+  border-radius: 10rpx;
+  font-size: 32rpx;
+  line-height: 67rpx;
+}

@@ -1,0 +1,8 @@
+<!--pages-userInfo/pages/wechat/info.wxml-->
+<view class="box">
+    <image mode="widthFix" show-menu-by-longpress="true" src="{{codeImg}}"></image>
+<!-- <view  wx:for="{{ resImg }}" wx:key="item.id" wx:for-item="item">
+    <image mode="widthFix" show-menu-by-longpress="true" src="{{ item.qr_url }}" />
+</view> -->
+  <view class="text">长按识别二维码添加客服</view>
+</view>

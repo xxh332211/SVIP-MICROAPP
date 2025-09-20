@@ -1,0 +1,54 @@
+<!--pages/tradeInPackage/list/Index.wxml-->
+<online-serve />
+<view class="adv-box">
+	<image class="adv" wx:if="{{tradeAdv.length > 0}}" mode="widthFix" data-area_id="42" data-item="{{tradeAdv[0]}}" bindtap="{{tradeAdv[0].url?'swiperUrl':''}}" src="{{tradeAdv[0].wap_image_url}}"></image>
+	<!-- 规则icon -->
+	<view class="rule" catchtap="toTradeInRule">规则</view>
+</view>
+
+
+<view class="goods-list">
+	<view class="goods-item" wx:for="{{goodsList}}" wx:key="index" data-id="{{item.id}}" bindtap="toDetail">
+		<view class="left">
+			<view class="img-box">
+				<image mode="aspectFit" src="{{item.goods_image}}"></image>
+				<view class="sell-out" wx:if="{{item.stock == 0}}">抢光了</view>
+			</view>
+			<view class="center">
+				<view class="name">{{item.goods_name}}</view>
+				<view class="origin">￥{{item.origin_price}}</view>
+				<view class="now">换购价￥{{item.redeem_price}}</view>
+			</view>
+		</view>
+		<view class="btn-box">
+			<view class="buy">
+				<view>{{item.need_orders}}单</view>
+				<view>换购</view>
+			</view>
+			<view class="stock">剩余：{{item.stock}}</view>
+		</view>
+	</view>
+</view>
+
+<!-- 换购浮层 -->
+<view class="tradeIn-fixed" data-type="fixed" bindtap="toTradeInRule">
+	<view class="trade-bag" style="margin-top:{{(!trandInNum || trandInNum.length == 1)?24:14}}rpx"></view>
+	<view class="content">
+		<view class="top" wx:if='{{trandInNum.length > 1 }}'>
+			<view class="commonFlex" wx:for="{{trandInNum}}" wx:key="index">
+				<view class="amount">{{item}}单</view>
+				<view class="cirl {{orderNum >= item?'act':''}}"></view>
+				<view class="line"></view>
+			</view>
+		</view>
+
+		<view class="bottom" style="margin-top:{{(!trandInNum || trandInNum.length == 1)?0:-10}}rpx"  wx:if="{{!orderNum || orderNum == 0}}">现场下单得换购资格GO>></view>
+		<view class="bottom" style="margin-top:{{(!trandInNum || trandInNum.length == 1)?0:-10}}rpx" wx:if="{{orderNum && orderNum > 0}}">您已达到{{orderNum}}单换购GO>></view>
+	</view>
+</view>
+
+<view class="tab-box">
+	<view class="tab act">换购商品</view>
+	<view class="tab" bindtap="toMyTradeIn">我的换购</view>
+</view>
+

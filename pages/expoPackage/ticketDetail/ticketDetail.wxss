@@ -1,0 +1,304 @@
+/* pages/expoPackage/ticketDetail/ticketDetail.wxss */
+
+page {
+  background: #fff;
+  /* padding: 0 30rpx; */
+}
+
+.info {
+  width: 690rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  background: #e6002d;
+  border-radius: 2px;
+  padding: 26rpx 31rpx 32rpx 37rpx;
+  margin-top: 30rpx;
+  margin-left: 30rpx;
+}
+
+.info .left .name {
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.info .left .time {
+  font-size: 44rpx;
+  margin-top: 2rpx;
+}
+
+.info .right {
+  display: flex;
+  height: 83rpx;
+  line-height: 83rpx;
+  border: 1px solid #fff;
+  padding: 0 10rpx;
+}
+
+.info .right .th {
+  font-size: 36rpx;
+}
+
+/* 二维码 */
+
+.qrcode {
+  text-align: center;
+  margin-top: 60rpx;
+  margin-bottom: 30rpx;
+}
+
+.qrcode-img {
+  height: 200px;
+  width: 200px;
+  margin: 0 auto;
+}
+
+.canvas {
+  height: 200px;
+  width: 200px;
+  margin: 0 auto;
+}
+
+.qrcode-num {
+  font-size: 50rpx;
+  margin-top: 8rpx;
+}
+
+/* 使用说明 */
+
+.use-info {
+  border-top: 1rpx solid #e1e1e1;
+  font-size: 28rpx;
+  color: #777;
+  margin: 0 30rpx;
+  padding: 42rpx 10rpx;
+}
+
+.use-info .tit {
+  color: #222;
+  font-size: 36rpx;
+  font-weight: bold;
+  padding-bottom: 27rpx;
+}
+
+.use-info .list {
+  line-height: 50rpx;
+  padding-bottom: 30rpx;
+}
+
+/* 家庭套票 */
+
+.family-title {
+  font-size: 32rpx;
+  text-align: center;
+}
+
+.family-item {
+  padding: 0 20rpx;
+  margin: 20rpx auto 40rpx;
+  display: flex;
+  justify-content: center;
+}
+
+.family-item .item {
+  height: 90rpx;
+  width: 90rpx;
+  border-radius: 50%;
+  margin: 0 10rpx;
+}
+
+.head-img {
+  height: 86rpx;
+  width: 86rpx;
+  border-radius: 50%;
+}
+
+.add-item .share-btn {
+  display: flex;
+  justify-content: center;
+  line-height: 79rpx;
+  height: 90rpx;
+  width: 90rpx;
+  border: 3rpx dashed #b1b1b1;
+  background: #fff;
+  color: #ff002b;
+  border-radius: 50%;
+  font-size: 60rpx;
+  padding: 0;
+}
+
+/* 领取过门票弹窗 */
+.ticket-qr-box-pop {
+  max-width: 450rpx;
+  color: #fff;
+  text-align: center;
+  background: rgba(51, 51, 51, .9);
+  border-radius: 10rpx;
+  z-index: 999;
+  padding: 20rpx;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 26rpx;
+  box-sizing: border-box;
+  white-space: normal;
+}
+
+/* 检票弹层 */
+.check-popup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, .8);
+}
+
+.check-popup .check-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 660rpx;
+  border-radius: 10rpx;
+  background-color: #ffff;
+  padding: 57rpx 0 42rpx;
+}
+
+.check-popup .check-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #22221F;
+  text-align: center;
+}
+
+.not-sign-text {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #E5002D;
+  margin-top: 22rpx;
+}
+
+.check-popup .ico {
+  width: 54rpx;
+  height: 54rpx;
+  margin-right: 14rpx;
+}
+
+.check-popup .check-status {
+  display: flex;
+  align-items: center;
+  font-size: 42rpx;
+  font-weight: bold;
+  color: #222222;
+  padding-bottom: 33rpx;
+}
+.check-popup .check-status.not-svip-status{
+  margin-top: 52rpx;
+}
+.check-popup .border{
+  width: 574rpx;
+  height: 1px;
+  background-color: #F4F4F4;
+  margin: 0 43rpx;
+}
+.check-popup .content {
+  width: 574rpx;
+  margin: 20rpx 43rpx 0;
+  padding-top: 33rpx;
+}
+
+.check-popup .text {
+  display: flex;
+  align-items: baseline;
+  font-size: 24rpx;
+  color: #222222;
+  margin-bottom: 10rpx;
+}
+.check-popup .red {
+  font-size: 26rpx;
+  color: #E6002D;
+  font-weight: bold;
+}
+
+.check-popup .small {
+  white-space: normal;
+  font-size: 22rpx;
+  color: #E6002D;
+}
+
+.check-popup .confirm {
+  width: 271rpx;
+  height: 75rpx;
+  line-height: 75rpx;
+  text-align: center;
+  background: #E6002D;
+  border-radius: 5rpx;
+  font-size: 36rpx;
+  color: #FFFFFF;
+  margin-top: 30rpx;
+}
+
+.check-popup .to-lottery {
+  width: 280rpx;
+  height: 75rpx;
+  line-height: 75rpx;
+  text-align: center;
+  background: #E5002D;
+  border-radius: 38rpx;
+  font-size: 32rpx;
+  color: #FFFFFF;
+  margin-top: 30rpx;
+}
+
+/* .ticket-qr-popup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  background: rgba(0, 0, 0, 0.7);
+}
+.ticket-qr-popup .ticket-qr-box {
+  width: 600rpx;
+  background: #fff;
+  border-radius: 10rpx;
+  line-height: 320rpx;
+  font-size: 36rpx;
+  text-align: center;
+} */
+
+.wuhan-tips{
+  color: #222;
+  font-size: 50rpx;
+  font-weight: bold;
+  text-align: center;
+  transform: translateY(30rpx);
+}
+
+
+.use-info .inviteBtn {
+  width: 580rpx;
+  height: 90rpx;
+  margin-bottom: 66rpx;
+  background: #D22D34;
+  box-shadow: 0 20rpx 20rpx 0 rgba(204, 13, 50, 0.2);
+  border-radius: 10rpx;
+  text-align: center;
+  font-size: 32rpx;
+  color: #fff;
+  line-height: 32rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  outline: none;
+}

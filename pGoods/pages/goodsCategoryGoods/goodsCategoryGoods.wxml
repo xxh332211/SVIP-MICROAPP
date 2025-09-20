@@ -1,0 +1,47 @@
+<online-serve />
+<view class="container">
+
+  <view>
+    <swiper wx:if="{{advList1.length > 0}}" indicator-color="rgba(255,255,255,.66)" indicator-active-color="#0CC187" autoplay="{{true}}" interval="5000" duration="1000" class="tac" style="height: 200rpx;">
+      <swiper-item wx:for="{{advList1}}" wx:key="item">
+        <navigator>
+          <image src="{{advList1[index]}}" bind:tap="toUrl" data-url="{{advList2[index]}}" mode="aspectFill" style="height: 200rpx;"></image>
+        </navigator>
+      </swiper-item>
+    </swiper>
+  </view>
+  
+<view class="tabs">
+  <view class="tab {{orderType === 0 ? 'active' : ''}}}" bind:tap="switchOrder" data-id="{{0}}">
+    <view class="text">综合</view>
+  </view>
+  <view class="tab {{orderType === 1 ? 'active' : ''}}}" bind:tap="switchOrder" data-id="{{1}}">
+    <view class="text">价格</view>
+    <image mode="aspectFit" wx:if="{{orderType === 1}}" src="{{'https://img.51jiabo.com/imgs-mall/orderby-' + (orderDesc ? 'up' : 'down') + '.svg'}}"/>
+  </view>
+  <view class="tab {{orderType === 2 ? 'active' : ''}}}" bind:tap="switchOrder" data-id="{{2}}">
+    <view class="text">销量</view>
+    <!-- <image mode="aspectFit" wx:if="{{orderType === 2}}" src="{{'https://img.51jiabo.com/imgs-mall/orderby-' + (orderDesc ? 'up' : 'down') + '.svg'}}"/> -->
+  </view>
+</view>
+<view class="cont">
+  <scroll-view scroll-y="{{true}}" bindscrolltolower="loadMore">
+  <view class="no-data" wx:if="{{!loading && list.length === 0}}">
+    <image src="/imgs/empty.png" mode="aspectFill"></image>
+    <text>暂无相关商品</text>
+  </view>
+  <view class="goods-item" wx:for="{{list}}" wx:key="id" data-id="{{item.id}}" bind:tap="goodsDetail">
+    <image wx:if="{{item.imageType==='image'}}" src="{{item.productImageUrl}}" mode="aspectFill"/>
+    <video wx:else src="{{item.productImageUrl}}" autoplay="true" controls="{{false}}" muted="true" loop object-fit="fill" />
+    <view class="name">{{item.title}}</view>
+    <view class="btm">
+      <view class="price">
+        <text class="order-price" wx:if="{{item.catalog === 0}}">定</text><text class="vip-price" wx:if="{{item.catalog === 3}}">SVIP</text>
+        <text>￥{{item.sellingPrice}}</text>
+      </view>
+      <view class="btn">马上抢</view>
+    </view>
+  </view>
+  </scroll-view>
+</view>
+</view>

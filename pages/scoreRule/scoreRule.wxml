@@ -1,0 +1,23 @@
+<scroll-view scroll-y="{{true}}">
+  <view class="title">
+    积分可以用来做什么？
+  </view>
+  <view class="cont">
+<text>积分可以用来兑换商品</text>
+<text>兑换规则：积分使用上限不超过单个订单支付金额的40%</text>
+  </view>
+  <view class="title">
+    我要怎么获取积分呢？
+  </view>
+  <view class="cont">
+<text>通过做任务、参与积分活动赚取积分，任务完成即可得积分</text>
+<text>注：当用户将已产生的互动行为自行取消后，相应的积分也将被扣除</text>
+  </view>
+  <view class="title">
+    其他注意事项：
+  </view>
+  <view class="cont">
+<text wx:if="{{cityId == 60}}">积分不可转让、售卖、赠送。如发现有作弊行为，宁波装修狂欢节有权直接取消相关资格。</text>
+<text wx:else>积分不可转让、售卖、赠送。如发现有作弊行为，华夏家博会有权直接取消相关资格，本活动最终解释权归华夏家博会所有。</text>
+  </view>
+</scroll-view>

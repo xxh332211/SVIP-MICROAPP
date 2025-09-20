@@ -1,0 +1,17 @@
+<!--pages-liebian/pages/historyList/historyList.wxml-->
+<view class="container">
+  <view class="tabs">
+    <view class="tab-item {{curTab == item.id ? 'cur-tab-item' : ''}}" wx:for="{{tabs}}" wx:key="id" bindtap="toggleTab" data-index="{{index}}">{{item.text}}</view>
+  </view>
+  
+  <view class="list">
+    <view class="item" wx:for="{{list}}" wx:key="index" data-id="{{item.actId}}" bindtap="toIndex">
+      <view class="left">
+        <view class="tit">{{item.activity_name}}</view>
+        <view class="act-time">活动时间：{{item.begin_time}}-{{item.end_time}}</view>
+        <view class="start-time">开奖时间：{{item.lottery_time}}</view>
+      </view>
+      <view class="btn">查看</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "hot-goods-popup": "./hotGoodsPopup/hotGoodsPopup",
+    "xmb-popup": "../xmbPopup/xmbPopup"
+  }
+}

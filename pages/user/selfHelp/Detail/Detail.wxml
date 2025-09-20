@@ -1,0 +1,71 @@
+<!--pages/user/selfHelp/Detail/Detail.wxml-->
+<online-serve />
+<view class="box">
+  <view class="top" wx:if="{{type!=5 && data.auditStatus == 2}}">
+    <view class="title">订单审核中，请稍后查看审核结果</view>
+  </view>
+  <view class="top" wx:if="{{type == 5}}">
+    <view class="title">活动已结束，请在展会期间录单参与现场福利活动</view>
+  </view>
+  <view class="form-box {{type == 5 ? 'titleTop' : ''}}" >
+    <view class="form-item" wx:if="{{data.orderNum}}">
+      <view class="name">订单号</view>
+      <view class="content">{{data.orderNum}}</view>
+    </view>
+    <view class="form-item">
+      <view class="name">品牌名称</view>
+      <view class="content">{{data.brandName}}</view>
+    </view>
+    <view class="form-item">
+      <view class="name">姓名</view>
+      <view class="content">{{data.orderUserName}}</view>
+    </view>
+    <view class="form-item">
+      <view class="name">手机号码</view>
+      <view class="content">{{data.orderUserMobile}}</view>
+    </view>
+
+    <view class="amount">
+      <view class="amount-top">
+        <view class="name">订单金额</view>
+        <view class="way">
+          <view class="item">
+            <view class="label {{data.payType == 1?'active':''}}"></view>支付全款</view>
+          <view class="item">
+            <view class="label {{data.payType == 2?'active':''}}"></view>支付定金</view>
+        </view>
+      </view>
+      <view class="symbols">￥{{data.payAmount}}</view>
+    </view>
+  </view>
+
+  <view class="other">
+    <view class="goods">
+      <view class="name">商品名称</view>
+      <view class="content">{{data.goodsName}}</view>
+    </view>
+    <view class="take-photo">
+      <view class="name">拍照上传订单</view>
+      <view class="img-box">
+        <image wx:for="{{data.orderImages}}" wx:key="index" class="photo" data-img="{{item.imageUrl}}" bindtap="bigImg" src="{{item.imageUrl}}"></image>
+      </view>
+    </view>
+  </view>
+
+  <view class="rule">
+    <view class="rule-tit">规则说明</view>
+    <view class="rule-content">1、请按照订单信息填写内容，内容填写完整后才可以提交审核；</view>
+    <view class="rule-content">2、审核通过后可参与现场福利活动；</view>
+    <view class="rule-content">3、同一个品牌仅限一单参与现场福利活动；</view>
+    <view class="rule-content">4、本活动最终解释权归华夏家博会所有。</view>
+  </view>
+</view>
+
+<!-- 审核通过提示 -->
+<cover-view class="tips-popup" wx:if="{{auditPass}}">
+  <cover-view class="tips-box">
+    <cover-view class="tit">恭喜您审核通过</cover-view>
+    <cover-view class="content">快去参加现场福利活动吧</cover-view>
+    <cover-view class="confirm" bindtap="confirm">确定</cover-view>
+  </cover-view>
+</cover-view>

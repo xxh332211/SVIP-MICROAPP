@@ -1,0 +1,32 @@
+<online-serve />
+<scroll-view class="list" scroll-y="{{true}}" wx:if="{{list.length}}">
+  <view class="item normal-btn" wx:for="{{list}}" wx:key="id" bind:tap="select" data-id="{{item.id}}">
+    <view class="info">
+      <view class="left">
+        <view class="price">
+          <block wx:if="{{item.couponType === 1}}">
+            <text class="u">¥</text>
+            <text>{{item.couponValue}}</text> 
+          </block>
+          <block wx:else>
+            <text>{{item.couponValue / 10}}</text> 
+            <text class="u">折</text>
+          </block>
+        </view>
+        <view class="desc">满{{item.minAmount}}元可用</view>
+      </view>
+      <view class="right">
+        <view class="name">{{item.couponName}}</view>
+        <view class="desc">有效期{{item.beginDate}}-{{item.endDate}}</view>
+      </view>
+    </view>
+
+    <view class="btn">
+      <image src="https://img.51jiabo.com/imgs-mall/{{item.id === curId ? 'checked' : 'unchecked'}}.svg" mode="aspectFit"></image>
+    </view>
+  </view>
+</scroll-view>
+<view class="no-data" wx:if="{{!loading && list.length === 0}}">暂无优惠券可领~</view>
+<view class="confirm-btn normal-btn" bindtap="confirm" wx:if="{{list.length}}">
+  {{curId > 0 ? '确定使用' : '暂不使用'}}
+</view>

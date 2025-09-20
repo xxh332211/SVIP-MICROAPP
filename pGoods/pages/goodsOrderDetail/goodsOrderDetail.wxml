@@ -1,0 +1,96 @@
+<online-serve />
+<view class="container">
+  <scroll-view class="order-detail" scroll-y="{{true}}">
+    <view class="header">
+      <view class="title">
+        <image class="icon" src="https://img.51jiabo.com/imgs-mall/{{stateObject.icon}}" mode="aspectFit"></image>
+        <text>{{stateObject.name}}</text>
+      </view>
+      <view class="info">
+        <view class="state">{{stateObject.subName}}</view>
+        <view class="desc">{{stateObject.desc}}</view>
+        <image class="info-icon" wx:if="{{false}}" src="https://img.51jiabo.com/imgs-mall/info.svg" mode="aspectFit" />
+      </view>
+    </view>
+    <image class="gap-1" src="/imgs/label.png" mode="aspectFill"></image>
+    <view class="order">
+      <view class="no">订单号 {{info.sn}}</view>
+      <view class="goods">
+        <image class="img" src="{{info.productImageUrl || 'https://img.51jiabo.com/1a927c4f-1d8a-49a9-8720-c90ce2719f31.jpg'}}" mode="aspectFill"/>
+        <view class="goods-info">
+          <view class="name">{{info.productTitle}}</view>
+          <view class="price">
+            <text>¥{{info.realAmount}}</text>
+            <text class="g">|</text>
+            <text>x{{info.count}}</text>
+          </view>
+          <view class="sprice" wx:if="{{info.catalog === 0}}">销售价：¥{{info.sellingPrice}}</view>
+        </view>
+      </view>
+      <view wx:if="{{info.catalog === 0}}" class="goods-desc">线上支付定金锁定超低价，该商品需到展会现场支付销售价领取商品</view>
+    </view>
+    <view class="gap-2"></view>
+    <view class="content">
+      <view class="tuan" wx:if="{{info.groupon}}">
+        <view class="time-left" wx:if="{{!tuangouEnded && info.groupon.grouponStatus === 0}}">
+          <text>距离结束</text>
+          <counter end="{{info.groupon.grouponEndTime}}" bind:timeEnd="onTuangouEnd"></counter>
+        </view>
+        <view class="buyers">
+          <view wx:for="{{info.groupon}}" wx:key="index" class="image {{item && item.buyerId === item.initialBuyerId ? 'main' : ''}}">
+            <image src="{{item.buyerId > -1 ? item.buyerIcon || '/imgs/user-logo.png' : 'https://img.51jiabo.com/imgs-mall/tuangou-default.png'}}" mode="aspectFit" />
+          </view>
+        </view>
+        <block wx:if="{{!info.productInvalid}}">
+        <button class="btn normal-btn" wx:if="{{grouponStatus === 0}}" open-type="share" data-shareData="{{shareData}}" plain="true">已参团，去邀请好友</button>
+        <view class="btn normal-btn" wx:else bind:tap="toTuangouDetail">{{grouponStatus === 1 ? '已完成，再开一团' : '拼团失败，再开一团'}}</view>
+        </block>
+      </view>
+      <view class="code" wx:if="{{info.orderStatus === 3 && (!info.groupon || grouponStatus === 1)}}">
+        <view>商家扫描券码提货</view>
+        <canvas class="canvas" style="width:{{qrWidth}}px;height:{{qrWidth}}px" canvas-id="canvas"></canvas>
+        <view wx:if="{{!info.verified}}">券号：{{info.verificationCode}}</view>
+        <view class="disabled" wx:else>
+          券号：
+          <text>{{info.verificationCode}}</text>
+          已过期
+        </view>
+      </view>
+      <view class="properies">
+        <view class="item">下单时间：{{info.createTime}}</view>
+        <view class="item">付款时间：{{info.payTime}}</view>
+        <view class="item" wx:if="{{info.refundTime}}">退款时间：{{info.refundTime}}</view>
+        <view class="item" wx:if="{{info.verified}}">提货时间：{{info.verifiedTime}}</view>
+        <view class="item">购买数量：{{info.count}}</view>
+        <view class="item">订单类型：{{orderTypeName}}</view>
+        <view class="item" wx:if="{{info.groupon}}">拼单状态：{{grouponStatusName}}</view>
+        <view class="item" wx:if="{{false}}">配送方式：{{deliveryWay}}</view>
+        <view class="item">商品总价：¥{{info.amount}}</view>
+        <view class="item" wx:if="{{info.couponDiscountValue}}">
+          卡券抵扣：{{info.couponDiscountValue}}
+        </view>
+        <view class="item" wx:if="{{info.scoreUsed}}">
+          积分抵扣：{{info.scoreUsed}}积分 (抵¥{{info.scoreUsed/100}})
+        </view>
+        <view class="gap-3"></view>
+        <view class="item">实付金额：¥{{info.realAmount}}</view>
+      </view>
+    </view>
+  </scroll-view>
+  <view class="footer">
+    <image bind:tap="makeCall" src="https://img.51jiabo.com/imgs-mall/phone.svg" />
+    <text bind:tap="makeCall">400-6188-555</text>
+    <view>
+      <view class="btn normal-btn" bind:tap="remove" wx:if="{{info.orderStatus === 1 || info.orderStatus === 2 || info.orderStatus === 4}}">
+        删除
+      </view>
+      <view class="btn normal-btn" bind:tap="cancel" wx:if="{{info.orderStatus === 0 || info.orderStatus === 3}}">
+        取消
+      </view>
+      <view class="btn normal-btn" bind:tap="pay" wx:if="{{info.orderStatus === 0}}">去支付</view>
+      <!-- <view class="btn normal-btn" bind:tap="returns" wx:if="{{info.orderStatus === 3}}">退款</view> -->
+      <!-- <view class="btn normal-btn" bind:tap="confirm" wx:if="{{info.orderStatus === 3}}">确认提货</view> -->
+    </view>
+  </view>
+  <share-modal drawData="{{shareModalData}}" shareData="{{shareData}}" wx:if="{{shareModalVisible}}" bind:close="closeShareModal"></share-modal>
+</view>

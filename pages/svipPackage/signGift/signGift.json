@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "超值签到礼",
+  "usingComponents": {
+    "upgradeSvip": "../../../components/upgradeSvip/upgradeSvip"
+  }
+}

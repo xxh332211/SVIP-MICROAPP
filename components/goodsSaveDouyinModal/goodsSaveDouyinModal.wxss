@@ -1,0 +1,39 @@
+/* components/goodsUpdateUserName/goodsUpdateUserName.wxss */
+.container{
+  padding-bottom: 70rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 750rpx;
+}
+.container image{
+  width: 300rpx;
+  height: 600rpx;
+  display: block;
+  margin: auto;
+  margin-top: 40rpx;
+  margin-bottom: 40rpx;
+}
+.submit{
+  background: #E6001B;
+  box-shadow: 0 18rpx 18rpx 0 rgba(183,48,48,0.33);
+  border-radius: 100rpx;
+  border-radius: 100rpx;
+  width: 500rpx;
+  margin: auto;
+  color: #fff;
+  font-size: 34rpx;
+  transition: all .2s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.submit:before, .submit:after{
+  border: none;
+  border-radius: 0;
+}
+
+
+.close-press{
+  opacity: .6;
+}

@@ -1,0 +1,9 @@
+<modal bind:close="close">
+  <form class="container" bindsubmit="submit">
+    <view class="title">修改姓名</view>
+    <view class="input">
+      <input maxlength="{{10}}" type="text" confirm-type="done" placeholder="请输入姓名" value="{{initValue}}" name="name"></input>
+    </view>
+    <button class="submit normal-btn" hover-class="close-press" form-type="submit">确认</button>
+  </form>
+</modal>

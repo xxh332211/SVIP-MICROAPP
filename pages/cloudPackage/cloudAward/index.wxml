@@ -1,0 +1,14 @@
+<!--pages/cloudPackage/cloudAward/index.wxml-->
+<online-serve />
+<view class="balance">
+	<view class="text">余额(元)</view>
+	<view class="number">{{awardNumber}}</view>
+	<!-- <view class="withdraw" bindtap="withDraw">提现</view> -->
+</view>
+<view class="rules">
+	<view class="title">提现规则：</view>
+	<text class="content">{{withdrawRule}}</text>
+</view>
+
+<!-- 运营位 -->
+<image wx:if="{{reserveAdv}}" wx:for="{{reserveAdv}}" wx:key="index" class='adv' mode='widthFix' src='{{item.wap_image_url}}'  data-item="{{item}}" bindtap="{{item.url?'swiperUrl':''}}"></image>

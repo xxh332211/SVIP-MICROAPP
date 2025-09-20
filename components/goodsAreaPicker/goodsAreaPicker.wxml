@@ -1,0 +1,20 @@
+<modal bind:close="close">
+  <view class="container">
+    <view class="title">
+      <view class="left" bind:tap="close">取消</view>
+      <view class="center">选择地区</view>
+      <view class="right" bind:tap="submit">确定</view>
+    </view>
+    <picker-view indicator-style="height: 100rpx;" style="width: 100%; height: 400rpx;" value="{{value}}" bindchange="bindChange">
+      <picker-view-column>
+        <view class="addr-item" wx:for="{{provinces}}" wx:key="code">{{item.name}}</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view class="addr-item" wx:for="{{cities}}" wx:key="code">{{item.name}}</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view class="addr-item" wx:for="{{areas}}" wx:key="code">{{item.name}}</view>
+      </picker-view-column>
+    </picker-view>
+  </view>
+</modal>

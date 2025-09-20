@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "banner-swiper":"../../../components/bannerSwiper/bannerSwiper",
+    "hot-goods-item": "../../../components/hotGoodsItem/hotGoodsItem",
+    "navigation": "../../../components/navigation/navigation"
+  }
+}

@@ -1,0 +1,262 @@
+/* pages/user/selfHelp/Detail/Detail.wxss */
+.box{
+  padding-bottom: 100rpx;
+}
+.top {
+  width: 100%;
+  height: 254rpx;
+  background: #ffb74d;
+  margin-bottom: -146rpx;
+}
+
+.top .title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  padding: 39rpx 0 0 45rpx;
+}
+.box  .titleTop{
+  margin-top: 70rpx;
+}
+.top .title::before {
+  content: "";
+  display: block;
+  width: 40rpx;
+  height: 40rpx;
+  background: url("https://img.51jiabo.com/8dda4e52-9229-4da5-a6d6-54d50dd9acc8.png") no-repeat;
+  background-size: 100% 100%;
+  margin-right: 22rpx;
+  flex-shrink: 0;
+}
+
+.form-box {
+  background: #fff;
+  width: 690rpx;
+  border-radius: 10rpx;
+  margin-left: 30rpx;
+  margin-top: 26rpx;
+}
+
+.form-item {
+  display: flex;
+  margin: 0 20rpx;
+  border-bottom: 1px solid #f0f0f0;
+  position: relative;
+  padding: 36rpx 0 36rpx 5rpx;
+}
+
+.form-item .name {
+  width: 205rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.form-item .content {
+  font-size: 32rpx;
+}
+
+.amount {
+  padding-bottom: 41rpx;
+}
+
+.amount .amount-top {
+  display: flex;
+  padding-left: 25rpx;
+  padding-top: 34rpx;
+}
+
+.amount .amount-top .name {
+  width: 190rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.amount .amount-top .way {
+  display: flex;
+}
+
+.amount .amount-top .way .item {
+  display: flex;
+  align-items: center;
+  font-size: 30rpx;
+  color: #777;
+}
+
+.amount .amount-top .way .item:first-child {
+  margin-right: 76rpx;
+}
+
+.amount .amount-top .label {
+  width: 46rpx;
+  height: 46rpx;
+  background: url("https://img.51jiabo.com/450ef5ac-4001-4d0c-be90-2ad04ef83394.png") no-repeat;
+  background-size: 100% 100%;
+  margin-right: 22rpx;
+}
+
+.amount .amount-top .label.active {
+  background: url("https://img.51jiabo.com/687c8a37-33af-4e6a-9e18-8d044f6f6ed9.png") no-repeat;
+  background-size: 100% 100%;
+}
+
+.amount .symbols {
+  width: 640rpx;
+  height: 105rpx;
+  background: #f2f2f2;
+  border-radius: 3rpx;
+  font-size: 48rpx;
+  font-weight: bold;
+  line-height: 105rpx;
+  padding-left: 10rpx;
+  margin: 32rpx 0 0 25rpx;
+}
+
+.other {
+  width: 690rpx;
+  border-radius: 10rpx;
+  background: #fff;
+  margin: 33rpx 0 0 30rpx;
+}
+
+.other .goods {
+  border-bottom: 1px dashed #d2d2d2;
+  padding: 29rpx 6rpx 52rpx;
+  margin: 0 20rpx;
+}
+
+.other .goods .name {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.other .goods .content {
+  font-size: 30rpx;
+  color: #777;
+  margin-top: 28rpx;
+}
+
+.take-photo {
+  padding: 34rpx 26rpx 49rpx;
+}
+
+.take-photo .name {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.take-photo .img-box {
+  display: flex;
+  margin-top: 24rpx;
+}
+
+.take-photo .img-box .photo {
+  width: 200rpx;
+  height: 200rpx;
+  margin-right: 24rpx;
+}
+
+.rule{
+  width: 690rpx;
+  border-radius: 10rpx;
+  background: #fff;
+  margin: 23rpx 0 0 30rpx;
+  padding: 38rpx 35rpx;
+}
+.rule .rule-tit{
+  font-size: 32rpx;
+  font-weight: bold;
+  padding-bottom: 26rpx;
+}
+.rule .rule-content{
+  font-size: 28rpx;
+  line-height: 53rpx;
+}
+
+.tips-popup{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background: rgba(0,0,0,.7);
+}
+.tips-popup .tips-box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 600rpx;
+  background: #fff;
+  border-radius: 10rpx;
+  padding: 89rpx 0 37rpx;
+}
+.tips-popup .tit{
+  width: 100%;
+  text-align: center;
+  font-size: 36rpx;
+  color: #FF0036;
+  font-weight: bold;
+}
+.tips-popup .content{
+  font-size: 32rpx;
+  color: #777777;
+  padding: 22rpx 30rpx 67rpx;
+  text-align: center;
+}
+.tips-popup .confirm{
+  font-size: 36rpx;
+  color: #777777;
+  width: 271rpx;
+  height: 75rpx;
+  line-height: 75rpx;
+  text-align: center;
+  border: 1px solid #DCDCDC;
+  border-radius: 37rpx;
+}
+
+.pass-tips{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+.pass-tips .pass-box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 600rpx;
+  background: #fff;
+  border-radius: 10rpx;
+  padding-bottom: 35rpx;
+}
+.pass-tips .pass-box image{
+  width: 100%;
+}
+.pass-tips .pass-box .content{
+  font-size: 32rpx;
+  color: #777;
+  text-align: center;
+  margin-top: 53rpx;
+}
+.pass-tips .pass-box .confirm{
+  width: 271rpx;
+  height: 75rpx;
+  border: 1px solid #DCDCDC;
+  border-radius: 37rpx;
+  font-size: 36rpx;
+  color: #777;
+  text-align: center;
+  line-height: 75rpx;
+  margin-top: 37rpx;
+}

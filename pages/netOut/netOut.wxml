@@ -1,0 +1,10 @@
+<!--pages/notice/notice.wxml-->
+<online-serve />
+<view class='notice-box'>
+  <view class='icon-notice'>
+    <image src='/imgs/wifi.png'></image>
+    <!-- <view class='view-em'>当前网络不可用，请检测网络设置</view> -->
+    <view class='view-em'>当前数据请求失败，请刷新试试</view>
+  </view>
+  <button class='renovate-btn' bindtap='goBack'>点击刷新</button>
+</view>

@@ -1,0 +1,491 @@
+/* pages/mgg/mgg.wxss */
+
+page {
+  background-color: #fff;
+}
+
+.navigate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 84rpx;
+  background-color: #FF072C;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 102;
+  box-sizing: content-box;
+}
+
+.navigate .city {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50rpx;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 25px;
+  position: absolute;
+  bottom: 14rpx;
+  left: 10rpx;
+  font-size: 30rpx;
+  color: #FFFFFF;
+  padding: 0 16rpx 0 25rpx;
+}
+
+.navigate .ico {
+  width: 15rpx;
+  height: 10rpx;
+  background: url("https://img.51jiabo.com/fdeb2978-fe63-43e5-a3c4-ecf5198b309b.png") no-repeat;
+  background-size: 100% 100%;
+  margin-left: 10rpx;
+}
+
+.navigate .nav-text {
+  font-size: 30rpx;
+  color: #FFFFFF;
+  font-weight: bold;
+}
+
+.navigate-blank {
+  width: 100%;
+  height: 82rpx;
+  box-sizing: content-box;
+}
+
+.container {
+  padding-bottom: 150rpx;
+}
+
+.adv-img {
+  display: block;
+}
+
+.banner-swiper {
+  min-height: 450rpx;
+  background: #eee;
+}
+
+.tab-box {
+  width: 100%;
+  height: 120rpx;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  z-index: 3;
+  background-color: #F2F2F2;
+  padding: 30rpx 0 32rpx;
+}
+
+.tab-scroll {
+  display: flex;
+  height: 58rpx;
+}
+
+.tab-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 186rpx;
+  height: 58rpx;
+  border: 1px solid #FF1419;
+  border-radius: 29rpx;
+  font-size: 26rpx;
+  font-weight: bold;
+  color: #FF1419;
+  margin-left: 10rpx;
+}
+
+.tab-item.act {
+  color: #FFFFFF;
+  background: #FF1419;
+}
+
+.tab-item .num {
+  font-size: 40rpx;
+  margin-right: 2rpx;
+  margin-top: -4rpx;
+}
+
+.body {
+  padding-bottom: 210rpx;
+}
+
+.seckill {
+  background-color: #F2F2F2;
+}
+
+.seckill .seckill-title {
+  display: flex;
+  align-items: flex-end;
+  padding-left: 10rpx;
+}
+
+.seckill-title .line {
+  width: 4rpx;
+  height: 39rpx;
+  background: #1B1E22;
+}
+
+.seckill-title .logo {
+  width: 136rpx;
+  height: 80rpx;
+  background: url("https://img.51jiabo.com/81a0e4b1-5751-4514-aa69-e4b23346751b.png") no-repeat;
+  background-size: 100% 100%;
+  margin: 0 5rpx 0 12rpx;
+}
+
+.seckill-title .price {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 210rpx;
+  height: 40rpx;
+  background: url("https://img.51jiabo.com/beff3493-48dc-4339-a1fb-90133961ef02.png") no-repeat;
+  background-size: 100% 100%;
+  font-size: 26rpx;
+  color: #FFFFFF;
+}
+
+.item-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 33rpx 30rpx 10rpx;
+}
+
+.goods-item {
+  width: 335rpx;
+  height: 468rpx;
+  border-radius: 10rpx;
+  background-color: #fff;
+  overflow: hidden;
+  margin-bottom: 20rpx;
+}
+
+.goods-item .goods-img {
+  display: block;
+  width: 335rpx;
+  height: 255rpx;
+}
+
+.goods-item .img-box {
+  position: relative;
+}
+
+.goods-item .mgg {
+  width: 119rpx;
+  height: 56rpx;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.goods-item .end {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  background: rgba(0, 0, 0, .7);
+  font-size: 30rpx;
+  color: #fff;
+}
+
+.info-content {
+  padding: 22rpx 20rpx 0;
+}
+
+.goods-item .name {
+  width: 100%;
+  height: 76rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #0D0D0D;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  line-height: 38rpx;
+}
+
+.goods-item .current-price {
+  display: flex;
+  align-items: baseline;
+  font-size: 22rpx;
+  color: #676767;
+  margin-top: 2rpx;
+}
+
+.goods-item .sign {
+  color: #E6002D;
+  font-weight: bold;
+  font-size: 24rpx;
+}
+
+.goods-item .num {
+  color: #E6002D;
+  font-weight: bold;
+  font-size: 42rpx;
+}
+
+.goods-item .total {
+  text-decoration: line-through;
+}
+
+.goods-item .total-price {
+  display: flex;
+  align-items: baseline;
+  font-size: 24rpx;
+  color: #676767;
+  margin-top: -8rpx;
+}
+
+.goods-item .total-price text {
+  font-size: 22rpx;
+}
+
+.shopping-list {
+  width: 733rpx;
+  margin-left: 8rpx;
+}
+
+.list-img {
+  display: block;
+}
+
+.theme {
+  overflow: hidden;
+}
+
+.theme .title {
+  font-size: 42rpx;
+  font-weight: bold;
+  color: #343434;
+  text-align: center;
+  margin-top: -7rpx;
+}
+
+.theme .content {
+  display: flex;
+  margin-left: 10rpx;
+  margin-top: 13rpx;
+}
+
+.theme .elec {
+  width: 363rpx;
+  height: 266rpx;
+  position: relative;
+  margin-bottom: 2rpx;
+}
+
+.theme .elec-layer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 90rpx;
+  left: 0;
+  width: 100%;
+  height: 91rpx;
+  background: rgba(0, 0, 0, .3);
+}
+
+.theme .elec-layer .text {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #FFFFFF;
+}
+
+.theme .elec-layer .go {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 91rpx;
+  height: 28rpx;
+  background: #FF0000;
+  border-radius: 14rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #FFFFFF;
+}
+
+.theme .left .theme-item {
+  width: 363rpx;
+  height: 133rpx;
+  position: relative;
+  margin-bottom: 2rpx;
+}
+
+.theme .right {
+  margin-left: 2rpx;
+}
+
+.theme .right .theme-item {
+  width: 365rpx;
+  height: 133rpx;
+  position: relative;
+  margin-bottom: 2rpx;
+}
+
+.theme .layer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, .3);
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #FFFFFF;
+}
+
+/* 最近浏览 */
+.browse-history .history-title {
+  font-size: 30rpx;
+  color: #3F3F3F;
+  font-weight: bold;
+  padding: 50rpx 0 19rpx 10rpx;
+}
+
+.browse-history .history-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 0 10rpx;
+}
+
+.browse-history .history-item {
+  max-width: 730rpx;
+  height: 55rpx;
+  background: #FFE3E3;
+  border-radius: 28px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 26rpx;
+  color: #444443;
+  padding: 0 40rpx 0 20rpx;
+  margin-bottom: 18rpx;
+}
+
+.browse-history .history-item.store {
+  background: #E5E5E5;
+}
+
+.history-item .type {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 62rpx;
+  height: 34rpx;
+  border: 1px solid #BFBFBF;
+  border-radius: 13rpx;
+  font-size: 24rpx;
+  color: #8D8D8D;
+  margin-right: 14rpx;
+}
+
+.opinion {
+  margin-top: 34rpx;
+  margin-left: 10rpx;
+}
+
+.opinion .opinion-img {
+  width: 729rpx;
+  height: 281rpx;
+}
+
+.auth-popup {
+  top: 84rpx;
+}
+
+/* 领取门票弹层 */
+.ticket-popup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, .4);
+  z-index: 103;
+}
+
+.ticket-popup .ticket-box {
+  width: 570rpx;
+  height: 556rpx;
+  position: relative;
+}
+
+.ticket-popup .bg {
+  width: 100%;
+}
+
+.ticket-popup .head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 203rpx;
+  background: #F81C50;
+  border-radius: 30rpx 30rpx 0 0;
+  position: absolute;
+  top: 0;
+  font-size: 30rpx;
+  color: #FFFEFF;
+  padding-top: 49rpx;
+}
+
+.ticket-popup .bold {
+  font-weight: bold;
+}
+
+.ticket-popup .ticket {
+  width: 440rpx;
+  height: 202rpx;
+  position: absolute;
+  top: 176rpx;
+  left: 70rpx;
+}
+
+.ticket-popup .get-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 288rpx;
+  height: 90rpx;
+  background: #F81C50;
+  border-radius: 10rpx;
+  font-size: 30rpx;
+  color: #FFFEFF;
+  position: absolute;
+  bottom: 43rpx;
+  left: 140rpx;
+}
+
+.ticket-popup .ticket-close {
+  width: 65rpx;
+  height: 65rpx;
+  position: absolute;
+  bottom: -90rpx;
+  left: 252rpx;
+  background: url(https://img.51jiabo.com/f292d96f-67b2-4eed-adb8-1fd4e43a6b81.png) no-repeat;
+  background-size: 100% 100%;
+}

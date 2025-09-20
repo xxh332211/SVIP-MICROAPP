@@ -1,0 +1,231 @@
+/* pages/tradeInPackage/list/Index.wxss */
+image {
+  display: block;
+}
+
+page {
+  background: #fff;
+}
+
+.adv {
+  height: auto;
+}
+
+.goods-list {
+  padding-bottom: 300rpx;
+}
+
+.goods-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 240rpx;
+  padding: 0 30rpx;
+}
+
+.goods-item .left {
+  display: flex;
+  align-items: center;
+}
+
+.img-box {
+  width: 183rpx;
+  height: 183rpx;
+  position: relative;
+}
+
+.img-box .sell-out {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32rpx;
+  color: #FFFFFF;
+  background: rgba(0, 0, 0, .6);
+  z-index: 1;
+}
+
+.goods-item .center {
+  max-width: 318rpx;
+  display: flex;
+  flex-direction: column;
+  margin-left: 30rpx;
+}
+
+.goods-item .name {
+  font-size: 32rpx;
+  color: #212121;
+  font-weight: bold;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  line-height: 48rpx;
+  word-wrap: break-word;
+}
+
+.goods-item .origin {
+  font-size: 24rpx;
+  color: #6A6A6A;
+  text-decoration: line-through;
+  margin-top: 17rpx;
+}
+
+.now {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #E5002D;
+  margin-top: -6rpx;
+}
+
+.btn-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.buy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100rpx;
+  height: 100rpx;
+  background: rgba(229, 0, 45, 1);
+  border-radius: 20rpx;
+}
+
+.buy view {
+  font-size: 32rpx;
+  color: #fff;
+}
+
+.buy view:last-child {
+  margin-top: -12rpx;
+}
+
+.stock {
+  font-size: 22rpx;
+  color: #5E5E5E;
+  margin-top: 25rpx;
+}
+
+.tradeIn-fixed{
+  display: flex;
+  justify-content: center;
+  width: 690rpx;
+  height: 99rpx;
+  position: fixed;
+  bottom: 130rpx;
+  left: 30rpx;
+  z-index: 9;
+  background-color: #FDD9DD;
+  border-radius: 50rpx;
+}
+.trade-bag{
+  width: 44rpx;
+  height: 41rpx;
+  background: url(https://img.51jiabo.com/33ba50f4-9413-4fbd-9cee-ad8e930f0d7f.png) no-repeat;
+  background-size: 100% 100%;
+  /* margin-top: 14rpx; */
+  margin-right: 26rpx;
+}
+
+.tradeIn-fixed .content{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.tradeIn-fixed .top{
+  display: flex;
+  align-items: center;
+  width: 550rpx;
+}
+.tradeIn-fixed .top .commonFlex{
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+.tradeIn-fixed .top .commonFlex:last-child{
+  flex: none;
+}
+.tradeIn-fixed .top .amount{
+  font-size: 30rpx;
+  color: #D3122D;
+  font-weight: bold;
+  margin: 0 13rpx;
+}
+.tradeIn-fixed .top .cirl{
+  width: 15rpx;
+  height: 15rpx;
+  border-radius: 50%;
+  border: 3rpx solid #D3112D;
+}
+.tradeIn-fixed .top .cirl.act{
+  background: #D3112D;
+}
+.tradeIn-fixed .top .line{
+  flex: 1;
+  height: 1px;
+  background: #FF0000;
+}
+.tradeIn-fixed .bottom{
+  font-size: 26rpx;
+  font-weight: bold;
+  color: #D3122D;
+  /* margin-top: -10rpx; */
+}
+
+
+
+.tab-box {
+  display: flex;
+  width: 100%;
+  height: 96rpx;
+  position: fixed;
+  bottom: 0;
+  z-index: 2;
+  background: #fff;
+}
+
+.tab-box .tab {
+  width: 50%;
+  height: 100%;
+  text-align: center;
+  line-height: 96rpx;
+  font-size: 36rpx;
+  color: #333333;
+  font-weight: bold;
+  border-top: 1px solid #F7F7F7;
+}
+
+.tab-box .act {
+  color: #fff;
+  background: #E5002D;
+  border: none;
+}
+
+.adv-box{
+  position: relative;
+}
+.rule{
+  width: 90rpx;
+  height: 42rpx;
+  font-size: 28rpx ;
+  text-align: center;
+  line-height: 42rpx;
+  font-weight: bold;
+  color: #E6002E;
+  background: #FFFFFF;
+  box-shadow: 0px 5rpx 21rpx 0px rgba(204, 13, 50, 0.2);
+  border-radius: 21rpx 0px 0px 21rpx;
+  position: absolute;
+  right: 0;
+  top: 10rpx;
+}

@@ -1,0 +1,87 @@
+<!--pages-userInfo/components/prepayOrder/prepayOrder.wxml-->
+<wxs module="md">
+  var format = function (time) {
+    if (time) {
+      var date = time.slice(5, 10).replace(getRegExp('-', 'g'), ".");
+      return date
+    }
+  }
+  var isout = function (endtime) {
+    if (endtime) {
+      var a = getDate()
+      var b = getDate(endtime).getTime()
+      var isOut = a > b ? true : false
+      return isOut
+    }
+  }
+  module.exports = { format: format, isout: isout }
+</wxs>
+<view data-item="{{item}}" bindtap="toDetail">
+  <view class="head">
+    <view class="title">
+      <view class="ico dj"></view>SVIP定金商品
+    </view>
+    <view class="status-text">
+      <view wx:if='{{item.status == 1 && md.isout(item.end_date)}}'>已过期</view>
+      <view wx:if='{{item.status == -2}}'>定金已退</view>
+      <view wx:if="{{item.status == -1}}">订单已取消</view>
+      <view wx:if='{{item.status == 1 && item.is_check != 1 && !md.isout(item.end_date)}}'>定金已付
+      </view>
+      <view wx:if="{{item.status == 0}}">待付款</view>
+      <view wx:if="{{item.is_check == 1 && !md.isout(item.end_date)}}">商品已领取</view>
+    </view>
+  </view>
+  <view class="content">
+    <image class="goods-img" src="{{item.goods_image}}"></image>
+    <view class="right">
+      <view class="name">{{item.goods_name}}</view>
+      <view class="price-box">SVIP：￥{{item.goods_price}}</view>
+      <view class="btn-box">
+        <!-- 已支付 -->
+        <block wx:if="{{item.status == 1}}">
+          <view class='btn' catchtap='goodsRefund' data-item="{{item}}" data-price="{{item.prepay_amount}}"
+            id='{{item.order_sn}}' wx:if="{{item.is_check != 1}}">退款</view>
+          <view class='btn disable' catchtap='reFundTips' wx:if="{{item.is_check == 1}}">退款</view>
+          <view class='btn wide' catchtap='checkCode' data-item="{{item}}">查看券码</view>
+        </block>
+        <!-- 待支付 -->
+        <block wx:if="{{item.status == 0}}">
+          <view class="btn" data-item='{{item}}' catchtap="toCancel">取消</view>
+          <view class="btn to-pay" data-item='{{item}}' catchtap="toPay">付款 {{lastTime}}</view>
+        </block>
+        <view class="btn" wx:if="{{item.status == -1 || item.refund_status == 1 || item.is_check == 1}}"
+          data-item="{{item}}" catchtap="deleteOrder">删除</view>
+      </view>
+    </view>
+  </view>
+  <!-- 待支付 || 已支付显示定金 -->
+  <view class="prepay" wx:if="{{item.status == 0 || item.status == 1}}">定金：<text class="pre-num">￥{{item.prepay_amount}}<block
+        wx:if="{{item.status == 1}}">（已支付）</block></text></view>
+  <view class="order-info" wx:if="{{item.status == 1}}">
+    您已成功预约SVIP专享商品，{{md.format(item.begin_date)}}~{{md.format(item.end_date)}}日到
+    {{item.venue_name}}，{{item.brand_name}}{{item.booth}}处，付款取货。
+  </view>
+</view>
+
+<!-- 退款提示弹层 -->
+<view class="refound-tips" wx:if="{{sureRefund}}">
+  <view class="tips-box">
+    <view class="tit">您确定要退该商品吗？</view>
+    <view class="btn-box">
+      <view class="popup-btn cancel" bindtap="closeSure">取消</view>
+      <view class="popup-btn confirm" bindtap="reFund">确定</view>
+    </view>
+  </view>
+</view>
+
+<!-- 退款成功提示框 -->
+<view class="refund-success-tips" wx:if="{{showSuccessTip}}">
+  <view class="mco-box mco-box2">
+    <view class="mco-tips-text">全款商品退款成功</view>
+    <view class="mco-tips-text">24小时退回您的账户</view>
+    <view class="mco-tips-text">退款金额：￥{{price}}元</view>
+    <button class="mco-tips-btn" bindtap="closeTips">确定</button>
+    <image class="mco-close" bindtap="closeTips"
+      src="https://img.51jiabo.com/2fbbd2d6-e895-4b88-9c7b-223aa880f70f.png"></image>
+  </view>
+</view>

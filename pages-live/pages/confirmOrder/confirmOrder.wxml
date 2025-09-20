@@ -1,0 +1,79 @@
+<view class="container">
+  <!-- 头部 -->
+  <view class="header">
+    <image src="{{logo_url}}"></image>
+    <text>{{supplierShopInfo.shop_name}}</text>
+  </view>
+  <!-- 详情 -->
+  <view class="detail">
+    <view class="top">
+      <image src="{{main_image[0].image_url}}"></image>
+      <view class="right">
+        <view class="title">{{prerogative_name}}</view>
+        <view class="price"><text>￥</text><text>{{exclusive_price?exclusive_price:market_price}}</text></view>
+        <view class="earnest" wx:if='{{pay_way==1}}'>
+          <text>定金支付￥{{earnest}}</text>
+        </view>
+        <view class="num">
+          <text wx:if='{{is_limit_purchase == 1}}'>限购{{limit_buy_count}}件</text>
+          <text wx:else></text>
+          <text class="jian" bindtap="jian">-</text>
+          <text>{{num}}</text>
+          <text class="jia" bindtap="jia">+</text>
+        </view>
+      </view>
+    </view>
+    <view class="list">
+      <view class="lsit1 commonlist">
+        <text>配送方式</text>
+        <text>{{delivery_way == 1?'展会自提':'到店自提'}}</text>
+      </view>
+      <view class="lsit2 commonlist">
+        <text>订单备注</text>
+        <input bindinput="remarksInput" placeholder="选填,请先和商家协商一致"></input>
+      </view>
+      <view class="lsit3 commonlist">
+        <text>商品金额</text>
+        <text>￥{{priceMore}}</text>
+      </view>
+      <view class="lsit4 commonlist">
+        <text>优惠金额</text>
+        <text>-￥0</text>
+      </view>
+      <view class="lsit5 commonlist">
+        <text>实际支付</text>
+        <text>￥{{priceMore}}</text>
+      </view>
+    </view>
+    <view class="total">
+      <view class="border"></view>
+      <text>共{{num}}件 小计：￥{{priceMore}}</text>
+    </view>
+  </view>
+  <!-- 微信支付 -->
+  <view class="wxpay">
+    <view class="left">
+      <image class="select" src="/imgs/wxLogo.png" class="wxlogo"></image>
+      <text>微信支付</text>
+    </view>
+    <image src="/imgs/duigou.png" class="duigou"></image>
+  </view>
+
+  <!-- 定位提交订单 -->
+  <view class="submitOrder">
+    <text>共{{num}}件, </text>
+    <text class="total">合计： </text>
+    <view class="price">
+      <text>￥</text>
+      <text>{{priceMore}}</text>
+    </view>
+    <view class="confirm-order" bindtap="confirmOrder">提交订单</view>
+  </view>
+  <!-- 弹窗 -->
+  <view class="flag" wx:if='{{showFlag}}'>
+    <view class="popup">
+      <view class="title">{{errorDetail}}</view>
+      <view class="button" bindtap="goodBtn">好的</view>
+    </view>
+  </view>
+</view>

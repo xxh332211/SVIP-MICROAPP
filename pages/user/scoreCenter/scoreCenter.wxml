@@ -1,0 +1,65 @@
+<view class="page">
+  <scroll-view class="page" scroll-y="{{true}}">
+    <view class="head">
+      <view class="score">
+        <image mode="aspectFill" src="https://img.51jiabo.com/imgs-mall/score-white.svg"/>
+        <view>{{score}}</view>
+        <view>积分</view>
+      </view>
+      <view class="links">
+        <view class="link" bind:tap="toDetail">
+          <view>积分明细</view><view>‣</view>
+        </view>
+      </view>
+      <view class="rules normal-btn" bind:tap="showRule"><image src="https://img.51jiabo.com/imgs-mall/info.svg" mode="aspectFill"></image><view>规则说明</view></view>
+      <view class="records">
+        <view class="state">已连续签到{{count}}天</view>
+        <view class="items">
+          <view wx:for="{{days}}" class="item {{item.date ? 'active' : ''}}"><image src="https://img.51jiabo.com/imgs-mall/checked-light.svg" mode="aspectFill"></image><text>{{index + 1}}</text></view>
+        </view>
+        <view class="tip">今日签到获取{{signScore + signScoreExtra}}积分</view>
+      </view>
+    </view>
+    <view class="tasks">
+
+  <view wx:if="{{banners.length > 0}}">
+<image wx:for="{{banners}}" wx:key="item" src="{{banners[index].imageUrls}}" bind:tap="toUrl" data-url="{{banners[index].linkUrls}}" mode="widthFix"></image>
+  </view>
+
+      <view class="title">积分任务</view>
+      <view class="task-item">
+        <image src="https://img.51jiabo.com/imgs-mall/scorecenter/icon-scorecenter-01.svg" mode="aspectFill"></image>
+        <view class="info">
+          <view>
+            签到任务
+            <view class="question-btn" bind:tap="showDesc" data-desc="每日签到领积分，连续7天签到更有积分奖励">?</view>
+          </view>
+          <view>
+            <view class="desc">今日获得</view>
+            <view class="tag">+{{signed ? signScore + signScoreExtra : 0}}积分</view>
+          </view>
+        </view>
+        <view class="state-btn {{signed ? 'disabled' : ''}}" bind:tap="signin">{{signed ? '已完成' : '领积分'}}</view>
+      </view>
+      <view class="task-item" wx:for="{{statesArray}}" wx:if="{{item.code !== '01'}}">
+        <image src="{{'https://img.51jiabo.com/imgs-mall/scorecenter/icon-scorecenter-' + item.code + '.svg' }}" mode="aspectFill"></image>
+        <view class="info">
+          <view>
+            {{states[item.code].name}}
+            <view class="question-btn" bind:tap="showDesc" data-desc="{{states[item.code].description}}">?</view>
+          </view>
+          <view>
+            <view class="desc">
+            {{states[item.code].description}}
+            <view class="tag">+{{states[item.code].value || ''}}积分</view>
+            </view>
+          </view>
+        </view>
+        <view class="state-btn {{states[item.code].completed ? 'disabled' : ''}}" data-code="{{states[item.code].code}}" bind:tap="doTask">{{states[item.code].completed ? '已完成' : '领积分'}}</view>
+      </view>
+    </view>
+  </scroll-view>
+</view>
+<normal-modal title="签到成功" content="{{'恭喜您获得'+signScore+'积分' + (signScoreExtra ? (', 并额外获得' + signScoreExtra + '积分') : '')}}" wx:if="{{modal1Visible}}" bind:close="closeModal1"></normal-modal>
+<normal-modal title="签到成功" content="您漏签了，已开始新的签到周期" wx:if="{{modal2Visible}}" bind:close="closeModal2"></normal-modal>
+<douyin-modal wx:if="{{modal3Visible}}" bind:close="closeModal3" bind:save="douyinSave"></douyin-modal>

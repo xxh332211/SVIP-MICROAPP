@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "熊猫币中心",
+  "navigationBarBackgroundColor": "#FF0332",
+  "navigationBarTextStyle": "white" ,
+  "usingComponents": {
+    "privacy-popup": "../../../../components/privacyPopup/privacyPopup",
+    "lottery-loop": "/components/xmbCenterComponent/lotteryLoop/lotteryLoop",
+    "flyCart":"/components/xmbCenterComponent/flyCart/flyCart"
+  }
+}

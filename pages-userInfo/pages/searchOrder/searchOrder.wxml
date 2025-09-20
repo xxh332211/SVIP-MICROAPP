@@ -1,0 +1,144 @@
+<!--pages-userInfo/pages/searchOrder/searchOrder.wxml-->
+<view class="filter-box">
+  <view class="search-box">
+    <view class="ico"></view>
+    <input class="input" type="text" placeholder="搜索我的订单" bindinput="textInput" />
+  </view>
+  <view class="search" bindtap="searchOrder">搜索</view>
+</view>
+
+<scroll-view class="scroll-box" scroll-y="true">
+  <view class="order-item" wx:for="{{orderList}}" wx:key="index">
+    <!-- 展会订单 -->
+    <expo-order wx:if="{{item.order_list_type == 1}}" item="{{item}}" binddeleteOrder="deleteOrder"
+      bindgetLottery="getLottery" bindredeemPrize="redeemPrize" bindtoCommonDetail="toCommonDetail"></expo-order>
+
+    <!-- SVIP全款商品订单 -->
+    <total-order wx:if="{{item.order_list_type == 2 && item.type == 1}}" item="{{item}}" bindtoDetail="toDetail"
+      bindtoCancel="toCancel" bindtoPay="toPay" binddeleteOrder="deleteOrder" bindgetList="searchList"
+      bindcheckCode="checkCode" bindreFundTips="reFundTips"></total-order>
+
+    <!-- SVIP定金商品订单 -->
+    <prepay-order wx:if="{{item.order_list_type == 2 && item.type == 2}}" item="{{item}}" bindtoDetail="toDetail"
+      bindtoCancel="toCancel" bindtoPay="toPay" binddeleteOrder="deleteOrder" bindgetList="searchList"
+      bindcheckCode="checkCode" bindreFundTips="reFundTips"></prepay-order>
+
+    <!-- SVIP预约商品订单 -->
+    <reserve-order wx:if="{{item.order_list_type == 2 && item.type == 4}}" item="{{item}}" bindtoDetail="toDetail"
+      binddeleteOrder="deleteOrder" bindcheckCode="checkCode"></reserve-order>
+
+    <!-- 线上店铺订单 -->
+    <online-order wx:if="{{item.order_list_type == 3}}" item="{{item}}" bindgetList="searchList"
+      binddeleteOrder="deleteOrder" bindtoCommonDetail="toCommonDetail"></online-order>
+    <!-- 换购订单 -->
+    <tradein-order wx:if="{{item.order_list_type == 4}}" item="{{item}}" binddeleteOrder="deleteOrder"></tradein-order>
+    <!-- 兑换卡订单 -->
+    <cash-order wx:if="{{item.order_list_type == 5}}" item="{{item}}" bindgetList="searchList"
+      binddeleteOrder="deleteOrder">
+    </cash-order>
+
+  </view>
+</scroll-view>
+
+<!-- 删除订单提示弹层 -->
+<view class="refound-tips" wx:if="{{sureDelete}}">
+  <view class="tips-box">
+    <view class="tit">确定删除该订单么？</view>
+    <view class="btn-box">
+      <view class="cancel" data-tips="sureDelete" bindtap="cancelSure">取消</view>
+      <view class="confirm" bindtap="confirmDelete">确定</view>
+    </view>
+  </view>
+</view>
+
+<!-- 该商品已下线，无法查看 -->
+<view class="refound-tips" wx:if="{{offLinePopup}}">
+  <view class="tips-box">
+    <view class="tit">该商品已下线，无法查看</view>
+    <view class="btn-box">
+      <view class="confirm" bindtap="offLine">确定</view>
+    </view>
+  </view>
+</view>
+<!-- 已领取商品，不能退款 -->
+<view class="refound-tips" wx:if="{{unRefund}}">
+  <view class="tips-box">
+    <view class="tit">{{unRefundText}}</view>
+    <view class="btn-box">
+      <view class="confirm" bindtap="closeUn">确定</view>
+    </view>
+  </view>
+</view>
+<!-- 取消提示弹层 -->
+<view class="refound-tips" wx:if="{{sureCancel}}">
+  <view class="tips-box">
+    <view class="tit">确定取消该订单么？</view>
+    <view class="btn-box">
+      <view class="cancel" data-tips="sureCancel" bindtap="cancelSure">取消</view>
+      <view class="confirm" bindtap="cancelRefund">确定</view>
+    </view>
+  </view>
+</view>
+
+<!-- 券码弹层 -->
+<view class="code-popup" hidden="{{!showCode}}" catchtouchmove='stop'>
+  <view class="code-layer" bindtap="closeCode"></view>
+  <view class="code-box">
+    <view class="top">
+      <view class="tit">商家扫描券码领取商品</view>
+      <view class="period" wx:if="{{!pastDue || (pastDue && isCheck != 0)}}">有效期：{{beginDate}}-{{endDate}}</view>
+      <view class="period" wx:if="{{pastDue && isCheck == 0}}">已过期</view>
+    </view>
+    <view class="bottom">
+      <view class="canvas-box">
+        <canvas class='canvas' disable-scroll="true" canvas-id='qrcode'></canvas>
+      </view>
+      <view class="cou-code {{isCheck != 0?'past':''}}">{{couCode}}</view>
+    </view>
+  </view>
+</view>
+
+<!-- 抽奖弹层 -->
+<view class="lottery-popup" hidden="{{!showLottery}}" catchtouchmove='stop'>
+  <image class="bg" src="https://img.51jiabo.com/0754e3e8-b151-4570-94fc-dcc799630073.png" mode="widthFix"></image>
+  <view class="lottery-box">
+    <view class="head">
+      <view class="head-box">
+        <view class="head-text">恭喜您</view>
+        <view class="head-text">抽中{{prizeInfo.awardName}}</view>
+        <image class="prize" src="{{prizeInfo.awardImageUrl}}"></image>
+      </view>
+    </view>
+    <image class="xs" src="https://img.51jiabo.com/b952d657-d279-4f28-83b3-1144ede19904.png"></image>
+    <view class="qr-box">
+      <canvas class='canvas' disable-scroll="true" canvas-id='qrcode2'></canvas>
+      <view class="qr-text">扫码领奖</view>
+      <view class="know-btn" bindtap="closeLottery">知道了</view>
+      <text class="tips-text">{{prizeInfo.tips}}</text>
+    </view>
+  </view>
+</view>
+
+<!-- 抽奖动画 -->
+<view class="lottery-loading" wx:if="{{loading}}">
+  <image class="loading-img" src="https://img.51jiabo.com/24261726-dd3b-4055-be9c-ce775b40139b.gif"></image>
+</view>
+
+<!-- 没有奖品弹层 -->
+<view class="lottery-popup" hidden="{{!showNotPrize}}">
+  <image class="bg" src="https://img.51jiabo.com/0754e3e8-b151-4570-94fc-dcc799630073.png" mode="widthFix"></image>
+  <view class="lottery-box">
+    <view class="head">
+      <view class="head-box">
+        <view class="not-price">您来晚了，线上没有奖品了</view>
+        <image class="prize" src="https://img.51jiabo.com/6338439d-a780-4989-972e-89dd113dd900.png"></image>
+      </view>
+    </view>
+    <image class="xs" src="https://img.51jiabo.com/b952d657-d279-4f28-83b3-1144ede19904.png"></image>
+    <view class="qr-box">
+      <view class="first-tip">请到展会现场</view>
+      <view class="second-tip">统一活动中心参与抽奖</view>
+      <view class="know-btn" bindtap="closeLottery">知道了</view>
+    </view>
+  </view>
+</view>

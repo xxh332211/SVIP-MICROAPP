@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "订单",
+  "usingComponents": {
+    "counter": "/components/goodsTimeLeftCounterNormal/goodsTimeLeftCounter"
+  }
+}

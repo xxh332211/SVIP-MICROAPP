@@ -1,0 +1,1248 @@
+/* 字体元素的 大小 颜色 字体 在行间修改 */
+
+/* 公共样式 */
+
+.session {
+  position: relative;
+  background: #fff;
+  height: 100%;
+  margin-top: 20rpx;
+  overflow: hidden;
+}
+
+.session-title {
+  padding: 36rpx 30rpx;
+  align-items: center;
+}
+
+.visib {
+  visibility: hidden;
+}
+
+.separator {
+  font-size: 40rpx;
+  color: #777;
+  margin: 0 20rpx;
+}
+
+.session-left {
+  font-size: 40rpx;
+  font-weight: 800;
+  color: #222;
+}
+
+.right {
+  font-size: 28rpx;
+  color: #777;
+}
+
+/* 公共样式 end */
+
+.banner {
+  position: relative;
+  height: 777rpx;
+  width: 100%;
+}
+
+.banner-bg {
+  position: absolute;
+  z-index: -1;
+  height: 645rpx;
+  width: 100%;
+}
+
+.explain-pos {
+  padding: 80rpx 30rpx 0;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+}
+
+.pos {
+  height: 55rpx;
+  border-radius: 50rpx;
+  background: rgba(194, 0, 38, 1);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-width: 140rpx;
+  padding: 0 20rpx;
+}
+
+.explain {
+  font-size: 30rpx;
+  font-weight: 300;
+}
+
+.banner-content {
+  position: absolute;
+  z-index: 2;
+  top: 160rpx;
+  left: 20rpx;
+  /* height: 655rpx; */
+  width: 710rpx;
+  background: #fff;
+  border-radius: 8rpx;
+  box-shadow: 0px 3px 10px 0px rgba(112, 112, 112, 0.1);
+  overflow: hidden;
+}
+
+.user-info {
+  position: relative;
+  width: 100%;
+  height: 150rpx;
+  background: black;
+  color: #fff;
+  padding-left: 60rpx;
+}
+
+.user-bg {
+  position: absolute;
+  z-index: 1;
+}
+
+.user-main {
+  position: absolute;
+  align-items: center;
+  width: 100%;
+  z-index: 2;
+  height: 150rpx;
+}
+
+.user-info .picture {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 50%;
+}
+
+.user-info .name {
+  margin-right: 0;
+  margin-left: 34rpx;
+  font-size: 38rpx;
+  font-weight: 800;
+  color: #fff;
+  background: none;
+  padding: 0;
+}
+
+.user-info .more {
+  width: 40rpx;
+  height: 40rpx;
+  background: #fff;
+  color: black;
+  border-radius: 50%;
+  font-size: 22rpx;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-left: 14rpx;
+}
+
+.rights {
+  padding-bottom: 20rpx;
+}
+
+.rights .title {
+  height: 96rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+  /* padding: 0 30rpx; */
+}
+
+.rights .title text {
+  font-size: 40rpx;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.rights .title image {
+  width: 90rpx;
+  height: 4rpx;
+}
+
+/* 倒计时 */
+
+.count-down {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 31rpx;
+}
+
+.count-down .txt {
+  font-size: 28rpx;
+}
+
+.count-down .case {
+  width: 42rpx;
+  height: 40rpx;
+  background: #dc0422;
+  border-radius: 5rpx;
+  font-size: 28rpx;
+  color: #fff;
+  line-height: 40rpx;
+  text-align: center;
+  margin: 0 8rpx;
+}
+
+.count-down .colon {
+  font-size: 28rpx;
+  color: #dc0422;
+}
+
+/* 按钮 */
+.button-box {
+  position: relative;
+}
+
+.auth-login {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  z-index: 3;
+  background: none;
+}
+
+.btns {
+  height: 100rpx;
+  width: 690rpx;
+  margin: 31rpx auto 60rpx;
+  border-radius: 50rpx;
+  background: #e6002d;
+  color: #fff;
+  box-shadow: 0 10rpx 20rpx 0 rgba(92, 92, 92, 0.3);
+  z-index: 29;
+}
+
+.user-text {
+  font-size: 40rpx;
+  color: #fff;
+  font-weight: 800;
+}
+
+.price {
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+
+.svip-arrow {
+  width: 40rpx;
+  height: 40rpx;
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAADSElEQVRYhc2ZzWsUSRjGf2kzo+6K6E4kiEMuintxUDGaVVjYxLAHYW+LUZD1IC4K4kH04h49qH+AJCp7EcXFW3BRRDe5rPtlxO+DHxeT7IwhM2bwK5mZ2I+Hro7JGDFdXUl8oJlDdT3vb7q6q956q0YSFvKA9UAz0AisBJYBX5r218D/wCOgB+gGbgB+5EiSolxpSUcl9Sq6ek3fdJSYU70xJemEpJIFWLVKxivlCnCrpEEHYNUalNQWB7BWUvs0gFWr3cSKBPiFpIszABfqook5JcBaSZ0zCBeqU5M8yckAO2YBLlRHNU81XNvssY1puz4CmJLl11rcc0TyfVeABUlLJgO0/mKzZDT002Fp9K0bxHFDHcI1SCrbumW91cqS0fOtB+WXrG3Gq2yY8MyKtxdI2CzKAIvPH4dELSMXrlD88QAaKdlahUoYJpDkSeqL+5eHO7uVm9eoLBnlm3fJfz0c17JPkoekprhOoUp//KvcfAO5cYf84su4lk0e0BJ3PEIlWzbw1bXT1CxcQPnvOxRad+MPDsWxbPaAdY74AEhuWkPq2im8ukVUeh5QaNmFP1CwtWtE0j0Ho/uBKncf6Vn9d8qS0cDyLRrte2Zjcw9JecdsY6o8fqqBZZsDyIbvVXn8NKpFvkZSCUg6HOUJKv95i8K3OwFINGWo++dcpO7ep++x1+iTXorbDgEwp2Epi84ejW6iaRpiR+9g3gNybp8bVG7cH/t6a1etoO76Geak622sch7w0CVc+a/bFFp/xs8XSaxfRarrV7z6lK3dQw+46Qyu6z+et+5GL14F8+HVU3hLFsex7EHSNy7eueHObuXmrnO5FktSk5Nk4c1vl5VNrA1Srh/2yR9xsX1+nyygYMdvrTAfHGo75CoflGEaS1jTilE1yJLR0M5fXGbUJcM0IeU/YevmeE8iBdsPJFGj99WtFMGUYz0nOFIB+Nr84lU17JsNoirtx8ABn93G/WQ1z2SASc1e6SM5FcCweHRpBuF+V4TiUXglNDPD3WFiWRcwt2n6CpgT6jC2gEiqUzA3uSoBtxvPT8aeKuD4FeeYpH4LsH7TN1IRffxEHUXhMUQLwbZ1JZAGFpj2V0A/wTHETaALy2OId/bImTtSslBKAAAAAElFTkSuQmCC") no-repeat;
+  background-size: 100% 100%;
+  margin-left: 10rpx;
+}
+
+.rush {
+  font-size: 28rpx;
+  color: #fff;
+  line-height: 1;
+}
+
+.rush text {
+  font-weight: 800;
+  font-size: 36rpx;
+}
+
+.original {
+  font-size: 24rpx;
+  color: #ffd1ae;
+  text-decoration: line-through;
+}
+
+.showing .btns {
+  margin-bottom: 11rpx;
+}
+
+.origin {
+  display: flex;
+  align-items: baseline;
+  font-size: 42rpx;
+  font-weight: bold;
+}
+
+.origin text {
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.open {
+  width: 300rpx;
+  height: 100%;
+  position: relative;
+}
+
+.open .bg {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+  left: 0;
+}
+
+.open-main {
+  position: absolute;
+  justify-content: flex-end;
+  align-items: center;
+  z-index: 2;
+  height: 100%;
+  width: 100%;
+  padding-right: 27rpx;
+}
+
+.discount {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.after {
+  margin-right: 15rpx;
+  margin-bottom: -10rpx;
+}
+
+.dredge {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 36rpx;
+  color: #FFD1AE;
+  line-height: 58rpx;
+  margin-right: 15rpx;
+}
+
+.dredge text {
+  font-size: 48rpx;
+}
+
+.more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  background: #ffdbb4;
+  color: #222;
+}
+
+.show-tips {
+  font-size: 28rpx;
+  color: #e6002d;
+  text-align: center;
+  padding-bottom: 26rpx;
+}
+
+/* svip优惠券 */
+
+.coupon-wrap {
+  padding-bottom: 27rpx;
+}
+
+.coupon-item {
+  display: flex;
+  flex-direction: column;
+  width: 690rpx;
+  background: rgba(255, 247, 247, 1);
+  border: 2rpx solid rgba(237, 76, 108, 1);
+  border-radius: 2rpx;
+  margin: 0 0 31rpx 30rpx;
+}
+
+.coupon-item .coupon-top {
+  width: 100%;
+  height: 141rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.coupon-item .coupon-top .left {
+  display: flex;
+  align-items: center;
+}
+
+.coupon-item .coupon-top.noDesc {
+  height: 160rpx;
+}
+
+.coupon-item .desc {
+  margin: 0 28rpx;
+  border-top: 1px dashed #fddee3;
+  font-size: 20rpx;
+  color: #777;
+  padding: 11rpx 0 20rpx;
+}
+
+.coupon-item .price {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 213rpx;
+  font-size: 66rpx;
+  font-weight: bold;
+  color: #e6002d;
+}
+
+.coupon-item .symbol {
+  font-size: 36rpx;
+  margin-top: -18rpx;
+}
+
+.coupon-item .ticket-info {
+  padding: 10rpx 0;
+  font-weight: 400;
+  font-size: 16rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.coupon-item .ticket-title {
+  color: #222;
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.coupon-item .use-time {
+  color: #777;
+  font-size: 20rpx;
+}
+
+.coupon-item .get-ticket {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding-right: 38rpx;
+}
+
+.coupon-item .get-Svip {
+  width: 160rpx;
+  height: 58rpx;
+  background: #e6002d;
+  color: #fff;
+  border-radius: 29rpx;
+  font-size: 28rpx;
+  line-height: 58rpx;
+  text-align: center;
+}
+
+.universal {
+  width: 84rpx;
+  height: 86rpx;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: url("https://img.51jiabo.com/73762619-f606-4e16-96f6-50c0ac510ac5.png") no-repeat;
+  background-size: 100% 100%;
+}
+
+.sign-exclusive {
+  width: 120rpx;
+  height: 32rpx;
+  background: #E6002D;
+  border-radius: 16rpx 0 0 16rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  font-size: 20rpx;
+  color: #FFFFFF;
+  margin-top: 19rpx;
+}
+
+.sign-coupon-wrap {
+  padding-left: 30rpx;
+}
+
+.sign-coupon-wrap .coupon-item {
+  margin-left: 0;
+  margin-bottom: 30rpx;
+}
+
+.sign-coupon-wrap .single {
+  box-shadow: 0 0 8rpx 2rpx rgba(0, 0, 0, .1);
+  margin-bottom: 30rpx;
+}
+
+.sign-coupon-wrap .single .below {
+  color: #E6002D;
+}
+
+/*签到礼*/
+.not-sign image {
+  display: block;
+  width: 700rpx;
+  margin-left: 25rpx;
+  margin-bottom: 30rpx;
+}
+
+.btn-wrap {
+  position: relative;
+}
+
+.gift {
+  padding: 0 30rpx 40rpx;
+}
+
+.swiper-box {
+  position: relative;
+}
+
+.indicate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 15rpx;
+  right: 26rpx;
+  z-index: 1;
+  width: 60rpx;
+  height: 32rpx;
+  background: rgba(0, 0, 0, .5);
+  border-radius: 16rpx;
+  font-size: 20rpx;
+  color: #FFFFFF;
+}
+
+.gifg-swiper {
+  width: 690rpx;
+  height: 394rpx;
+}
+
+.gift-video {
+  width: 690rpx;
+  height: 394rpx;
+  position: relative;
+}
+
+.gift-video .play {
+  width: 118rpx;
+  height: 118rpx;
+  background: url("https://img.51jiabo.com/1252abb1-a3bc-461a-8901-1d7a5c202826.png") no-repeat;
+  background-size: 100% 100%;
+  z-index: 2;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.gift-picture {
+  width: 690rpx;
+  height: 394rpx;
+  /* height: 325rpx; */
+}
+
+.gift-info {
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  margin-top: 30rpx;
+}
+
+.gift-des {
+  width: 640rpx;
+  height: 100%;
+  white-space: pre-line;
+}
+
+.sign {
+  align-items: center;
+  margin-right: 20rpx;
+  flex-wrap: nowrap;
+}
+
+.tig {
+  width: 125rpx;
+  height: 46rpx;
+  color: #fff;
+  background: #e6002d;
+  font-size: 30rpx;
+  font-weight: 300;
+  border-radius: 8rpx;
+}
+
+.gift-address {
+  font-size: 28rpx;
+  color: #777;
+  margin-top: 8rpx;
+}
+
+.gift-check .text {
+  font-size: 28rpx;
+  color: #777777;
+}
+
+.gift-check text {
+  color: #E6002D;
+}
+
+/*  */
+
+.hot-commodity {
+  padding: 0 30rpx;
+}
+
+.hot-commodity-picture {
+  width: 100%;
+  height: 330rpx;
+}
+
+.hot-commodity-name {
+  line-height: 1.8em;
+}
+
+.hot-commodity-price {
+  align-items: baseline;
+}
+
+.hot-commodity-address {
+  margin: 10rpx 0 40rpx;
+}
+
+/* 商品 */
+
+.products-session {
+  position: relative;
+  top: 0;
+  width: 100%;
+}
+
+.swiper {
+  display: flex;
+  width: 692rpx;
+  height: 657rpx;
+}
+
+.swiper.custom {
+  height: 574rpx;
+}
+
+.swiper-item {
+  display: flex;
+  text-align: left;
+}
+
+.item-box {
+  width: 330rpx;
+  margin-right: 14rpx;
+}
+
+.reserve-goods {
+  background-color: #f5f5f5;
+  background-size: 750rpx 337rpx;
+  background-repeat: no-repeat;
+  background-image: linear-gradient(180deg, #ffc397, #f5f5f5);
+}
+
+.pre-goods {
+  background-color: #f5f5f5;
+  background-size: 750rpx 337rpx;
+  background-repeat: no-repeat;
+  background-image: linear-gradient(180deg, #fdce88, #f5f5f5);
+}
+
+.total-goods {
+  overflow: hidden;
+  background-color: #f5f5f5;
+  background-size: 750rpx 337rpx;
+  background-repeat: no-repeat;
+  background-image: linear-gradient(180deg, #e9cdd6, #f5f5f5);
+}
+
+.product-wrap {
+  width: 710rpx;
+  padding: 18rpx 0 18rpx 18rpx;
+  background: #fff;
+  border-radius: 8rpx;
+  margin-left: 20rpx;
+}
+
+.product-list {
+  display: flex;
+  justify-content: space-between;
+}
+
+.product-item {
+  padding: 9rpx;
+  flex: 1;
+}
+
+.products-title {
+  width: 100%;
+  padding: 10rpx 20rpx 10rpx 32rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.products-title .dingjin1 {
+  font-size: 36rpx;
+  color: #222;
+  line-height: 100rpx;
+  font-weight: 800;
+
+}
+
+.products-title .dingjin2 {
+  font-size: 24rpx;
+  padding: 41rpx 10rpx 0;
+  color: #584228;
+}
+
+.products-title .dingjin3 {
+  font-size: 24rpx;
+  padding-top: 41rpx;
+  padding-left: 10rpx;
+  color: #584228;
+  max-width: 410rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.products-title-Left {
+  display: flex;
+  align-items: baseline;
+}
+
+.products-title-Right {
+  font-size: 24rpx;
+  /* padding-top: 41rpx; */
+  color: #fff;
+  margin-top: 32rpx;
+  width: 152rpx;
+  height: 47rpx;
+  line-height: 47rpx;
+  background: rgba(230, 0, 45, 1);
+  border-radius: 24rpx;
+  text-align: center;
+}
+
+.product-dic {
+  width: 100%;
+  line-height: 1.8em;
+  padding-bottom: 20rpx;
+  height: 95rpx;
+  border-bottom: 1rpx solid #efefef;
+  overflow: hidden;
+  color: #222;
+  font-size: 24rpx;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+.buy-btn {
+  width: 100%;
+  background: #e6002d;
+  height: 64rpx;
+  color: #fff;
+  font-weight: 200;
+  font-size: 28rpx;
+}
+
+.buy-btn.gray {
+  background: #d0d0d0;
+}
+
+.repertory {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: -14rpx;
+}
+
+.payment {
+  display: flex;
+  align-items: baseline;
+}
+
+/* 商品单个布局 */
+
+.product-item2 {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.product-item2 image {
+  width: 330rpx;
+  height: 260rpx;
+  flex-shrink: 0;
+}
+
+.main-right {
+  width: 310rpx;
+  margin-left: 30rpx;
+  height: 260rpx;
+}
+
+.product-name {
+  width: 100%;
+  line-height: 1.8em;
+  padding-bottom: 20rpx;
+  height: 95rpx;
+  overflow: hidden;
+  color: #222;
+  font-size: 24rpx;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+/*  */
+
+.next {
+  width: 250rpx;
+  height: 80rpx;
+  border-radius: 50rpx;
+  border: 1px solid #b5b5b5;
+  justify-content: space-around;
+  align-items: center;
+  margin: 20rpx auto;
+  color: #adadad;
+}
+
+/* 展会战况 */
+
+.details {
+  position: relative;
+  width: 100%;
+  height: 510rpx;
+}
+
+.details-bg {
+  position: absolute;
+  z-index: 1;
+  background: #e6002d;
+  width: 100%;
+  height: 510rpx;
+}
+
+.details-bg image {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
+
+.details-content {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 2;
+  align-items: center;
+}
+
+.details-title {
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  font-size: 32rpx;
+  padding: 35rpx 0 30rpx;
+  font-weight: 200;
+}
+
+.details-pic {
+  width: 610rpx;
+  height: 350rpx;
+  border-radius: 8rpx;
+  box-shadow: 0px 3px 10px 0px rgba(112, 112, 112, 0.5);
+  background: url('https://img.51jiabo.com/d4bd6630-7f6c-4d6c-b935-40c14cfd3864.png') no-repeat center center;
+  background-size: contain;
+}
+
+.fixed-button-box {
+  position: fixed;
+  bottom: 90rpx;
+  left: 30rpx;
+  height: 100rpx;
+  width: 690rpx;
+  margin: 31rpx auto 60rpx;
+  z-index: 29;
+}
+
+.pos-flexd {
+  height: 100rpx;
+  width: 690rpx;
+  border-radius: 50rpx;
+  background: #e6002d;
+  color: #fff;
+  box-shadow: 0 10rpx 20rpx 0 rgba(92, 92, 92, 0.3);
+}
+
+/* 商户优惠券 */
+
+.vendor-coupon {
+  padding: 0 30rpx 26rpx;
+}
+
+.single {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10rpx;
+  width: 690rpx;
+  margin: 0 0 37rpx 0;
+  overflow: hidden;
+}
+
+.single .top-bg{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 90rpx;
+  background: url(https://img.51jiabo.com/3d14863f-1c01-4189-9d02-c8cbd2a092c6.jpg) no-repeat;
+  background-size: cover;
+  padding: 20rpx 0;
+  overflow: hidden;
+}
+
+.single .top-bg .vendor-img{
+  width: 100rpx;
+  height: 50rpx;
+  border-radius: 50rpx;
+  overflow: hidden;
+  margin: 0 30rpx;
+}
+
+.single .top-bg .ticket-title{
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #fff;
+}
+
+.single .above {
+  height: 140rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.single.active:nth-child(n + 4) {
+  display: none;
+}
+
+.single .left{
+  display: flex;
+  align-items: center;
+}
+
+.single .below {
+  margin: 0 23rpx;
+  padding-right: 28rpx;
+  border-top: 1px dashed #dcdcdc;
+}
+
+.single .btm-t {
+  height: 66rpx;
+  font-size: 20rpx;
+  color: #777;
+  line-height: 66rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.single .below-msg{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 450rpx;
+  padding-left: 20rpx;
+}
+
+.single .spread{
+  width: 100%;
+  font-size: 20rpx;
+  color: #777;
+  padding-left: 20rpx;
+  padding-bottom: 30rpx;
+}
+
+.vendor-coupon .chakanBtn {
+  width: 600rpx;
+  height: 74rpx;
+  border: 1px solid #e6002d;
+  text-align: center;
+  line-height: 74rpx;
+  border-radius: 74rpx;
+  margin: 0 auto 37rpx;
+  color: #e6002d;
+  font-size: 28rpx;
+}
+
+.single .v-price {
+  height: 100%;
+  width: 210rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.single .v-price .p-top {
+  font-size: 64rpx;
+  font-weight: bold;
+  color: #FF0036;
+}
+
+.single .ticket-info {
+  width: 272rpx;
+  font-size: 24rpx;
+}
+
+.single .ticket-info .yet-get{
+  color: #222;
+  margin-bottom: 10rpx;
+}
+
+.single .ticket-info .use-time {
+  color: #777;
+}
+
+.single .get-ticket {
+  width: 190rpx;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.single .get-ticket .get-btn {
+  width: 160rpx;
+  height: 60rpx;
+  background: #e6002d;
+  color: #fff;
+  font-size: 28rpx;
+  border-radius: 29rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.single .get-ticket .get-btn.gray {
+  background: #d0d0d0;
+  color: #fff;
+}
+
+/* 非svip提示弹层 */
+.not-svip-tips {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.not-svip-box {
+  width: 620rpx;
+  border-radius: 8rpx;
+  background: #fff;
+}
+
+.not-svip-box .h6 {
+  font-size: 36rpx;
+  color: #000;
+  text-align: center;
+  padding: 72rpx 0 77rpx;
+}
+
+.btn-box {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 62rpx 53rpx;
+}
+
+.btn-box .cancel {
+  width: 190rpx;
+  height: 70rpx;
+  border: 1px solid #aaa;
+  border-radius: 3rpx;
+  color: #000;
+  font-size: 36rpx;
+  text-align: center;
+  line-height: 70rpx;
+}
+
+.btn-box .svip-pay {
+  width: 256rpx;
+  height: 70rpx;
+  background: #e6002d;
+  border-radius: 3rpx;
+  text-align: center;
+  line-height: 70rpx;
+  font-size: 36rpx;
+  color: #fff;
+}
+
+/* 预约提示弹层 */
+.reserve-tips {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.reserve-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 620rpx;
+  border-radius: 8rpx;
+  background: #fff;
+  padding-bottom: 61rpx;
+}
+
+.reserve-box .h6 {
+  font-size: 36rpx;
+  color: #000;
+  text-align: center;
+  line-height: 60rpx;
+  padding: 72rpx 0 53rpx;
+}
+
+.reserve-box .cancel {
+  width: 190rpx;
+  height: 70rpx;
+  background: #e6002d;
+  border-radius: 3rpx;
+  color: #fff;
+  font-size: 36rpx;
+  text-align: center;
+  line-height: 70rpx;
+}
+
+.sign-popup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 30;
+  background: rgba(0, 0, 0, .8);
+  width: 100%;
+  height: 100%;
+}
+
+.sign-popup .sign-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sign-popup image {
+  width: 700rpx;
+  margin-bottom: 40rpx;
+}
+
+.sign-popup .close {
+  width: 35rpx;
+  height: 35rpx;
+  background: url(https://img.51jiabo.com/6edfde28-dab7-4cfd-a0b2-a1d39f5063a8.png) no-repeat;
+  background-size: 100% 100%;
+}
+
+.coupon-item .below {
+  margin: 0 30rpx;
+  border-top: 1px dashed #dcdcdc;
+  font-size: 20rpx;
+  color: #777;
+}
+
+.coupon-item .btm-t {
+  height: 66rpx;
+  font-size: 20rpx;
+  color: #777;
+  line-height: 66rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.coupon-item .below-msg{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 450rpx;
+  padding-left: 20rpx;
+}
+
+.coupon-item .spread{
+  width: 100%;
+  font-size: 20rpx;
+  color: #777;
+  padding-left: 20rpx;
+  padding-bottom: 30rpx;
+}
+
+/* 支付成功弹层
+.success-popup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, .7);
+}
+
+.success-popup .success-box {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 669rpx;
+  background: #FFFFFF;
+  border-radius: 12rpx;
+  overflow: hidden;
+}
+
+.success-popup .title {
+  font-size: 44rpx;
+  font-weight: bold;
+  color: #222222;
+  padding: 40rpx 0 23rpx;
+}
+
+.success-popup image {
+  width: 290rpx;
+  height: 345rpx;
+}
+
+.success-popup .tips {
+  font-size: 27rpx;
+  color: #222222;
+  padding: 19rpx 0 25rpx;
+}
+
+.success-popup .success-btn-box {
+  width: 100%;
+  display: flex;
+  border-top: 1px solid #D2D3D5;
+}
+
+.success-popup .btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 114rpx;
+  border-right: 1px solid #D2D3D5;
+  font-size: 36rpx;
+  color: #777777;
+}
+
+.success-popup .btn:last-child {
+  border-right: none;
+} */

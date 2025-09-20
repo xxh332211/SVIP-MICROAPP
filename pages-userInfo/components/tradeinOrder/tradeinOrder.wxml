@@ -1,0 +1,29 @@
+<!--pages-userInfo/components/trandinOrder/trandinOrder.wxml-->
+<view data-item="{{item}}" bindtap="toTradeInDetail">
+  <view class="head">
+    <view class="title">
+      <view class="hg"></view>换购商品
+    </view>
+    <view class="status-text">
+      <block wx:if="{{item.order_status_des == 2}}">商品未领取</block>
+      <block wx:if="{{item.order_status_des == 3}}">已领取</block>
+      <block wx:if="{{item.order_status_des == 4 || item.order_status_des == 6}}">退款中</block>
+      <block wx:if="{{item.order_status_des == 5}}">已退款</block>
+    </view>
+  </view>
+  <view class="content">
+    <image class="goods-img" src="{{item.goods_image}}"></image>
+    <view class="right">
+      <view class="name">{{item.goods_name}}</view>
+      <view class="price-box">￥{{item.origin_price}}</view>
+      <view class="more-box">
+        <view class="now" wx:if="{{item.trade_in_type == 1}}">熊猫币：{{item.panda_coin}}</view>
+        <view class="now" wx:else>换购价￥{{item.redeem_price}}</view>
+        <view class="btn-box">
+          <view class='btn wide' wx:if="{{item.order_status_des == 2}}">领取商品</view>
+          <view class="btn" wx:if="{{item.order_status_des != 2}}" data-item="{{item}}" catchtap="deleteOrder">删除</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

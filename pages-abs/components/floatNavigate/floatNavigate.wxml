@@ -1,0 +1,23 @@
+<!--pages-abs/components/floatNavigate/floatNavigate.wxml-->
+<view class="navigate-wrap {{showNav?'':'hide'}}">
+  <view class="more-box" wx:if="{{showMore}}">
+    <view class="more-item" data-link="/pages/goodsIndex/goodsIndex" bindtap="moreLink">
+      <view class="ico"></view>
+      <view class="text">首页</view>
+    </view>
+    <view class="more-item" data-link="/pages/home/home" bindtap="moreLink">
+      <view class="ico"></view>
+      <view class="text">会员</view>
+    </view>
+    <view class="more-item" data-link="/pages/user/userHome" bindtap="moreLink">
+      <view class="ico"></view>
+      <view class="text">我的</view>
+    </view>
+    <view class="close" bindtap="toggleMore"></view>
+  </view>
+  <view class="nav-box">
+    <view class="nav-item" hidden="{{showMore}}" bindtap="toggleMore"></view>
+    <button open-type="share" class="nav-item"></button>
+    <view class="nav-item" hidden="{{!showTopBtn}}" bindtap="backTop"></view>
+  </view>
+</view>

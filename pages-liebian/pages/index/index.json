@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "周周0元抽",
+  "usingComponents": {
+    "privacy-popup": "../../../components/privacyPopup/privacyPopup"
+  }
+}

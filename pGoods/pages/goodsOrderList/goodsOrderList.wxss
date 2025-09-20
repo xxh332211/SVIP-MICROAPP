@@ -1,0 +1,155 @@
+.container{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.tabs{
+  padding: 0 60rpx;
+  height: 100rpx;
+  display: flex;
+  justify-content: space-between;
+  font-size: 30rpx;
+  color: #666;
+  line-height: 100rpx;
+  background: #FFF;
+  box-shadow: 0 10px 10px 0 rgba(0,0,0,0.05);
+  border-bottom: solid 1px #f7f7f7;
+}
+.tabs .tab{
+  position: relative;
+  transition: all .2s ease-in-out;
+}
+.tabs .tab.active{
+  color: #000;
+}
+.tabs .tab:after{
+  content: '';
+  width: 56rpx;
+  height: 5rpx;
+  background: #E6001B;
+  position: absolute;
+  bottom: -1rpx;
+  left: 50%;
+  margin-left: -28rpx;
+  transform: scaleX(0);
+  transition: all .2s ease-in-out;
+}
+.tabs .tab.active:after{
+  transform: scaleX(1)
+}
+
+.list{
+  height: 0;
+  flex: 1;
+}
+
+
+.order-item{
+  padding: 0 15rpx;
+  padding-top: 10rpx;
+  background: #fff;
+  border-radius: 10rpx;
+  box-shadow: 0 6rpx 20rpx 0 rgba(0,0,0,0.10);
+  margin: 20rpx;
+}
+.header{
+  padding: 20rpx 15rpx;
+  display: flex;
+  font-size: 28rpx;
+}
+.header .no{
+  flex: 1;
+}
+.header .state{
+  color: #000;
+}
+.header .state.gray{
+  color: #9B9B9B;
+}
+.header .state.warning{
+  color: #F57423;
+}
+
+.goods{
+  display: flex;
+  padding-bottom: 15rpx;
+  border-bottom: solid 1rpx #F7F7F7;
+  position: relative;
+  transition: all .2s ease-in-out;
+}
+.goods:active{
+  background: #f7f7f7;
+}
+.goods > image{
+  width: 150rpx;
+  height: 150rpx;
+  display: block;
+  margin-right: 20rpx;
+}
+.goods-info{
+  flex: 1;
+}
+.goods-info .name{
+  font-size: 28rpx;
+}
+.goods-info .price{
+  color: #000;
+  font-weight: bold;
+  font-size: 32rpx;
+}
+.goods-info .sprice{
+  color: #333;
+  font-size: 28rpx;
+}
+.goods-info text.g{
+  margin: 0 16rpx;
+  font-weight: normal;
+  color: #999;
+}
+.return{
+  position: absolute;
+  right: 15rpx;
+  bottom: 20rpx;
+  font-size: 28rpx;
+  color: #F57423;
+}
+
+.actions{
+  display: flex;
+  justify-content: flex-end;
+  padding: 20rpx 15rpx;
+}
+.actions .btn{
+  min-width: 150rpx;
+  padding: 0 10rpx;
+  text-align: center;
+  font-size: 28rpx;
+  height: 60rpx;
+  border-radius: 30rpx;
+  border: solid 1rpx #999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.actions .btn:not(:last-child){
+  margin-right: 20rpx;
+}
+.no-more-data{
+  color: #BBB;
+  text-align: center;
+  padding: 40rpx 0;
+  font-size: 28rpx;
+}
+.no-data{
+  color: #BBB;
+  font-size: 28rpx;
+  text-align: center;
+  margin-top: 20vh;
+}
+.no-data text{
+  display: block;
+}
+.no-data image{
+  width: 160rpx;
+  height: 160rpx;
+}

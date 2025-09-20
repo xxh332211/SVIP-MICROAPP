@@ -1,0 +1,58 @@
+/* pages-liebian/pages/historyList/historyList.wxss */
+.container{
+  padding: 10rpx;
+}
+
+.tabs{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 114rpx;
+  padding: 0 24rpx;
+  background-color: #fff;
+  border-radius: 30rpx;
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #616161;
+}
+
+.cur-tab-item{
+  color: #E6002D;
+}
+
+.list{
+  background-color: #fff;
+  border-radius: 30rpx;
+  padding: 55rpx 22rpx;
+  margin-top: 10rpx;
+}
+
+.item{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 80rpx;
+}
+
+.tit{
+  font-size: 36rpx;
+}
+
+.act-time{
+  margin: 30rpx 0 20rpx;
+}
+
+.act-time,.start-time{
+  font-size: 30rpx;
+  color: #606060;
+}
+
+.btn{
+  width: 148rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  text-align: center;
+  border-radius: 70rpx;
+  border: 1rpx dotted #8B8B8B;
+  font-size: 30rpx;
+  color: #8B8B8B;
+}
